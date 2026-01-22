@@ -1,7 +1,12 @@
 #include "main.h"
 #include "game/machine.h"
 
-void main01() {
+int main() {
+    printf("Hello from main() @ main.cpp\n");
+
+    // dComIfG_ct() goes here
+
+    // Relocating main01() logic to here
     mDoMch_Create();
 
     // More stuff goes here
@@ -10,17 +15,11 @@ void main01() {
         static u32 frame;
         frame++;
 
-        // Immediately break out of the loop for now
-        break;
+        if (frame > 0) {
+            printf("One iteration of the game loop has passed, exitting.");
+            break; // Immediately break out of the loop for now
+        }
     } while (true);
-}
-
-int main() {
-    printf("Hello from main() @ main.cpp\n");
-
-    // dComIfG_ct() goes here
-
-    main01();
 
     return 0;
 }
