@@ -10,8 +10,18 @@ set(SOURCE_FILES
     src/game/machine.cpp
 )
 
+set(RUNTIME_LIBRARIES
+    aurora::core
+    aurora::gx
+    aurora::main
+    aurora::mtx
+    aurora::pad
+    aurora::si
+    aurora::vi
+)
+
 add_executable(tp src/main.cpp ${SOURCE_FILES})
 
-target_include_directories(tp PRIVATE include)
+target_include_directories(tp PUBLIC include)
 
-target_link_libraries(tp PRIVATE aurora::core aurora::main aurora::gx)
+target_link_libraries(tp PUBLIC ${RUNTIME_LIBRARIES})
