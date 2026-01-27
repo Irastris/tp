@@ -17,12 +17,14 @@ add_compile_options(
 set(GAME_FILES
     src/main.cpp
     src/game/controller.cpp
+    src/game/dvd.cpp
     src/game/ext.cpp
     src/game/graphic.cpp
     src/game/machine.cpp
     src/game/save.cpp
     src/game/stage.cpp
     src/game/com/inf/game.cpp
+    src/game/framework/process/node.cpp
 )
 
 set(JSYS_FILES
@@ -35,6 +37,7 @@ set(JSYS_FILES
 
 set(SSYS_FILES
     src/ssystem/scomponent/c_lib.cpp
+    src/ssystem/scomponent/c_list.cpp
     src/ssystem/scomponent/c_m3d_g_aab.cpp
     src/ssystem/scomponent/c_m3d_g_cps.cpp
     src/ssystem/scomponent/c_m3d_g_cyl.cpp
@@ -45,6 +48,7 @@ set(SSYS_FILES
     src/ssystem/scomponent/c_m3d_g_vtx.cpp
     src/ssystem/scomponent/c_m3d.cpp
     src/ssystem/scomponent/c_math.cpp
+    src/ssystem/scomponent/c_node.cpp
     src/ssystem/scomponent/c_phase.cpp
     src/ssystem/scomponent/c_sxyz.cpp
     src/ssystem/scomponent/c_xyz.cpp

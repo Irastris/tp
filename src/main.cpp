@@ -2,6 +2,23 @@
 
 static u32 frame;
 
+s32 LOAD_COPYDATE(void*) {
+    std::cout << "LOAD_COPYDATE is stubbed" << std::endl;
+
+    /* DVDFileInfo ATTRIBUTE_ALIGN(32) fileInfo;
+    u8 buffer[32];
+
+    BOOL status = DVDOpen("/str/Final/Release/COPYDATE", &fileInfo);
+    if (status) {
+        s32 rt = DVDReadPrio(&fileInfo, &buffer, sizeof(buffer), 0, 2);
+        char COPYDATE_STRING[18] = "??/??/?? ??:??:??";
+        memcpy(COPYDATE_STRING, buffer, sizeof(COPYDATE_STRING) - 1);
+        status = DVDClose(&fileInfo);
+    } */
+
+    return 1; // status;
+}
+
 int main(int argc, char* argv[]) {
     std::cout << "Hello from main() @ main.cpp (m_Do_main)" << std::endl;
     
@@ -42,6 +59,10 @@ int main(int argc, char* argv[]) {
     mDoMch_Create();
 
     mDoGph_Create();
+
+    mDoCPd_c::create();
+
+    mDoDvdThd_callback_c::create((mDoDvdThd_callback_func)LOAD_COPYDATE, NULL);
 
     // More stuff goes here
 
