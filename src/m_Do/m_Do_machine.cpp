@@ -31,7 +31,7 @@
 GXRenderModeObj* mDoMch_render_c::mRenderModeObj = &g_ntscZeldaIntDf; */
 
 void mDoMch_Create() {
-    std::cout << "Hello from mDoMch_Create() @ machine.cpp (m_Do_machine)" << std::endl;
+    std::cout << "Hello from mDoMch_Create() @ m_Do_machine.cpp" << std::endl;
 
     JFWSystem::init();
 
@@ -48,11 +48,11 @@ void mDoMch_Create() {
     JKRHeap* zeldaHeap = mDoExt_createZeldaHeap(size, systemHeap);
     JKRSetCurrentHeap(zeldaHeap);
 
-    std::cout << "commandHeap size is " << mDoExt_getCommandHeap()->getSize() << std::endl;
-    std::cout << "archiveHeap size is " << mDoExt_getArchiveHeap()->getSize() << std::endl;
-    std::cout << "j2dHeap size is " << mDoExt_getJ2dHeap()->getSize() << std::endl;
-    std::cout << "gameHeap size is " << mDoExt_getGameHeap()->getSize() << std::endl;
-    std::cout << "zeldaHeap size is " << mDoExt_getZeldaHeap()->getSize() << std::endl;
+    std::cout << "commandHeap initialized with size " << mDoExt_getCommandHeap()->getSize() << " bytes" << std::endl;
+    std::cout << "archiveHeap initialized with size " << mDoExt_getArchiveHeap()->getSize() << " bytes" << std::endl;
+    std::cout << "j2dHeap initialized with size " << mDoExt_getJ2dHeap()->getSize() << " bytes" << std::endl;
+    std::cout << "gameHeap initialized with size " << mDoExt_getGameHeap()->getSize() << " bytes" << std::endl;
+    std::cout << "zeldaHeap initialized with size " << mDoExt_getZeldaHeap()->getSize() << " bytes" << std::endl;
 
     /* JKRSetAramTransferBuffer(NULL, 0x2000, JKRGetSystemHeap());
     JKRThreadSwitch::createManager(NULL);

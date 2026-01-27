@@ -4,7 +4,7 @@ JKRExpHeap* JFWSystem::rootHeap;
 JKRExpHeap* JFWSystem::systemHeap;
 
 void JFWSystem::init() {
-    std::cout << "Hello from JFWSystem::init() @ JFWSystem.cpp (JFWSystem)" << std::endl;
+    std::cout << "Hello from JFWSystem::init() @ JFWSystem.cpp" << std::endl;
     std::cout << "JFWSystem::init() is partially stubbed" << std::endl;
 
     /* OSInit();

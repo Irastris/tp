@@ -1039,7 +1039,7 @@ extern GXColor g_whiteColor;
 extern GXColor g_saftyWhiteColor;
 
 inline void dComIfG_ct() {
-    std::cout << "Hello from doComIfG_ct() @ game.h (d_com_inf_game)" << std::endl;
+    std::cout << "Hello from doComIfG_ct() @ d_com_inf_game.h" << std::endl;
     g_dComIfG_gameInfo.ct();
 }
 

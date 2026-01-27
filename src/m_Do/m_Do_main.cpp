@@ -20,7 +20,7 @@ s32 LOAD_COPYDATE(void*) {
 }
 
 int main(int argc, char* argv[]) {
-    std::cout << "Hello from main() @ main.cpp (m_Do_main)" << std::endl;
+    std::cout << "Hello from main() @ m_Do_main.cpp" << std::endl;
     
     // Aurora initialization
     const AuroraConfig auroraConfig{

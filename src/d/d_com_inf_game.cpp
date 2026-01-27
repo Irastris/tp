@@ -20,7 +20,7 @@
 #include "m_Do/m_Do_graphic.h" */
 
 void dComIfG_play_c::ct() {
-    std::cout << "Hello from dComIfG_play_c::ct() @ game.cpp (d_com_inf_game)" << std::endl;
+    std::cout << "Hello from dComIfG_play_c::ct() @ d_com_inf_game.cpp" << std::endl;
 
     mWindowNum = 0;
     // mParticle = NULL;
@@ -942,7 +942,7 @@ dTimer_c* dComIfG_play_c::getTimerPtr() {
 } */
 
 void dComIfG_inf_c::ct() {
-    std::cout << "Hello from dComIfG_inf_c::ct() @ game.cpp (d_com_inf_game)" << std::endl;
+    std::cout << "Hello from dComIfG_inf_c::ct() @ d_com_inf_game.cpp" << std::endl;
 
     mFadeBrightness = 255;
     play.ct();
