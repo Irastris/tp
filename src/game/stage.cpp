@@ -72,6 +72,26 @@ void dStage_roomDt_c::init() {
 
 s8 dStage_roomControl_c::mStayNo;
 
+stage_map_info_class* dStage_roomDt_c::getMapInfo2(int param_0) const {
+    stage_map_info_dummy_class* map_info_p = getMapInfoBase();
+
+    if (map_info_p == NULL || map_info_p->num == 0 || map_info_p->m_entries == NULL) {
+        return NULL;
+    }
+
+    stage_map_info_class* data_p = map_info_p->m_entries;
+
+    for (int i = 0; i < map_info_p->num; i++) {
+        if (param_0 == data_p->field_0x35) {
+            return data_p;
+        }
+
+        data_p++;
+    }
+
+    return NULL;
+}
+
 stage_map_info_class* dStage_stageDt_c::getMapInfo2(int param_0) const {
     stage_map_info_dummy_class* map_info_p = getMapInfoBase();
 
@@ -90,4 +110,14 @@ stage_map_info_class* dStage_stageDt_c::getMapInfo2(int param_0) const {
     }
 
     return NULL;
+}
+
+dStage_Elst_c* dStage_stageDt_c::getElst(void) { return mElst; }
+
+void dStage_stageDt_c::resetOldMulti() {
+    mOldMulti = NULL;
+}
+
+void dStage_stageDt_c::setOldMulti() {
+    mOldMulti = mMulti;
 }

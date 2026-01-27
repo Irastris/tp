@@ -1,3 +1,4 @@
+#include "game/com/inf/game.h"
 #include "game/save.h"
 
 void dSv_player_status_a_c::init() {
@@ -107,6 +108,43 @@ int dSv_player_status_a_c::isMagicFlag(u8 i_magic) const {
     } */
 
     return 0; // (mMagicFlag & (u8)(1 << i_magic)) ? 1 : 0;
+}
+
+void dSv_player_status_b_c::init() {
+    // mDateIpl = 0;
+    mTransformLevelFlag = 0;
+    mDarkClearLevelFlag = 0;
+    unk10 = 0;
+    mTime = 255.0f;
+    mDate = 0;
+
+    for (int i = 0; i < 3; i++) {
+        unk18[i] = 0;
+    }
+}
+
+void dSv_player_status_b_c::onDarkClearLV(int i_no) {
+    mDarkClearLevelFlag |= (u8)(1 << i_no);
+}
+
+void dSv_player_status_b_c::offDarkClearLV(int i_no) {
+    mDarkClearLevelFlag &= (u8)~(u8)(1 << i_no);
+}
+
+BOOL dSv_player_status_b_c::isDarkClearLV(int i_no) const {
+    return mDarkClearLevelFlag & (u8)(1 << i_no) ? TRUE : FALSE;
+}
+
+void dSv_player_status_b_c::onTransformLV(int i_no) {
+    mTransformLevelFlag |= (u8)(1 << i_no);
+}
+
+void dSv_player_status_b_c::offTransformLV(int i_no) {
+    mTransformLevelFlag &= (u8)~(u8)(1 << i_no);
+}
+
+BOOL dSv_player_status_b_c::isTransformLV(int i_no) const {
+    return mTransformLevelFlag & (u8)(1 << i_no) ? TRUE : FALSE;
 }
 
 void dSv_player_return_place_c::init() {
@@ -593,6 +631,190 @@ void dSv_player_item_c::setBaitItem(u8 i_itemNo) {
     } */
 }
 
+void dSv_player_get_item_c::init() {
+    for (int i = 0; i < 8; i++) {
+        mItemFlags[i] = 0;
+    }
+}
+
+void dSv_player_get_item_c::onFirstBit(u8 i_itemno) {
+    int index = i_itemno / 32;
+    int bit = i_itemno % 32;
+    mItemFlags[index] |= (1 << bit);
+}
+
+void dSv_player_get_item_c::offFirstBit(u8 i_itemno) {
+    int index = i_itemno / 32;
+    int bit = i_itemno % 32;
+    mItemFlags[index] &= ~(1 << bit);
+}
+
+int dSv_player_get_item_c::isFirstBit(u8 i_itemno) const {
+    int index = i_itemno / 32;
+    int bit = i_itemno % 32;
+    return mItemFlags[index] & (1 << bit) ? 1 : 0;
+}
+
+void dSv_player_item_record_c::init() {
+    mArrowNum = 0;
+
+    for (int i = 0; i < 3; i++) {
+        mBombNum[i] = 0;
+    }
+
+    for (int i = 0; i < 4; i++) {
+        mBottleNum[i] = 0;
+    }
+
+    mPachinkoNum = 0;
+
+    for (int i = 0; i < 3; i++) {
+        unk5[i] = 0;
+    }
+}
+
+void dSv_player_item_record_c::setBombNum(u8 i_bagIdx, u8 i_bombNum) {
+    mBombNum[i_bagIdx] = i_bombNum;
+}
+
+u8 dSv_player_item_record_c::getBombNum(u8 i_bagIdx) const {
+    return mBombNum[i_bagIdx];
+}
+
+void dSv_player_item_record_c::setBottleNum(u8 i_bottleIdx, u8 i_bottleNum) {
+    mBottleNum[i_bottleIdx] = i_bottleNum;
+}
+
+u8 dSv_player_item_record_c::addBottleNum(u8 i_bottleIdx, s16 i_no) {
+    std::cout << "dSv_player_item_record_c::addBottleNum() is stubbed" << std::endl;
+
+    /* int bottleNum = mBottleNum[i_bottleIdx] + i_no;
+
+    u8 var_r28 = dComIfGs_getItem((u8)(i_bottleIdx + SLOT_11), true);
+
+    if (bottleNum < 0) {
+        mBottleNum[i_bottleIdx] = 0;
+    } else if (bottleNum > dComIfGs_getBottleMax()) {
+        mBottleNum[i_bottleIdx] = dComIfGs_getBottleMax();
+    } else {
+        mBottleNum[i_bottleIdx] = bottleNum;
+    } */
+
+    return 0; // mBottleNum[i_bottleIdx];
+}
+
+u8 dSv_player_item_record_c::getBottleNum(u8 i_bottleIdx) const {
+    return mBottleNum[i_bottleIdx];
+}
+
+void dSv_player_item_max_c::init() {
+    std::cout << "dSv_player_item_max_c::init() is stubbed" << std::endl;
+
+    /* for (int i = 0; i < 7; i++) {
+        mItemMax[i] = 30;
+    }
+
+    setBombNum(fpcNm_ITEM_NORMAL_BOMB, 30);
+    setBombNum(fpcNm_ITEM_WATER_BOMB, 15);
+    setBombNum(fpcNm_ITEM_POKE_BOMB, 10);
+
+    mItemMax[7] = 0; */
+}
+
+void dSv_player_item_max_c::setBombNum(u8 i_bombType, u8 i_maxNum) {
+    std::cout << "dSv_player_item_max_c::setBombNum() is stubbed" << std::endl;
+
+    /* switch (i_bombType) {
+        case fpcNm_ITEM_NORMAL_BOMB:
+            mItemMax[NORMAL_BOMB_MAX] = i_maxNum;
+            return;
+        case fpcNm_ITEM_WATER_BOMB:
+            mItemMax[WATER_BOMB_MAX] = i_maxNum;
+            return;
+        case fpcNm_ITEM_POKE_BOMB:
+            mItemMax[POKE_BOMB_MAX] = i_maxNum;
+    } */
+}
+
+u8 dSv_player_item_max_c::getBombNum(u8 i_bombType) const {
+    std::cout << "dSv_player_item_max_c::getBombNum() is stubbed" << std::endl;
+
+    /* u8 lv_multiplier = 1;
+
+    if (dComIfGs_isItemFirstBit(fpcNm_ITEM_BOMB_BAG_LV2)) {
+        lv_multiplier = 2;
+    }
+
+    switch (i_bombType) {
+        case fpcNm_ITEM_NORMAL_BOMB:
+            return (u8)(mItemMax[NORMAL_BOMB_MAX] * lv_multiplier);
+        case fpcNm_ITEM_WATER_BOMB:
+            return (u8)(mItemMax[WATER_BOMB_MAX] * lv_multiplier);
+        case fpcNm_ITEM_POKE_BOMB:
+            return (u8)(mItemMax[POKE_BOMB_MAX] * lv_multiplier);
+        default:
+            return 0;
+    } */
+
+    return 0;
+}
+
+void dSv_player_collect_c::init() {
+    for (int i = 0; i < 8; i++) {
+        mItem[i] = 0;
+    }
+
+    unk8 = 0;
+    mCrystal = 0;
+    mMirror = 0;
+    unk11 = 0xFF;
+    mPohNum = 0;
+}
+
+void dSv_player_collect_c::setCollect(int i_item_type, u8 i_item) {
+    mItem[i_item_type] |= (u8)(1 << i_item);
+}
+
+void dSv_player_collect_c::offCollect(int i_item_type, u8 i_item) {
+    mItem[i_item_type] &= (u8)~(u8)(1 << i_item);
+}
+
+BOOL dSv_player_collect_c::isCollect(int i_item_type, u8 i_item) const {
+    return mItem[i_item_type] & (u8)(1 << i_item) ? TRUE : FALSE;
+}
+
+void dSv_player_collect_c::onCollectCrystal(u8 i_item) {
+    mCrystal |= (u8)(1 << i_item);
+}
+
+void dSv_player_collect_c::offCollectCrystal(u8 i_item) {
+    mCrystal &= (u8)~(u8)(1 << i_item);
+}
+
+BOOL dSv_player_collect_c::isCollectCrystal(u8 i_item) const {
+    return mCrystal & (u8)(1 << i_item) ? TRUE : FALSE;
+}
+
+void dSv_player_collect_c::onCollectMirror(u8 i_item) {
+    mMirror |= (u8)(1 << i_item);
+}
+
+void dSv_player_collect_c::offCollectMirror(u8 i_item) {
+    mMirror &= (u8)~(u8)(1 << i_item);
+}
+
+BOOL dSv_player_collect_c::isCollectMirror(u8 i_item) const {
+    return mMirror & (u8)(1 << i_item) ? TRUE : FALSE;
+}
+
+void dSv_player_wolf_c::init() {
+    for (int i = 0; i < 3; i++) {
+        unk0[i] = 0;
+    }
+
+    unk3 = 0;
+}
+
 void dSv_light_drop_c::init() {
     for (int i = 0; i < 4; i++) {
         mLightDropNum[i] = 0;
@@ -637,6 +859,132 @@ BOOL dSv_light_drop_c::isLightDropGetFlag(u8 i_nowLevel) const {
     }
 
     return mLightDropGetFlag & (u8)(1 << i_nowLevel) ? TRUE : FALSE;
+}
+
+void dSv_letter_info_c::init() {
+    for (int i = 0; i < 2; i++) {
+        mLetterGetFlags[i] = 0;
+        mLetterReadFlags[i] = 0;
+    }
+
+    for (int i = 0; i < LETTER_INFO_BIT; i++) {
+        mGetNumber[i] = 0;
+    }
+}
+
+void dSv_letter_info_c::onLetterGetFlag(int i_no) {
+    mLetterGetFlags[i_no >> 5] |= 1 << (i_no & 0x1F);
+}
+
+BOOL dSv_letter_info_c::isLetterGetFlag(int i_no) const {
+    return mLetterGetFlags[i_no >> 5] & (1 << (i_no & 0x1F)) ? TRUE : FALSE;
+}
+
+void dSv_letter_info_c::onLetterReadFlag(int i_no) {
+    mLetterReadFlags[i_no >> 5] |= 1 << (i_no & 0x1F);
+}
+
+int  dSv_letter_info_c::isLetterReadFlag(int i_no) const {
+    return mLetterReadFlags[i_no >> 5] & 1 << (i_no & 0x1F) ? 1 : 0;
+}
+
+void dSv_fishing_info_c::init() {
+    for (int i = 0; i < 16; i++) {
+        mFishCount[i] = 0;
+        mMaxSize[i] = 0;
+    }
+}
+
+void dSv_fishing_info_c::addFishCount(u8 i_fishIdx) {
+    if (mFishCount[i_fishIdx] < 999) {
+        mFishCount[i_fishIdx]++;
+    }
+}
+
+void dSv_player_info_c::init() {
+    /* dMeter2Info_getString(0x382, mPlayerName, NULL);  // Link
+    dMeter2Info_getString(0x383, mHorseName, NULL);   // Epona */
+
+    unk0 = 0;
+    mTotalTime = 0;
+    unk16 = 0;
+    mDeathCount = 0;
+    mClearCount = 0;
+
+    for (int i = 0; i < 5; i++) {
+        unk55[i] = 0;
+    }
+}
+
+void dSv_player_config_c::init() {
+#if VERSION == VERSION_GCN_JPN
+    mRuby = 0;
+#else
+    mRuby = 1;
+#endif
+
+    /* if (OSGetSoundMode() == OS_SOUND_MODE_MONO) {
+        mSoundMode = OS_SOUND_MODE_MONO;
+        mDoAud_setOutputMode(OS_SOUND_MODE_MONO);
+    } else {
+        mSoundMode = OS_SOUND_MODE_STEREO;
+        mDoAud_setOutputMode(OS_SOUND_MODE_STEREO);
+    } */
+
+    mAttentionType = 0;
+    mVibration = 1;
+
+#if REGION_PAL
+    mLanguage = OSGetLanguage();
+#else
+    mLanguage = 0;
+#endif
+
+    unk5 = 0;
+    mShortCut = 0;
+    mCalibrateDist = 350;
+    mCalValue = 0;
+    mCameraControl = 0;
+    mPointer = 1;
+}
+
+u32 dSv_player_config_c::checkVibration() const {
+    return 0; // JUTGamePad::sRumbleSupported & 0x80000000 ? dComIfGp_getNowVibration() : 0;
+}
+
+u8 dSv_player_config_c::getSound() {
+    return mSoundMode;
+}
+
+void dSv_player_config_c::setSound(u8 i_mode) {
+    mSoundMode = i_mode;
+}
+
+u8 dSv_player_config_c::getVibration() {
+    return mVibration;
+}
+
+void dSv_player_config_c::setVibration(u8 i_status) {
+    mVibration = i_status;
+}
+
+u8 dSv_player_config_c::getPalLanguage() const {
+    /* #if VERSION == VERSION_GCN_PAL
+    switch (OSGetLanguage()) {
+    case 0:
+        return LANGUAGE_ENGLISH;
+    case 1:
+        return LANGUAGE_GERMAN;
+    case 2:
+        return LANGUAGE_FRENCH;
+    case 3:
+        return LANGUAGE_SPANISH;
+    case 4:
+        return LANGUAGE_ITALIAN;
+    }
+    #endif */
+
+    return 0;
 }
 
 void dSv_player_c::init() {

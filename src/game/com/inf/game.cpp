@@ -20,6 +20,8 @@
 #include "m_Do/m_Do_graphic.h" */
 
 void dComIfG_play_c::ct() {
+    std::cout << "Hello from dComIfG_play_c::ct() @ game.cpp (d_com_inf_game)" << std::endl;
+
     mWindowNum = 0;
     // mParticle = NULL;
     mLayerOld = 0;
@@ -940,6 +942,8 @@ dTimer_c* dComIfG_play_c::getTimerPtr() {
 } */
 
 void dComIfG_inf_c::ct() {
+    std::cout << "Hello from dComIfG_inf_c::ct() @ game.cpp (d_com_inf_game)" << std::endl;
+
     mFadeBrightness = 255;
     play.ct();
     mWorldDark = 0;
@@ -2084,8 +2088,7 @@ void dComIfGs_setKeyNum(int i_stageNo, u8 i_keyNum) {
     g_dComIfG_gameInfo.info.getSavedata().getSave(i_stageNo).getBit().setKeyNum(i_keyNum); */
 }
 
-static void dComIfGs_setWarpItemData(int, char const* i_stage, cXyz i_pos, s16 i_angle, s8 i_roomNo,
-                                     u8 param_5, u8 param_6) {
+static void dComIfGs_setWarpItemData(int, char const* i_stage, cXyz i_pos, s16 i_angle, s8 i_roomNo, u8 param_5, u8 param_6) {
     g_dComIfG_gameInfo.play.setWarpItemData(i_stage, i_pos, i_angle, i_roomNo, param_5, param_6);
 }
 

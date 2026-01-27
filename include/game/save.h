@@ -1,7 +1,9 @@
+#ifndef D_SAVE_D_SAVE_H
+#define D_SAVE_D_SAVE_H
+
 #include <cstring>
 #include <iostream>
 
-#include "game/com/inf/game.h"
 #include "ssystem/scomponent/c_xyz.h"
 
 // TODO: Used by header but not originally included directly
@@ -13,6 +15,7 @@ static const int MAX_EQUIPMENT = 6;
 static const int MAX_EVENTS = 256;
 static const int MAX_ITEM_SLOTS = 24;
 static const int LIGHT_DROP_STAGE = 4;
+static const int LETTER_INFO_BIT = 64;
 
 enum Wallets {
     WALLET,
@@ -902,3 +905,5 @@ public:
     s64 mStartTime;
     s64 mSaveTotalTime;
 };
+
+#endif

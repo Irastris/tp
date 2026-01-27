@@ -16,7 +16,9 @@ add_compile_options(
 
 set(GAME_FILES
     src/main.cpp
+    src/game/controller.cpp
     src/game/ext.cpp
+    src/game/graphic.cpp
     src/game/machine.cpp
     src/game/save.cpp
     src/game/stage.cpp

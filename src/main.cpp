@@ -1,9 +1,5 @@
 #include "main.h"
 
-#include <aurora/aurora.h>
-#include <aurora/event.h>
-#include <aurora/main.h>
-
 static u32 frame;
 
 int main(int argc, char* argv[]) {
@@ -44,6 +40,8 @@ int main(int argc, char* argv[]) {
 
     // main01() logic below
     mDoMch_Create();
+
+    mDoGph_Create();
 
     // More stuff goes here
 
