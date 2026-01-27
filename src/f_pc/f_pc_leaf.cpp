@@ -1,0 +1,58 @@
+#include "f_pc/f_pc_leaf.h"
+
+s16 fpcLf_GetPriority(const leafdraw_class* i_leaf) {
+    return fpcDwPi_Get(&i_leaf->draw_priority);
+}
+
+int fpcLf_DrawMethod(leafdraw_method_class* i_methods, void* i_process) {
+    return fpcMtd_Method(i_methods->draw_method, i_process);
+}
+
+int fpcLf_Draw(leafdraw_class* i_leaf) {
+    int ret = 0;
+
+    if (i_leaf->unk_0xBC == 0) {
+        ret = fpcLf_DrawMethod(i_leaf->leaf_methods, i_leaf);
+    }
+
+    return ret;
+}
+
+int fpcLf_Execute(leafdraw_class* i_leaf) {
+    return fpcMtd_Execute(&i_leaf->leaf_methods->base, i_leaf);
+}
+
+int fpcLf_IsDelete(leafdraw_class* i_leaf) {
+    return fpcMtd_IsDelete(&i_leaf->leaf_methods->base, i_leaf);
+}
+
+int fpcLf_Delete(leafdraw_class* i_leaf) {
+    int ret = fpcMtd_Delete(&i_leaf->leaf_methods->base, i_leaf);
+
+    if (ret == 1) {
+        i_leaf->base.subtype = 0;
+    }
+
+    return ret;
+}
+
+int g_fpcLf_type;
+
+int fpcLf_Create(leafdraw_class* i_leaf) {
+    if (i_leaf->base.state.init_state == 0) {
+        leaf_process_profile_definition* pprofile = (leaf_process_profile_definition*)i_leaf->base.profile;
+        i_leaf->leaf_methods = pprofile->sub_method;
+        i_leaf->base.subtype = fpcBs_MakeOfType(&g_fpcLf_type);
+        fpcDwPi_Init(&i_leaf->draw_priority, pprofile->priority);
+        i_leaf->unk_0xBC = 0;
+    }
+
+    int ret = fpcMtd_Create(&i_leaf->leaf_methods->base, i_leaf);
+    return ret;
+}
+
+leafdraw_method_class g_fpcLf_Method = {
+    (process_method_func)fpcLf_Create,  (process_method_func)fpcLf_Delete,
+    (process_method_func)fpcLf_Execute, (process_method_func)fpcLf_IsDelete,
+    (process_method_func)fpcLf_Draw,
+};
