@@ -2,7 +2,7 @@
 #define C_M3D_G_LIN_H
 
 #include "global.h"
-#include "ssystem/scomponent/c_xyz.h"
+#include "SSystem/SComponent/c_xyz.h"
 
 #include <dolphin/mtx.h>
 

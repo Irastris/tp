@@ -2,7 +2,7 @@
 #define C_LIST_H
 
 #include <dolphin/types.h>
-#include "ssystem/scomponent/c_node.h"
+#include "SSystem/SComponent/c_node.h"
 
 typedef struct node_list_class {
     node_class* mpHead;

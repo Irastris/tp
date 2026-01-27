@@ -6,11 +6,11 @@
 #include <iostream>
 
 #include "global.h"
-#include "game/com/inf/game.h"
-#include "game/controller.h"
-#include "game/dvd.h"
-#include "game/graphic.h"
-#include "game/machine.h"
+#include "d/d_com_inf_game.h"
+#include "m_Do/m_Do_controller_pad.h"
+#include "m_Do/m_Do_dvd_thread.h"
+#include "m_Do/m_Do_graphic.h"
+#include "m_Do/m_Do_machine.h"
 
 #include <aurora/aurora.h>
 #include <aurora/event.h>

@@ -2,8 +2,8 @@
 #define C_M3D_G_SPH_H_
 
 #include "global.h"
-#include "ssystem/scomponent/c_m3d.h"
-#include "ssystem/scomponent/c_xyz.h"
+#include "SSystem/SComponent/c_m3d.h"
+#include "SSystem/SComponent/c_xyz.h"
 
 class cM3dGCyl;
 

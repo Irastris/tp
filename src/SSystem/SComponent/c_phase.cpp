@@ -1,4 +1,4 @@
-#include "ssystem/scomponent/c_phase.h"
+#include "SSystem/SComponent/c_phase.h"
 
 void cPhs_Reset(request_of_phase_process_class* phase) {
     phase->id = cPhs_INIT_e;

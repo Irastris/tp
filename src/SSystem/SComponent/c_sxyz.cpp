@@ -1,4 +1,4 @@
-#include "ssystem/scomponent/c_sxyz.h"
+#include "SSystem/SComponent/c_sxyz.h"
 
 const csXyz csXyz::Zero = csXyz(0, 0, 0);
 

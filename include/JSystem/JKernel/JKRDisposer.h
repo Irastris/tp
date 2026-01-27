@@ -1,7 +1,7 @@
 #ifndef JKRDISPOSER_H
 #define JKRDISPOSER_H
 
-#include "jsystem/jsupport/jsulist.h"
+#include "JSystem/JSupport/JSUList.h"
 
 class JKRHeap; // Forward declaration
 

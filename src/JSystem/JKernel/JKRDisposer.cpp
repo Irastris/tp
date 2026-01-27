@@ -1,7 +1,7 @@
 #include "global.h"
-#include "jsystem/jkernel/jkrplatform.h"
-#include "jsystem/jkernel/jkrdisposer.h"
-#include "jsystem/jkernel/jkrheap.h"
+#include "JSystem/JKernel/JKRPlatform.h"
+#include "JSystem/JKernel/JKRDisposer.h"
+#include "JSystem/JKernel/JKRHeap.h"
 
 JKRDisposer::JKRDisposer() : mLink(this) {
     mHeap = JKRHeap::findFromRoot(this);

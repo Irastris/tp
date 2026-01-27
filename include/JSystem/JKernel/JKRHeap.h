@@ -4,8 +4,8 @@
 #include <new>
 
 #include "global.h"
-#include "jsystem/jkernel/jkrdisposer.h"
-#include "jsystem/jkernel/jkrplatform.h"
+#include "JSystem/JKernel/JKRDisposer.h"
+#include "JSystem/JKernel/JKRPlatform.h"
 
 #include <dolphin/types.h>
 

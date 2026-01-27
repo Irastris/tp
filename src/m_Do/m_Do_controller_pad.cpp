@@ -1,4 +1,4 @@
-#include "game/controller.h"
+#include "m_Do/m_Do_controller_pad.h"
 
 void mDoCPd_c::create() {
     std::cout << "mDoCPd_c::create() is stubbed" << std::endl;

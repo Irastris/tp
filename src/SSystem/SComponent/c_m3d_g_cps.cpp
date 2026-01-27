@@ -1,4 +1,4 @@
-#include "ssystem/scomponent/c_m3d_g_cps.h"
+#include "SSystem/SComponent/c_m3d_g_cps.h"
 
 cM3dGCps::cM3dGCps() {}
 

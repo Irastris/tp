@@ -5,9 +5,9 @@
 #include <cstdio>
 #include <iostream>
 
-#include "game/ext.h"
-#include "jsystem/jframework/jfwsystem.h"
-#include "jsystem/jkernel/jkrheap.h"
+#include "m_Do/m_Do_ext.h"
+#include "JSystem/JFramework/JFWSystem.h"
+#include "JSystem/JKernel/JKRHeap.h"
 
 void mDoMch_Create();
 

@@ -1,4 +1,4 @@
-#include "game/dvd.h"
+#include "m_Do/m_Do_dvd_thread.h"
 
 mDoDvdThd_param_c mDoDvdThd::l_param;
 

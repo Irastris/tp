@@ -2,8 +2,8 @@
 #define C_M3D_G_CYL_H
 
 #include "global.h"
-#include "ssystem/scomponent/c_m3d.h"
-#include "ssystem/scomponent/c_xyz.h"
+#include "SSystem/SComponent/c_m3d.h"
+#include "SSystem/SComponent/c_xyz.h"
 
 struct cM3dGCylS {
     Vec mCenter;

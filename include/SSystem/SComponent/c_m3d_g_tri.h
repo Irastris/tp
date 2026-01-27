@@ -1,8 +1,8 @@
 #ifndef C_M3D_G_TRI_H_
 #define C_M3D_G_TRI_H_
 
-#include "ssystem/scomponent/c_m3d_g_pla.h"
-#include "ssystem/scomponent/c_m3d.h"
+#include "SSystem/SComponent/c_m3d_g_pla.h"
+#include "SSystem/SComponent/c_m3d.h"
 
 class cM3dGCyl;
 

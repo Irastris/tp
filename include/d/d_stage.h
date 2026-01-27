@@ -1,14 +1,14 @@
 // TODO: To be progressively uncommented as necessary
 
 #include "global.h"
-#include "ssystem/scomponent/c_lib.h"
+#include "SSystem/SComponent/c_lib.h"
 
 // TODO: Used by this header, but not included directly
 // Adding directly for now
 #include <dolphin/gx.h>
 #include <dolphin/mtx.h> // Resolves Vec, might be overkill?
 #include <dolphin/types.h>
-#include "jsystem/jkernel/jkrexpheap.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 
 struct stage_vrboxcol_info_class {
     /* color_RGB_class sky_col;

@@ -1,10 +1,10 @@
-#include "jsystem/jframework/jfwsystem.h"
+#include "JSystem/JFramework/JFWSystem.h"
 
 JKRExpHeap* JFWSystem::rootHeap;
 JKRExpHeap* JFWSystem::systemHeap;
 
 void JFWSystem::init() {
-    std::cout << "Hello from JFWSystem::init() @ jfwsystem.cpp (JFWSystem)" << std::endl;
+    std::cout << "Hello from JFWSystem::init() @ JFWSystem.cpp (JFWSystem)" << std::endl;
     std::cout << "JFWSystem::init() is partially stubbed" << std::endl;
 
     /* OSInit();

@@ -4,8 +4,8 @@
 #include <cmath>
 #include <limits>
 
-#include "jsystem/jmath/jmatrigonometric.h"
-#include "ssystem/scomponent/c_m3d.h"
+#include "JSystem/JMath/JMATrigonometric.h"
+#include "SSystem/SComponent/c_m3d.h"
 
 #define FLT_MAX std::numeric_limits<float>::max()
 

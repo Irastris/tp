@@ -1,4 +1,4 @@
-#include "jsystem/jmath/jmatrigonometric.h"
+#include "JSystem/JMath/JMATrigonometric.h"
 
 namespace JMath {
     template<typename T>

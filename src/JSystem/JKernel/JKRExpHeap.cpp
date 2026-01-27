@@ -2,8 +2,8 @@
 #include <cstdlib>
 #include <stdexcept>
 
-#include "jsystem/jkernel/jkrexpheap.h"
-#include "jsystem/jkernel/jkrplatform.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JKernel/JKRPlatform.h"
 
 JKRExpHeap* JKRExpHeap::createRoot(int maxHeaps, bool errorFlag) {
     JKRExpHeap* heap = NULL;

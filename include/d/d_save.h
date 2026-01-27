@@ -4,7 +4,7 @@
 #include <cstring>
 #include <iostream>
 
-#include "ssystem/scomponent/c_xyz.h"
+#include "SSystem/SComponent/c_xyz.h"
 
 // TODO: Used by header but not originally included directly
 #include <dolphin/types.h>

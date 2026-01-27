@@ -6,8 +6,8 @@
 #include <dolphin/types.h>
 
 #include "global.h"
-#include "jsystem/jkernel/jkrheap.h"
-#include "jsystem/jkernel/jkrplatform.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRPlatform.h"
 
 class JKRExpHeap : public JKRHeap {
 public:

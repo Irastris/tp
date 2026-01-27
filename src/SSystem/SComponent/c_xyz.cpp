@@ -1,5 +1,5 @@
-#include "ssystem/scomponent/c_xyz.h"
-#include "ssystem/scomponent/c_math.h"
+#include "SSystem/SComponent/c_xyz.h"
+#include "SSystem/SComponent/c_math.h"
 
 #include <limits>
 #define FLT_EPSILON std::numeric_limits<float>::epsilon()

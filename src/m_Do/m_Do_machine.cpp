@@ -1,4 +1,4 @@
-#include "game/machine.h"
+#include "m_Do/m_Do_machine.h"
 
 // TODO: Determine if this custom profile should be used vs. the generic GX profiles
 /* GXRenderModeObj g_ntscZeldaProg = {

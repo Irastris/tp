@@ -4,8 +4,8 @@
 // #include <string>
 
 #include <dolphin/mtx.h>
-#include "ssystem/scomponent/c_math.h"
-#include "ssystem/scomponent/c_xyz.h"
+#include "SSystem/SComponent/c_math.h"
+#include "SSystem/SComponent/c_xyz.h"
 
 template <typename T>
 inline void cLib_offBit(T& value, T bit) {

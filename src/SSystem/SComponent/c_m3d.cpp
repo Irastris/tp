@@ -1,11 +1,11 @@
-#include "ssystem/scomponent/c_m3d.h"
-#include "ssystem/scomponent/c_m3d_g_aab.h"
-#include "ssystem/scomponent/c_m3d_g_cyl.h"
-#include "ssystem/scomponent/c_m3d_g_sph.h"
-#include "ssystem/scomponent/c_m3d_g_tri.h"
-#include "ssystem/scomponent/c_m3d_g_cps.h"
-#include "ssystem/scomponent/c_math.h"
-#include "ssystem/scomponent/c_sxyz.h"
+#include "SSystem/SComponent/c_m3d.h"
+#include "SSystem/SComponent/c_m3d_g_aab.h"
+#include "SSystem/SComponent/c_m3d_g_cyl.h"
+#include "SSystem/SComponent/c_m3d_g_sph.h"
+#include "SSystem/SComponent/c_m3d_g_tri.h"
+#include "SSystem/SComponent/c_m3d_g_cps.h"
+#include "SSystem/SComponent/c_math.h"
+#include "SSystem/SComponent/c_sxyz.h"
 
 #include <limits>
 #define FLT_EPSILON std::numeric_limits<float>::epsilon()

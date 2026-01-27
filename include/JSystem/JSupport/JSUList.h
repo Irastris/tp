@@ -5,7 +5,7 @@
 
 #include <dolphin/types.h>
 
-#include "jsystem/jkernel/jkrplatform.h"
+#include "JSystem/JKernel/JKRPlatform.h"
 
 template <typename T>
 class JSUList;

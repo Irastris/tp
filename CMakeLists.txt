@@ -15,49 +15,49 @@ add_compile_options(
 )
 
 set(GAME_FILES
-    src/main.cpp
-    src/game/controller.cpp
-    src/game/dvd.cpp
-    src/game/ext.cpp
-    src/game/graphic.cpp
-    src/game/machine.cpp
-    src/game/save.cpp
-    src/game/stage.cpp
-    src/game/com/inf/game.cpp
-    src/game/framework/process/node.cpp
+    src/d/d_com_inf_game.cpp
+    src/d/d_save.cpp
+    src/d/d_stage.cpp
+    src/f_pc/f_pc_node.cpp
+    src/m_Do/m_Do_controller_pad.cpp
+    src/m_Do/m_Do_dvd_thread.cpp
+    src/m_Do/m_Do_ext.cpp
+    src/m_Do/m_Do_graphic.cpp
+    src/m_Do/m_Do_machine.cpp
+    src/m_Do/m_Do_main.cpp
 )
 
 set(JSYS_FILES
-    src/jsystem/jframework/jfwsystem.cpp
-    src/jsystem/jkernel/jkrexpheap.cpp
-    src/jsystem/jkernel/jkrheap.cpp
-    src/jsystem/jkernel/jkrdisposer.cpp
-    src/jsystem/jsupport/jsulist.cpp
+    src/JSystem/JFramework/JFWSystem.cpp
+    src/JSystem/JKernel/JKRDisposer.cpp
+    src/JSystem/JKernel/JKRExpHeap.cpp
+    src/JSystem/JKernel/JKRHeap.cpp
+    src/JSystem/JSupport/JSUList.cpp
 )
 
 set(SSYS_FILES
-    src/ssystem/scomponent/c_lib.cpp
-    src/ssystem/scomponent/c_list.cpp
-    src/ssystem/scomponent/c_m3d_g_aab.cpp
-    src/ssystem/scomponent/c_m3d_g_cps.cpp
-    src/ssystem/scomponent/c_m3d_g_cyl.cpp
-    src/ssystem/scomponent/c_m3d_g_lin.cpp
-    src/ssystem/scomponent/c_m3d_g_pla.cpp
-    src/ssystem/scomponent/c_m3d_g_sph.cpp
-    src/ssystem/scomponent/c_m3d_g_tri.cpp
-    src/ssystem/scomponent/c_m3d_g_vtx.cpp
-    src/ssystem/scomponent/c_m3d.cpp
-    src/ssystem/scomponent/c_math.cpp
-    src/ssystem/scomponent/c_node.cpp
-    src/ssystem/scomponent/c_phase.cpp
-    src/ssystem/scomponent/c_sxyz.cpp
-    src/ssystem/scomponent/c_xyz.cpp
+    src/SSystem/SComponent/c_lib.cpp
+    src/SSystem/SComponent/c_list.cpp
+    src/SSystem/SComponent/c_m3d_g_aab.cpp
+    src/SSystem/SComponent/c_m3d_g_cps.cpp
+    src/SSystem/SComponent/c_m3d_g_cyl.cpp
+    src/SSystem/SComponent/c_m3d_g_lin.cpp
+    src/SSystem/SComponent/c_m3d_g_pla.cpp
+    src/SSystem/SComponent/c_m3d_g_sph.cpp
+    src/SSystem/SComponent/c_m3d_g_tri.cpp
+    src/SSystem/SComponent/c_m3d_g_vtx.cpp
+    src/SSystem/SComponent/c_m3d.cpp
+    src/SSystem/SComponent/c_math.cpp
+    src/SSystem/SComponent/c_node.cpp
+    src/SSystem/SComponent/c_phase.cpp
+    src/SSystem/SComponent/c_sxyz.cpp
+    src/SSystem/SComponent/c_xyz.cpp
 )
 
 set(DOLPHIN_FILES
     src/dolphin/mtx/vec.c
 )
 
-add_executable(tp src/main.cpp ${GAME_FILES} ${JSYS_FILES} ${SSYS_FILES} ${DOLPHIN_FILES})
+add_executable(tp ${GAME_FILES} ${JSYS_FILES} ${SSYS_FILES} ${DOLPHIN_FILES})
 target_include_directories(tp PUBLIC include)
 target_link_libraries(tp PUBLIC aurora::core aurora::gx aurora::mtx aurora::main)

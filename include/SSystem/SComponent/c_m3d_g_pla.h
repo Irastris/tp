@@ -1,8 +1,8 @@
 #ifndef C_M3C_G_PLA_H_
 #define C_M3C_G_PLA_H_
 
-#include "ssystem/scomponent/c_xyz.h"
-#include "ssystem/scomponent/c_m3d.h"
+#include "SSystem/SComponent/c_xyz.h"
+#include "SSystem/SComponent/c_m3d.h"
 
 #include <dolphin/mtx.h>
 

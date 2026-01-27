@@ -4,8 +4,8 @@
 #include <iostream>
 
 #include "global.h"
-#include "jsystem/jkernel/jkrexpheap.h"
-/* #include "jsystem/jkernel/JKRAram.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+/* #include "JSystem/JKernel/JKRAram.h"
 #include "jsystem/jutility/JUTVideo.h"
 #include "jsystem/jutility/JUTGamePad.h" */
 

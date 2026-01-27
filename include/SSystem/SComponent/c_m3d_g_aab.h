@@ -2,8 +2,8 @@
 #define C_M3D_G_AAB_H
 
 #include "global.h"
-#include "ssystem/scomponent/c_m3d_g_lin.h"
-#include "ssystem/scomponent/c_m3d.h"
+#include "SSystem/SComponent/c_m3d_g_lin.h"
+#include "SSystem/SComponent/c_m3d.h"
 
 class cM3dGAab {
 private:

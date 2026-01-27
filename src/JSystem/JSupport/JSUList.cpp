@@ -1,4 +1,4 @@
-#include "jsystem/jsupport/jsulist.h"
+#include "JSystem/JSupport/JSUList.h"
 
 JSUPtrLink::JSUPtrLink(void* object) {
     mList = NULL;

@@ -1,4 +1,4 @@
-#include "game/stage.h"
+#include "d/d_stage.h"
 
 void dStage_SetErrorRoom() {
     // No-op

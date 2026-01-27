@@ -12,10 +12,10 @@
 #include "d/d_event_manager.h"
 #include "d/d_particle.h"
 #include "d/d_resorce.h" */
-#include "game/save.h"
+#include "d/d_save.h"
 /* #include "d/d_vibration.h"
 #include "d/d_drawlist.h" */
-#include "game/stage.h"
+#include "d/d_stage.h"
 // #include "f_op/f_op_actor.h"
 #include "global.h"
 /* #include "m_Do/m_Do_controller_pad.h"
@@ -26,10 +26,10 @@
 #include <dolphin/gx.h>
 #include <dolphin/pad.h>
 #include <dolphin/types.h>
-#include "game/ext.h"
-#include "ssystem/scomponent/c_phase.h"
-#include "ssystem/scomponent/c_sxyz.h"
-#include "ssystem/scomponent/c_xyz.h"
+#include "m_Do/m_Do_ext.h"
+#include "SSystem/SComponent/c_phase.h"
+#include "SSystem/SComponent/c_sxyz.h"
+#include "SSystem/SComponent/c_xyz.h"
 
 enum dComIfG_ButtonStatus {
     BUTTON_STATUS_NONE,

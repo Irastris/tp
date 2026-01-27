@@ -1,4 +1,4 @@
-#include "ssystem/scomponent/c_m3d_g_pla.h"
+#include "SSystem/SComponent/c_m3d_g_pla.h"
 
 #include <dolphin/mtx.h>
 

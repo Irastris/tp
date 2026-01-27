@@ -3,9 +3,9 @@
 
 #include <iostream>
 
-#include "game/ext.h"
-#include "game/framework/process/node.h"
-#include "jsystem/jkernel/jkrexpheap.h"
+#include "m_Do/m_Do_ext.h"
+#include "f_pc/f_pc_node.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 
 // TODO: Not originally included directly
 #include <dolphin/types.h>

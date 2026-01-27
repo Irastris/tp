@@ -6,7 +6,7 @@
 #include <string>
 #include <sys/mman.h>
 
-#include "jsystem/jkernel/jkrheap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 
 bool JKRHeap::sDefaultFillFlag = true;
 
@@ -79,7 +79,7 @@ JKRHeap::JKRAllocCallback JKRHeap::sAllocCallback;
 JKRHeap::JKRFreeCallback JKRHeap::sFreeCallback;
 
 bool JKRHeap::initArena(char** memory, u32* size, int maxHeaps) {
-    std::cout << "Hello from JKRHeap::initArena() @ jkrheap.cpp (JKRHeap)" << std::endl;
+    std::cout << "Hello from JKRHeap::initArena() @ JKRHeap.cpp (JKRHeap)" << std::endl;
     // TODO: Lower this? 64MB is more than the GameCube had
     size_t arenaSize = 64 * 1024 * 1024;
     std::cout << "ALERT: Arena is currently being lazily initialized to 64MB and might require testing if this is okay" << std::endl;

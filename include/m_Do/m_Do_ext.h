@@ -1,6 +1,6 @@
 #include <iostream>
 #include "global.h"
-#include "jsystem/jkernel/jkrexpheap.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 
 JKRExpHeap* mDoExt_createCommandHeap(u32 heapSize, JKRHeap* parentHeap);
 JKRExpHeap* mDoExt_createArchiveHeap(u32 heapSize, JKRHeap* parentHeap);
