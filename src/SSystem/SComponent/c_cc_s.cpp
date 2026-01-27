@@ -1,8 +1,5 @@
 #include "SSystem/SComponent/c_cc_s.h"
 
-#define CHECK_FLOAT_CLASS(line, x) JUT_ASSERT(line, !isnan(x));
-#define CHECK_FLOAT_RANGE(line, x) JUT_ASSERT(line, -1.0e32f < x && x < 1.0e32f);
-
 cCcS::cCcS() {}
 
 void cCcS::Ct() {
@@ -131,7 +128,6 @@ void cCcS::ChkAtTg() {
             continue;
 
         cCcD_ShapeAttr* pat_sa = (*pat_obj)->GetShapeAttr();
-        JUT_ASSERT(0, pat_sa != NULL);
 
         for (cCcD_Obj** ptg_obj = mpObjTg; ptg_obj < objTgEnd; ++ptg_obj) {
             if (*ptg_obj == NULL || !(*ptg_obj)->ChkTgSet())
@@ -142,7 +138,6 @@ void cCcS::ChkAtTg() {
                 continue;
 
             cCcD_ShapeAttr* ptg_sa = (*ptg_obj)->GetShapeAttr();
-            JUT_ASSERT(0, ptg_sa != NULL);
 
             static cXyz cross;
             bool didCross = pat_sa->CrossAtTg(*ptg_sa, &cross);
@@ -189,7 +184,6 @@ void cCcS::ChkCo() {
             continue;
 
         cCcD_ShapeAttr* pco1_sa = (*pco1_obj)->GetShapeAttr();
-        JUT_ASSERT(0, pco1_sa != NULL);
 
         for (cCcD_Obj** pco2_obj = pco1_obj + 1; pco2_obj < objCoEnd; ++pco2_obj) {
             if (*pco2_obj == NULL || !(*pco2_obj)->ChkCoSet())
@@ -200,7 +194,6 @@ void cCcS::ChkCo() {
                 continue;
 
             cCcD_ShapeAttr* pco2_sa = (*pco2_obj)->GetShapeAttr();
-            JUT_ASSERT(0, pco2_sa != NULL);
 
             f32 cross_len;
             if (pco1_sa->CrossCo(*pco2_sa, &cross_len)) {
@@ -262,9 +255,6 @@ void cCcS::SetCoCommonHitInf(cCcD_Obj* pco1_obj, cXyz* ppos1, cCcD_Obj* pco2_obj
 }
 
 void cCcS::SetPosCorrect(cCcD_Obj* pco1_obj, cXyz* ppos1, cCcD_Obj* pco2_obj, cXyz* ppos2, f32 cross_len) {
-    CHECK_FLOAT_CLASS(616, cross_len);
-    CHECK_FLOAT_RANGE(617, cross_len);
-
     if (pco1_obj->ChkCoNoCrr() || pco2_obj->ChkCoNoCrr())
         return;
     if (pco1_obj->GetStts() == NULL || pco2_obj->GetStts() == NULL)
@@ -363,42 +353,10 @@ void cCcS::SetPosCorrect(cCcD_Obj* pco1_obj, cXyz* ppos1, cCcD_Obj* pco2_obj, cX
             }
         }
 
-        CHECK_FLOAT_CLASS(767, vec1.x);
-        CHECK_FLOAT_CLASS(768, vec1.y);
-        CHECK_FLOAT_CLASS(769, vec1.z);
-
-        CHECK_FLOAT_CLASS(771, vec2.x);
-        CHECK_FLOAT_CLASS(772, vec2.y);
-        CHECK_FLOAT_CLASS(773, vec2.z);
-
-        CHECK_FLOAT_RANGE(775, vec1.x);
-        CHECK_FLOAT_RANGE(776, vec1.y);
-        CHECK_FLOAT_RANGE(777, vec1.z);
-
-        CHECK_FLOAT_RANGE(779, vec2.x);
-        CHECK_FLOAT_RANGE(780, vec2.y);
-        CHECK_FLOAT_RANGE(781, vec2.z);
-
         pco1_obj->GetStts()->PlusCcMove(vec1.x, vec1.y, vec1.z);
         pco2_obj->GetStts()->PlusCcMove(vec2.x, vec2.y, vec2.z);
         (*ppos1) += vec1;
         (*ppos2) += vec2;
-
-        CHECK_FLOAT_CLASS(790, ppos1->x);
-        CHECK_FLOAT_CLASS(791, ppos1->y);
-        CHECK_FLOAT_CLASS(792, ppos1->z);
-
-        CHECK_FLOAT_CLASS(794, ppos2->x);
-        CHECK_FLOAT_CLASS(795, ppos2->y);
-        CHECK_FLOAT_CLASS(796, ppos2->z);
-
-        CHECK_FLOAT_RANGE(798, ppos1->x);
-        CHECK_FLOAT_RANGE(799, ppos1->y);
-        CHECK_FLOAT_RANGE(800, ppos1->z);
-
-        CHECK_FLOAT_RANGE(802, ppos2->x);
-        CHECK_FLOAT_RANGE(803, ppos2->y);
-        CHECK_FLOAT_RANGE(804, ppos2->z);
     }
 }
 
@@ -408,7 +366,6 @@ void cCcS::CalcArea() {
     for (cCcD_Obj** pset_obj = mpObj; pset_obj < mpObj + mObjCount; ++pset_obj) {
         if (*pset_obj != NULL) {
             cCcD_ShapeAttr* pset_sa = (*pset_obj)->GetShapeAttr();
-            JUT_ASSERT(0, pset_sa != NULL);
 
             pset_sa->CalcAabBox();
             aab.SetMinMax(pset_sa->GetWorkAab());
@@ -419,7 +376,6 @@ void cCcS::CalcArea() {
     for (cCcD_Obj** pset_obj = mpObj; pset_obj < mpObj + mObjCount; ++pset_obj) {
         if (*pset_obj != NULL) {
             const cCcD_ShapeAttr* pset_sa = (*pset_obj)->GetShapeAttr();
-            JUT_ASSERT(0, pset_sa != NULL);
 
             cCcD_DivideInfo* divideInfo = &(*pset_obj)->GetDivideInfo();
             mDivideArea.CalcDivideInfo(divideInfo, pset_sa->GetWorkAab(),

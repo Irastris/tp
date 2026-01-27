@@ -26,7 +26,6 @@ void cBgS_PolyInfo::SetPolyInfo(const cBgS_PolyInfo& poly) {
 }
 
 void cBgS_PolyInfo::SetActorInfo(int bg_index, void* p_data, fpc_ProcID actor_id) {
-    JUT_ASSERT(74, 0 <= bg_index);
     mBgIndex = bg_index;
     unk_0x04 = p_data;
     mActorId = actor_id;
@@ -41,7 +40,6 @@ bool cBgS_PolyInfo::ChkSafe(const void* param_1, fpc_ProcID actor_id) const {
 }
 
 void cBgS_PolyInfo::SetPolyIndex(int poly_index) {
-    JUT_ASSERT(103, 0 <= poly_index);
     mPolyIndex = poly_index;
 }
 

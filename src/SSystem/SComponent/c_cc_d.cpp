@@ -1,7 +1,5 @@
 #include "SSystem/SComponent/c_cc_d.h"
 
-#define CHECK_FLOAT_RANGE(line, x) JUT_ASSERT(line, -1.0e32f < x && x < 1.0e32f);
-
 cXyz cCcD_ShapeAttr::m_virtual_center = cXyz::Zero;
 
 void cCcD_DivideInfo::Set(u32 xDivInfo, u32 yDivInfo, u32 zDivInfo) {
@@ -199,14 +197,6 @@ void cCcD_Stts::PlusCcMove(f32 x, f32 y, f32 z) {
     m_cc_move.x += x;
     m_cc_move.y += y;
     m_cc_move.z += z;
-
-    JUT_ASSERT(422, !isnan(m_cc_move.x));
-    JUT_ASSERT(423, !isnan(m_cc_move.y));
-    JUT_ASSERT(424, !isnan(m_cc_move.z));
-
-    CHECK_FLOAT_RANGE(426, m_cc_move.x);
-    CHECK_FLOAT_RANGE(427, m_cc_move.y);
-    CHECK_FLOAT_RANGE(428, m_cc_move.z);
 }
 
 void cCcD_Stts::ClrCcMove() {
