@@ -1,39 +1,83 @@
 #include <cstring>
+#include <iostream>
 
+#include "game/com/inf/game.h"
 #include "ssystem/scomponent/c_xyz.h"
 
 // TODO: Used by header but not originally included directly
 #include <dolphin/types.h>
 
+static const int DEFAULT_SELECT_ITEM_INDEX = 0;
 static const int MAX_SELECT_ITEM = 4;
 static const int MAX_EQUIPMENT = 6;
+static const int MAX_EVENTS = 256;
+static const int MAX_ITEM_SLOTS = 24;
+static const int LIGHT_DROP_STAGE = 4;
+
+enum Wallets {
+    WALLET,
+    BIG_WALLET,
+    GIANT_WALLET
+};
+
+enum ItemSlots {
+    SLOT_0,
+    SLOT_1,
+    SLOT_2,
+    SLOT_3,
+    SLOT_4, // Bow Slot
+    SLOT_5,
+    SLOT_6,
+    SLOT_7,
+    SLOT_8,
+    SLOT_9,
+    SLOT_10,
+    SLOT_11,
+    SLOT_12,
+    SLOT_13,
+    SLOT_14,
+    SLOT_15,
+    SLOT_16,
+    SLOT_17,
+    SLOT_18,
+    SLOT_19,
+    SLOT_20,
+    SLOT_21,
+    SLOT_22,
+    SLOT_23
+};
 
 enum CollectItem {
-    /* 0x0 */ COLLECT_CLOTHING,
-    /* 0x1 */ COLLECT_SWORD,
-    /* 0x2 */ COLLECT_SHIELD,
-    /* 0x3 */ COLLECT_SMELL,
-    /* 0x4 */ B_BUTTON_ITEM
+    COLLECT_CLOTHING,
+    COLLECT_SWORD,
+    COLLECT_SHIELD,
+    COLLECT_SMELL,
+    B_BUTTON_ITEM
 };
 
 enum Swords {
-    /* 0x0 */ COLLECT_ORDON_SWORD,
-    /* 0x1 */ COLLECT_MASTER_SWORD,
-    /* 0x2 */ COLLECT_WOODEN_SWORD,
-    /* 0x3 */ COLLECT_LIGHT_SWORD
+    COLLECT_ORDON_SWORD,
+    COLLECT_MASTER_SWORD,
+    COLLECT_WOODEN_SWORD,
+    COLLECT_LIGHT_SWORD
 };
 
 enum Shields {
-    /* 0x0 */ COLLECT_WOODEN_SHIELD,
-    /* 0x1 */ COLLECT_ORDON_SHIELD,
-    /* 0x2 */ COLLECT_HYLIAN_SHIELD
+    COLLECT_WOODEN_SHIELD,
+    COLLECT_ORDON_SHIELD,
+    COLLECT_HYLIAN_SHIELD
 };
 
 enum ItemMax {
-    /* 0x0 */ ARROW_MAX,
-    /* 0x1 */ NORMAL_BOMB_MAX,
-    /* 0x2 */ WATER_BOMB_MAX,
-    /* 0x6 */ POKE_BOMB_MAX = 6
+    ARROW_MAX,
+    NORMAL_BOMB_MAX,
+    WATER_BOMB_MAX,
+    POKE_BOMB_MAX = 6
+};
+
+enum {
+    TF_STATUS_HUMAN,
+    TF_STATUS_WOLF,
 };
 
 class dSv_player_status_a_c {

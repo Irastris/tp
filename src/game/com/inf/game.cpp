@@ -1342,7 +1342,7 @@ s8 dComIfGs_sense_type_change_Get() {
 }
 
 void dComIfGs_onZoneSwitch(int i_swBit, int i_roomNo) {
-    std::cout << "dComIfGp_setSelectItem() is stubbed" << std::endl;
+    std::cout << "dComIfGs_onZoneSwitch() is stubbed" << std::endl;
 
     /* int room_no;
     if (i_roomNo >= 0) {

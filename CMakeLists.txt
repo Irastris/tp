@@ -11,6 +11,7 @@ add_compile_options(
     -Wno-int-to-pointer-cast
     -Wno-conversion-null
     -Wno-delete-incomplete # IMPORTANT TO RESOLVE
+    -Wno-return-type
 )
 
 set(GAME_FILES
@@ -45,6 +46,10 @@ set(SSYS_FILES
     src/ssystem/scomponent/c_phase.cpp
     src/ssystem/scomponent/c_sxyz.cpp
     src/ssystem/scomponent/c_xyz.cpp
+)
+
+set(DOLPHIN_FILES
+    src/dolphin/mtx/vec.c
 )
 
 add_executable(tp src/main.cpp ${GAME_FILES} ${JSYS_FILES} ${SSYS_FILES} ${DOLPHIN_FILES})
