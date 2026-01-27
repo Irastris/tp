@@ -1,7 +1,5 @@
 #include "SSystem/SComponent/c_m3d_g_lin.h"
 
-#include <dolphin/mtx.h>
-
 cM3dGLin::cM3dGLin(const cXyz& start, const cXyz& end) {
     mStart = start;
     mEnd = end;

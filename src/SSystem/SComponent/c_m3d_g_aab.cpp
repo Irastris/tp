@@ -1,7 +1,5 @@
 #include "SSystem/SComponent/c_m3d_g_aab.h"
 
-#include <dolphin/mtx.h>
-
 void cM3dGAab::Set(const cXyz* min, const cXyz* max) {
     mMin = *min;
     mMax = *max;

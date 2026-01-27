@@ -1,15 +1,17 @@
 #ifndef C_M3D_G_CYL_H
 #define C_M3D_G_CYL_H
 
-#include "global.h"
 #include "SSystem/SComponent/c_m3d.h"
 #include "SSystem/SComponent/c_xyz.h"
+#include "global.h"
 
+// Cylinder
 struct cM3dGCylS {
     Vec mCenter;
     f32 mRadius;
     f32 mHeight;
 };
+
 class cM3dGSph;
 
 class cM3dGCyl {

@@ -2,7 +2,7 @@
 #define C_M3D_H_
 
 #include <cmath>
-#include "dolphin/mtx.h"
+#include <dolphin/mtx.h>
 
 class cM3dGAab;
 class cM3dGCps;
@@ -65,9 +65,7 @@ static bool cM3d_Cross_SphSph(const cM3dGSph*, const cM3dGSph*, f32*, f32*);
 bool cM3d_Cross_SphSph(const cM3dGSph*, const cM3dGSph*, Vec*);
 static void cM3d_CalcSphVsTriCrossPoint(const cM3dGSph*, const cM3dGTri*, Vec*);
 bool cM3d_Cross_SphTri(const cM3dGSph*, const cM3dGTri*, Vec*);
-inline bool cM3d_Cross_SphTri(const cM3dGSph* param_0, const cM3dGTri* param_1) {
-    return cM3d_Cross_SphTri(param_0, param_1, NULL);
-}
+inline bool cM3d_Cross_SphTri(const cM3dGSph* param_0, const cM3dGTri* param_1) { return cM3d_Cross_SphTri(param_0, param_1, NULL); }
 bool cM3d_Cross_CylCyl(const cM3dGCyl*, const cM3dGCyl*, f32*);
 bool cM3d_Cross_CylCyl(const cM3dGCyl*, const cM3dGCyl*, Vec*);
 bool cM3d_Cross_CylTri(const cM3dGCyl*, const cM3dGTri*, Vec*);
@@ -90,13 +88,9 @@ f32 cM3d_lineVsPosSuisenCross(const Vec&, const Vec&, const Vec&, Vec*);
 int cM3d_2PlaneLinePosNearPos(const cM3dGPla&, const cM3dGPla&, const Vec*, Vec*);
 void cM3d_CrawVec(const Vec&, const Vec&, Vec*);
 
-inline bool cM3d_IsZero(f32 f) {
-    return fabsf(f) < G_CM3D_F_ABS_MIN;
-}
+inline bool cM3d_IsZero(f32 f) { return fabsf(f) < G_CM3D_F_ABS_MIN; }
 
-inline f32 cM3d_LenSq(const Vec* a, const Vec* b) {
-    return VECSquareDistance(a, b);
-}
+inline f32 cM3d_LenSq(const Vec* a, const Vec* b) { return VECSquareDistance(a, b); }
 
 inline bool cM3d_Cross_LinSph(const cM3dGLin* lin_p, const cM3dGSph* sph_p) {
     Vec sp10;

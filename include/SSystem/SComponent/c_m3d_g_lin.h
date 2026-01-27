@@ -1,11 +1,10 @@
 #ifndef C_M3D_G_LIN_H
 #define C_M3D_G_LIN_H
 
-#include "global.h"
 #include "SSystem/SComponent/c_xyz.h"
+#include "global.h"
 
-#include <dolphin/mtx.h>
-
+// Line
 class cM3dGLin {
     // private:
 public:

@@ -19,9 +19,7 @@ public:
     void Set(const cXyz&, const cXyz&, f32);
     void Set(const cM3dGCpsS&);
     void SetCps(const cM3dGCps&);
-    bool Cross(cM3dGCps const* other, cXyz* xyz) const {
-        return cM3d_Cross_CpsCps(*this, *other, xyz);
-    }
+    bool Cross(cM3dGCps const* other, cXyz* xyz) const { return cM3d_Cross_CpsCps(*this, *other, xyz); }
     bool Cross(cM3dGCyl const* cyl, cXyz* xyz) const { return cM3d_Cross_CpsCyl(*this, *cyl, xyz); }
     bool Cross(cM3dGSph const* sph, cXyz* xyz) const { return cM3d_Cross_CpsSph(*this, *sph, xyz); }
     void SetR(f32 r) { mRadius = r; }

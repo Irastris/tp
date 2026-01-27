@@ -30,8 +30,11 @@ f32 cM3d_Len2dSq(f32 pX1, f32 pY1, f32 pX2, f32 pY2) {
     return xDiff * xDiff + yDiff * yDiff;
 }
 
-bool cM3d_Len2dSqPntAndSegLine(f32 param_1, f32 param_2, f32 param_3, f32 param_4, f32 p5, f32 p6,
-                               f32* param_7, f32* param_8, f32* param_9) {
+static f32 dummy(f32 x) {
+    return sqrtf(x);
+}
+
+bool cM3d_Len2dSqPntAndSegLine(f32 param_1, f32 param_2, f32 param_3, f32 param_4, f32 p5, f32 p6, f32* param_7, f32* param_8, f32* param_9) {
     bool retVal = false;
     f32 f31 = p5 - param_3;
     f32 f30 = p6 - param_4;
@@ -239,8 +242,7 @@ int cM3d_Check_LinLin(const cM3dGLin* lin_a, const cM3dGLin* lin_b, f32* dst_a, 
 }
 
 
-static bool cM3d_CrossInfLineVsInfPlane_proc(f32 pFloatA, f32 pFloatB, const Vec* pVecA,
-                                             const Vec* pVecB, Vec* pVecOut) {
+static bool cM3d_CrossInfLineVsInfPlane_proc(f32 pFloatA, f32 pFloatB, const Vec* pVecA, const Vec* pVecB, Vec* pVecOut) {
     if (cM3d_IsZero(pFloatA - pFloatB)) {
         *pVecOut = *pVecB;
         return false;
@@ -272,59 +274,33 @@ bool cM3d_Cross_LinPla(const cM3dGLin* lin, const cM3dGPla* pla, Vec* dst, bool 
 }
 
 static u32 const BPCP_OUTCODE0 = 0x00000001;
-
 static u32 const BPCP_OUTCODE1 = 0x00000002;
-
 static u32 const BPCP_OUTCODE4 = 0x00000010;
-
 static u32 const BPCP_OUTCODE5 = 0x00000020;
-
 static u32 const BPCP_OUTCODE2 = 0x00000004;
-
 static u32 const BPCP_OUTCODE3 = 0x00000008;
-
 static u32 const BEVEL2D_OUTCODE0 = 0x00000001;
-
 static u32 const BEVEL2D_OUTCODE1 = 0x00000002;
-
 static u32 const BEVEL2D_OUTCODE2 = 0x00000004;
-
 static u32 const BEVEL2D_OUTCODE3 = 0x00000008;
-
 static u32 const BEVEL2D_OUTCODE4 = 0x00000010;
-
 static u32 const BEVEL2D_OUTCODE5 = 0x00000020;
-
 static u32 const BEVEL2D_OUTCODE6 = 0x00000040;
-
 static u32 const BEVEL2D_OUTCODE7 = 0x00000080;
-
 static u32 const BEVEL2D_OUTCODE8 = 0x00000100;
-
 static u32 const BEVEL2D_OUTCODE9 = 0x00000200;
-
 static u32 const BEVEL2D_OUTCODE10 = 0x00000400;
-
 static u32 const BEVEL2D_OUTCODE11 = 0x00000800;
-
 static u32 const BEVEL3D_OUTCODE0 = 0x00000001;
-
 static u32 const BEVEL3D_OUTCODE1 = 0x00000002;
-
 static u32 const BEVEL3D_OUTCODE2 = 0x00000004;
-
 static u32 const BEVEL3D_OUTCODE3 = 0x00000008;
-
 static u32 const BEVEL3D_OUTCODE4 = 0x00000010;
-
 static u32 const BEVEL3D_OUTCODE5 = 0x00000020;
-
 static u32 const BEVEL3D_OUTCODE6 = 0x00000040;
-
 static u32 const BEVEL3D_OUTCODE7 = 0x00000080;
 
-inline u32 cM3d_CheckBoxEdgePlane_Bevel2DCheck(Vec const* param_0, Vec const* param_1,
-                                               Vec const* param_2) {
+inline u32 cM3d_CheckBoxEdgePlane_Bevel2DCheck(Vec const* param_0, Vec const* param_1, Vec const* param_2) {
     u32 ret = 0;
     if (-param_0->x + param_0->y > -param_1->x + param_2->y) {
         ret |= BEVEL2D_OUTCODE0;
@@ -365,8 +341,7 @@ inline u32 cM3d_CheckBoxEdgePlane_Bevel2DCheck(Vec const* param_0, Vec const* pa
     return ret;
 }
 
-inline u32 cM3d_CheckBoxEdgePlane_Bevel3DCheck(Vec const* param_0, Vec const* param_1,
-                                               Vec const* param_2) {
+inline u32 cM3d_CheckBoxEdgePlane_Bevel3DCheck(Vec const* param_0, Vec const* param_1, Vec const* param_2) {
     u32 ret = 0;
     if (param_0->x + param_0->y + param_0->z > param_2->x + param_2->y + param_2->z) {
         ret |= BEVEL3D_OUTCODE0;
@@ -395,8 +370,7 @@ inline u32 cM3d_CheckBoxEdgePlane_Bevel3DCheck(Vec const* param_0, Vec const* pa
     return ret;
 }
 
-bool cM3d_Cross_MinMaxBoxLine(Vec const* param_0, Vec const* param_1, Vec const* param_2,
-                              Vec const* param_3) {
+bool cM3d_Cross_MinMaxBoxLine(Vec const* param_0, Vec const* param_1, Vec const* param_2, Vec const* param_3) {
     u32 uVar3 = 0;
     u32 uVar4 = 0;
 
@@ -562,8 +536,7 @@ bool cM3d_Cross_MinMaxBoxLine(Vec const* param_0, Vec const* param_1, Vec const*
     return false;
 }
 
-bool cM3d_InclusionCheckPosIn3PosBox3d(const Vec* pVecA, const Vec* pVecB, const Vec* pVecC,
-                                       const Vec* pVecD, f32 pF) {
+bool cM3d_InclusionCheckPosIn3PosBox3d(const Vec* pVecA, const Vec* pVecB, const Vec* pVecC, const Vec* pVecD, f32 pF) {
     f32 min, max;
     if (pVecA->x < pVecB->x) {
         min = pVecA->x;
@@ -615,9 +588,7 @@ bool cM3d_InclusionCheckPosIn3PosBox3d(const Vec* pVecA, const Vec* pVecB, const
     return true;
 }
 
-static bool cM3d_InclusionCheckPosIn3PosBox2d(f32 param_1, f32 param_2, f32 param_3,
-                                              f32 param_4, f32 param_5, f32 param_6,
-                                              f32 param_7, f32 param_8, f32 param_9) {
+static bool cM3d_InclusionCheckPosIn3PosBox2d(f32 param_1, f32 param_2, f32 param_3, f32 param_4, f32 param_5, f32 param_6, f32 param_7, f32 param_8, f32 param_9) {
     f32 f31;
     f32 f30;
     f32 f29;
@@ -882,8 +853,7 @@ static bool cM3d_CrossY_Tri(cM3dGTri const* tri, Vec const* vec, f32 param_2) {
     return false;
 }
 
-static bool cM3d_CrossY_Tri(cM3dGTri const* tri, Vec const* vec, cM3d_Range const* range,
-                            f32* param_3) {
+static bool cM3d_CrossY_Tri(cM3dGTri const* tri, Vec const* vec, cM3d_Range const* range, f32* param_3) {
     if (cM3d_IsZero(tri->GetNP()->y)) {
         return false;
     }
@@ -986,8 +956,7 @@ static bool cM3d_CrossZ_LinTri_proc(cM3dGTri const* tri, Vec const* vec) {
     return false;
 }
 
-bool cM3d_Cross_LinTri(cM3dGLin const* line, cM3dGTri const* tri, Vec* vec, bool param_3,
-                       bool param_4) {
+bool cM3d_Cross_LinTri(cM3dGLin const* line, cM3dGTri const* tri, Vec* vec, bool param_3, bool param_4) {
     if (!cM3d_Cross_LinPla(line, tri, vec, param_3, param_4)) {
         return false;
     }
@@ -1085,8 +1054,7 @@ bool cM3d_Cross_LinSph(cM3dGLin const* line, cM3dGSph const* sph, Vec* param_2) 
     return false;
 }
 
-int cM3d_Cross_LinSph_CrossPos(cM3dGSph const& sph, cM3dGLin const& line, Vec* param_2,
-                               Vec* param_3) {
+int cM3d_Cross_LinSph_CrossPos(cM3dGSph const& sph, cM3dGLin const& line, Vec* param_2, Vec* param_3) {
     int ret;
     Vec line_vec, vec;
     VECSubtract(&line.GetEndP(), &line.GetStartP(), &line_vec);
@@ -1195,8 +1163,7 @@ bool cM3d_Cross_SphSph(cM3dGSph const* sph1, cM3dGSph const* sph2, f32* param_2)
     }
 }
 
-static bool cM3d_Cross_SphSph(cM3dGSph const* sph1, cM3dGSph const* sph2, f32* param_2,
-                              f32* param_3) {
+static bool cM3d_Cross_SphSph(cM3dGSph const* sph1, cM3dGSph const* sph2, f32* param_2, f32* param_3) {
     Vec delta;
     VECSubtract(sph1->GetCP(), sph2->GetCP(), &delta);
     *param_2 = VECMag(&delta);
@@ -1602,8 +1569,7 @@ int cM3d_Cross_CylLin(cM3dGCyl const* cyl, cM3dGLin const* line, Vec* param_2, V
     return count;
 }
 
-static int cM3d_Cross_CylPntPnt(const cM3dGCyl* pCylinder, const Vec* pVecStart, const Vec* pVecEnd,
-                                Vec* pVecOutA, Vec* pVecOutB) {
+static int cM3d_Cross_CylPntPnt(const cM3dGCyl* pCylinder, const Vec* pVecStart, const Vec* pVecEnd, Vec* pVecOutA, Vec* pVecOutB) {
     cM3dGLin lin;
     lin.SetStartEnd(*pVecStart, *pVecEnd);
     return cM3d_Cross_CylLin(pCylinder, &lin, pVecOutA, pVecOutB);
@@ -1683,8 +1649,7 @@ bool cM3d_Cross_CpsCps(cM3dGCps const& cps1, cM3dGCps const& cps2, Vec* param_2)
     return false;
 }
 
-inline bool cM3d_Cross_CpsCyl_Check(cM3dGCps const& cps, cM3dGCyl const& cyl, Vec& pos1, Vec& pos2,
-                                    Vec* param_4) {
+inline bool cM3d_Cross_CpsCyl_Check(cM3dGCps const& cps, cM3dGCyl const& cyl, Vec& pos1, Vec& pos2, Vec* param_4) {
     if (VECDistance(&pos1, &pos2) < cps.GetR() + cyl.GetR()) {
         VECAdd(&pos1, &pos2, param_4);
         VECScale(param_4, param_4, 0.5f);
@@ -1799,8 +1764,7 @@ bool cM3d_Cross_CpsCyl(cM3dGCps const& cps, cM3dGCyl const& cyl, Vec* param_2) {
     return false;
 }
 
-static void cM3d_Cross_CpsSph_CrossPos(cM3dGCps const& param_1, cM3dGSph const& param_2,
-                                           Vec const& param_3, Vec* param_4) {
+static void cM3d_Cross_CpsSph_CrossPos(cM3dGCps const& param_1, cM3dGSph const& param_2, Vec const& param_3, Vec* param_4) {
     Vec aVStack_70;
     Vec VStack_7c;
     int iVar5 = cM3d_Cross_LinSph_CrossPos(param_2, param_1, &aVStack_70, &VStack_7c);
@@ -1899,8 +1863,7 @@ bool cM3d_Cross_TriTri(cM3dGTri const& tri1, cM3dGTri const& tri2, Vec* param_2)
     return false;
 }
 
-inline f32 cM3d_2LinCenter(cM3dGLin const& pLinA, f32 pLinAF, cM3dGLin const& pLinB, f32 pLinBF,
-                            Vec* pVecOut) {
+inline f32 cM3d_2LinCenter(cM3dGLin const& pLinA, f32 pLinAF, cM3dGLin const& pLinB, f32 pLinBF, Vec* pVecOut) {
     Vec tmp, tmp2;
     pLinA.CalcPos(&tmp, pLinAF);
     pLinB.CalcPos(&tmp2, pLinBF);
@@ -1972,14 +1935,12 @@ void cM3d_CalcVecZAngle(Vec const& param_0, csXyz* param_1) {
     param_1->z = 0;
 }
 
-void cM3d_PlaneCrossLineProcWork(f32 f1, f32 f2, f32 f3, f32 f4, f32 f5, f32 f6, f32 f7, f32* pF1,
-                                 f32* pF2) {
+void cM3d_PlaneCrossLineProcWork(f32 f1, f32 f2, f32 f3, f32 f4, f32 f5, f32 f6, f32 f7, f32* pF1, f32* pF2) {
     *pF1 = ((f2 * f7) - (f4 * f6)) / f5;
     *pF2 = ((f3 * f6) - (f1 * f7)) / f5;
 }
 
-static int cM3d_2PlaneCrossLine(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB,
-                                cM3dGLin* pLinOut) {
+static int cM3d_2PlaneCrossLine(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB, cM3dGLin* pLinOut) {
     Vec tmp;
     VECCrossProduct(pPlaneA.GetNP(), pPlaneB.GetNP(), &tmp);
     if (cM3d_IsZero(tmp.x) && cM3d_IsZero(tmp.y) && cM3d_IsZero(tmp.z)) {
@@ -2014,8 +1975,7 @@ static int cM3d_2PlaneCrossLine(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB
     }
 }
 
-BOOL cM3d_3PlaneCrossPos(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB, const cM3dGPla& pPlaneC,
-                         Vec* pVecOut) {
+BOOL cM3d_3PlaneCrossPos(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB, const cM3dGPla& pPlaneC, Vec* pVecOut) {
     cM3dGLin lin;
     if (!cM3d_2PlaneCrossLine(pPlaneA, pPlaneB, &lin)) {
         return false;
@@ -2049,8 +2009,7 @@ f32 cM3d_lineVsPosSuisenCross(const cM3dGLin* pLine, const Vec* pPoint, Vec* pVe
     }
 }
 
-f32 cM3d_lineVsPosSuisenCross(const Vec& pLinePointA, const Vec& pLinePointB, const Vec& pPoint,
-                              Vec* pVecOut) {
+f32 cM3d_lineVsPosSuisenCross(const Vec& pLinePointA, const Vec& pLinePointB, const Vec& pPoint, Vec* pVecOut) {
     Vec tmp1;
     Vec tmp2;
     Vec tmp3;
@@ -2069,8 +2028,7 @@ f32 cM3d_lineVsPosSuisenCross(const Vec& pLinePointA, const Vec& pLinePointB, co
     }
 }
 
-int cM3d_2PlaneLinePosNearPos(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB, const Vec* pVec,
-                              Vec* pVecOut) {
+int cM3d_2PlaneLinePosNearPos(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB, const Vec* pVec, Vec* pVecOut) {
     cM3dGLin lin;
     if (!cM3d_2PlaneCrossLine(pPlaneA, pPlaneB, &lin)) {
         return FALSE;

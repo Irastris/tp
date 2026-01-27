@@ -1,6 +1,5 @@
 #include "SSystem/SComponent/c_m3d_g_pla.h"
-
-#include <dolphin/mtx.h>
+#include "SSystem/SComponent/c_m3d.h"
 
 cM3dGPla::cM3dGPla(const cXyz* normal, f32 d) {
     mNormal = *normal;

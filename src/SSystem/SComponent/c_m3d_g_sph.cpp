@@ -1,4 +1,5 @@
 #include "SSystem/SComponent/c_m3d_g_sph.h"
+#include "SSystem/SComponent/c_m3d.h"
 
 void cM3dGSph::SetC(const cXyz& center) {
     mCenter = center;

@@ -1,9 +1,9 @@
 #ifndef C_M3D_G_SPH_H_
 #define C_M3D_G_SPH_H_
 
-#include "global.h"
 #include "SSystem/SComponent/c_m3d.h"
 #include "SSystem/SComponent/c_xyz.h"
+#include "global.h"
 
 class cM3dGCyl;
 

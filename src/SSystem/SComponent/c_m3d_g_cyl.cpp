@@ -1,4 +1,5 @@
 #include "SSystem/SComponent/c_m3d_g_cyl.h"
+#include "SSystem/SComponent/c_m3d.h"
 
 cM3dGCyl::cM3dGCyl(const cXyz* center, f32 radius, f32 height) {
     SetC(*center);

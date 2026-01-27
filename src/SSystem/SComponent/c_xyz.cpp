@@ -4,8 +4,6 @@
 #include <limits>
 #define FLT_EPSILON std::numeric_limits<float>::epsilon()
 
-#include <dolphin/mtx.h>
-
 cXyz cXyz::operator+(const Vec& vec) const {
     Vec ret;
     VECAdd(this, &vec, &ret);

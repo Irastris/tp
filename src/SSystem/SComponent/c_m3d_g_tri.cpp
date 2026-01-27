@@ -1,4 +1,5 @@
 #include "SSystem/SComponent/c_m3d_g_tri.h"
+#include "SSystem/SComponent/c_m3d.h"
 
 bool cM3dGTri::cross(const cM3dGCyl* cyl, Vec* out) const {
     return cM3d_Cross_CylTri(cyl, this, out);
