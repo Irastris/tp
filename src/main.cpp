@@ -1,25 +1,46 @@
 #include "main.h"
-#include "game/machine.h"
 
-static std::unique_ptr<tp::Application> g_app;
+#include <aurora/aurora.h>
+#include <aurora/event.h>
+#include <aurora/main.h>
+
+static u32 frame;
 
 int main(int argc, char* argv[]) {
-    printf("Hello from main() @ main.cpp\n");
-
-    g_app = std::make_unique<tp::Application>();
+    std::cout << "Hello from main() @ main.cpp (m_Do_main)" << std::endl;
     
     // Aurora initialization
-    const AuroraConfig config{
+    const AuroraConfig auroraConfig{
         .appName = "Zelda: Twilight Princess",
+        .desiredBackend = BACKEND_VULKAN,
         .windowWidth = 640,
         .windowHeight = 480,
     };
 
-    const AuroraInfo auroraInfo = aurora_initialize(argc, argv, &config);
-    
-    // g_app->onAppWindowResized(info.windowSize);
+    const AuroraInfo auroraInfo = aurora_initialize(argc, argv, &auroraConfig);
 
-    // dComIfG_ct() goes here
+    // TODO: Determine if reset data logic should remain
+    /* mDoRst::setResetData((mDoRstData*)OSAllocFromArenaLo(0x18, 4));
+
+    if (!mDoRst::getResetData()) {
+        do {
+        } while (true);
+    }
+
+    if (!((OSGetResetCode() & 0x80000000) ? 1 : 0)) {
+        mDoRst::offReset();
+        mDoRst::offResetPrepare();
+        mDoRst::off3ButtonReset();
+        mDoRst::set3ButtonResetPort(-1);
+        mDoRst::setLogoScnFlag(0);
+        mDoRst::setProgSeqFlag(0);
+        mDoRst::setProgChgFlag(0);
+        mDoRst::setWarningDispFlag(0);
+        mDoRst::offShutdown();
+        mDoRst::offReturnToMenu();
+    } */
+    
+    dComIfG_ct();
 
     // main01() logic below
     mDoMch_Create();
@@ -27,30 +48,16 @@ int main(int argc, char* argv[]) {
     // More stuff goes here
 
     bool exiting = false;
-    do {
-        // TODO: From decomp, might not be ideal with Aurora involved
-        static u32 frame;
-        frame++;
-
+    while (1) {
         const auto* event = aurora_update();
 
         while (event != nullptr && event->type != AURORA_NONE) {
-            switch (event->type) {
-                case AURORA_EXIT:
-                    exiting = true;
-                    break;
-                case AURORA_SDL_EVENT:
-                case AURORA_WINDOW_RESIZED:
-                case AURORA_WINDOW_MOVED:
-                case AURORA_CONTROLLER_ADDED:
-                case AURORA_CONTROLLER_REMOVED:
-                case AURORA_PAUSED:
-                case AURORA_UNPAUSED:
-                case AURORA_DISPLAY_SCALE_CHANGED:
-                default:
-                    break;
+            if (event->type == AURORA_EXIT)
+            {
+                exiting = true;
+                break;
             }
-
+            
             ++event;
         }
 
@@ -61,19 +68,25 @@ int main(int argc, char* argv[]) {
         if (!aurora_begin_frame()) {
             continue;
         }
-        
-        if (!g_app->onAppIdle()) {
-            break;
+
+        /* if (mDoDvdThd::SyncWidthSound) {
+            mDoMemCd_UpDate();
         }
 
-        g_app->onAppDraw();
-        aurora_end_frame();
-        g_app->onAppPostDraw();
-    } while (exiting);
+        mDoCPd_c::read();   // read controller input
 
-    g_app->onAppExiting();
+        fapGm_Execute();    // handle game execution
+
+        mDoAud_Execute();   // handle audio execution */
+        
+        frame++;
+
+        aurora_end_frame();
+
+        // frame_limiter
+    };
+
     aurora_shutdown();
-    g_app.reset();
 
     return 0;
 }

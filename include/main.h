@@ -2,15 +2,11 @@
 #define _MAIN_H_
 
 #include <cstdio>
-#include <memory>
+#include <cstdlib>
+#include <iostream>
 
-// Aurora
-#include "aurora/event.h"
-#include "aurora/main.h"
-
-// Dolphin SDK
-#include "dolphin/types.h"
-
-#include "app.h"
+#include "global.h"
+#include "game/com/inf/game.h"
+#include "game/machine.h"
 
 #endif
