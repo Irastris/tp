@@ -1,7 +1,8 @@
 #include "game/machine.h"
 
-/* GXRenderModeObj g_ntscZeldaIntDf = {
-    VI_TVMODE_NTSC_INT,
+// TODO: Determine if this custom profile should be used vs. the generic GX profiles
+/* GXRenderModeObj g_ntscZeldaProg = {
+    VI_TVMODE_NTSC_PROG,
     608,
     448,
     448,
@@ -9,7 +10,7 @@
     16,
     666,
     448,
-    VI_XFBMODE_DF,
+    VI_XFBMODE_SF,
     0,
     0,
     {{6, 6},
@@ -24,60 +25,45 @@
      {6, 6},
      {6, 6},
      {6, 6}},
-    {8, 8, 10, 12, 10, 8, 8},
-}; */
+    {0, 0, 21, 22, 21, 0, 0},
+};
 
-int mDoMch_Create() {
-    printf("Hello from mDoMch_Create() @ game/machine.cpp \n");
+GXRenderModeObj* mDoMch_render_c::mRenderModeObj = &g_ntscZeldaIntDf; */
 
-    // JKRHeap::setDefaultDebugFill(mDoMch::mDebugFill);
-    // JFWSystem::setMaxStdHeap(1);
+void mDoMch_Create() {
+    std::cout << "Hello from mDoMch_Create() @ machine.cpp (m_Do_machine)" << std::endl;
 
-    // JFWSystem::setSysHeapSize(0x5E6CA8);
-    // JFWSystem::setFifoBufSize(0xA0000);
-    // JFWSystem::setAramAudioBufSize(0xA00000);
-    // JFWSystem::setAramGraphBufSize(-1);
+    JFWSystem::init();
 
-    // JFWSystem::setRenderMode(mDoMch_render_c::getRenderModeObj());
-    // JFWSystem::firstInit();
-    // JKRExpHeap* dbPrintHeap = mDoExt_createDbPrintHeap(0x1800, JKRGetRootHeap()); // 6 KB
-    // JUTDbPrint::start(NULL, dbPrintHeap);
-    // mDoExt_createAssertHeap(JKRGetRootHeap());
-    // JFWSystem::init();
+    JKRHeap* rootHeap = (JKRHeap*)JKRGetRootHeap();
 
-    // JUTAssertion::setVisible(false);
-    // JUTDbPrint::getManager()->setVisible(false);
+    mDoExt_createCommandHeap(0x1000, rootHeap); // 4 KB
+    mDoExt_createArchiveHeap(0x8DF400, rootHeap); // 9085 KB
+    mDoExt_createJ2dHeap(0x7D000, rootHeap); // 500 KB
+    mDoExt_createGameHeap(0x44E000, rootHeap); // 4408 KB
 
-    // JKRSetErrorFlag(JKRHeap::getRootHeap(), true);
-    // JKRSetErrorFlag(JFWSystem::getSystemHeap(), true);
+    JKRHeap* systemHeap = JKRGetSystemHeap();
+    s32 size = systemHeap->getFreeSize();
+    size -= 0x10000;
+    JKRHeap* zeldaHeap = mDoExt_createZeldaHeap(size, systemHeap);
+    JKRSetCurrentHeap(zeldaHeap);
 
-    // JKRHeap* rootHeap = (JKRHeap*)JKRGetRootHeap();
-    // JKRHeap* rootHeap2 = rootHeap;
+    std::cout << "commandHeap size is " << mDoExt_getCommandHeap()->getSize() << std::endl;
+    std::cout << "archiveHeap size is " << mDoExt_getArchiveHeap()->getSize() << std::endl;
+    std::cout << "j2dHeap size is " << mDoExt_getJ2dHeap()->getSize() << std::endl;
+    std::cout << "gameHeap size is " << mDoExt_getGameHeap()->getSize() << std::endl;
+    std::cout << "zeldaHeap size is " << mDoExt_getZeldaHeap()->getSize() << std::endl;
 
-    // JKRHeap* systemHeap = JKRGetSystemHeap();
-    // s32 size = systemHeap->getFreeSize();
-    // size -= 0x10000;
-    // JKRHeap* zeldaHeap = mDoExt_createZeldaHeap(size, systemHeap);
-    // JKRSetCurrentHeap(zeldaHeap);
+    /* JKRSetAramTransferBuffer(NULL, 0x2000, JKRGetSystemHeap());
+    JKRThreadSwitch::createManager(NULL);
+    JKRThread* thread = new JKRThread(OSGetCurrentThread(), 0);
 
-    // JKRSetAramTransferBuffer(NULL, 0x2000, JKRGetSystemHeap());
-    // JKRThreadSwitch::createManager(NULL);
-    // JKRThread* thread = new JKRThread(OSGetCurrentThread(), 0);
-
-    // JUTConsole* sysConsole = JFWSystem::getSystemConsole();
-    // sysConsole->setOutput(JUTConsole::OUTPUT_CONSOLE | JUTConsole::OUTPUT_OSREPORT);
-    // sysConsole->setPosition(16, 42);
-
-    // JUTException::setMapFile(MAP_FOLDER MAP_FILE);
-
-    // cMl::init(mDoExt_getZeldaHeap());
-    // cM_initRnd(100, 100, 100);
-    // JKRDvdRipper::setSZSBufferSize(0x4000);
-    // JKRDvdAramRipper::setSZSBufferSize(0x4000);
-    // JKRAram::setSZSBufferSize(0x2000);
-    // mDoDvdThd::create(OSGetThreadPriority(OSGetCurrentThread()) - 2);
-    // mDoDvdErr_ThdInit();
-    // mDoMemCd_ThdInit();
-
-    return 1;
+    cMl::init(mDoExt_getZeldaHeap());
+    cM_initRnd(100, 100, 100);
+    JKRDvdRipper::setSZSBufferSize(0x4000);
+    JKRDvdAramRipper::setSZSBufferSize(0x4000);
+    JKRAram::setSZSBufferSize(0x2000);
+    mDoDvdThd::create(OSGetThreadPriority(OSGetCurrentThread()) - 2);
+    mDoDvdErr_ThdInit();
+    mDoMemCd_ThdInit(); */
 }

@@ -3,7 +3,12 @@
 
 #include <cstdint>
 #include <cstdio>
+#include <iostream>
 
-int mDoMch_Create();
+#include "game/ext.h"
+#include "jsystem/jframework/jfwsystem.h"
+#include "jsystem/jkernel/jkrheap.h"
+
+void mDoMch_Create();
 
 #endif
