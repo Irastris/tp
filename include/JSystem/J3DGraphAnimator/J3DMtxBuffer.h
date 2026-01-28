@@ -6,7 +6,7 @@
 
 // TODO: Deduplicate instances of these
 typedef f32 Mtx33[3][3];
-typedef f32 (*MtxP)[3];
+typedef f32 (*MtxP)[4];
 
 class J3DModelData;
 

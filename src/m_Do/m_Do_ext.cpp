@@ -18,7 +18,7 @@
 #include <cstdio> 
 
 // TODO: Deduplicate instances of this
-typedef f32 (*MtxP)[3];
+typedef f32 (*MtxP)[4];
 
 /* static void mDoExt_setJ3DData(Mtx mtx, const J3DTransformInfo* transformInfo, u16 param_2) {
     bool local_28;

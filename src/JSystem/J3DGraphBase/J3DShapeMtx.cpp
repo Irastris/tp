@@ -8,7 +8,7 @@
 
 // TODO: Deduplicate instances of these
 typedef f32 Mtx33[3][3];
-typedef f32 (*MtxP)[3];
+typedef f32 (*MtxP)[4];
 
 u16 J3DShapeMtx::sMtxLoadCache[10];
 

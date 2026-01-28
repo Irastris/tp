@@ -6,7 +6,7 @@
 // TODO: Deduplicate instances of these
 typedef f32 Mtx33[3][3];
 typedef f32 (*Mtx3P)[3];
-typedef f32 (*MtxP)[3];
+typedef f32 (*MtxP)[4];
 
 struct J3DTextureSRTInfo;
 

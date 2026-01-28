@@ -7,7 +7,7 @@
 #include <dolphin/mtx.h>
 
 // TODO: Deduplicate instances of this
-typedef f32 (*MtxP)[3];
+typedef f32 (*MtxP)[4];
 
 class J2DAnmBase;
 class J2DAnmColor;

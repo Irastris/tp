@@ -29,7 +29,7 @@
 #include "SSystem/SComponent/c_xyz.h"
 
 // TODO: Deduplicate instances of this
-typedef f32 (*MtxP)[3];
+typedef f32 (*MtxP)[4];
 
 enum dComIfG_ButtonStatus {
     BUTTON_STATUS_NONE,

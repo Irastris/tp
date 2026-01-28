@@ -9,7 +9,7 @@
 #include <cstring>
 
 // TODO: Deduplicate instances of this
-typedef f32 (*MtxP)[3];
+typedef f32 (*MtxP)[4];
 
 void J3DMtxCalcJ3DSysInitBasic::init(Vec const& scale, Mtx const& mtx) {
     J3DSys::mCurrentS = scale;

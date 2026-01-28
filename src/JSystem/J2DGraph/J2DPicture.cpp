@@ -9,7 +9,7 @@
 #include <dolphin/gx.h>
 
 // TODO: Deduplicate instances of this
-typedef f32 (*MtxP)[3];
+typedef f32 (*MtxP)[4];
 
 J2DPicture::J2DPicture() : mPalette(NULL) {
     for (u32 i = 0; i < 2; i++) {

@@ -4,7 +4,7 @@
 
 // TODO: Deduplicate instances of these
 typedef f32 (*Mtx3P)[3];
-typedef f32 (*MtxP)[3];
+typedef f32 (*MtxP)[4];
 
 void J3DGDSetGenMode(u8 nTexGens, u8 nChans, u8 nTevs, u8 nInds, GXCullMode cm) {
     static u8 cm2hw[4] = {0, 2, 1, 3};
