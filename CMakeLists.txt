@@ -18,11 +18,13 @@ add_subdirectory(extern/aurora EXCLUDE_FROM_ALL)
 set(GAME_FILES
     src/c/c_dylink.cpp
     src/d/d_com_inf_game.cpp
+    src/d/d_drawlist.cpp
     src/d/d_error_msg.cpp
     src/d/d_particle.cpp
     src/d/d_save.cpp
     src/d/d_stage.cpp
     src/f_ap/f_ap_game.cpp
+    src/f_op/f_op_view.cpp
     src/f_pc/f_pc_base.cpp
     src/f_pc/f_pc_create_iter.cpp
     src/f_pc/f_pc_create_req.cpp
