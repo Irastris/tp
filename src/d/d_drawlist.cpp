@@ -9,8 +9,8 @@
 #include "d/d_drawlist.h"
 // #include "d/d_s_play.h"
 #include "m_Do/m_Do_graphic.h"
-/* #include "m_Do/m_Do_lib.h"
-#include "m_Do/m_Do_mtx.h" */
+// #include "m_Do/m_Do_lib.h"
+#include "m_Do/m_Do_mtx.h"
 
 class dDlst_2Dm_c {
 public:

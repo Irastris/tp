@@ -14,7 +14,7 @@
 #include "global.h"
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_main.h"
-// #include "m_Do/m_Do_mtx.h"
+#include "m_Do/m_Do_mtx.h"
 #include <cstdio> 
 
 // TODO: Deduplicate instances of this

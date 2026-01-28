@@ -61,6 +61,7 @@ set(GAME_FILES
     src/m_Do/m_Do_graphic.cpp
     src/m_Do/m_Do_machine.cpp
     src/m_Do/m_Do_main.cpp
+    src/m_Do/m_Do_mtx.cpp
 )
 
 set(JSYS_FILES
