@@ -6,6 +6,9 @@
 #include "d/d_com_inf_game.h"
 #include "m_Do/m_Do_ext.h"
 
+// TODO: Not originally included directly
+#include "d/d_procname.h"
+
 static DynamicNameTableEntry const DynamicNameTable[] = {
     {PROC_ALLDIE, "d_a_alldie"},
     {PROC_Obj_Swpush, "d_a_obj_swpush"},
