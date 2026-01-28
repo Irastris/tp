@@ -2,10 +2,10 @@
 // #include "d/d_jnt_col.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
-/* #include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h" */
+// #include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/JParticle/JPAEmitterManager.h"
-// #include "JSystem/JParticle/JPAResourceManager.h"
+#include "JSystem/JParticle/JPAResourceManager.h"
 #include "JSystem/JMath/JMATrigonometric.h"
 // #include "d/d_s_play.h"
 #include <cstdio>

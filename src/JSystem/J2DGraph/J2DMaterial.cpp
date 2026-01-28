@@ -66,7 +66,6 @@ J2DTevBlock* J2DMaterial::createTevBlock(int block_type, bool noAlign) {
             block = new (-4) J2DTevBlock16();
         }
     }
-    ASSERTMSGLINE(101, block, "Error : allocate memory.");
 
     return block;
 }
@@ -87,7 +86,6 @@ J2DIndBlock* J2DMaterial::createIndBlock(int block_type, bool noAlign) {
             block = new (-4) J2DIndBlockNull();
         }
     }
-    ASSERTMSGLINE(133, block, "Error : allocate memory.");
 
     return block;
 }

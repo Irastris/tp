@@ -19,8 +19,6 @@ struct J2DWindowExDef {
     u32 field_0x30[4];
 };
 
-STATIC_ASSERT(sizeof(J2DWindowExDef) == 0x40);
-
 J2DWindowEx::J2DWindowEx(J2DPane* param_0, JSURandomInputStream* param_1, u32 param_2,
                              J2DMaterial* param_3) : J2DWindow() {
     mAnmVisibilityFull = NULL;

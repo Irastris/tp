@@ -1,8 +1,8 @@
 /* #include "d/dolzel.h"
-#include <dolphin/gf/GFPixel.h>
+#include <dolphin/gf/GFPixel.h> */
 #include <dolphin/gx.h>
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
-#include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
+/* #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/J3DGraphLoader/J3DMaterialFactory.h" */
 #include "JSystem/JKernel/JKRExpHeap.h"
