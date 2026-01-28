@@ -56,7 +56,7 @@ void dComIfG_play_c::init() {
 
 BOOL dComIfGp_checkItemGet(u8 i_itemNo, int param_1) {
     std::cout << "dComIfGp_checkItemGet() is stubbed" << std::endl;
-    return true; // checkItemGet(i_itemNo, param_1);
+    return TRUE; // checkItemGet(i_itemNo, param_1);
 }
 
 void dComIfG_play_c::itemInit() {
@@ -958,8 +958,9 @@ void dComIfG_inf_c::ct() {
 }
 
 GXColor g_clearColor = {0, 0, 0, 0};
-
 GXColor g_blackColor = {0, 0, 0, 255};
+GXColor g_whiteColor = {255, 255, 255, 255};
+GXColor g_saftyWhiteColor = {160, 160, 160, 255};
 
 int dComIfG_changeOpeningScene(scene_class* i_scene, s16 i_procName) {
     std::cout << "dComIfG_changeOpeningScene() is stubbed" << std::endl;
@@ -990,7 +991,7 @@ BOOL dComIfG_resetToOpening(scene_class* i_scene) {
     mDoAud_bgmStop(30);
     mDoAud_resetProcess(); */
 
-    return 1;
+    return TRUE;
 }
 
 static int phase_1(char* i_arcName) {
@@ -2435,7 +2436,3 @@ u8 dComIfGs_staffroll_next_go_check() {
     std::cout << "dComIfGs_staffroll_next_go_check() is stubbed" << std::endl;
     return 30; // return g_env_light.staffroll_next_timer;
 }
-
-GXColor g_whiteColor = {255, 255, 255, 255};
-
-GXColor g_saftyWhiteColor = {160, 160, 160, 255};

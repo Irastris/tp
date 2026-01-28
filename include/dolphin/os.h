@@ -1,3 +1,10 @@
+#ifndef _DOLPHIN_OS_H_
+#define _DOLPHIN_OS_H_
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 inline s16 __OSf32tos16(f32 inF) {
     if (inF >= 32767.0f) {
         return 32767;
@@ -29,3 +36,9 @@ inline u8 __OSf32tou8(f32 inF) {
 inline void OSf32tou8(f32* f, u8* out) {
     *out = __OSf32tou8(*f);
 }
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

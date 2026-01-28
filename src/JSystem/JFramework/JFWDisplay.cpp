@@ -44,7 +44,7 @@ JFWDisplay::~JFWDisplay() {
 
 JFWDisplay* JFWDisplay::sManager;
 
-JFWDisplay* JFWDisplay::createManager(_GXRenderModeObj const* p_rObj, JKRHeap* p_heap, JUTXfb::EXfbNumber xfb_num, bool enableAlpha) {
+JFWDisplay* JFWDisplay::createManager(GXRenderModeObj const* p_rObj, JKRHeap* p_heap, JUTXfb::EXfbNumber xfb_num, bool enableAlpha) {
     if (p_rObj != NULL) {
         JUTVideo::getManager()->setRenderMode(p_rObj);
     }

@@ -765,7 +765,7 @@ public:
     void setExpHeap2D(void* heap) { mItemInfo.mExpHeap2D = (JKRExpHeap*)heap; }
     void setMsgExpHeap(void* heap) { mItemInfo.mMsgExpHeap = (JKRExpHeap*)heap; }
 
-    /* JKRArchive* getMsgDtArchive() { return mMsgDtArchive[0]; }
+    JKRArchive* getMsgDtArchive() { return mMsgDtArchive[0]; }
     JKRArchive* getMsgDtArchive(int idx) { return mMsgDtArchive[idx]; }
     JKRArchive* getMsgArchive(int idx) { return mMsgArchive[idx]; }
     JKRArchive* getMsgCommonArchive() { return mMsgCommonArchive; }
@@ -777,7 +777,7 @@ public:
     JKRArchive* getDemoMsgArchive() { return mDemoMsgArchive; }
     JKRArchive* getFmapResArchive() { return mFmapResArchive; }
     JKRArchive* getDmapResArchive() { return mDmapResArchive; }
-    JKRAramArchive* getFieldMapArchive2() { return (JKRAramArchive*)mFieldMapArchive2; }
+    // JKRAramArchive* getFieldMapArchive2() { return (JKRAramArchive*)mFieldMapArchive2; }
     JKRArchive* getOptionResArchive() { return mOptionResArchive; }
     JKRArchive* getRingResArchive() { return mRingResArchive; }
     JKRArchive* getFontArchive() { return mFontArchive; }
@@ -805,10 +805,7 @@ public:
     void setMsgArchive(int i, JKRArchive* arc) { mMsgArchive[i] = arc; } */
     void setMsgObjectClass(dMsgObject_c* obj) { mItemInfo.mMsgObjectClass = obj; }
     void setMesgCamInfoBasicID(int id) { mMesgCamInfo.mBasicID = id; }
-    /* void setMesgCamInfoActor(fopAc_ac_c* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3,
-                             fopAc_ac_c* param_4, fopAc_ac_c* param_5, fopAc_ac_c* param_6,
-                             fopAc_ac_c* param_7, fopAc_ac_c* param_8, fopAc_ac_c* param_9,
-                             fopAc_ac_c* param_10) {
+    /* void setMesgCamInfoActor(fopAc_ac_c* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3, fopAc_ac_c* param_4, fopAc_ac_c* param_5, fopAc_ac_c* param_6, fopAc_ac_c* param_7, fopAc_ac_c* param_8, fopAc_ac_c* param_9, fopAc_ac_c* param_10) {
         mMesgCamInfo.mActor[0] = param_1;
         mMesgCamInfo.mActor[1] = param_2;
         mMesgCamInfo.mActor[2] = param_3;
@@ -821,9 +818,9 @@ public:
         mMesgCamInfo.mActor[9] = param_10;
     } */
     dComIfG_MesgCamInfo_c* getMesgCamInfo() { return &mMesgCamInfo; }
-    /* void setFontArchive(JKRArchive* arc) { mFontArchive = arc; }
+    void setFontArchive(JKRArchive* arc) { mFontArchive = arc; }
     void setRubyArchive(JKRArchive* arc) { mRubyArchive = arc; }
-    void setMain2DArchive(JKRArchive* arc) { mMain2DArchive = arc; } */
+    void setMain2DArchive(JKRArchive* arc) { mMain2DArchive = arc; }
     void setItemTable(void* data) { mItemTable = data; }
     void* getItemTable() { return mItemTable; }
 
@@ -953,31 +950,31 @@ public:
     dAttention_c mAttention;
     dVibration_c mVibration; */
     u8 field_0x4d2c[4];
-    /* JKRArchive* mFieldMapArchive2;
+    JKRArchive* mFieldMapArchive2;
     JKRArchive* mMsgArchive[11];
     JKRArchive* mDemoMsgArchive;
-    JKRArchive* mMeterButtonArchive; */
+    JKRArchive* mMeterButtonArchive;
     void* field_0x4d68;
-    /* JKRArchive* mFontArchive;
+    JKRArchive* mFontArchive;
     JKRArchive* mRubyArchive;
-    JKRArchive* mAnmArchive; */
+    JKRArchive* mAnmArchive;
     void* field_0x4d78[2];
-    /* JKRArchive* mCollectResArchive;
+    JKRArchive* mCollectResArchive;
     JKRArchive* mFmapResArchive;
     JKRArchive* mDmapResArchive;
-    JKRArchive* mOptionResArchive; */
+    JKRArchive* mOptionResArchive;
     void* field_0x4d90[2];
-    /* JKRArchive* mItemIconArchive;
+    JKRArchive* mItemIconArchive;
     JKRArchive* mNameResArchive;
-    JKRArchive* mErrorResArchive; */
+    JKRArchive* mErrorResArchive;
     void* field_0x4da4;
-    /* JKRArchive* mAllMapArchive;
+    JKRArchive* mAllMapArchive;
     JKRArchive* mMsgCommonArchive;
-    JKRArchive* mRingResArchive; */
+    JKRArchive* mRingResArchive;
     void* field_0x4db4;
-    /* JKRArchive* mCardIconResArchive;
+    JKRArchive* mCardIconResArchive;
     JKRArchive* mMsgDtArchive[15];
-    JKRArchive* mMain2DArchive; */
+    JKRArchive* mMain2DArchive;
     void* field_0x4dfc[2];
     dPa_control_c* mParticle;
     dSmplMdl_draw_c* mSimpleModel;
@@ -1032,10 +1029,10 @@ public:
 };
 
 extern dComIfG_inf_c g_dComIfG_gameInfo;
-extern GXColor g_blackColor;
+/* extern GXColor g_blackColor;
 extern GXColor g_clearColor;
 extern GXColor g_whiteColor;
-extern GXColor g_saftyWhiteColor;
+extern GXColor g_saftyWhiteColor; */
 
 inline void dComIfG_ct() {
     std::cout << "Hello from doComIfG_ct() @ d_com_inf_game.h" << std::endl;
@@ -1075,13 +1072,13 @@ inline void dComIfG_setTimerMode(int mode) {
     return g_dComIfG_gameInfo.play.setTimerMode(mode);
 }
 
-/* inline dTimer_c* dComIfG_getTimerPtr() {
+inline dTimer_c* dComIfG_getTimerPtr() {
     return g_dComIfG_gameInfo.play.getTimerPtr();
 }
 
 inline void dComIfG_setTimerPtr(dTimer_c* i_ptr) {
     g_dComIfG_gameInfo.play.setTimerPtr(i_ptr);
-} */
+}
 
 inline void dComIfG_setTimerType(u8 i_type) {
     g_dComIfG_gameInfo.play.setTimerType(i_type);
@@ -2477,7 +2474,7 @@ inline camera_class* dComIfGp_getCamera(int idx) {
     return g_dComIfG_gameInfo.play.getCamera(idx);
 }
 
-/* inline JKRArchive* dComIfGp_getMain2DArchive() {
+inline JKRArchive* dComIfGp_getMain2DArchive() {
     return g_dComIfG_gameInfo.play.getMain2DArchive();
 }
 
@@ -2607,7 +2604,7 @@ inline JKRArchive* dComIfGp_getRubyArchive() {
 
 inline void dComIfGp_setMain2DArchive(JKRArchive* arc) {
     g_dComIfG_gameInfo.play.setMain2DArchive(arc);
-} */
+}
 
 inline void dComIfGp_setItemTable(void* data) {
     g_dComIfG_gameInfo.play.setItemTable(data);
@@ -3508,7 +3505,7 @@ inline dStage_Multi_c* dComIfGp_getMulti() {
 
 /* inline JKRAramArchive* dComIfGp_getFieldMapArchive2() {
     return g_dComIfG_gameInfo.play.getFieldMapArchive2();
-}
+} */
 
 inline JKRArchive* dComIfGp_getOptionResArchive() {
     return g_dComIfG_gameInfo.play.getOptionResArchive();
@@ -3524,7 +3521,7 @@ inline JKRArchive* dComIfGp_getMeterButtonArchive() {
 
 inline JKRArchive* dComIfGp_getAllMapArchive() {
     return g_dComIfG_gameInfo.play.getAllMapArchive();
-} */
+}
 
 inline void dComIfGp_onPauseFlag() {
     g_dComIfG_gameInfo.play.onPauseFlag();
@@ -3538,11 +3535,9 @@ inline void dComIfGp_deleteSimpleModel() {
     g_dComIfG_gameInfo.play.deleteSimpleModel();
 }
 
-/* inline void dComIfGp_setHitMark(u16 i_hitmark, fopAc_ac_c* param_1, const cXyz* param_2,
-                                const csXyz* param_3, const cXyz* param_4, u32 i_atType) {
-    g_dComIfG_gameInfo.play.getParticle()->setHitMark(i_hitmark, param_1, param_2, param_3, param_4,
-                                                      i_atType);
-}
+/* inline void dComIfGp_setHitMark(u16 i_hitmark, fopAc_ac_c* param_1, const cXyz* param_2, const csXyz* param_3, const cXyz* param_4, u32 i_atType) {
+    g_dComIfG_gameInfo.play.getParticle()->setHitMark(i_hitmark, param_1, param_2, param_3, param_4, i_atType);
+} */
 
 inline JKRArchive* dComIfGp_getFmapResArchive() {
     return g_dComIfG_gameInfo.play.getFmapResArchive();
@@ -3550,7 +3545,7 @@ inline JKRArchive* dComIfGp_getFmapResArchive() {
 
 inline JKRArchive* dComIfGp_getDmapResArchive() {
     return g_dComIfG_gameInfo.play.getDmapResArchive();
-} */
+}
 
 inline u8 dComIfGp_getMesgStatus() {
     return g_dComIfG_gameInfo.play.getMesgStatus();
@@ -3560,15 +3555,8 @@ inline void dComIfGp_setMesgCameraTagInfo(int id) {
     g_dComIfG_gameInfo.play.setMesgCamInfoID(id);
 }
 
-/* inline void dComIfGp_setMesgCameraInfoActor(fopAc_ac_c* param_1, fopAc_ac_c* param_2,
-                                            fopAc_ac_c* param_3, fopAc_ac_c* param_4,
-                                            fopAc_ac_c* param_5, fopAc_ac_c* param_6,
-                                            fopAc_ac_c* param_7, fopAc_ac_c* param_8,
-                                            fopAc_ac_c* param_9, fopAc_ac_c* param_10)
-
-{
-    g_dComIfG_gameInfo.play.setMesgCamInfoActor(param_1, param_2, param_3, param_4, param_5,
-                                                param_6, param_7, param_8, param_9, param_10);
+/* inline void dComIfGp_setMesgCameraInfoActor(fopAc_ac_c* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3, fopAc_ac_c* param_4, fopAc_ac_c* param_5, fopAc_ac_c* param_6, fopAc_ac_c* param_7, fopAc_ac_c* param_8, fopAc_ac_c* param_9, fopAc_ac_c* param_10) {
+    g_dComIfG_gameInfo.play.setMesgCamInfoActor(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10);
 } */
 
 inline void dComIfGp_setMesgCameraAttrInfo(int param_1) {
