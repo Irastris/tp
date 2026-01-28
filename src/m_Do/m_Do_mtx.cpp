@@ -303,7 +303,7 @@ void mDoMtx_QuatConcat(const Quaternion* a, const Quaternion* b, Quaternion* c) 
     c->z = (a->w * b->z) + (a->z * b->w) + (a->x * b->y) - (a->y * b->x);
 }
 
-void mDoMtx_MtxToRot(CMtxP m, csXyz* o_rot) {
+void mDoMtx_MtxToRot(CMtxPtr m, csXyz* o_rot) {
     f32 f31 = m[0][2];
     f31 *= f31;
     f32 f30 = m[2][2];

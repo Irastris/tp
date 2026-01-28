@@ -5,9 +5,6 @@
 #include "JSystem/J3DGraphBase/J3DFifo.h"
 #include "global.h"
 
-// TODO: Deduplicate instances of this
-typedef f32 Mtx23[2][3];
-
 J3DSys j3dSys;
 
 Mtx J3DSys::mCurrentMtx;

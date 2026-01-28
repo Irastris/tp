@@ -5,10 +5,6 @@
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/JKernel/JKRHeap.h"
 
-// TODO: Deduplicate instances of these
-typedef f32 Mtx33[3][3];
-typedef f32 (*MtxP)[4];
-
 Mtx J3DMtxBuffer::sNoUseDrawMtx;
 
 Mtx33 J3DMtxBuffer::sNoUseNrmMtx;
@@ -225,7 +221,7 @@ s32 J3DMtxBuffer::createBumpMtxArray(J3DModelData* i_modelData, u32 mtxNum) {
 }
 
 void J3DMtxBuffer::calcWeightEnvelopeMtx() {
-    MtxP weightAnmMtx;
+    MtxPtr weightAnmMtx;
     Mtx* worldMtx;
     Mtx* invMtx;
     f32 weight;
@@ -288,7 +284,7 @@ void J3DMtxBuffer::calcDrawMtx(u32 mdlFlag, Vec const& param_1, Mtx const& param
     sp20 = mpAnmMtx;
     sp24 = mpWeightEvlpMtx;
 
-    MtxP viewMtx;
+    MtxPtr viewMtx;
     Mtx viewBaseMtx;
     u16 fullWgtNum; // r25
     u16 local_68;
@@ -359,7 +355,7 @@ void J3DMtxBuffer::calcBBoardMtx() {
         if (mJointTree->getDrawMtxFlag(i) == 0) {
             u16 index = mJointTree->getDrawMtxIndex(i);
             if (mJointTree->getJointNodePointer(index)->getMtxType() == 1) {
-                MtxP drawMtx = *getDrawMtx(i);
+                MtxPtr drawMtx = *getDrawMtx(i);
                 J3DCalcBBoardMtx(drawMtx);
 
                 Mtx33* nrmMtx = getNrmMtx(i);
@@ -373,7 +369,7 @@ void J3DMtxBuffer::calcBBoardMtx() {
                 (*nrmMtx)[2][1] = 0.0f;
                 (*nrmMtx)[2][2] = 1.0f / drawMtx[2][2];
             } else if (mJointTree->getJointNodePointer(index)->getMtxType() == 2) {
-                MtxP drawMtx = *getDrawMtx(i);
+                MtxPtr drawMtx = *getDrawMtx(i);
                 J3DCalcYBBoardMtx(drawMtx);
                 Mtx33* nrmMtx = getNrmMtx(i);
                 J3DPSCalcInverseTranspose(drawMtx, *nrmMtx);

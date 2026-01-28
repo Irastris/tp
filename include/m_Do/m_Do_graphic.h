@@ -85,7 +85,7 @@ public:
     static u8 isBlure() { return mBlureFlag; }
     static void setBlureRate(u8 i_rate) { mBlureRate = i_rate; }
     static u8 getBlureRate() { return mBlureRate; }
-    static MtxP getBlureMtx() { return mBlureMtx; }
+    static MtxPtr getBlureMtx() { return mBlureMtx; }
     static void offAutoForcus() { mAutoForcus = 0; }
     static BOOL isAutoForcus() { return mAutoForcus; }
     static void setTickRate(u32 rate) { JFWDisplay::getManager()->setTickRate(rate); }

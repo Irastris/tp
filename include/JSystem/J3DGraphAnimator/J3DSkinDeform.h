@@ -6,11 +6,6 @@
 #include <cstring>
 #include <dolphin/types.h>
 
-// TODO: Deduplicate instances of these
-typedef f32 Mtx33[3][3];
-typedef f32 (*Mtx3P)[3];
-typedef f32 (*MtxP)[4];
-
 class J3DModel;
 class J3DAnmCluster;
 class J3DClusterVertex;
@@ -45,10 +40,10 @@ public:
     void deformVtxNrm_F32(J3DVertexBuffer*) const;
     void deformVtxNrm_S16(J3DVertexBuffer*) const;
     void deform(J3DModel*);
-    void setNrmMtx(int i, MtxP mtx) {
-        J3DPSMtx33CopyFrom34(mtx, (Mtx3P)mNrmMtx[i]);
+    void setNrmMtx(int i, MtxPtr mtx) {
+        J3DPSMtx33CopyFrom34(mtx, (Mtx3Ptr)mNrmMtx[i]);
     }
-    Mtx3P getNrmMtx(int i) { return mNrmMtx[i]; }
+    Mtx3Ptr getNrmMtx(int i) { return mNrmMtx[i]; }
     void onFlag(u32 flag) { mFlags |= flag; }
     void offFlag(u32 flag) { mFlags &= ~flag; }
     bool checkFlag(u32 flag) { return mFlags & flag ? true : false; }

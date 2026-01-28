@@ -7,9 +7,6 @@
 #include "global.h"
 #include <cstring>
 
-// TODO: Deduplicate instances of these
-typedef f32 (*Mtx3P)[3];
-
 struct J3DGXColorS10 : public GXColorS10 {
     J3DGXColorS10() {}
 
@@ -1280,7 +1277,7 @@ struct J3DIndTexMtx : public J3DIndTexMtxInfo {
     }
     ~J3DIndTexMtx() {}
     void load(u32 param_1) const {
-        J3DGDSetIndTexMtx((GXIndTexMtxID)(param_1 + GX_ITM_0), (Mtx3P)field_0x0, field_0x18);
+        J3DGDSetIndTexMtx((GXIndTexMtxID)(param_1 + GX_ITM_0), (Mtx3Ptr)field_0x0, field_0x18);
     }
 };
 

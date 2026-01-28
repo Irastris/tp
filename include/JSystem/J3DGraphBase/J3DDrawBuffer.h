@@ -3,10 +3,7 @@
 
 #include "JSystem/J3DGraphBase/J3DSys.h"
 
-// TODO: Deduplicate instances of this
-typedef f32 (*MtxP)[4];
-
-inline f32 J3DCalcZValue(MtxP m, Vec* v) {
+inline f32 J3DCalcZValue(MtxPtr m, Vec* v) {
     return m[2][0] * v->x + m[2][1] * v->y + m[2][2] * v->z + m[2][3];
 }
 
@@ -61,7 +58,7 @@ public:
     inline void calcZRatio();
     void setNonSort() { mSortMode = J3DDrawBufSortMode_Non; }
     void setZSort() { mSortMode = J3DDrawBufSortMode_Z; }
-    void setZMtx(MtxP mtx) { mpZMtx = mtx; }
+    void setZMtx(MtxPtr mtx) { mpZMtx = mtx; }
 
 public:
     J3DPacket** mpBuffer;
@@ -71,7 +68,7 @@ public:
     f32 mZNear;
     f32 mZFar;
     f32 mZRatio;
-    MtxP mpZMtx;
+    MtxPtr mpZMtx;
     J3DPacket* mpCallBackPacket;
 
     static sortFunc sortFuncTable[6];

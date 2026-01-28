@@ -3,11 +3,6 @@
 
 #include <dolphin/mtx.h>
 
-// TODO: Deduplicate instances of these
-typedef f32 Mtx33[3][3];
-typedef f32 (*Mtx3P)[3];
-typedef f32 (*MtxP)[4];
-
 struct J3DTextureSRTInfo;
 
 struct J3DTransformInfo {
@@ -43,7 +38,7 @@ void J3DScaleNrmMtx33(f32 (*)[3], const Vec&);
 void J3DMtxProjConcat(f32 (*)[4], f32 (*)[4], f32 (*)[4]);
 void J3DPSMtxArrayConcat(f32 (*)[4], f32 (*)[4], f32 (*)[4], u32);
 
-inline void J3DPSMtx33Copy(Mtx3P src, Mtx3P dst) {
+inline void J3DPSMtx33Copy(Mtx3Ptr src, Mtx3Ptr dst) {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             dst[i][j] = src[i][j];
@@ -51,7 +46,7 @@ inline void J3DPSMtx33Copy(Mtx3P src, Mtx3P dst) {
     }
 }
 
-inline void J3DPSMtx33CopyFrom34(MtxP src, Mtx3P dst) {
+inline void J3DPSMtx33CopyFrom34(MtxPtr src, Mtx3Ptr dst) {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             dst[i][j] = src[i][j];
@@ -59,25 +54,25 @@ inline void J3DPSMtx33CopyFrom34(MtxP src, Mtx3P dst) {
     }
 }
 
-inline void J3DPSMulMtxVec(MtxP mtx, Vec* vec, Vec* dst) {
+inline void J3DPSMulMtxVec(MtxPtr mtx, Vec* vec, Vec* dst) {
     dst->x = mtx[0][0] * vec->x + mtx[0][1] * vec->y + mtx[0][2] * vec->z + mtx[0][3];
     dst->y = mtx[1][0] * vec->x + mtx[1][1] * vec->y + mtx[1][2] * vec->z + mtx[1][3];
     dst->z = mtx[2][0] * vec->x + mtx[2][1] * vec->y + mtx[2][2] * vec->z + mtx[2][3];
 }
 
-inline void J3DPSMulMtxVec(MtxP mtx, S16Vec* vec, S16Vec* dst) {
+inline void J3DPSMulMtxVec(MtxPtr mtx, S16Vec* vec, S16Vec* dst) {
     dst->x = mtx[0][0] * vec->x + mtx[0][1] * vec->y + mtx[0][2] * vec->z + mtx[0][3];
     dst->y = mtx[1][0] * vec->x + mtx[1][1] * vec->y + mtx[1][2] * vec->z + mtx[1][3];
     dst->z = mtx[2][0] * vec->x + mtx[2][1] * vec->y + mtx[2][2] * vec->z + mtx[2][3];
 }
 
-inline void J3DPSMulMtxVec(Mtx3P mtx, Vec* vec, Vec* dst) {
+inline void J3DPSMulMtxVec(Mtx3Ptr mtx, Vec* vec, Vec* dst) {
     dst->x = mtx[0][0] * vec->x + mtx[0][1] * vec->y + mtx[0][2] * vec->z;
     dst->y = mtx[1][0] * vec->x + mtx[1][1] * vec->y + mtx[1][2] * vec->z;
     dst->z = mtx[2][0] * vec->x + mtx[2][1] * vec->y + mtx[2][2] * vec->z;
 }
 
-inline void J3DPSMulMtxVec(Mtx3P mtx, S16Vec* vec, S16Vec* dst) {
+inline void J3DPSMulMtxVec(Mtx3Ptr mtx, S16Vec* vec, S16Vec* dst) {
     dst->x = mtx[0][0] * vec->x + mtx[0][1] * vec->y + mtx[0][2] * vec->z;
     dst->y = mtx[1][0] * vec->x + mtx[1][1] * vec->y + mtx[1][2] * vec->z;
     dst->z = mtx[2][0] * vec->x + mtx[2][1] * vec->y + mtx[2][2] * vec->z;

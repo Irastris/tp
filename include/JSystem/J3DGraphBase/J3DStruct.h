@@ -6,9 +6,6 @@
 #include "global.h"
 #include <cstring>
 
-// TODO: Deduplicate instances of this
-typedef f32 Mtx23[2][3];
-
 struct J3DLightInfo {
     bool operator==(J3DLightInfo& other) const;
     J3DLightInfo& operator=(J3DLightInfo const&);

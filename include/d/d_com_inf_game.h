@@ -28,9 +28,6 @@
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
 
-// TODO: Deduplicate instances of this
-typedef f32 (*MtxP)[4];
-
 enum dComIfG_ButtonStatus {
     BUTTON_STATUS_NONE,
     BUTTON_STATUS_LET_GO,
@@ -4143,9 +4140,7 @@ inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* i_pos, co
 }
 
 inline u32 dComIfGp_particle_setColor(u32 param_0, u16 param_1, const cXyz* i_pos, const dKy_tevstr_c* param_3, const GXColor* param_4, const GXColor* param_5, f32 param_6, u8 param_7, const csXyz* param_8, const cXyz* param_9, dPa_levelEcallBack* param_10, s8 param_11, const cXyz* param_12) {
-    return g_dComIfG_gameInfo.play.getParticle()->setNormal(
-        param_0, param_1, i_pos, param_3, param_8, param_9, param_7, param_10, param_11, param_4,
-        param_5, param_12, param_6);
+    return g_dComIfG_gameInfo.play.getParticle()->setNormal(param_0, param_1, i_pos, param_3, param_8, param_9, param_7, param_10, param_11, param_4, param_5, param_12, param_6);
 }
 
 inline JPABaseEmitter* dComIfGp_particle_setColor(u16 param_0, const cXyz* i_pos, const dKy_tevstr_c* param_2, const GXColor* param_3, const GXColor* param_4, f32 param_5, u8 param_6, const csXyz* param_7, const cXyz* param_8, dPa_levelEcallBack* param_9, s8 param_10, const cXyz* param_11) {
@@ -4237,7 +4232,7 @@ inline Mtx44* dComIfGd_getProjViewMtx() {
     return &(g_dComIfG_gameInfo.drawlist.getView()->projViewMtx);
 }
 
-inline MtxP dComIfGd_getInvViewMtx() {
+inline MtxPtr dComIfGd_getInvViewMtx() {
     return g_dComIfG_gameInfo.drawlist.getView()->invViewMtx;
 }
 
@@ -4245,10 +4240,10 @@ inline view_port_class* dComIfGd_getViewport() {
     return g_dComIfG_gameInfo.drawlist.getViewport();
 }
 
-inline MtxP dComIfGd_getViewRotMtx() {
+inline MtxPtr dComIfGd_getViewRotMtx() {
     return g_dComIfG_gameInfo.drawlist.getView()->viewMtxNoTrans;
 }
-inline MtxP dComIfGd_getViewMtx() {
+inline MtxPtr dComIfGd_getViewMtx() {
     return g_dComIfG_gameInfo.drawlist.getView()->viewMtx;
 }
 

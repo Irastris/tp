@@ -8,9 +8,6 @@
 #include "JSystem/JSupport/JSURandomInputStream.h"
 #include <dolphin/gx.h>
 
-// TODO: Deduplicate instances of this
-typedef f32 (*MtxP)[4];
-
 J2DPicture::J2DPicture() : mPalette(NULL) {
     for (u32 i = 0; i < 2; i++) {
         mTexture[i] = NULL;
@@ -643,7 +640,7 @@ void J2DPicture::drawTexCoord(f32 param_0, f32 param_1, f32 param_2, f32 param_3
 
         getNewColor(black);
         setTevMode();
-        MTXConcat((MtxP)param_12, mGlobalMtx, outputMtx);
+        MTXConcat((MtxPtr)param_12, mGlobalMtx, outputMtx);
 
         GXLoadPosMtxImm(outputMtx, 0);
         GXClearVtxDesc();

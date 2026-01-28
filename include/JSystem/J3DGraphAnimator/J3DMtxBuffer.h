@@ -4,10 +4,6 @@
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/J3DGraphBase/J3DEnum.h"
 
-// TODO: Deduplicate instances of these
-typedef f32 Mtx33[3][3];
-typedef f32 (*MtxP)[4];
-
 class J3DModelData;
 
 class J3DMtxBuffer {
@@ -26,10 +22,10 @@ public:
     void calcNrmMtx();
     void calcBBoardMtx();
 
-    MtxP getAnmMtx(int idx) { return mpAnmMtx[idx]; }
-    void setAnmMtx(int i, Mtx m) { MTXCopy(m, (MtxP)mpAnmMtx[i]); }
-    MtxP getWeightAnmMtx(int idx) { return mpWeightEvlpMtx[idx]; }
-    MtxP getUserAnmMtx(int idx) { return mpUserAnmMtx[idx]; }
+    MtxPtr getAnmMtx(int idx) { return mpAnmMtx[idx]; }
+    void setAnmMtx(int i, Mtx m) { MTXCopy(m, (MtxPtr)mpAnmMtx[i]); }
+    MtxPtr getWeightAnmMtx(int idx) { return mpWeightEvlpMtx[idx]; }
+    MtxPtr getUserAnmMtx(int idx) { return mpUserAnmMtx[idx]; }
 
     void setScaleFlag(int idx, u8 flag) { mpScaleFlagArr[idx] = flag; }
     u32* getCurrentViewNoPtr() { return &mCurrentViewNo; }

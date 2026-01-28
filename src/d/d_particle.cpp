@@ -16,7 +16,7 @@
 #include "d/actor/d_a_player.h" */
 #include "SSystem/SComponent/c_math.h"
 
-// TODO: Deduplicate instances of this
+// TODO: Deduplicate instances of these
 #define M_PI 3.14159265358979323846f
 #define DEG_TO_RAD(degrees) (degrees * (M_PI / 180.0f))
 
@@ -1456,13 +1456,11 @@ JPABaseEmitter* dPa_control_c::setPoly(u16 param_0, cBgS_PolyInfo& param_1, cXyz
     GXColor a_Stack_10;
     GXColor a_Stack_14;
 
-    if (!getPolyColor(param_1, param_6, &a_Stack_10,
-                         &a_Stack_14, &local_18, &local_c)) {
+    if (!getPolyColor(param_1, param_6, &a_Stack_10, &a_Stack_14, &local_18, &local_c)) {
         return NULL;
     }
 
-    return setNormal(param_0, param_2, param_3, param_4, param_5, local_18,
-                        param_7, param_8, &a_Stack_10, &a_Stack_14, param_9, local_c);
+    return setNormal(param_0, param_2, param_3, param_4, param_5, local_18, param_7, param_8, &a_Stack_10, &a_Stack_14, param_9, local_c);
 }
 
 void dummy3() {

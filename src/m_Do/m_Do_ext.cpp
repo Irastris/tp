@@ -15,10 +15,7 @@
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_main.h"
 #include "m_Do/m_Do_mtx.h"
-#include <cstdio> 
-
-// TODO: Deduplicate instances of this
-typedef f32 (*MtxP)[4];
+#include <cstdio>
 
 /* static void mDoExt_setJ3DData(Mtx mtx, const J3DTransformInfo* transformInfo, u16 param_2) {
     bool local_28;
@@ -353,7 +350,7 @@ void mDoExt_invisibleModel::entryJoint(cXyz* param_0) {
     if (param_0 == NULL) {
         cXyz tmp;
         for (u16 i = 0; i < modelData->getJointNum(); i++) {
-            MtxP anmMtx = mModel->getAnmMtx(i);
+            MtxPtr anmMtx = mModel->getAnmMtx(i);
             tmp.set(anmMtx[0][3], anmMtx[1][3], anmMtx[2][3]);
             dComIfGd_entryZSortListZxlu(packet, tmp);
             packet++;

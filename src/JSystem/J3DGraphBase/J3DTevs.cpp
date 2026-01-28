@@ -6,9 +6,6 @@
 #include "JSystem/J3DGraphBase/J3DTransform.h"
 #include "global.h"
 
-// TODO: Deduplicate instances of this
-typedef f32 (*MtxP)[4];
-
 static void J3DGDLoadTexMtxImm(f32 (*)[4], u32, GXTexMtxType);
 static void J3DGDLoadPostTexMtxImm(f32 (*)[4], u32);
 
@@ -441,12 +438,12 @@ void makeTevSwapTable() {
 
 void J3DTexMtx::loadTexMtx(u32 param_0) const {
     GDOverflowCheck(0x35);
-	J3DGDLoadTexMtxImm((MtxP)mMtx, param_0 * 3 + 30, (GXTexMtxType)mTexMtxInfo.mProjection);
+	J3DGDLoadTexMtxImm((MtxPtr)mMtx, param_0 * 3 + 30, (GXTexMtxType)mTexMtxInfo.mProjection);
 }
 
 void J3DTexMtx::loadPostTexMtx(u32 param_0) const {
     GDOverflowCheck(0x35);
-    J3DGDLoadPostTexMtxImm((MtxP)mMtx, param_0 * 3 + 0x40);
+    J3DGDLoadPostTexMtxImm((MtxPtr)mMtx, param_0 * 3 + 0x40);
 }
 
 static void J3DGDLoadTexMtxImm(f32 (*param_1)[4], u32 param_2, GXTexMtxType param_3) {

@@ -5,9 +5,6 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include <string>
 
-// TODO: Deduplicate instances of this
-typedef f32 Mtx33[3][3];
-
 J3DSkinNList::J3DSkinNList() {
     field_0x0 = NULL;
     field_0x4 = NULL;

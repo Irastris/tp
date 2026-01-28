@@ -6,10 +6,6 @@
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "JSystem/J3DGraphBase/J3DTexture.h"
 
-// TODO: Deduplicate instances of these
-typedef f32 Mtx33[3][3];
-typedef f32 (*MtxP)[4];
-
 u16 J3DShapeMtx::sMtxLoadCache[10];
 
 void J3DShapeMtx::resetMtxLoadCache() {
@@ -77,7 +73,7 @@ bool J3DShapeMtx::sLODFlag;
 
 u32 J3DShapeMtx::sTexMtxLoadType;
 
-MtxP J3DShapeMtxConcatView::sMtxPtrTbl[2];
+MtxPtr J3DShapeMtxConcatView::sMtxPtrTbl[2];
 
 J3DTexGenBlock* J3DDifferedTexMtx::sTexGenBlock;
 
@@ -358,7 +354,7 @@ void J3DShapeMtxConcatView::load() const {
     (this->*func)(0, draw_mtx_index);
 }
 
-void J3DShapeMtxConcatView::loadNrmMtx(int param_0, u16 param_1, MtxP param_2) const {
+void J3DShapeMtxConcatView::loadNrmMtx(int param_0, u16 param_1, MtxPtr param_2) const {
     if (sCurrentScaleFlag[param_1] == 1) {
         if (sTexMtxLoadType == 0x2000) {
             J3DFifoLoadNrmMtxToTexMtx(param_2, 0x1e);
@@ -453,7 +449,7 @@ void J3DShapeMtxMultiConcatView::load() const {
     }
 }
 
-void J3DShapeMtxMultiConcatView::loadNrmMtx(int param_0, u16 param_1, MtxP param_2) const {
+void J3DShapeMtxMultiConcatView::loadNrmMtx(int param_0, u16 param_1, MtxPtr param_2) const {
     Mtx33 mtx1, mtx2;
     if (sCurrentScaleFlag[param_1] == 1) {
         if (sTexMtxLoadType == 0x2000) {

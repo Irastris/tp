@@ -6,10 +6,6 @@
 #include <dolphin/gx.h>
 #include <dolphin/mtx.h>
 
-// TODO: Deduplicate instances of these
-typedef f32 Mtx33[3][3];
-typedef f32 (*MtxP)[4];
-
 enum J3DSysDrawBuf {
     J3DSysDrawBuf_Opa,
     J3DSysDrawBuf_Xlu,
@@ -80,7 +76,7 @@ struct J3DSys {
         J3DSysDrawMode_Xlu
     };
 
-    MtxP getViewMtx() { return mViewMtx; }
+    MtxPtr getViewMtx() { return mViewMtx; }
 
     void setDrawModeOpaTexEdge() { mDrawMode = J3DSysDrawMode_OpaTexEdge; }
     void setDrawModeXlu() { mDrawMode = J3DSysDrawMode_Xlu; }

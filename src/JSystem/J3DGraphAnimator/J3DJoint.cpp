@@ -8,9 +8,6 @@
 #include "m_Do/m_Do_mtx.h"
 #include <cstring>
 
-// TODO: Deduplicate instances of this
-typedef f32 (*MtxP)[4];
-
 void J3DMtxCalcJ3DSysInitBasic::init(Vec const& scale, Mtx const& mtx) {
     J3DSys::mCurrentS = scale;
     Vec init = {1.0f, 1.0f, 1.0f};
@@ -42,7 +39,7 @@ void J3DMtxCalcCalcTransformBasic::calcTransform(J3DTransformInfo const& transIn
     J3DMtxBuffer* mtxBuf = J3DMtxCalc::getMtxBuffer();
     u16 jntNo = joint->getJntNo();
 
-    MtxP anmMtx = mtxBuf->getAnmMtx(jntNo);
+    MtxPtr anmMtx = mtxBuf->getAnmMtx(jntNo);
 
     J3DSys::mCurrentS.x *= transInfo.mScale.x;
     J3DSys::mCurrentS.y *= transInfo.mScale.y;
@@ -65,7 +62,7 @@ void J3DMtxCalcCalcTransformSoftimage::calcTransform(J3DTransformInfo const& tra
     J3DMtxBuffer* mtxBuf = J3DMtxCalc::getMtxBuffer();
     u16 jntNo = joint->getJntNo();
 
-    MtxP anmMtx = mtxBuf->getAnmMtx(jntNo);
+    MtxPtr anmMtx = mtxBuf->getAnmMtx(jntNo);
 
     J3DGetTranslateRotateMtx(transInfo.mRotation.x, transInfo.mRotation.y, transInfo.mRotation.z, transInfo.mTranslate.x * J3DSys::mCurrentS.x, transInfo.mTranslate.y * J3DSys::mCurrentS.y, transInfo.mTranslate.z * J3DSys::mCurrentS.z, anmMtx);
     MTXConcat(J3DSys::mCurrentMtx, anmMtx, J3DSys::mCurrentMtx);
@@ -92,7 +89,7 @@ void J3DMtxCalcCalcTransformMaya::calcTransform(J3DTransformInfo const& transInf
 
     u16 jntNo = joint->getJntNo();
 
-    MtxP anmMtx = mtxBuf->getAnmMtx(jntNo);
+    MtxPtr anmMtx = mtxBuf->getAnmMtx(jntNo);
 
     J3DGetTranslateRotateMtx(transInfo, anmMtx);
 
@@ -163,7 +160,7 @@ J3DJoint::J3DJoint() {
 }
 
 void J3DJoint::entryIn() {
-    MtxP anmMtx = j3dSys.getModel()->getAnmMtx(mJntNo);
+    MtxPtr anmMtx = j3dSys.getModel()->getAnmMtx(mJntNo);
     j3dSys.getDrawBuffer(0)->setZMtx(anmMtx);
     j3dSys.getDrawBuffer(1)->setZMtx(anmMtx);
     for (J3DMaterial* mesh = mMesh; mesh != NULL;) {

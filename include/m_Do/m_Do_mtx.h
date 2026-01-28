@@ -5,9 +5,6 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include <dolphin/mtx.h>
 
-// TODO: Deduplicate instances of this
-typedef const f32 (*CMtxP)[4];
-
 void mDoMtx_XYZrotS(Mtx, s16, s16, s16);
 void mDoMtx_XYZrotM(Mtx, s16, s16, s16);
 void mDoMtx_ZXYrotS(Mtx, s16, s16, s16);
@@ -18,7 +15,7 @@ void mDoMtx_XrotS(Mtx, s16);
 void mDoMtx_XrotM(Mtx, s16);
 void mDoMtx_YrotM(Mtx, s16);
 void mDoMtx_ZrotM(Mtx, s16);
-void mDoMtx_MtxToRot(CMtxP, csXyz*);
+void mDoMtx_MtxToRot(CMtxPtr, csXyz*);
 void mDoMtx_lookAt(Mtx param_0, Vec const* param_1, Vec const* param_2, s16 param_3);
 void mDoMtx_lookAt(Mtx param_0, Vec const* param_1, Vec const* param_2, Vec const* param_3, s16 param_4);
 void mDoMtx_concatProjView(f32 const (*param_0)[4], f32 const (*param_1)[4], f32 (*param_2)[4]);
@@ -42,7 +39,7 @@ inline void cMtx_scale(Mtx m, f32 x, f32 y, f32 z) {
     MTXScale(m, x, y, z);
 }
 
-inline void mDoMtx_multVec(CMtxP m, const Vec* src, Vec* dst) {
+inline void mDoMtx_multVec(CMtxPtr m, const Vec* src, Vec* dst) {
     MTXMultVec(m, src, dst);
 }
 
@@ -114,7 +111,7 @@ inline void cMtx_inverseTranspose(const Mtx a, Mtx b) {
     mDoMtx_inverseTranspose(a, b);
 }
 
-inline void mDoMtx_multVecZero(CMtxP param_0, Vec* param_1) {
+inline void mDoMtx_multVecZero(CMtxPtr param_0, Vec* param_1) {
     param_1->x = param_0[0][3];
     param_1->y = param_0[1][3];
     param_1->z = param_0[2][3];
@@ -237,7 +234,7 @@ public:
      * Returns the `now` Matrix
      * @return The `now` Matrix
      */
-    static MtxP get() { return now; }
+    static MtxPtr get() { return now; }
 
     /**
      * Translates the `now` Matrix by the given X, Y, and Z values
@@ -371,11 +368,11 @@ public:
 
 extern Mtx g_mDoMtx_identity;
 
-inline MtxP mDoMtx_getIdentity() {
+inline MtxPtr mDoMtx_getIdentity() {
     return g_mDoMtx_identity;
 }
 
-inline MtxP cMtx_getIdentity() {
+inline MtxPtr cMtx_getIdentity() {
     return mDoMtx_getIdentity();
 }
 

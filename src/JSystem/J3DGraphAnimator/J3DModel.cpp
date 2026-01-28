@@ -7,10 +7,6 @@
 #include "JSystem/J3DGraphBase/J3DShapeMtx.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
 
-// TODO: Deduplicate instances of this
-typedef f32 Mtx33[3][3];
-typedef f32 (*MtxP)[4];
-
 void J3DModel::initialize() {
     mModelData = NULL;
     mFlags = 0;
@@ -475,11 +471,11 @@ void J3DModel::viewCalc() {
 
     if (getModelData()->checkFlag(0x10)) {
         if (getMtxCalcMode() == 2) {
-            J3DCalcViewBaseMtx(j3dSys.getViewMtx(), mBaseScale, mBaseTransformMtx, (MtxP)&mInternalView);
+            J3DCalcViewBaseMtx(j3dSys.getViewMtx(), mBaseScale, mBaseTransformMtx, (MtxPtr)&mInternalView);
         }
     } else if (isCpuSkinningOn()) {
         if (getMtxCalcMode() == 2) {
-            J3DCalcViewBaseMtx(j3dSys.getViewMtx(), mBaseScale, mBaseTransformMtx, (MtxP)&mInternalView);
+            J3DCalcViewBaseMtx(j3dSys.getViewMtx(), mBaseScale, mBaseTransformMtx, (MtxPtr)&mInternalView);
         }
     } else if (checkFlag(J3DMdlFlag_SkinPosCpu)) {
         mMtxBuffer->calcDrawMtx(getMtxCalcMode(), mBaseScale, mBaseTransformMtx);

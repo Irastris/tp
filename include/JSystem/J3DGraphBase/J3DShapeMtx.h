@@ -4,9 +4,6 @@
 #include "JSystem/J3DGraphBase/J3DShape.h"
 #include <dolphin/mtx.h>
 
-// TODO: Deduplicate instances of this
-typedef f32 (*MtxP)[4];
-
 class J3DTexMtx;
 class J3DTexGenBlock;
 
@@ -66,7 +63,7 @@ public:
 
     static J3DShapeMtxConcatView_LoadFunc sMtxLoadPipeline[4];
     static J3DShapeMtxConcatView_LoadFunc sMtxLoadLODPipeline[4];
-    static MtxP sMtxPtrTbl[2];
+    static MtxPtr sMtxPtrTbl[2];
 };
 
 class J3DShapeMtxMultiConcatView : public J3DShapeMtxConcatView {

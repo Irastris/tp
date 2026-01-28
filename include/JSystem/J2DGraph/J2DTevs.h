@@ -5,9 +5,6 @@
 #include <dolphin/mtx.h>
 #include "global.h"
 
-// TODO: Deduplicate instances of this
-typedef f32 Mtx23[2][3];
-
 struct J2DTextureSRTInfo {
     f32 mScaleX;
     f32 mScaleY;

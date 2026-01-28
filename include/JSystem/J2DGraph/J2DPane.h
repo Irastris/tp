@@ -6,9 +6,6 @@
 #include <dolphin/gx.h>
 #include <dolphin/mtx.h>
 
-// TODO: Deduplicate instances of this
-typedef f32 (*MtxP)[4];
-
 class J2DAnmBase;
 class J2DAnmColor;
 class J2DAnmTransform;
@@ -150,7 +147,7 @@ public:
 
     f32 getRotOffsetY() const { return mRotateOffsetY; }
 
-    MtxP getGlbMtx() { return mGlobalMtx; }
+    MtxPtr getGlbMtx() { return mGlobalMtx; }
 
     const JGeometry::TBox2<f32>& getGlbBounds() const { return mGlobalBounds; }
 

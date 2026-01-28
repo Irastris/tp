@@ -8,9 +8,6 @@
 #include <dolphin/mtx.h>
 #include <dolphin/gx.h>
 
-// TODO: Deduplicate instances of this
-typedef f32 (*MtxP)[4];
-
 void JPASetPointSize(JPAEmitterWorkData* work) {
     GXSetPointSize((u8)(25.0f * work->mGlobalPtclScl.x), GX_TO_ONE);
 }
@@ -630,7 +627,7 @@ static void rotTypeXYZ(f32 param_0, f32 param_1, Mtx& param_2) {
     param_2[2][3] = 0.0f;
 }
 
-static void basePlaneTypeXY(MtxP param_0, f32 param_1, f32 param_2) {
+static void basePlaneTypeXY(MtxPtr param_0, f32 param_1, f32 param_2) {
     param_0[0][0] *= param_1;
     param_0[1][0] *= param_1;
     param_0[2][0] *= param_1;
@@ -639,7 +636,7 @@ static void basePlaneTypeXY(MtxP param_0, f32 param_1, f32 param_2) {
     param_0[2][1] *= param_2;
 }
 
-static void basePlaneTypeXZ(MtxP param_0, f32 param_1, f32 param_2) {
+static void basePlaneTypeXZ(MtxPtr param_0, f32 param_1, f32 param_2) {
     param_0[0][0] *= param_1;
     param_0[1][0] *= param_1;
     param_0[2][0] *= param_1;
@@ -648,7 +645,7 @@ static void basePlaneTypeXZ(MtxP param_0, f32 param_1, f32 param_2) {
     param_0[2][2] *= param_2;
 }
 
-static void basePlaneTypeX(MtxP param_0, f32 param_1, f32 param_2) {
+static void basePlaneTypeX(MtxPtr param_0, f32 param_1, f32 param_2) {
     param_0[0][0] *= param_1;
     param_0[1][0] *= param_1;
     param_0[2][0] *= param_1;
@@ -675,7 +672,7 @@ static rotTypeFunc p_rot[5] = {
 };
 #pragma pop
 
-typedef void (*planeFunc)(MtxP, f32, f32);
+typedef void (*planeFunc)(MtxPtr, f32, f32);
 
 static planeFunc p_plane[3] = {
     basePlaneTypeXY,

@@ -7,10 +7,6 @@
 #include "JSystem/J3DGraphBase/J3DPacket.h"
 #include <dolphin/types.h>
 
-// TODO: Deduplicate instances of these
-typedef f32 Mtx33[3][3];
-typedef f32 (*MtxP)[4];
-
 enum J3DMdlFlag {
     J3DMdlFlag_None             = 0x0,
     J3DMdlFlag_Unk1             = 0x1,
@@ -96,8 +92,8 @@ public:
     uintptr_t getUserArea() const { return mUserArea; }
     Vec* getBaseScale() { return &mBaseScale; }
     void setAnmMtx(int jointNo, Mtx m) { mMtxBuffer->setAnmMtx(jointNo, m); }
-    MtxP getAnmMtx(int jointNo) { return mMtxBuffer->getAnmMtx(jointNo); }
-    MtxP getWeightAnmMtx(int i) { return mMtxBuffer->getWeightAnmMtx(i); }
+    MtxPtr getAnmMtx(int jointNo) { return mMtxBuffer->getAnmMtx(jointNo); }
+    MtxPtr getWeightAnmMtx(int i) { return mMtxBuffer->getWeightAnmMtx(i); }
     J3DSkinDeform* getSkinDeform() { return mSkinDeform; }
 
     J3DModelData* mModelData;

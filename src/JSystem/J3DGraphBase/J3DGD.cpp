@@ -2,10 +2,6 @@
 #include "JSystem/J3DGraphBase/J3DGD.h"
 #include "JSystem/J3DGraphBase/J3DFifo.h"
 
-// TODO: Deduplicate instances of these
-typedef f32 (*Mtx3P)[3];
-typedef f32 (*MtxP)[4];
-
 void J3DGDSetGenMode(u8 nTexGens, u8 nChans, u8 nTevs, u8 nInds, GXCullMode cm) {
     static u8 cm2hw[4] = {0, 2, 1, 3};
 
@@ -580,7 +576,7 @@ void J3DGDSetFog(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXCo
     J3DGDWriteBPCmd(range_c);
 } */
 
-void J3DFifoLoadPosMtxImm(MtxP mtx, u32 id) {
+void J3DFifoLoadPosMtxImm(MtxPtr mtx, u32 id) {
     std::cout << "J3DFifoLoadPosMtxImm() is stubbed" << std::endl;
     /* J3DFifoWriteXFCmdHdr(4 * id, 12);
     J3DGXCmd1f32ptr(&mtx[0][0]);
@@ -597,7 +593,7 @@ void J3DFifoLoadPosMtxImm(MtxP mtx, u32 id) {
     J3DGXCmd1f32ptr(&mtx[2][3]); */
 }
 
-void J3DFifoLoadNrmMtxImm(MtxP mtx, u32 id) {
+void J3DFifoLoadNrmMtxImm(MtxPtr mtx, u32 id) {
     std::cout << "J3DFifoLoadNrmMtxImm() is stubbed" << std::endl;
 
     /* J3DFifoWriteXFCmdHdr(id * 3 + 0x400, 9);
@@ -612,7 +608,7 @@ void J3DFifoLoadNrmMtxImm(MtxP mtx, u32 id) {
     J3DGXCmd1f32ptr(&mtx[2][2]); */
 }
 
-void J3DFifoLoadNrmMtxImm3x3(Mtx3P mtx, u32 id) {
+void J3DFifoLoadNrmMtxImm3x3(Mtx3Ptr mtx, u32 id) {
     std::cout << "J3DFifoLoadNrmMtxImm3x3() is stubbed" << std::endl;
 
     /* J3DFifoWriteXFCmdHdr(id * 3 + 0x400, 9);
@@ -627,7 +623,7 @@ void J3DFifoLoadNrmMtxImm3x3(Mtx3P mtx, u32 id) {
     J3DGXCmd1f32ptr(&mtx[2][2]); */
 }
 
-void J3DFifoLoadNrmMtxToTexMtx(MtxP mtx, u32 id) {
+void J3DFifoLoadNrmMtxToTexMtx(MtxPtr mtx, u32 id) {
     std::cout << "J3DFifoLoadNrmMtxToTexMtx() is stubbed" << std::endl;
 
     /* J3DFifoWriteXFCmdHdr(4 * id, 12);
@@ -645,7 +641,7 @@ void J3DFifoLoadNrmMtxToTexMtx(MtxP mtx, u32 id) {
     J3DGXCmd1f32(0.0f); */
 }
 
-void J3DFifoLoadNrmMtxToTexMtx3x3(Mtx3P mtx, u32 id) {
+void J3DFifoLoadNrmMtxToTexMtx3x3(Mtx3Ptr mtx, u32 id) {
     std::cout << "J3DFifoLoadNrmMtxToTexMtx3x3() is stubbed" << std::endl;
 
     /* J3DFifoWriteXFCmdHdr(4 * id, 0xc);

@@ -5,9 +5,6 @@
 #include "JSystem/J3DGraphBase/J3DFifo.h"
 #include <dolphin/mtx.h>
 
-// TODO: Deduplicate instances of this
-typedef f32 Mtx33[3][3];
-
 class J3DShapeMtx;
 
 class J3DCurrentMtxInfo {
