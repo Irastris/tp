@@ -1,10 +1,10 @@
 #ifndef D_PARTICLE_D_PARTICLE_H
 #define D_PARTICLE_D_PARTICLE_H
 
-// #include "JSystem/JParticle/JPAEmitterManager.h"
+#include "JSystem/JParticle/JPAEmitterManager.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
-/* #include "JSystem/JParticle/JPAEmitter.h"
-#include "JSystem/JParticle/JPAParticle.h"
+#include "JSystem/JParticle/JPAEmitter.h"
+/* #include "JSystem/JParticle/JPAParticle.h"
 #include "d/d_particle_name.h"
 #include "d/d_kankyo.h" */
 
