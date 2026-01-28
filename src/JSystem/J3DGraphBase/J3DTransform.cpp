@@ -275,7 +275,7 @@ static f32 Unit01[2] = {
 };
 
 void J3DPSMtxArrayConcat(Mtx mA, Mtx mB, Mtx mAB, u32 count) {
-	std::cout << "J3DPSMtxArrayConcat() is stubbed and might be substitutable with PSMtxConcat" << std::endl;
+	std::cout << "J3DPSMtxArrayConcat() is stubbed and might be substitutable with MTXConcat" << std::endl;
 }
 
 f32 const PSMulUnit01[] = {

@@ -1,11 +1,13 @@
 #ifndef D_D_DRAWLIST_H
 #define D_D_DRAWLIST_H
 
+#include <iostream>
+
 #include "JSystem/J2DGraph/J2DPicture.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
-// #include "f_op/f_op_view.h"
+#include "f_op/f_op_view.h"
 #include "m_Do/m_Do_ext.h"
 #include "global.h"
 

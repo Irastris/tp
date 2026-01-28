@@ -2087,8 +2087,8 @@ void mDoExt_3DlineMat0_c::update(int param_0, f32 param_1, GXColor& param_2, u16
             *local_r26++ = sp_114;
             *local_r26 = sp_108;
         }
-        DCStoreRangeNoSync(sp_1c, sp_24);
-        DCStoreRangeNoSync(sp_18, sp_20);
+        /* DCStoreRangeNoSync(sp_1c, sp_24);
+        DCStoreRangeNoSync(sp_18, sp_20); */
         sp_28++;
     }
 }
@@ -2198,8 +2198,8 @@ void mDoExt_3DlineMat0_c::update(int param_0, GXColor& param_2, dKy_tevstr_c* pa
         local_r29->z = local_r30->z;
         *sp_24++ = sp_114;
         *sp_24 = sp_108;
-        DCStoreRangeNoSync(sp_20, sp_2c);
-        DCStoreRangeNoSync(sp_1c, sp_28);
+        /* DCStoreRangeNoSync(sp_20, sp_2c);
+        DCStoreRangeNoSync(sp_1c, sp_28); */
         sp_30++;
     }
 }
@@ -2437,9 +2437,9 @@ void mDoExt_3DlineMat1_c::update(int param_0, f32 param_1, GXColor& param_2, u16
             *sp_28++ = sp_124;
             *sp_28 = sp_118;
         }
-        DCStoreRangeNoSync(sp_24, sp_34);
+        /* DCStoreRangeNoSync(sp_24, sp_34);
         DCStoreRangeNoSync(sp_20, sp_30);
-        DCStoreRangeNoSync(sp_18, sp_2c);
+        DCStoreRangeNoSync(sp_18, sp_2c); */
         sp_38++;
     }
 }
@@ -2568,9 +2568,9 @@ void mDoExt_3DlineMat1_c::update(int param_0, GXColor& param_2, dKy_tevstr_c* pa
 
         *sp_28++ = sp_124;
         *sp_28 = sp_118;
-        DCStoreRangeNoSync(sp_24, sp_34);
+        /* DCStoreRangeNoSync(sp_24, sp_34);
         DCStoreRangeNoSync(sp_20, sp_30);
-        DCStoreRangeNoSync(sp_18, sp_2c);
+        DCStoreRangeNoSync(sp_18, sp_2c); */
         sp_38 += 1;
     }
 }

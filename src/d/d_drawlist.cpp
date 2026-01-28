@@ -731,13 +731,13 @@ void dDlst_2Dm_c::draw() {
     GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
     GXSetVtxDesc(GX_VA_TEX1, GX_DIRECT);
     GXLoadTexObj(&field_0x1c, GX_TEXMAP0);
-    if (field_0x4c) {
+    /* if (field_0x4c) {
         GXLoadTlut(&field_0x3c, GXGetTexObjTlut(&field_0x1c));
-    }
+    } */
     GXLoadTexObj(&field_0x50, GX_TEXMAP1);
-    if (field_0x80) {
+    /* if (field_0x80) {
         GXLoadTlut(&field_0x70, GXGetTexObjTlut(&field_0x50));
-    }
+    } */
     GXSetNumChans(0);
     GXSetTevColor(GX_TEVREG0, field_0x14);
     GXSetTevColor(GX_TEVREG1, field_0x18);
@@ -1171,12 +1171,13 @@ static void setkankyoShadow(dKy_tevstr_c* param_0, f32* param_1) {
     }
 }
 
-u8 dDlst_shadowReal_c::setShadowRealMtx(cXyz* param_0, cXyz* param_1, f32 param_2, f32 param_3,
-                                            f32 param_4, dKy_tevstr_c* param_5) {
-    mShadowRealPoly.reset();
-    setkankyoShadow(param_5, &param_4);
-    int r29 = g_envHIO.mOther.mShadowDensity * param_4;
-    cXyz local_64 = *param_0 - *param_1;
+u8 dDlst_shadowReal_c::setShadowRealMtx(cXyz* param_0, cXyz* param_1, f32 param_2, f32 param_3, f32 param_4, dKy_tevstr_c* param_5) {
+    std::cout << "dDlst_shadowReal_c::setShadowRealMtx() is stubbed" << std::endl;
+
+    /* mShadowRealPoly.reset();
+    setkankyoShadow(param_5, &param_4); */
+    int r29 = 0; // g_envHIO.mOther.mShadowDensity * param_4;
+    /* cXyz local_64 = *param_0 - *param_1;
     u8 r28 = 0;
     if (param_5) {
         cLib_chaseUC(&param_5->field_0x385, param_3 > 50.0f ? 0 : 0xff, 60);
@@ -1223,7 +1224,8 @@ u8 dDlst_shadowReal_c::setShadowRealMtx(cXyz* param_0, cXyz* param_1, f32 param_
     cMtx_lookAt(mViewMtx, &local_64, param_1, 0);
     C_MTXOrtho(mRenderProjMtx, param_2, -param_2, -param_2, param_2, 1.0f, 10000.0f);
     C_MTXLightOrtho(mReceiverProjMtx, param_2, -param_2, -param_2, param_2, 0.5f, -0.5f, 0.5f, 0.5f);
-    cMtx_concat(mReceiverProjMtx, mViewMtx, mReceiverProjMtx);
+    cMtx_concat(mReceiverProjMtx, mViewMtx, mReceiverProjMtx); */
+    
     return r29;
 }
 
@@ -1323,7 +1325,9 @@ void dDlst_shadowSimple_c::draw() {
 }
 
 void dDlst_shadowSimple_c::set(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3, s16 param_4, f32 param_5, GXTexObj* param_6) {
-    if (param_5 < 0.0f) {
+    std::cout << "dDlst_shadowSimple_c::set() is stubbed" << std::endl;
+
+    /* if (param_5 < 0.0f) {
         mAlpha = param_5 * -255.0f;
         param_5 = 1.0f;
     } else {
@@ -1370,7 +1374,7 @@ void dDlst_shadowSimple_c::set(cXyz* param_0, f32 param_1, f32 param_2, cXyz* pa
     mDoMtx_stack_c::YrotM(param_4);
     mDoMtx_stack_c::scaleM(param_2, 1.0f, param_2 * param_5);
     cMtx_concat(j3dSys.getViewMtx(), mDoMtx_stack_c::get(), mMtx);
-    mpTexObj = param_6;
+    mpTexObj = param_6; */
 }
 
 void dDlst_shadowControl_c::init() {
@@ -1672,14 +1676,16 @@ int dDlst_peekZ_c::newData(s16 x, s16 y, u32* dst) {
 }
 
 void dDlst_peekZ_c::peekData() {
-    dDlst_peekZ_entry* entry = mEntries;
+    std::cout << "dDlst_peekZ_c::peekData() is stubbed" << std::endl;
+
+    /* dDlst_peekZ_entry* entry = mEntries;
 
     for (int i = 0; i < mCount; i++) {
         GXPeekZ(entry->x, entry->y, entry->dst);
         entry++;
     }
 
-    mCount = 0;
+    mCount = 0; */
 }
 
 dDlst_list_c::dDlst_list_c() {
@@ -1850,8 +1856,7 @@ void dDlst_list_c::wipeIn(f32 i_wipeSpeed, GXColor& i_wipeColor) {
     JKRArchive* main2d = dComIfGp_getMain2DArchive();
     ResTIMG* texture = (ResTIMG*)JKRArchive::getGlbResource('TIMG', "wipe_00.bti", main2d);
 
-    mWipeDlst.init(texture, mDoGph_gInf_c::getMinX(), mDoGph_gInf_c::getMinY(),
-                   mDoGph_gInf_c::getWidth(), mDoGph_gInf_c::getHeight(), 0, 1, 1, 2.0f, 2.436f);
+    mWipeDlst.init(texture, mDoGph_gInf_c::getMinX(), mDoGph_gInf_c::getMinY(), mDoGph_gInf_c::getWidth(), mDoGph_gInf_c::getHeight(), 0, 1, 1, 2.0f, 2.436f);
 }
 
 

@@ -1,6 +1,6 @@
 #include "JSystem/JSystem.h"
 #include "JSystem/JUtility/JUTDirectFile.h"
-#include <dolphin/os.h>
+#include "dolphin/os.h"
 #include "global.h"
 #include <stdint.h>
 

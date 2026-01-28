@@ -5,6 +5,9 @@
 #include "JSystem/JUtility/JUTNameTab.h"
 #include "global.h"
 
+// TODO: Not originally included directly
+#include "dolphin/os.h"
+
 struct JUTDataBlockHeader {
     u32 mType;
     u32 mSize;

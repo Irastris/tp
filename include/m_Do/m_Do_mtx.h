@@ -5,6 +5,9 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include <dolphin/mtx.h>
 
+# TODO: Deduplicate instances of this
+typedef const f32 (*CMtxP)[4];
+
 void mDoMtx_XYZrotS(Mtx, s16, s16, s16);
 void mDoMtx_XYZrotM(Mtx, s16, s16, s16);
 void mDoMtx_ZXYrotS(Mtx, s16, s16, s16);
@@ -28,7 +31,7 @@ inline void mDoMtx_multVecSR(const Mtx m, const Vec* src, Vec* dst) {
 }
 
 inline void mDoMtx_concat(const Mtx a, const Mtx b, Mtx c) {
-    PSMTXConcat(a, b, c);
+    MTXConcat(a, b, c);
 }
 
 inline void cMtx_concat(const Mtx a, const Mtx b, Mtx ab) {
@@ -40,15 +43,15 @@ inline void cMtx_scale(Mtx m, f32 x, f32 y, f32 z) {
 }
 
 inline void mDoMtx_multVec(CMtxP m, const Vec* src, Vec* dst) {
-    PSMTXMultVec(m, src, dst);
+    MTXMultVec(m, src, dst);
 }
 
 inline void mDoMtx_multVecArray(const Mtx m, const Vec* src, Vec* dst, u32 count) {
-    PSMTXMultVecArray(m, src, dst, count);
+    MTXMultVecArray(m, src, dst, count);
 }
 
 inline void mDoMtx_copy(const Mtx src, Mtx dst) {
-    PSMTXCopy(src, dst);
+    MTXCopy(src, dst);
 }
 
 inline void mDoMtx_trans(Mtx m, f32 x, f32 y, f32 z) {
@@ -130,7 +133,7 @@ inline void mDoMtx_quatRotAxisRad(Quaternion* q, const Vec* axis, f32 rad) {
 }
 
 inline void mDoMtx_identity(Mtx m) {
-    PSMTXIdentity(m);
+    MTXIdentity(m);
 }
 
 inline void mDoMtx_inverse(const Mtx a, Mtx b) {
@@ -257,7 +260,7 @@ public:
      * @param a The source Vec
      * @param b The output Vec
      */
-    static void multVec(const Vec* a, Vec* b) { PSMTXMultVec(now, a, b); }
+    static void multVec(const Vec* a, Vec* b) { MTXMultVec(now, a, b); }
 
     /**
      * Multiplies a given Vec `a` by the `now` Matrix's "Scale-and-Rotate" component and places the result into Vec `b`
@@ -275,7 +278,7 @@ public:
      * @param count The size of the array
      */
     static void multVecArray(const Vec* src, Vec* dst, u32 count) {
-        PSMTXMultVecArray(now, src, dst, count);
+        MTXMultVecArray(now, src, dst, count);
     }
 
     static void XYZrotS(s16 x, s16 y, s16 z) { mDoMtx_XYZrotS(now, x, y, z); }
@@ -334,7 +337,7 @@ public:
      */
     static void ZrotM(s16 z) { mDoMtx_ZrotM(now, z); }
 
-    static void inverse() { PSMTXInverse(now, now); }
+    static void inverse() { MTXInverse(now, now); }
 
     static void inverseTranspose() { mDoMtx_inverseTranspose(now, now); }
 
@@ -350,14 +353,14 @@ public:
      * Copies a given matrix `m` to the `now` matrix
      * @param m The source matrix to copy
      */
-    static void copy(const Mtx m) { PSMTXCopy(m, now); }
+    static void copy(const Mtx m) { MTXCopy(m, now); }
 
     static void rotAxisRadS(const Vec* axis, f32 rad) {
         MTXRotAxisRad(now, axis, rad);
     }
 
     static void identity() {
-        PSMTXIdentity(now);
+        MTXIdentity(now);
     }
 
     static Mtx now;
