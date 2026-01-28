@@ -4,6 +4,9 @@
 #include "JSystem/JMath/JMATrigonometric.h"
 #include "JSystem/JMath/JMath.h"
 
+// TODO: Deduplicate instances of this
+typedef f32 Mtx33[3][3];
+
 void __MTGQR7(u32 v) {
 	// No-op
 }

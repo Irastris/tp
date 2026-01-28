@@ -5,6 +5,10 @@
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/JKernel/JKRHeap.h"
 
+// TODO: Deduplicate instances of these
+typedef f32 Mtx33[3][3];
+typedef f32 (*MtxP)[3];
+
 Mtx J3DMtxBuffer::sNoUseDrawMtx;
 
 Mtx33 J3DMtxBuffer::sNoUseNrmMtx;

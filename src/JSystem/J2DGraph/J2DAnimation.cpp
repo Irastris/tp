@@ -256,7 +256,7 @@ void J2DAnmColor::searchUpdateMaterialID(J2DScreen* pScreen) {
     }
 }
 
-void J2DAnmColorFull::getColor(u16 param_0, _GXColor* pColor) const {
+void J2DAnmColorFull::getColor(u16 param_0, GXColor* pColor) const {
     J3DAnmColorFullTable* info = &mInfoTable[param_0];
     u16 maxFrame = info->mRMaxFrame;
     if (mFrame < 0) {
@@ -292,7 +292,7 @@ void J2DAnmColorFull::getColor(u16 param_0, _GXColor* pColor) const {
     }
 }
 
-void J2DAnmColorKey::getColor(u16 param_0, _GXColor* pColor) const {
+void J2DAnmColorKey::getColor(u16 param_0, GXColor* pColor) const {
     J3DAnmColorKeyTable* info = &mInfoTable[param_0];
     f32 val;
     switch (info->mRInfo.mMaxFrame) {
@@ -365,7 +365,7 @@ void J2DAnmColorKey::getColor(u16 param_0, _GXColor* pColor) const {
     }
 }
 
-void J2DAnmVtxColorFull::getColor(u8 param_0, u16 param_1, _GXColor* pColor) const {
+void J2DAnmVtxColorFull::getColor(u8 param_0, u16 param_1, GXColor* pColor) const {
     J3DAnmColorFullTable* info = &mInfoTable[param_0][param_1];
     u16 maxFrame = info->mRMaxFrame;
     if (mFrame < 0) {
@@ -401,7 +401,7 @@ void J2DAnmVtxColorFull::getColor(u8 param_0, u16 param_1, _GXColor* pColor) con
     }
 }
 
-void J2DAnmVtxColorKey::getColor(u8 param_0, u16 param_1, _GXColor* pColor) const {
+void J2DAnmVtxColorKey::getColor(u8 param_0, u16 param_1, GXColor* pColor) const {
     J3DAnmColorKeyTable* info = &mInfoTable[param_0][param_1];
     f32 val;
     switch (info->mRInfo.mMaxFrame) {

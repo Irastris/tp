@@ -28,6 +28,9 @@
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
 
+// TODO: Deduplicate instances of this
+typedef f32 (*MtxP)[3];
+
 enum dComIfG_ButtonStatus {
     BUTTON_STATUS_NONE,
     BUTTON_STATUS_LET_GO,
@@ -4260,7 +4263,7 @@ inline void dComIfGd_setCopy2D(dDlst_base_c* dlst) {
 
 inline Mtx44* dComIfGd_getProjViewMtx() {
     return &(g_dComIfG_gameInfo.drawlist.getView()->projViewMtx);
-}
+} */
 
 inline MtxP dComIfGd_getInvViewMtx() {
     return g_dComIfG_gameInfo.drawlist.getView()->invViewMtx;
@@ -4268,7 +4271,7 @@ inline MtxP dComIfGd_getInvViewMtx() {
 
 /* inline view_port_class* dComIfGd_getViewport() {
     return g_dComIfG_gameInfo.drawlist.getViewport();
-}
+} */
 
 inline MtxP dComIfGd_getViewRotMtx() {
     return g_dComIfG_gameInfo.drawlist.getView()->viewMtxNoTrans;
@@ -4277,7 +4280,7 @@ inline MtxP dComIfGd_getViewMtx() {
     return g_dComIfG_gameInfo.drawlist.getView()->viewMtx;
 }
 
-inline J3DDrawBuffer* dComIfGd_getListFilter() {
+/* inline J3DDrawBuffer* dComIfGd_getListFilter() {
     return g_dComIfG_gameInfo.drawlist.getOpaListFilter();
 }
 

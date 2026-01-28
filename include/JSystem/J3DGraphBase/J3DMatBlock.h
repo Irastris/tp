@@ -6,6 +6,9 @@
 #include "JSystem/J3DGraphBase/J3DTexture.h"
 #include "global.h"
 
+// TODO: Deduplicate instances of these
+typedef f32 (*Mtx3P)[3];
+
 struct J3DGXColorS10 : public GXColorS10 {
     J3DGXColorS10() {}
 

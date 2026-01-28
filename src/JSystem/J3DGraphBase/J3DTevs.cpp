@@ -6,6 +6,9 @@
 #include "JSystem/J3DGraphBase/J3DTransform.h"
 #include "global.h"
 
+// TODO: Deduplicate instances of this
+typedef f32 (*MtxP)[3];
+
 static void J3DGDLoadTexMtxImm(f32 (*)[4], u32, GXTexMtxType);
 static void J3DGDLoadPostTexMtxImm(f32 (*)[4], u32);
 

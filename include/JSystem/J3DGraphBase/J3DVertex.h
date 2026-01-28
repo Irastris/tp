@@ -4,7 +4,6 @@
 #include <dolphin/gx.h>
 #include <dolphin/mtx.h>
 
-typedef struct _GXColor GXColor;
 class J3DModel;
 class J3DAnmVtxColor;
 class J3DVertexBuffer;

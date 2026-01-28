@@ -7,6 +7,9 @@
 #include "JSystem/JMath/JMath.h"
 #include "m_Do/m_Do_mtx.h"
 
+// TODO: Deduplicate instances of this
+typedef f32 (*MtxP)[3];
+
 void J3DMtxCalcJ3DSysInitBasic::init(Vec const& scale, Mtx const& mtx) {
     J3DSys::mCurrentS = scale;
     Vec init = {1.0f, 1.0f, 1.0f};

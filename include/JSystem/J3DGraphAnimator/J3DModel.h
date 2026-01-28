@@ -5,6 +5,10 @@
 #include "JSystem/J3DGraphBase/J3DPacket.h"
 #include <dolphin/types.h>
 
+// TODO: Deduplicate instances of these
+typedef f32 Mtx33[3][3];
+typedef f32 (*MtxP)[3];
+
 enum J3DMdlFlag {
     J3DMdlFlag_None             = 0x0,
     J3DMdlFlag_Unk1             = 0x1,

@@ -6,6 +6,10 @@
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "JSystem/J3DGraphBase/J3DTexture.h"
 
+// TODO: Deduplicate instances of these
+typedef f32 Mtx33[3][3];
+typedef f32 (*MtxP)[3];
+
 u16 J3DShapeMtx::sMtxLoadCache[10];
 
 void J3DShapeMtx::resetMtxLoadCache() {

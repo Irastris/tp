@@ -38,9 +38,6 @@ struct J3DAnmTransform_ANK1 {
     u32 translation_data_offset;
 };
 
-typedef struct _GXColor GXColor;
-typedef struct _GXColorS10 GXColorS10;
-
 struct J3DAnmKeyTableBase {
     u16 mMaxFrame;
     u16 mOffset;
@@ -621,8 +618,8 @@ public:
 class J3DAnmTevRegKey : public J3DAnmBase {
 public:
     J3DAnmTevRegKey();
-    void getTevColorReg(u16, _GXColorS10*) const;
-    void getTevKonstReg(u16, _GXColor*) const;
+    void getTevColorReg(u16, GXColorS10*) const;
+    void getTevKonstReg(u16, GXColor*) const;
     void searchUpdateMaterialID(J3DMaterialTable*);
     void searchUpdateMaterialID(J3DModelData*);
 

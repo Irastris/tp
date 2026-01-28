@@ -4,6 +4,10 @@
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/J3DGraphBase/J3DEnum.h"
 
+// TODO: Deduplicate instances of these
+typedef f32 Mtx33[3][3];
+typedef f32 (*MtxP)[3];
+
 class J3DModelData;
 
 class J3DMtxBuffer {

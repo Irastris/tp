@@ -6,6 +6,9 @@
 #include <dolphin/gx.h>
 #include <dolphin/mtx.h>
 
+// TODO: Deduplicate instances of this
+typedef f32 (*MtxP)[3];
+
 class J2DAnmBase;
 class J2DAnmColor;
 class J2DAnmTransform;
@@ -87,7 +90,7 @@ public:
 
         setCullBack(mode);
     }
-    virtual void setCullBack(_GXCullMode cmode);
+    virtual void setCullBack(GXCullMode cmode);
     virtual void setAlpha(u8 alpha) {
         mAlpha = alpha;
     };

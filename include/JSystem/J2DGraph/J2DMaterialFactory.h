@@ -34,8 +34,6 @@ struct J2DMaterialBlock {
     u32 field_0x64;
 };
 
-typedef struct _GXColor GXColor;
-typedef struct _GXColorS10 GXColorS10;
 struct J2DAlphaCompInfo;
 struct J2DBlendInfo;
 struct J2DColorChanInfo;
@@ -134,9 +132,9 @@ private:
     J2DTexMtxInfo* field_0x24;
     u16* field_0x28;
     u16* field_0x2c;
-    _GXCullMode* field_0x30;
+    GXCullMode* field_0x30;
     J2DTevOrderInfo* field_0x34;
-    _GXColorS10* field_0x38;
+    GXColorS10* field_0x38;
     GXColor* field_0x3c;
     u8* field_0x40;
     J2DTevStageInfo* field_0x44;

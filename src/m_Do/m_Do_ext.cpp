@@ -17,6 +17,9 @@
 // #include "m_Do/m_Do_mtx.h"
 #include <cstdio> 
 
+// TODO: Deduplicate instances of this
+typedef f32 (*MtxP)[3];
+
 /* static void mDoExt_setJ3DData(Mtx mtx, const J3DTransformInfo* transformInfo, u16 param_2) {
     bool local_28;
     if (cM3d_IsZero(transformInfo->mScale.x - 1.0f) && cM3d_IsZero(transformInfo->mScale.y - 1.0f) && cM3d_IsZero(transformInfo->mScale.z - 1.0f)) {
@@ -342,7 +345,7 @@ int mDoExt_invisibleModel::create(J3DModel* i_model, u8 param_1) {
     }
 
     return 1;
-}
+} */
 
 void mDoExt_invisibleModel::entryJoint(cXyz* param_0) {
     J3DModelData* modelData = mModel->getModelData();
@@ -364,7 +367,7 @@ void mDoExt_invisibleModel::entryJoint(cXyz* param_0) {
     }
 }
 
-void mDoExt_invisibleModel::entryDL(cXyz* param_0) {
+/* void mDoExt_invisibleModel::entryDL(cXyz* param_0) {
     J3DDrawBuffer* buffer0 = j3dSys.getDrawBuffer(0);
     J3DDrawBuffer* buffer1 = j3dSys.getDrawBuffer(1);
     dComIfGd_setListZxlu();

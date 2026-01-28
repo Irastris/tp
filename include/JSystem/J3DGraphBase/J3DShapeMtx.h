@@ -4,6 +4,9 @@
 #include "JSystem/J3DGraphBase/J3DShape.h"
 #include <dolphin/mtx.h>
 
+// TODO: Deduplicate instances of this
+typedef f32 (*MtxP)[3];
+
 class J3DTexMtx;
 class J3DTexGenBlock;
 

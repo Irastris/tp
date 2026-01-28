@@ -4,6 +4,10 @@
 #include <dolphin/gx.h>
 #include <dolphin/mtx.h>
 
+// TODO: Deduplicate instances of these
+typedef f32 Mtx33[3][3];
+typedef f32 (*MtxP)[3];
+
 enum J3DSysDrawBuf {
     J3DSysDrawBuf_Opa,
     J3DSysDrawBuf_Xlu,

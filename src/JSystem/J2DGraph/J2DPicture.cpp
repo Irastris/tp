@@ -8,6 +8,9 @@
 #include "JSystem/JSupport/JSURandomInputStream.h"
 #include <dolphin/gx.h>
 
+// TODO: Deduplicate instances of this
+typedef f32 (*MtxP)[3];
+
 J2DPicture::J2DPicture() : mPalette(NULL) {
     for (u32 i = 0; i < 2; i++) {
         mTexture[i] = NULL;

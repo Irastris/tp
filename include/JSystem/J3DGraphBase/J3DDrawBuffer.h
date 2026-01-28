@@ -3,6 +3,9 @@
 
 #include "JSystem/J3DGraphBase/J3DSys.h"
 
+// TODO: Deduplicate instances of this
+typedef f32 (*MtxP)[3];
+
 inline f32 J3DCalcZValue(MtxP m, Vec* v) {
     return m[2][0] * v->x + m[2][1] * v->y + m[2][2] * v->z + m[2][3];
 }

@@ -6,6 +6,11 @@
 #include <cstring>
 #include <dolphin/types.h>
 
+// TODO: Deduplicate instances of these
+typedef f32 Mtx33[3][3];
+typedef f32 (*Mtx3P)[3];
+typedef f32 (*MtxP)[3];
+
 class J3DModel;
 class J3DAnmCluster;
 class J3DClusterVertex;

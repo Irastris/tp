@@ -55,7 +55,7 @@ public:
         }
     }
     virtual ~J2DAnmVtxColor() {}
-    virtual void getColor(u8, u16, _GXColor*) const {}
+    virtual void getColor(u8, u16, GXColor*) const {}
     u16 getAnmTableNum(u8 param_0) const {
         return mAnmTableNum[param_0];
     }
@@ -82,7 +82,7 @@ public:
         }
     }
     virtual ~J2DAnmVtxColorKey() {}
-    virtual void getColor(u8, u16, _GXColor*) const;
+    virtual void getColor(u8, u16, GXColor*) const;
 
     J3DAnmColorKeyTable* mInfoTable[2];
     s16* mRValues;
@@ -99,7 +99,7 @@ public:
         }
     }
     virtual ~J2DAnmVtxColorFull() {}
-    virtual void getColor(u8, u16, _GXColor*) const;
+    virtual void getColor(u8, u16, GXColor*) const;
 
     J3DAnmColorFullTable* mInfoTable[2];
     u8* mRValues;
@@ -340,7 +340,7 @@ public:
     }
     virtual ~J2DAnmColor() {}
     virtual void searchUpdateMaterialID(J2DScreen*);
-    virtual void getColor(u16, _GXColor*) const {}
+    virtual void getColor(u16, GXColor*) const {}
     u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }
     u16 getUpdateMaterialID(u16 i) const {
         return mUpdateMaterialID[i];
@@ -365,7 +365,7 @@ public:
         mInfoTable = NULL;
     }
     virtual ~J2DAnmColorKey() {}
-    virtual void getColor(u16, _GXColor*) const;
+    virtual void getColor(u16, GXColor*) const;
 
     s16* mRValues;
     s16* mGValues;
@@ -395,7 +395,7 @@ public:
         mInfoTable = NULL;
     }
     virtual ~J2DAnmColorFull() {}
-    virtual void getColor(u16, _GXColor*) const;
+    virtual void getColor(u16, GXColor*) const;
 
     u8* mRValues;
     u8* mGValues;

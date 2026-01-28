@@ -628,7 +628,7 @@ void J2DWindowEx::setAlpha(u8 param_0) {
     }
 }
 
-void J2DWindowEx::setCullBack(_GXCullMode param_0) {
+void J2DWindowEx::setCullBack(GXCullMode param_0) {
     mCullMode = param_0;
 
     for (int i = 0; i < 4; i++) {
@@ -836,12 +836,11 @@ void J2DWindowEx::getMaterial(J2DWindow::TMaterial& param_0) const {
 }
 
 void J2DWindowEx::draw(f32 param_0, f32 param_1, f32 param_2, f32 param_3) {
-    draw(JGeometry::TBox2<f32>(JGeometry::TVec2<f32>(param_0, param_1),
-                               JGeometry::TVec2<f32>(param_0 + param_2, param_1 + param_3)));
+    draw(JGeometry::TBox2<f32>(JGeometry::TVec2<f32>(param_0, param_1), JGeometry::TVec2<f32>(param_0 + param_2, param_1 + param_3)));
 }
 
 void J2DWindowEx::setCullBack(bool param_0) {
-    _GXCullMode mode;
+    GXCullMode mode;
     if (param_0) {
         mode = GX_CULL_BACK;
     } else {

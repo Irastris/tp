@@ -8,6 +8,9 @@
 #include <dolphin/mtx.h>
 #include <dolphin/gx.h>
 
+// TODO: Deduplicate instances of this
+typedef f32 (*MtxP)[3];
+
 void JPASetPointSize(JPAEmitterWorkData* work) {
     GXSetPointSize((u8)(25.0f * work->mGlobalPtclScl.x), GX_TO_ONE);
 }

@@ -17,7 +17,7 @@ J2DMaterialFactory::J2DMaterialFactory(J2DMaterialBlock const& param_0) {
     else {
         field_0xc = NULL;
     }
-    field_0x30 = JSUConvertOffsetToPtr<_GXCullMode>(&param_0, (void*)param_0.field_0x1c);
+    field_0x30 = JSUConvertOffsetToPtr<GXCullMode>(&param_0, (void*)param_0.field_0x1c);
     field_0x10 = JSUConvertOffsetToPtr<GXColor>(&param_0, (void*)param_0.field_0x20);
     field_0x14 = JSUConvertOffsetToPtr<u8>(&param_0, (void*)param_0.field_0x24);
     field_0x18 = JSUConvertOffsetToPtr<J2DColorChanInfo>(&param_0, (void*)param_0.field_0x28);
@@ -27,7 +27,7 @@ J2DMaterialFactory::J2DMaterialFactory(J2DMaterialBlock const& param_0) {
     field_0x28 = JSUConvertOffsetToPtr<u16>(&param_0, (void*)param_0.field_0x38);
     field_0x2c = JSUConvertOffsetToPtr<u16>(&param_0, (void*)param_0.field_0x3c);
     field_0x34 = JSUConvertOffsetToPtr<J2DTevOrderInfo>(&param_0, (void*)param_0.field_0x40);
-    field_0x38 = JSUConvertOffsetToPtr<_GXColorS10>(&param_0, (void*)param_0.field_0x44);
+    field_0x38 = JSUConvertOffsetToPtr<GXColorS10>(&param_0, (void*)param_0.field_0x44);
     field_0x3c = JSUConvertOffsetToPtr<GXColor>(&param_0, (void*)param_0.field_0x48);
     field_0x40 = JSUConvertOffsetToPtr<u8>(&param_0, (void*)param_0.field_0x4c);
     field_0x44 = JSUConvertOffsetToPtr<J2DTevStageInfo>(&param_0, (void*)param_0.field_0x50);
