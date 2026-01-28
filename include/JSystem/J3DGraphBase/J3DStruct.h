@@ -25,25 +25,11 @@ struct J3DTextureSRTInfo {
 
     bool operator==(J3DTextureSRTInfo&) const;
     inline void operator=(J3DTextureSRTInfo const& other) {
-#ifdef __MWERKS__
-        __REGISTER const f32* src = &other.mScaleX;
-        __REGISTER f32* dst = &mScaleX;
-        __REGISTER f32 xy;
-        asm {
-            psq_l xy, 0(src), 0, 0
-            psq_st xy, 0(dst), 0, 0
-        };
-
-        // Unclear why there's a 4 byte copy here.
-        *(u32*)&mRotation = *(u32*)&other.mRotation;
-        src = &other.mTranslationX;
-        dst = &mTranslationX;
-
-        asm {
-            psq_l xy, 0(src), 0, 0
-            psq_st xy, 0(dst), 0, 0
-        };
-#endif
+        mScaleX = other.mScaleX;
+        mScaleY = other.mScaleY;
+        mRotation = other.mRotation;
+        mTranslationX = other.mTranslationX;
+        mTranslationY = other.mTranslationY;
     }
 };
 

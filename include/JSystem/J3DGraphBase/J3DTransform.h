@@ -38,168 +38,44 @@ void J3DScaleNrmMtx33(f32 (*)[3], const Vec&);
 void J3DMtxProjConcat(f32 (*)[4], f32 (*)[4], f32 (*)[4]);
 void J3DPSMtxArrayConcat(f32 (*)[4], f32 (*)[4], f32 (*)[4], u32);
 
-inline void J3DPSMtx33Copy(__REGISTER Mtx3P src, __REGISTER Mtx3P dst) {
-#ifdef __MWERKS__
-    __REGISTER f32 fr4;
-    __REGISTER f32 fr3;
-    __REGISTER f32 fr2;
-    __REGISTER f32 fr1;
-    __REGISTER f32 fr0;
-
-    asm {
-        psq_l fr4, 0(src), 0, 0
-        psq_l fr3, 8(src), 0, 0
-        psq_l fr2, 0x10(src), 0, 0
-        psq_l fr1, 0x18(src), 0, 0
-        lfs fr0, 0x20(src)
-        psq_st fr4, 0(dst), 0, 0
-        psq_st fr3, 8(dst), 0, 0
-        psq_st fr2, 0x10(dst), 0, 0
-        psq_st fr1, 0x18(dst), 0, 0
-        stfs fr0, 0x20(dst)
+inline void J3DPSMtx33Copy(Mtx3P src, Mtx3P dst) {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            dst[i][j] = src[i][j];
+        }
     }
-#endif
 }
 
-inline void J3DPSMtx33CopyFrom34(__REGISTER MtxP src, __REGISTER Mtx3P dst) {
-#ifdef __MWERKS__
-    __REGISTER f32 x_y1;
-    __REGISTER f32 z1;
-    __REGISTER f32 x_y2;
-    __REGISTER f32 z2;
-    __REGISTER f32 x_y3;
-    __REGISTER f32 z3;
-    asm {
-        psq_l x_y1, 0(src), 0, 0
-        lfs z1, 8(src)
-        psq_l x_y2, 16(src), 0, 0
-        lfs z2, 0x18(src)
-        psq_l x_y3, 32(src), 0, 0
-        lfs z3, 0x28(src)
-        psq_st x_y1, 0(dst), 0, 0
-        stfs z1, 8(dst)
-        psq_st x_y2, 12(dst), 0, 0
-        stfs z2, 0x14(dst)
-        psq_st x_y3, 24(dst), 0, 0
-        stfs z3, 0x20(dst)
+inline void J3DPSMtx33CopyFrom34(MtxP src, Mtx3P dst) {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            dst[i][j] = src[i][j];
+        }
     }
-#endif
 }
 
-inline void J3DPSMulMtxVec(__REGISTER MtxP mtx, __REGISTER Vec* vec, __REGISTER Vec* dst) {
-#ifdef __MWERKS__
-    asm {
-        psq_l f0, 0(vec), 0, 0
-        psq_l f2, 0(mtx), 0, 0
-        psq_l f1, 8(vec), 1, 0
-        ps_mul f4, f2, f0
-        psq_l f3, 8(mtx), 0, 0
-        ps_madd f5, f3, f1, f4
-        psq_l f8, 16(mtx), 0, 0
-        ps_sum0 f6, f5, f6, f5
-        psq_l f9, 24(mtx), 0, 0
-        ps_mul f10, f8, f0
-        psq_st f6, 0(dst), 1, 0
-        ps_madd f11, f9, f1, f10
-        psq_l f2, 32(mtx), 0, 0
-        ps_sum0 f12, f11, f12, f11
-        psq_l f3, 40(mtx), 0, 0
-        ps_mul f4, f2, f0
-        psq_st f12, 4(dst), 1, 0
-        ps_madd f5, f3, f1, f4
-        ps_sum0 f6, f5, f6, f5
-        psq_st f6, 8(dst), 1, 0
-    }
-#endif
+inline void J3DPSMulMtxVec(MtxP mtx, Vec* vec, Vec* dst) {
+    dst->x = mtx[0][0] * vec->x + mtx[0][1] * vec->y + mtx[0][2] * vec->z + mtx[0][3];
+    dst->y = mtx[1][0] * vec->x + mtx[1][1] * vec->y + mtx[1][2] * vec->z + mtx[1][3];
+    dst->z = mtx[2][0] * vec->x + mtx[2][1] * vec->y + mtx[2][2] * vec->z + mtx[2][3];
 }
 
-inline void J3DPSMulMtxVec(__REGISTER MtxP mtx, __REGISTER S16Vec* vec, __REGISTER S16Vec* dst) {
-#ifdef __MWERKS__
-    asm {
-        psq_l f0, 0(vec), 0, 7
-        psq_l f2, 0(mtx), 0, 0
-        psq_l f1, 4(vec), 1, 7
-        ps_mul f4, f2, f0
-        psq_l f3, 8(mtx), 0, 0
-        ps_madd f5, f3, f1, f4
-        psq_l f8, 16(mtx), 0, 0
-        ps_sum0 f6, f5, f6, f5
-        psq_l f9, 24(mtx), 0, 0
-        ps_mul f10, f8, f0
-        psq_st f6, 0(dst), 1, 7
-        ps_madd f11, f9, f1, f10
-        psq_l f2, 32(mtx), 0, 0
-        ps_sum0 f12, f11, f12, f11
-        psq_l f3, 40(mtx), 0, 0
-        ps_mul f4, f2, f0
-        psq_st f12, 2(dst), 1, 7
-        ps_madd f5, f3, f1, f4
-        ps_sum0 f6, f5, f6, f5
-        psq_st f6, 4(dst), 1, 7
-    }
-#endif
+inline void J3DPSMulMtxVec(MtxP mtx, S16Vec* vec, S16Vec* dst) {
+    dst->x = mtx[0][0] * vec->x + mtx[0][1] * vec->y + mtx[0][2] * vec->z + mtx[0][3];
+    dst->y = mtx[1][0] * vec->x + mtx[1][1] * vec->y + mtx[1][2] * vec->z + mtx[1][3];
+    dst->z = mtx[2][0] * vec->x + mtx[2][1] * vec->y + mtx[2][2] * vec->z + mtx[2][3];
 }
 
-inline void J3DPSMulMtxVec(__REGISTER Mtx3P mtx, __REGISTER Vec* vec, __REGISTER Vec* dst) {
-#ifdef __MWERKS__
-    asm {
-        lis r6, PSMulUnit01@ha
-        psq_l f0, 0(vec), 0, 0
-        addi r6, r6, PSMulUnit01@l
-        psq_l f2, 0(mtx), 0, 0
-        psq_l f13, 0(r6), 0, 0
-        psq_l f1, 8(vec), 1, 0
-        ps_add f1, f13, f1
-        psq_l f3, 8(mtx), 1, 0
-        ps_mul f4, f2, f0
-        psq_l f8, 12(mtx), 0, 0
-        ps_madd f5, f3, f1, f4
-        ps_sum0 f6, f5, f6, f5
-        psq_l f9, 20(mtx), 1, 0
-        ps_mul f10, f8, f0
-        psq_st f6, 0(dst), 1, 0
-        ps_madd f11, f9, f1, f10
-        psq_l f2, 24(mtx), 0, 0
-        ps_sum0 f12, f11, f12, f11
-        psq_l f3, 32(mtx), 1, 0
-        ps_mul f4, f2, f0
-        psq_st f12, 4(dst), 1, 0
-        ps_madd f5, f3, f1, f4
-        ps_sum0 f6, f5, f6, f5
-        psq_st f6, 8(dst), 1, 0
-    }
-#endif
+inline void J3DPSMulMtxVec(Mtx3P mtx, Vec* vec, Vec* dst) {
+    dst->x = mtx[0][0] * vec->x + mtx[0][1] * vec->y + mtx[0][2] * vec->z;
+    dst->y = mtx[1][0] * vec->x + mtx[1][1] * vec->y + mtx[1][2] * vec->z;
+    dst->z = mtx[2][0] * vec->x + mtx[2][1] * vec->y + mtx[2][2] * vec->z;
 }
 
-inline void J3DPSMulMtxVec(__REGISTER Mtx3P mtx, __REGISTER S16Vec* vec, __REGISTER S16Vec* dst) {
-#ifdef __MWERKS__
-    asm {
-        lis r6, PSMulUnit01@ha
-        psq_l f0, 0(vec), 0, 7
-        addi r6, r6, PSMulUnit01@l
-        psq_l f2, 0(mtx), 0, 0
-        psq_l f13, 0(r6), 0, 0
-        psq_l f1, 4(vec), 1, 7
-        ps_add f1, f13, f1
-        psq_l f3, 8(mtx), 1, 0
-        ps_mul f4, f2, f0
-        psq_l f8, 12(mtx), 0, 0
-        ps_madd f5, f3, f1, f4
-        ps_sum0 f6, f5, f6, f5
-        psq_l f9, 20(mtx), 1, 0
-        ps_mul f10, f8, f0
-        psq_st f6, 0(dst), 1, 7
-        ps_madd f11, f9, f1, f10
-        psq_l f2, 24(mtx), 0, 0
-        ps_sum0 f12, f11, f12, f11
-        psq_l f3, 32(mtx), 1, 0
-        ps_mul f4, f2, f0
-        psq_st f12, 2(dst), 1, 7
-        ps_madd f5, f3, f1, f4
-        ps_sum0 f6, f5, f6, f5
-        psq_st f6, 4(dst), 1, 7
-    }
-#endif
+inline void J3DPSMulMtxVec(Mtx3P mtx, S16Vec* vec, S16Vec* dst) {
+    dst->x = mtx[0][0] * vec->x + mtx[0][1] * vec->y + mtx[0][2] * vec->z;
+    dst->y = mtx[1][0] * vec->x + mtx[1][1] * vec->y + mtx[1][2] * vec->z;
+    dst->z = mtx[2][0] * vec->x + mtx[2][1] * vec->y + mtx[2][2] * vec->z;
 }
 
 #endif

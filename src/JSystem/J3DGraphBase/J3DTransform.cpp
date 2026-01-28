@@ -4,12 +4,8 @@
 #include "JSystem/JMath/JMATrigonometric.h"
 #include "JSystem/JMath/JMath.h"
 
-void __MTGQR7(__REGISTER u32 v) {
-#ifdef __MWERKS__
-	asm {
-	    mtspr GQR7, v
-    }
-#endif
+void __MTGQR7(u32 v) {
+	// No-op
 }
 
 void J3DGQRSetup7(u32 r0, u32 r1, u32 r2, u32 r3) {
@@ -18,7 +14,7 @@ void J3DGQRSetup7(u32 r0, u32 r1, u32 r2, u32 r3) {
     __MTGQR7(v);
 }
 
-void J3DCalcBBoardMtx(__REGISTER Mtx mtx) {
+void J3DCalcBBoardMtx(Mtx mtx) {
     f32 x = (mtx[0][0] * mtx[0][0]) + (mtx[1][0] * mtx[1][0]) + (mtx[2][0] * mtx[2][0]);
     f32 y = (mtx[0][1] * mtx[0][1]) + (mtx[1][1] * mtx[1][1]) + (mtx[2][1] * mtx[2][1]);
     f32 z = (mtx[0][2] * mtx[0][2]) + (mtx[1][2] * mtx[1][2]) + (mtx[2][2] * mtx[2][2]);
@@ -76,61 +72,38 @@ void J3DCalcYBBoardMtx(Mtx mtx) {
 	mtx[2][2] = vec.z * z;
 }
 
-ASM void J3DPSCalcInverseTranspose(__REGISTER Mtx src, __REGISTER Mtx33 dst) {
-#ifdef __MWERKS__
-	psq_l    f0, 0(src), 1, 0
-	psq_l    f1, 4(src), 0, 0
-	psq_l    f2, 16(src), 1, 0
-	ps_merge10 f6, f1, f0
-	psq_l    f3, 20(src), 0, 0
-	psq_l    f4, 32(src), 1, 0
-	ps_merge10 f7, f3, f2
-	psq_l    f5, 36(src), 0, 0
-	ps_mul   f11, f3, f6
-	ps_merge10 f8, f5, f4
-	ps_mul   f13, f5, f7
-	ps_msub  f11, f1, f7, f11
-	ps_mul   f12, f1, f8
-	ps_msub  f13, f3, f8, f13
-	ps_msub  f12, f5, f6, f12
-	ps_mul   f10, f3, f4
-	ps_mul   f9, f0, f5
-	ps_mul   f8, f1, f2
-	ps_msub  f10, f2, f5, f10
-	ps_msub  f9, f1, f4, f9
-	ps_msub  f8, f0, f3, f8
-	ps_mul   f7, f0, f13
-	ps_sub   f1, f1, f1
-	ps_madd  f7, f2, f12, f7
-	ps_madd  f7, f4, f11, f7
-	ps_cmpo0 cr0, f7, f1
-	bne      lbl_8005F118
-	li       r3, 0
-	blr
+void J3DPSCalcInverseTranspose(Mtx src, Mtx33 dst) {
+    f32 a = src[0][0], b = src[0][1], c = src[0][2];
+    f32 d = src[1][0], e = src[1][1], f = src[1][2];
+    f32 g = src[2][0], h = src[2][1], i = src[2][2];
 
-lbl_8005F118:
-	fres     f0, f7
-	ps_add   f6, f0, f0
-	ps_mul   f5, f0, f0
-	ps_nmsub f0, f7, f5, f6
-	ps_add   f6, f0, f0
-	ps_mul   f5, f0, f0
-	ps_nmsub f0, f7, f5, f6
-	ps_muls0 f13, f13, f0
-	ps_muls0 f12, f12, f0
-	psq_st   f13, 0(dst), 0, 0
-	ps_muls0 f11, f11, f0
-	psq_st   f12, 12(dst), 0, 0
-	ps_muls0 f10, f10, f0
-	psq_st   f11, 24(dst), 0, 0
-	ps_muls0 f9, f9, f0
-	psq_st   f10, 8(dst), 1, 0
-	ps_muls0 f8, f8, f0
-	psq_st   f9, 20(r4), 1, 0
-	li       r3, 1
-	psq_st   f8, 32(r4), 1, 0
-	blr
-#endif
+    f32 c00 = e * i - f * h;
+    f32 c01 = f * g - d * i;
+    f32 c02 = d * h - e * g;
+    f32 c10 = c * h - b * i;
+    f32 c11 = a * i - c * g;
+    f32 c12 = b * g - a * h;
+    f32 c20 = b * f - c * e;
+    f32 c21 = c * d - a * f;
+    f32 c22 = a * e - b * d;
+
+    f32 det = a * c00 + b * c01 + c * c02;
+
+    if (det == 0.0f) {
+        return;
+    }
+
+    f32 invDet = 1.0f / det;
+
+    dst[0][0] = c00 * invDet;
+    dst[0][1] = c01 * invDet;
+    dst[0][2] = c02 * invDet;
+    dst[1][0] = c10 * invDet;
+    dst[1][1] = c11 * invDet;
+    dst[1][2] = c12 * invDet;
+    dst[2][0] = c20 * invDet;
+    dst[2][1] = c21 * invDet;
+    dst[2][2] = c22 * invDet;
 }
 
 void J3DGetTranslateRotateMtx(const J3DTransformInfo& tx, Mtx dst) {
@@ -265,144 +238,33 @@ void J3DGetTextureMtxMayaOld(const J3DTextureSRTInfo& srt, Mtx dst) {
 	dst[2][2] = 1.0f;
 }
 
-ASM void J3DScaleNrmMtx(__REGISTER Mtx mtx, const __REGISTER Vec& scl) {
-#ifdef __MWERKS__
-	nofralloc;
-
-	psq_l  fp2, 0(scl), 0, 0
-	psq_l  fp0, 0(mtx), 0, 0
-	lfs    fp3, 8(scl)
-	lfs    fp1, 8(mtx)
-	ps_mul f4, fp0, fp2
-	psq_st f4, 0(mtx), 0, 0
-	fmuls  f4, fp1, fp3
-	stfs   f4, 8(mtx)
-
-	/* Row 1 */
-	psq_l  fp2, 0(scl), 0, 0
-	psq_l  fp0, 16(mtx), 0, 0
-	lfs    fp3, 8(scl)
-	lfs    fp1, 24(mtx)
-	ps_mul f4, fp0, fp2
-	psq_st f4, 16(mtx), 0, 0
-	fmuls  f4, fp1, fp3
-	stfs   f4, 24(mtx)
-
-	/* Row 2 */
-	psq_l  fp2, 0(scl), 0, 0
-	psq_l  fp0, 32(mtx), 0, 0
-	lfs    fp3, 8(scl)
-	lfs    fp1, 40(mtx)
-	ps_mul f4, fp0, fp2
-	psq_st f4, 32(mtx), 0, 0
-	fmuls  f4, fp1, fp3
-	stfs   f4, 40(mtx)
-	blr
-#endif
+void J3DScaleNrmMtx(Mtx mtx, const Vec& scl) {
+    for (int i = 0; i < 3; i++) {
+        mtx[i][0] *= scl.x;
+        mtx[i][1] *= scl.y;
+        mtx[i][2] *= scl.z;
+    }
 }
 
-ASM void J3DScaleNrmMtx33(__REGISTER Mtx33 mtx, const __REGISTER Vec& scale) {
-#ifdef __MWERKS__
-	psq_l    f0, 0(mtx), 0, 0
-	psq_l    f6, 0(scale), 0, 0
-	lfs      f1, 8(mtx)
-	lfs      f7, 8(scale)
-	ps_mul   f0, f0, f6
-	psq_l    f2, 12(mtx), 0, 0
-	fmuls    f1, f1, f7
-	lfs      f3, 0x14(mtx)
-	ps_mul   f2, f2, f6
-	psq_l    f4, 24(mtx), 0, 0
-	fmuls    f3, f3, f7
-	lfs      f5, 0x20(mtx)
-	ps_mul   f4, f4, f6
-	psq_st   f0, 0(mtx), 0, 0
-	fmuls    f5, f5, f7
-	stfs     f1, 8(mtx)
-	psq_st   f2, 12(mtx), 0, 0
-	stfs     f3, 0x14(mtx)
-	psq_st   f4, 24(mtx), 0, 0
-	stfs     f5, 0x20(mtx)
-	blr
-#endif
+void J3DScaleNrmMtx33(Mtx33 mtx, const Vec& scale) {
+    for (int i = 0; i < 3; i++) {
+        mtx[i][0] *= scale.x;
+        mtx[i][1] *= scale.y;
+        mtx[i][2] *= scale.z;
+    }
 }
 
-ASM void J3DMtxProjConcat(__REGISTER Mtx mtx1, __REGISTER Mtx mtx2, __REGISTER Mtx dst) {
-#ifdef __MWERKS__
-	psq_l    f2, 0(mtx1), 0, 0
-	psq_l    f3, 8(mtx1), 0, 0
-	ps_merge00 f6, f2, f2
-	ps_merge11 f7, f2, f2
-	ps_merge00 f8, f3, f3
-	ps_merge11 f9, f3, f3
-	psq_l    f10, 0(mtx2), 0, 0
-	psq_l    f11, 16(mtx2), 0, 0
-	psq_l    f12, 32(mtx2), 0, 0
-	psq_l    f13, 48(mtx2), 0, 0
-	ps_mul   f0, f6, f10
-	ps_madd  f0, f7, f11, f0
-	ps_madd  f0, f8, f12, f0
-	ps_madd  f0, f9, f13, f0
-	psq_st   f0, 0(dst), 0, 0
-	psq_l    f10, 8(mtx2), 0, 0
-	psq_l    f11, 24(mtx2), 0, 0
-	psq_l    f12, 40(mtx2), 0, 0
-	psq_l    f13, 56(mtx2), 0, 0
-	ps_mul   f0, f6, f10
-	ps_madd  f0, f7, f11, f0
-	ps_madd  f0, f8, f12, f0
-	ps_madd  f0, f9, f13, f0
-	psq_st   f0, 8(dst), 0, 0
-	psq_l    f2, 16(mtx1), 0, 0
-	psq_l    f3, 24(mtx1), 0, 0
-	ps_merge00 f6, f2, f2
-	ps_merge11 f7, f2, f2
-	ps_merge00 f8, f3, f3
-	ps_merge11 f9, f3, f3
-	psq_l    f10, 0(mtx2), 0, 0
-	psq_l    f11, 16(mtx2), 0, 0
-	psq_l    f12, 32(mtx2), 0, 0
-	psq_l    f13, 48(mtx2), 0, 0
-	ps_mul   f0, f6, f10
-	ps_madd  f0, f7, f11, f0
-	ps_madd  f0, f8, f12, f0
-	ps_madd  f0, f9, f13, f0
-	psq_st   f0, 16(dst), 0, 0
-	psq_l    f10, 8(mtx2), 0, 0
-	psq_l    f11, 24(mtx2), 0, 0
-	psq_l    f12, 40(mtx2), 0, 0
-	psq_l    f13, 56(mtx2), 0, 0
-	ps_mul   f0, f6, f10
-	ps_madd  f0, f7, f11, f0
-	ps_madd  f0, f8, f12, f0
-	ps_madd  f0, f9, f13, f0
-	psq_st   f0, 24(dst), 0, 0
-	psq_l    f2, 32(mtx1), 0, 0
-	psq_l    f3, 40(mtx1), 0, 0
-	ps_merge00 f6, f2, f2
-	ps_merge11 f7, f2, f2
-	ps_merge00 f8, f3, f3
-	ps_merge11 f9, f3, f3
-	psq_l    f10, 0(mtx2), 0, 0
-	psq_l    f11, 16(mtx2), 0, 0
-	psq_l    f12, 32(mtx2), 0, 0
-	psq_l    f13, 48(mtx2), 0, 0
-	ps_mul   f0, f6, f10
-	ps_madd  f0, f7, f11, f0
-	ps_madd  f0, f8, f12, f0
-	ps_madd  f0, f9, f13, f0
-	psq_st   f0, 32(dst), 0, 0
-	psq_l    f10, 8(mtx2), 0, 0
-	psq_l    f11, 24(mtx2), 0, 0
-	psq_l    f12, 40(mtx2), 0, 0
-	psq_l    f13, 56(mtx2), 0, 0
-	ps_mul   f0, f6, f10
-	ps_madd  f0, f7, f11, f0
-	ps_madd  f0, f8, f12, f0
-	ps_madd  f0, f9, f13, f0
-	psq_st   f0, 40(dst), 0, 0
-	blr
-#endif
+void J3DMtxProjConcat(Mtx mtx1, Mtx mtx2, Mtx dst) {
+    f32* m2 = &mtx2[0][0];
+
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 4; j++) {
+            dst[i][j] = mtx1[i][0] * m2[0 * 4 + j] +
+                        mtx1[i][1] * m2[1 * 4 + j] +
+                        mtx1[i][2] * m2[2 * 4 + j] +
+                        mtx1[i][3] * m2[3 * 4 + j];
+        }
+    }
 }
 
 static f32 Unit01[2] = {
@@ -410,7 +272,7 @@ static f32 Unit01[2] = {
 };
 
 void J3DPSMtxArrayConcat(Mtx mA, Mtx mB, Mtx mAB, u32 count) {
-	std::cout << "J3DPSMtxArrayConcat() is stubbed and should be substituted with PSMtxConcat" << std::endl;
+	std::cout << "J3DPSMtxArrayConcat() is stubbed and might be substitutable with PSMtxConcat" << std::endl;
 }
 
 f32 const PSMulUnit01[] = {

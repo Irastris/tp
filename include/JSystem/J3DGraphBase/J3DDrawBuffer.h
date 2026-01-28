@@ -3,27 +3,8 @@
 
 #include "JSystem/J3DGraphBase/J3DSys.h"
 
-inline f32 J3DCalcZValue(__REGISTER MtxP m, __REGISTER Vec v) {
-#ifdef __MWERKS__
-    __REGISTER f32 temp_f4;
-    __REGISTER f32 out;
-    __REGISTER f32 temp_f0;
-    __REGISTER f32 temp_f2;
-    __REGISTER f32 temp_f1 = 1.0f;
-
-    asm {
-        psq_l temp_f0, 0(v), 0, 0 /* qr0 */
-        lfs temp_f2, 8(v)
-        psq_l temp_f4, 32(m), 0, 0 /* qr0 */
-        psq_l out, 40(m), 0, 0 /* qr0 */
-        ps_merge00 temp_f2, temp_f2, temp_f1
-        ps_mul temp_f4, temp_f0, temp_f4
-        ps_madd out, temp_f2, out, temp_f4
-        ps_sum0 out, out, out, out
-    }
-
-    return out;
-#endif
+inline f32 J3DCalcZValue(MtxP m, Vec* v) {
+    return m[2][0] * v->x + m[2][1] * v->y + m[2][2] * v->z + m[2][3];
 }
 
 class J3DDrawBuffer;
