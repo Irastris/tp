@@ -89,19 +89,19 @@ inline void gekko_ps_copy16(void* dst, const void* src) {
 };  // namespace JMath
 
 namespace JMathInlineVEC {
-    inline void C_VECAdd(__REGISTER const Vec* a, __REGISTER const Vec* b, __REGISTER Vec* ab) {
+    inline void C_VECAdd(const Vec* a, const Vec* b, Vec* ab) {
         std::cout << "JMathInlineVec::C_VECAdd() is stubbed and should be substituted with Aurora" << std::endl;
     }
 
-    inline void C_VECSubtract(__REGISTER const Vec* a, __REGISTER const Vec* b, __REGISTER Vec* ab) {
+    inline void C_VECSubtract(const Vec* a, const Vec* b, Vec* ab) {
         std::cout << "JMathInlineVec::C_VECSubtract() is stubbed and should be substituted with Aurora" << std::endl;
     }
 
-    inline f32 C_VECSquareMag(__REGISTER const Vec* v) {
+    inline f32 C_VECSquareMag(const Vec* v) {
         std::cout << "JMathInlineVec::C_VECSquareMag() is stubbed and should be substituted with Aurora" << std::endl;
     }
 
-    inline f32 C_VECDotProduct(__REGISTER const Vec *a, __REGISTER const Vec *b) {
+    inline f32 C_VECDotProduct(const Vec *a, const Vec *b) {
         std::cout << "JMathInlineVec::C_VECDotProduct() is stubbed and should be substituted with Aurora" << std::endl;
     }
 };

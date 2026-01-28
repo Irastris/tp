@@ -256,7 +256,7 @@ struct TVec3<f32> : public Vec {
         z = other.z * sc;
     }
 
-    void scaleAdd(__REGISTER f32 sc, const TVec3<f32>& a, const TVec3<f32>& b) {
+    void scaleAdd(f32 sc, const TVec3<f32>& a, const TVec3<f32>& b) {
         JMAVECScaleAdd(&a, &b, this, sc);
     }
 
