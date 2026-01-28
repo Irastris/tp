@@ -1,7 +1,7 @@
 #include "JSystem/JSystem.h"
 #include "JSystem/JUtility/JUTPalette.h"
 #include <dolphin/gx.h>
-// #include <dolphin/os.h>
+#include <dolphin/os.h>
 
 void JUTPalette::storeTLUT(GXTlut param_0, ResTLUT* tlut) {
     mTlutName = param_0;

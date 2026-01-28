@@ -1,37 +1,29 @@
-inline s16 __OSf32tos16(__REGISTER f32 inF) {
-    __REGISTER s16 out;
-    u32 tmp;
-    __REGISTER u32* tmpPtr = &tmp;
-    // clang-format off
-#ifdef __MWERKS__
-    asm {
-        psq_st inF, 0(tmpPtr), 0x1, 5
-        lha out, 0(tmpPtr)
+inline s16 __OSf32tos16(f32 inF) {
+    if (inF >= 32767.0f) {
+        return 32767;
     }
-#endif
-    // clang-format on
 
-    return out;
+    if (inF <= -32768.0f) {
+        return -32768;
+    }
+
+    return static_cast<s16>(inF);
 }
 
 inline void OSf32tos16(f32* f, s16* out) {
     *out = __OSf32tos16(*f);
 }
 
-inline u8 __OSf32tou8(__REGISTER f32 inF) {
-    __REGISTER u8 out;
-    u32 tmp;
-    __REGISTER u32* tmpPtr = &tmp;
-    // clang-format off
-#ifdef __MWERKS__
-    asm {
-        psq_st inF, 0(tmpPtr), 0x1, 2
-        lbz out, 0(tmpPtr)
+inline u8 __OSf32tou8(f32 inF) {
+    if (inF >= 255.0f) {
+        return 255;
     }
-#endif
-    // clang-format on
 
-    return out;
+    if (inF <= 0.0f) {
+        return 0;
+    }
+
+    return static_cast<u8>(inF);
 }
 
 inline void OSf32tou8(f32* f, u8* out) {

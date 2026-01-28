@@ -7,19 +7,22 @@
 // #include <dolphin/gd.h>
 
 inline void J3DGDWrite_u8(u8 data) {
-    __GDWrite(data);
+    std::cout << "J3DGDWrite_u8() is stubbed" << std::endl;
+    // __GDWrite(data);
 }
 
 inline void J3DGDWrite_u16(u16 data) {
-    __GDWrite((u8)((data >> 8)));
-    __GDWrite((u8)((data >> 0) & 0xFF));
+    std::cout << "J3DGDWrite_u16() is stubbed" << std::endl;
+    /* __GDWrite((u8)((data >> 8)));
+    __GDWrite((u8)((data >> 0) & 0xFF)); */
 }
 
 inline void J3DGDWrite_u32(u32 data) {
-    __GDWrite((u8)((data >> 24) & 0xFF));
+    std::cout << "J3DGDWrite_u32() is stubbed" << std::endl;
+    /* __GDWrite((u8)((data >> 24) & 0xFF));
     __GDWrite((u8)((data >> 16) & 0xFF));
     __GDWrite((u8)((data >> 8) & 0xFF));
-    __GDWrite((u8)((data >> 0) & 0xFF));
+    __GDWrite((u8)((data >> 0) & 0xFF)); */
 }
 
 inline void J3DGDWrite_f32(f32 data) {
