@@ -4,6 +4,9 @@
 #include "JSystem/JKernel/JKRDisposer.h"
 // #include <dolphin/dolphin.h>
 
+// TODO: Not originally included directly
+#include <dolphin/pad.h>
+
 typedef void (*callbackFn)(int, void*);
 
 struct JUTGamePadRecordBase {
@@ -49,7 +52,7 @@ public:
     void clear();
     static u32 read();
     void assign();
-    void checkResetCallback(OSTime holdTime);
+    // void checkResetCallback(OSTime holdTime);
     void update();
     void stopPatternedRumble() { mRumble.stopPatternedRumble(mPortNum); }
     void setButtonRepeat(u32, u32, u32);
@@ -137,7 +140,7 @@ public:
         static u32 sResetMaskPattern;
         static callbackFn sCallback;
         static void* sCallbackArg;
-        static OSTime sThreshold;
+        // static OSTime sThreshold;
         static s32 sResetOccurredPort;
         static bool sResetOccurred;
         static bool sResetSwitchPushing;
@@ -237,7 +240,7 @@ public:
     JUTGamePadRecordBase* mPadReplay;
     C3ButtonReset mButtonReset;
     u8 field_0x9c[4];
-    OSTime mResetHoldStartTime;
+    // OSTime mResetHoldStartTime;
     u8 field_0xa8;
 };
 
@@ -256,7 +259,7 @@ struct JUTGamePadLongPress {
     u32 mMaskPattern;
     u32 mThreshold;
     bool mLongPressStatus[4];
-    OSTime mStartHoldTime[4];
+    // OSTime mStartHoldTime[4];
     bool field_0x48[4];
     void (*mCallback)(s32, JUTGamePadLongPress*, s32);
     s32 field_0x50;

@@ -2291,8 +2291,7 @@ void mDoExt_3DlineMat1_c::draw() {
     mIsDrawn ^= (u8)1;
 }
 
-void mDoExt_3DlineMat1_c::update(int param_0, f32 param_1, _GXColor& param_2, u16 param_3,
-                                     dKy_tevstr_c* param_4) {
+void mDoExt_3DlineMat1_c::update(int param_0, f32 param_1, GXColor& param_2, u16 param_3, dKy_tevstr_c* param_4) {
     mColor = param_2;
     this->mpTevStr = param_4;
     if (param_0 < 0) {
@@ -2461,7 +2460,7 @@ void mDoExt_3DlineMat2_c::setMaterial() {
     GXLoadNrmMtxImm(cMtx_getIdentity(), 0);
 }
 
-void mDoExt_3DlineMat1_c::update(int param_0, _GXColor& param_2, dKy_tevstr_c* param_4) {
+void mDoExt_3DlineMat1_c::update(int param_0, GXColor& param_2, dKy_tevstr_c* param_4) {
     mColor = param_2;
     this->mpTevStr = param_4;
     if (param_0 < 0) {

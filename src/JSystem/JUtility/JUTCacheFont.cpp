@@ -1,6 +1,6 @@
 #include "JSystem/JSystem.h"
 #include "JSystem/JUtility/JUTCacheFont.h"
-#include "JSystem/JKernel/JKRAram.h"
+// #include "JSystem/JKernel/JKRAram.h"
 #include <dolphin/gx.h>
 #include <cstdint>
 
@@ -25,7 +25,7 @@ void JUTCacheFont::deleteMemBlocks_CacheFont() {
         delete[] mCacheBuffer;
     }
 
-    JKRFreeToAram(field_0xac);
+    // JKRFreeToAram(field_0xac);
     delete mInf1Ptr;
     delete mMemBlocks;
     delete field_0x7c;
@@ -179,7 +179,7 @@ bool JUTCacheFont::allocArea(void* cacheBuffer, u32 param_1, JKRHeap* heap) {
             return false;
         }
 
-        field_0xac = JKRAllocFromAram(mTotalGlySize - (mGly1BlockNum * sizeof(ResFONT::GLY1)), JKRAramHeap::HEAD);
+        // field_0xac = JKRAllocFromAram(mTotalGlySize - (mGly1BlockNum * sizeof(ResFONT::GLY1)), JKRAramHeap::HEAD);
         if (field_0xac == NULL) {
             return false;
         }
@@ -200,7 +200,6 @@ bool JUTCacheFont::allocArea(void* cacheBuffer, u32 param_1, JKRHeap* heap) {
     }
 
     if (cacheBuffer != NULL) {
-        JUT_ASSERT(352, ( (u32)cacheBuffer & 0x1f ) == 0);
         mCacheBuffer = cacheBuffer;
         field_0xb0 = 0;
     } else {
@@ -256,7 +255,6 @@ void JUTCacheFont::setBlock() {
         case 'INF1':
             memcpy(mInf1Ptr, pData, 0x20);
             u = mInf1Ptr->fontType;
-            JUT_ASSERT(448, u < suAboutEncoding_);
             mIsLeadByte = &JUTResFont::saoAboutEncoding_[u];
             break;
         case 'WID1':
@@ -267,8 +265,8 @@ void JUTCacheFont::setBlock() {
             break;
         case 'GLY1':
             memcpy(piVar5, pData, 0x20);
-            JKRAramBlock* iVar1;
-            iVar1 = JKRMainRamToAram((u8*)pData + 0x20, aramAddress, pData[1] - 0x20, EXPAND_SWITCH_UNKNOWN0, 0, NULL, 0xffffffff, NULL);
+            /* JKRAramBlock* iVar1;
+            iVar1 = JKRMainRamToAram((u8*)pData + 0x20, aramAddress, pData[1] - 0x20, EXPAND_SWITCH_UNKNOWN0, 0, NULL, 0xffffffff, NULL); */
             piVar5->magic = aramAddress;
             if (piVar5->textureSize > mMaxSheetSize) {
                 mMaxSheetSize = piVar5->textureSize;
@@ -334,12 +332,12 @@ void JUTCacheFont::getGlyphFromAram(JUTCacheFont::TGlyphCacheInfo* param_0, JUTC
     pGylphCacheInfo->field_0xa = pGylphCacheInfo->field_0xa < local_30 ? pGylphCacheInfo->field_0xa : local_30;
     *param_3 = iVar2;
     *r30 -= iVar2 * iVar3;
-    u8* result = JKRAramToMainRam((u32)param_0->mPrev + pGylphCacheInfo->field_0x10 * iVar2, pCachePage->mImage, pGylphCacheInfo->field_0x10, EXPAND_SWITCH_UNKNOWN0, 0, NULL, 0xffffffff, NULL);
+    // u8* result = JKRAramToMainRam((u32)param_0->mPrev + pGylphCacheInfo->field_0x10 * iVar2, pCachePage->mImage, pGylphCacheInfo->field_0x10, EXPAND_SWITCH_UNKNOWN0, 0, NULL, 0xffffffff, NULL);
     GXInitTexObj(&pCachePage->mTexObj, pCachePage->mImage, pGylphCacheInfo->mWidth, pGylphCacheInfo->mHeight, (GXTexFmt)pGylphCacheInfo->mTexFormat, GX_CLAMP, GX_CLAMP, GX_FALSE);
     GXInitTexObjLOD(&pCachePage->mTexObj, GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
 }
 
-void JUTCacheFont::loadImage(int param_0, _GXTexMapID texMapId) {
+void JUTCacheFont::loadImage(int param_0, GXTexMapID texMapId) {
     TCachePage* cachePage = loadCache_char_subroutine(&param_0, false);
     if (cachePage != NULL) {
         mWidth = cachePage->field_0xc * (param_0 % (int)cachePage->field_0x16);

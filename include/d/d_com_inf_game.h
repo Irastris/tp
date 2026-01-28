@@ -4222,10 +4222,8 @@ inline JPABaseEmitter* dComIfGp_particle_setColor(u16 param_0, const cXyz* i_pos
                                       NULL, NULL, NULL, -1, NULL);
 }
 
-inline void dComIfGp_particle_setSimple(u16 param_0, cXyz* i_pos, u8 param_2, _GXColor& param_3,
-                                        _GXColor& param_4, int param_5, float param_6) {
-    g_dComIfG_gameInfo.play.getParticle()->setSimple(param_0, i_pos, 0, param_2, param_3, param_4,
-                                                     param_5, param_6);
+inline void dComIfGp_particle_setSimple(u16 param_0, cXyz* i_pos, u8 param_2, GXColor& param_3, GXColor& param_4, int param_5, float param_6) {
+    g_dComIfG_gameInfo.play.getParticle()->setSimple(param_0, i_pos, 0, param_2, param_3, param_4, param_5, param_6);
 }
 
 inline void dComIfGp_particle_levelEmitterOnEventMove(u32 param_0) {

@@ -172,7 +172,7 @@ callbackFn JUTGamePad::C3ButtonReset::sCallback;
 
 void* JUTGamePad::C3ButtonReset::sCallbackArg;
 
-OSTime JUTGamePad::C3ButtonReset::sThreshold = (OSTime)(OS_TIMER_CLOCK / 60) * 30;
+// OSTime JUTGamePad::C3ButtonReset::sThreshold = (OSTime)(OS_TIMER_CLOCK / 60) * 30;
 
 bool JUTGamePad::C3ButtonReset::sResetSwitchPushing;
 
@@ -180,7 +180,7 @@ bool JUTGamePad::C3ButtonReset::sResetOccurred;
 
 s32 JUTGamePad::C3ButtonReset::sResetOccurredPort;
 
-void JUTGamePad::checkResetCallback(OSTime holdTime) {
+/* void JUTGamePad::checkResetCallback(OSTime holdTime) {
     if (holdTime >= JUTGamePad::C3ButtonReset::sThreshold) {
         JUTGamePad::C3ButtonReset::sResetOccurred = true;
         JUTGamePad::C3ButtonReset::sResetOccurredPort = mPortNum;
@@ -189,7 +189,7 @@ void JUTGamePad::checkResetCallback(OSTime holdTime) {
             JUTGamePad::C3ButtonReset::sCallback(mPortNum, JUTGamePad::C3ButtonReset::sCallbackArg);
         }
     }
-}
+} */
 
 f32 JUTGamePad::CStick::sPressPoint = 0.5f;
 
@@ -212,7 +212,7 @@ void JUTGamePad::update() {
             mButtonReset.mReset = false;
         } else if (!JUTGamePad::C3ButtonReset::sResetOccurred) {
             if (mButtonReset.mReset == true) {
-                OSTime hold_time = OSGetTime() - mResetHoldStartTime;
+                // OSTime hold_time = OSGetTime() - mResetHoldStartTime;
                 checkResetCallback(hold_time);
             } else {
                 mButtonReset.mReset = true;
@@ -225,7 +225,7 @@ void JUTGamePad::update() {
                 if (mPortNum >= 0 && mPortNum < 4) {
                     if ((mButton.mButton & pad->getMaskPattern()) == pad->getPattern()) {
                         if (pad->mLongPressStatus[mPortNum] == true) {
-                            OSTime hold_time = OSGetTime() - pad->mStartHoldTime[mPortNum];
+                            // OSTime hold_time = OSGetTime() - pad->mStartHoldTime[mPortNum];
                             pad->checkCallback(mPortNum, hold_time);
                         } else {
                             pad->mLongPressStatus[mPortNum] = true;

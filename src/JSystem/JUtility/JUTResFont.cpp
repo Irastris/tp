@@ -126,7 +126,6 @@ void JUTResFont::setBlock() {
         case 'INF1': {
             mInf1Ptr = (ResFONT::INF1*)data;
             u32 u = mInf1Ptr->fontType;
-            JUT_ASSERT(244, u < suAboutEncoding_);
             mIsLeadByte = &saoAboutEncoding_[u];
             break;
         }

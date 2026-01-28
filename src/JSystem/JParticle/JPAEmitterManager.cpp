@@ -32,11 +32,7 @@ JPAEmitterManager::JPAEmitterManager(u32 i_ptclNum, u32 i_emtrNum, JKRHeap* pHea
 JPABaseEmitter* JPAEmitterManager::createSimpleEmitterID(JGeometry::TVec3<f32> const& pos, u16 resID, u8 group_id, u8 res_mgr_id, JPAEmitterCallBack* emtrCB, JPAParticleCallBack* ptclCB) {
     JPAResource* pRes = pResMgrAry[res_mgr_id]->getResource(resID);
 
-    if (pRes == NULL) {
-        JUT_WARN_DEVICE(94, 3, "JPA : User Index %d is NOT exist\n", resID);
-    } else if (mFreeEmtrList.getNumLinks() == 0) {
-        JUT_WARN_DEVICE(97, 3, "JPA : Can NOT create emitter more\n");
-    } else {
+    if (pRes != NULL && mFreeEmtrList.getNumLinks() != 0) {
         JSULink<JPABaseEmitter>* pLink = mFreeEmtrList.getFirst();
         mFreeEmtrList.remove(pLink);
         pEmtrUseList[group_id].append(pLink);

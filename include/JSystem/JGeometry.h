@@ -283,7 +283,7 @@ struct TVec3<f32> : public Vec {
     }
 
     void cross(const TVec3<f32>& a, const TVec3<f32>& b) {
-        PSVECCrossProduct(&a, &b, this);
+        VECCrossProduct(&a, &b, this);
     }
 
     f32 setLength(f32 len) {

@@ -32,7 +32,6 @@ f32 JUTFont::drawString_size_scale(f32 a1, f32 a2, f32 a3, f32 a4, const char* s
         u32 c = *(u8*)str;
         u32 b = c;
         if (isLeadByte(b)) {
-            JUT_ASSERT(114, usz >= 2);
             usz--;
             str++;
             b <<= 8;

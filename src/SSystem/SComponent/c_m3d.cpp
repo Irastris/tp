@@ -504,7 +504,7 @@ bool cM3d_Cross_MinMaxBoxLine(Vec const* param_0, Vec const* param_1, Vec const*
             return true;
         }
     }
-    
+
     if ((uVar3 ^ uVar4) & BPCP_OUTCODE4) {
         cM3dGPla plane;
         plane.mNormal.x = 0.0f;
@@ -602,14 +602,14 @@ static bool cM3d_InclusionCheckPosIn3PosBox2d(f32 param_1, f32 param_2, f32 para
     }
 
     if (f31 > param_5) {
-        f31 = param_5;   
+        f31 = param_5;
     } else if (f30 < param_5) {
         f30 = param_5;
     }
 
     if (f31 - f29 > param_7 || f30 + f29 < param_7) {
         return false;
-    } 
+    }
 
     if (param_2 < param_4) {
         f31 = param_2;
@@ -624,7 +624,7 @@ static bool cM3d_InclusionCheckPosIn3PosBox2d(f32 param_1, f32 param_2, f32 para
     } else if (f30 < param_6) {
         f30 = param_6;
     }
-    
+
     if (f31 - f29 > param_8 || f30 + f29 < param_8)
     {
         return false;
@@ -960,7 +960,7 @@ bool cM3d_Cross_LinTri(cM3dGLin const* line, cM3dGTri const* tri, Vec* vec, bool
     if (!cM3d_Cross_LinPla(line, tri, vec, param_3, param_4)) {
         return false;
     }
-    
+
     if ((fabsf(tri->GetNP()->x) < 0.008f || cM3d_CrossX_LinTri_proc(tri, vec))
         && (fabsf(tri->GetNP()->y) < 0.008f || cM3d_CrossY_LinTri_proc(tri, vec))
         && (fabsf(tri->GetNP()->z) < 0.008f || cM3d_CrossZ_LinTri_proc(tri, vec)))
@@ -1280,7 +1280,7 @@ bool cM3d_Cross_CylCyl(cM3dGCyl const* cyl1, cM3dGCyl const* cyl2, f32* param_2)
     f32 delta_z = center1.z - center2.z;
     f32 dist_sq = delta_x * delta_x + delta_z * delta_z;
     f32 radius_sum = cyl1->GetR() + cyl2->GetR();
-    
+
     if (dist_sq > radius_sum * radius_sum) {
         *param_2 = 0.0f;
         return false;
@@ -1302,7 +1302,7 @@ bool cM3d_Cross_CylCyl(cM3dGCyl const* cyl1, cM3dGCyl const* cyl2, Vec* param_2)
     f32 delta_z = center1.z - center2.z;
     f32 dist_sq = delta_x * delta_x + delta_z * delta_z;
     f32 radius_sum = cyl1->GetR() + cyl2->GetR();
-    
+
     if (dist_sq > radius_sum * radius_sum) {
         return false;
     }
@@ -1336,7 +1336,7 @@ bool cM3d_Cross_CylCyl(cM3dGCyl const* cyl1, cM3dGCyl const* cyl2, Vec* param_2)
 bool cM3d_Cross_CylTri(cM3dGCyl const* cyl, cM3dGTri const* tri, Vec* param_2) {
     const Vec& center = cyl->GetC();
     f32 top_y = center.y + cyl->GetH();
-    
+
     if ((center.y > tri->mA.y && center.y > tri->mB.y && center.y > tri->mC.y)
         || (top_y < tri->mA.y && top_y < tri->mB.y && top_y < tri->mC.y))
     {

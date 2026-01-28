@@ -30,7 +30,7 @@ public:
     virtual int getFontType() const;
     virtual ResFONT* getResFont() const;
     virtual bool isLeadByte(int) const;
-    virtual void loadImage(int, _GXTexMapID);
+    virtual void loadImage(int, GXTexMapID);
     virtual void setBlock();
 
     JUTResFont(ResFONT const*, JKRHeap*);
@@ -40,7 +40,7 @@ public:
     bool initiate(ResFONT const*, JKRHeap*);
     bool protected_initiate(ResFONT const*, JKRHeap*);
     void countBlock();
-    void loadFont(int, _GXTexMapID, JUTFont::TWidth*);
+    void loadFont(int, GXTexMapID, JUTFont::TWidth*);
     int getFontCode(int) const;
     int convertSjis(int, u16*) const;
 

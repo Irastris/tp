@@ -34,34 +34,34 @@ public:
     u8 isAntiAliasing() const { return u8(mRenderObj->aa); }
     Pattern getSamplePattern() const { return mRenderObj->sample_pattern; }
     u8* getVFilter() const { return mRenderObj->vfilter; }
-    OSMessageQueue* getMessageQueue() { return &mMessageQueue; }
+    // OSMessageQueue* getMessageQueue() { return &mMessageQueue; }
 
     static JUTVideo* getManager() { return sManager; }
-    static OSTick getVideoInterval() { return sVideoInterval; }
-    static OSTick getVideoLastTick() { return sVideoLastTick; }
+    /* static OSTick getVideoInterval() { return sVideoInterval; }
+    static OSTick getVideoLastTick() { return sVideoLastTick; } */
 
     GXRenderModeObj* getRenderMode() const { return mRenderObj; }
 
 private:
     static JUTVideo* sManager;
-    static OSTick sVideoLastTick;
-    static OSTick sVideoInterval;
+    /* static OSTick sVideoLastTick;
+    static OSTick sVideoInterval; */
 
 private:
-    _GXRenderModeObj* mRenderObj;
+    GXRenderModeObj* mRenderObj;
     u32 field_0x8;
     u32 mRetraceCount;
     u32 field_0x10;
     u32 field_0x14;
     u32 field_0x18;
-    VIRetraceCallback mPreRetraceCallback;
-    VIRetraceCallback mPostRetraceCallback;
+    /* VIRetraceCallback mPreRetraceCallback;
+    VIRetraceCallback mPostRetraceCallback; */
     Callback mPreCallback;
     Callback mPostCallback;
     bool mSetBlack;
     s32 mSetBlackFrameCount;
-    OSMessage mMessage;
-    OSMessageQueue mMessageQueue;
+    // OSMessage mMessage;
+    // OSMessageQueue mMessageQueue;
 };
 
 inline JUTVideo* JUTGetVideoManager() {

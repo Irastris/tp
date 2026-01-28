@@ -8,7 +8,7 @@ void cM2d_CrossCirLin(cM2dGCir& param_0, f32 param_1, f32 param_2, f32 param_3, 
     f32 fVar15 = param_2 - param_0.GetCy();
     f32 dVar13 = param_3 * param_3 + param_4 * param_4;
     f32 dVar14 = 2.0f * ((param_3 * fVar1) + (param_4 * fVar15));
-    
+
     f32 c = (fVar1 * fVar1 + fVar15 * fVar15) - (param_0.GetR() * param_0.GetR());
 
     f32 t;

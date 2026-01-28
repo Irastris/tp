@@ -6,13 +6,12 @@
 
 JUTVideo* JUTVideo::sManager;
 
-OSTick JUTVideo::sVideoLastTick;
-
-OSTick JUTVideo::sVideoInterval;
+/* OSTick JUTVideo::sVideoLastTick;
+OSTick JUTVideo::sVideoInterval; */
 
 static bool data_80451544;
 
-JUTVideo* JUTVideo::createManager(_GXRenderModeObj const* param_0) {
+JUTVideo* JUTVideo::createManager(GXRenderModeObj const* param_0) {
     if (sManager == NULL) {
         sManager = new JUTVideo(param_0);
     }
@@ -62,7 +61,7 @@ void JUTVideo::preRetraceProc(u32 retrace_count) {
         (*sManager->mPreCallback)(retrace_count);
     }
 
-    OSTick tick = OSGetTick();
+    // OSTick tick = OSGetTick();
     sVideoInterval = tick - sVideoLastTick;
     sVideoLastTick = tick;
 
@@ -171,7 +170,7 @@ void JUTVideo::postRetraceProc(u32 retrace_count) {
         sManager->mPostCallback(retrace_count);
     }
 
-    OSSendMessage(&sManager->mMessageQueue, (OSMessage)VIGetRetraceCount(), OS_MESSAGE_NOBLOCK);
+    // OSSendMessage(&sManager->mMessageQueue, (OSMessage)VIGetRetraceCount(), OS_MESSAGE_NOBLOCK);
 }
 
 void JUTVideo::setRenderMode(GXRenderModeObj const* pObj) {
