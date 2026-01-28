@@ -3633,13 +3633,13 @@ inline void dComIfGp_roomControl_setStayNo(int stayNo) {
 
 /* inline void dComIfGp_roomControl_setZoneNo(int roomNo, int zoneNo) {
     g_dComIfG_gameInfo.play.getRoomControl()->setZoneNo(roomNo, zoneNo);
-} */
+}
 
 inline dKy_tevstr_c* dComIfGp_roomControl_getTevStr(int i_roomNo) {
     return g_dComIfG_gameInfo.play.getRoomControl()->getTevStr(i_roomNo);
 }
 
-/* inline BOOL dComIfGp_roomControl_checkRoomDisp(int i_roomNo) {
+inline BOOL dComIfGp_roomControl_checkRoomDisp(int i_roomNo) {
     return g_dComIfG_gameInfo.play.getRoomControl()->checkRoomDisp(i_roomNo);
 }
 

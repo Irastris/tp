@@ -5,7 +5,7 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include <dolphin/mtx.h>
 
-# TODO: Deduplicate instances of this
+// TODO: Deduplicate instances of this
 typedef const f32 (*CMtxP)[4];
 
 void mDoMtx_XYZrotS(Mtx, s16, s16, s16);
