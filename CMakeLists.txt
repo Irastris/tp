@@ -61,6 +61,24 @@ set(GAME_FILES
 )
 
 set(JSYS_FILES
+    src/JSystem/J2DGraph/J2DAnimation.cpp
+    src/JSystem/J2DGraph/J2DAnmLoader.cpp
+    src/JSystem/J2DGraph/J2DGrafContext.cpp
+    src/JSystem/J2DGraph/J2DManage.cpp
+    src/JSystem/J2DGraph/J2DMatBlock.cpp
+    src/JSystem/J2DGraph/J2DMaterial.cpp
+    src/JSystem/J2DGraph/J2DMaterialFactory.cpp
+    src/JSystem/J2DGraph/J2DOrthoGraph.cpp
+    src/JSystem/J2DGraph/J2DPane.cpp
+    src/JSystem/J2DGraph/J2DPicture.cpp
+    src/JSystem/J2DGraph/J2DPictureEx.cpp
+    src/JSystem/J2DGraph/J2DPrint.cpp
+    src/JSystem/J2DGraph/J2DScreen.cpp
+    src/JSystem/J2DGraph/J2DTevs.cpp
+    src/JSystem/J2DGraph/J2DTextBox.cpp
+    src/JSystem/J2DGraph/J2DTextBoxEx.cpp
+    src/JSystem/J2DGraph/J2DWindow.cpp
+    src/JSystem/J2DGraph/J2DWindowEx.cpp
     src/JSystem/JFramework/JFWSystem.cpp
     src/JSystem/JKernel/JKRDisposer.cpp
     src/JSystem/JKernel/JKRExpHeap.cpp
