@@ -1,6 +1,8 @@
 #ifndef J3DMODEL_H
 #define J3DMODEL_H
 
+#include <iostream>
+
 #include "JSystem/J3DGraphAnimator/J3DSkinDeform.h"
 #include "JSystem/J3DGraphBase/J3DPacket.h"
 #include <dolphin/types.h>

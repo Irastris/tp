@@ -64,24 +64,30 @@ void J3DDisplayListObj::callDL() const {
     GXCallDisplayList(mpDisplayList[0], mSize);
 }
 
-GDLObj J3DDisplayListObj::sGDLObj;
+// GDLObj J3DDisplayListObj::sGDLObj;
 
 s32 J3DDisplayListObj::sInterruptFlag;
 
 void J3DDisplayListObj::beginDL() {
-    swapBuffer();
+    std::cout << "J3DDisplayListObj::beginDL() is stubbed" << std::endl;
+
+    /* swapBuffer();
     sInterruptFlag = OSDisableInterrupts();
     GDInitGDLObj(&sGDLObj, (u8*)mpDisplayList[0], mMaxSize);
-    GDSetCurrent(&sGDLObj);
+    GDSetCurrent(&sGDLObj); */
 }
 
 u32 J3DDisplayListObj::endDL() {
-    GDPadCurr32();
+    std::cout << "J3DDisplayListObj::endDL() is stubbed" << std::endl;
+
+    /* GDPadCurr32();
     OSRestoreInterrupts(sInterruptFlag);
     mSize = GDGetGDLObjOffset(&sGDLObj);
     GDFlushCurrToMem();
     GDSetCurrent(NULL);
-    return mSize;
+    return mSize; */
+
+    return 1;
 }
 
 void J3DDisplayListObj::beginPatch() {

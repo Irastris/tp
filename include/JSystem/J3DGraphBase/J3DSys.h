@@ -1,6 +1,8 @@
 #ifndef J3DSYS_H
 #define J3DSYS_H
 
+#include <iostream>
+
 #include <dolphin/gx.h>
 #include <dolphin/mtx.h>
 
@@ -136,13 +138,15 @@ struct J3DSys {
     bool checkFlag(u32 flag) { return mFlags & flag ? true : false; }
 
     void setModelDrawMtx(Mtx* pMtxArr) {
-        mModelDrawMtx = pMtxArr;
-        GXSetArray(GX_POS_MTX_ARRAY, mModelDrawMtx, sizeof(*mModelDrawMtx));
+        std::cout << "setModelDrawMtx() is stubbed" << std::endl;
+        /* mModelDrawMtx = pMtxArr;
+        GXSetArray(GX_POS_MTX_ARRAY, mModelDrawMtx, sizeof(*mModelDrawMtx)); */
     }
 
     void setModelNrmMtx(Mtx33* pMtxArr) {
-        mModelNrmMtx = pMtxArr;
-        GXSetArray(GX_NRM_MTX_ARRAY, mModelNrmMtx, sizeof(*mModelNrmMtx));
+        std::cout << "setModelNrmMtx() is stubbed" << std::endl;
+        /* mModelNrmMtx = pMtxArr;
+        GXSetArray(GX_NRM_MTX_ARRAY, mModelNrmMtx, sizeof(*mModelNrmMtx)); */
     }
 
     Mtx& getModelDrawMtx(u16 no) { return mModelDrawMtx[no]; }

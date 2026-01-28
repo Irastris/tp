@@ -6,6 +6,10 @@
 #include "JSystem/JSupport/JSURandomInputStream.h"
 #include "JSystem/JUtility/JUTResource.h"
 
+// TODO: Deduplicate instances of this
+#define M_PI 3.14159265358979323846f
+#define DEG_TO_RAD(degrees) (degrees * (M_PI / 180.0f))
+
 J2DPane::J2DPane() : mBounds(), mGlobalBounds(), mClipRect(), mPaneTree(this) {
     mTransform = NULL;
     mKind = 'PAN1';
@@ -38,14 +42,12 @@ void J2DPane::initiate() {
     calcMtx();
 }
 
-J2DPane::J2DPane(J2DPane* p_pane, bool visible, u64 tag, JGeometry::TBox2<f32> const& bounds)
-    : mBounds(), mGlobalBounds(), mClipRect(), mPaneTree(this) {
+J2DPane::J2DPane(J2DPane* p_pane, bool visible, u64 tag, JGeometry::TBox2<f32> const& bounds) : mBounds(), mGlobalBounds(), mClipRect(), mPaneTree(this) {
     mTransform = NULL;
     initialize(p_pane, visible, tag, bounds);
 }
 
-void J2DPane::initialize(J2DPane* p_pane, bool visible, u64 infoTag,
-                         JGeometry::TBox2<f32> const& bounds) {
+void J2DPane::initialize(J2DPane* p_pane, bool visible, u64 infoTag, JGeometry::TBox2<f32> const& bounds) {
     mKind = 'PAN1';
     mVisible = visible;
     mInfoTag = infoTag;
@@ -265,26 +267,7 @@ void J2DPane::draw(f32 x, f32 y, J2DGrafContext const* p_grafCtx, bool isOrthoGr
 
         if (parent != NULL) {
             mGlobalBounds.addPos(JGeometry::TVec2<f32>(parent->mGlobalBounds.i.x - parent->mBounds.i.x, parent->mGlobalBounds.i.y - parent->mBounds.i.y));
-#if !PLATFORM_GCN
-            f32 f28 = mPositionMtx[0][0];
-            f32 f27 = mPositionMtx[1][0];
-            f32 f26 = mPositionMtx[2][0];
-            if (getUserInfo() == 'n_43' && p_grafCtx->getGrafType() == 1) {
-                JGeometry::TBox2<f32>* bounds = ((J2DOrthoGraph*)p_grafCtx)->getBounds();
-                const JGeometry::TBox2<f32>* ortho = ((J2DOrthoGraph*)p_grafCtx)->getOrtho();
-                f32 f31 = 608.0f / (ortho->f.x - ortho->i.x);
-                mPositionMtx[0][0] *= f31;
-                mPositionMtx[0][1] *= f31;
-                mPositionMtx[0][2] *= f31;
-            }
-#endif
             MTXConcat(parent->mGlobalMtx, mPositionMtx, mGlobalMtx);
-#if !PLATFORM_GCN
-            mPositionMtx[0][0] = f28;
-            mPositionMtx[1][0] = f27;
-            mPositionMtx[2][0] = f26;
-#endif
-
             if (param_4) {
                 if (isOrthoGraf) {
                     mClipRect = mGlobalBounds;
@@ -297,27 +280,11 @@ void J2DPane::draw(f32 x, f32 y, J2DGrafContext const* p_grafCtx, bool isOrthoGr
                 }
             }
         } else {
-#if !PLATFORM_GCN
-            f32 f25 = mScaleX;
-            f32 f24 = mTranslateX;
-            if (getUserInfo() != 'n_43' && p_grafCtx->getGrafType() == 1) {
-                JGeometry::TBox2<f32>* bounds = ((J2DOrthoGraph*)p_grafCtx)->getBounds();
-                const JGeometry::TBox2<f32>* ortho = ((J2DOrthoGraph*)p_grafCtx)->getOrtho();
-                f32 f30 = (ortho->f.x - ortho->i.x) / 608.0f;
-                f32 f29 = 304.0f;
-                mScaleX *= f30;
-                mTranslateX = f30 * (mTranslateX - f29) + f29;
-            }
-#endif
             mGlobalBounds.addPos(JGeometry::TVec2<f32>(x, y));
             makeMatrix(mTranslateX + x, mTranslateY + y);
             MTXCopy(mPositionMtx, mGlobalMtx);
             mClipRect = mGlobalBounds;
             mColorAlpha = mAlpha;
-#if !PLATFORM_GCN
-            mScaleX = f25;
-            mTranslateX = f24;
-#endif
         }
 
         JGeometry::TBox2<f32> scissorBounds(0, 0, 0, 0);

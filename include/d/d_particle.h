@@ -340,7 +340,8 @@ public:
     void draw(JPADrawInfo*, u8);
     void setHitMark(u16, fopAc_ac_c*, cXyz const*, csXyz const*, cXyz const*, u32);
     void setWaterRipple(u32*, cBgS_PolyInfo&, cXyz const*, f32, dKy_tevstr_c const*, cXyz const*, s8);
-    JPABaseEmitter* set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*, u8, dPa_levelEcallBack*, s8, GXColor const*,  const*, cXyz const*, f32);
+    // JPABaseEmitter* set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*, u8, dPa_levelEcallBack*, s8, GXColor const*,  const*, cXyz const*, f32);
+    JPABaseEmitter* set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*, u8, dPa_levelEcallBack*, s8, GXColor const*, cXyz const*, f32);
     u32 set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*, u8, dPa_levelEcallBack*, s8, GXColor const*, GXColor const*, cXyz const*, f32);
     static s32 getPolyColor(cBgS_PolyInfo&, int, GXColor*, GXColor*, u8*, f32*);
     u32 setPoly(u32, u16, cBgS_PolyInfo&, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*, int, dPa_levelEcallBack*, s8, cXyz const*);
@@ -351,18 +352,10 @@ public:
     u32 setStopContinue(u32);
     u32 setSimpleFoot(u32, u32*, cBgS_PolyInfo&, cXyz const*, dKy_tevstr_c const*, int, csXyz const*, cXyz const*, dPa_levelEcallBack*, s8, cXyz const*);
     u16 setCommonPoly(u32*, cBgS_PolyInfo*, cXyz const*, cXyz const*, dKy_tevstr_c const*, u32, u32, csXyz const*, cXyz const*, s8);
-
     void forceOnEventMove(u32 param_0) { field_0x210.forceOnEventMove(param_0); }
     JPABaseEmitter* getEmitter(u32 param_0) { return field_0x210.getEmitter(param_0); }
-
-    u32 setNormal(u32 param_0, u16 param_1, const cXyz* i_pos, const dKy_tevstr_c* param_3, const csXyz* i_rotation, const cXyz* i_scale, u8 i_alpha, dPa_levelEcallBack* param_7, s8 param_8, const GXColor* param_9, const GXColor* param_10, const cXyz* param_11, f32 param_12) {
-        return set(param_0, 0, param_1, i_pos, param_3, i_rotation, i_scale, i_alpha, param_7, param_8, param_9, param_10, param_11, param_12);
-    }
-
-    JPABaseEmitter* setNormal(u16 param_1, const cXyz* i_pos, const dKy_tevstr_c* param_3, const csXyz* i_rotation, const cXyz* i_scale, u8 i_alpha, dPa_levelEcallBack* param_7, s8 param_8, const GXColor* param_9, const GXColor* param_10, const cXyz* param_11, f32 param_12) {
-        return set(0, param_1, i_pos, param_3, i_rotation, i_scale, i_alpha, param_7, param_8, param_9, param_10, param_11, param_12);
-    }
-
+    u32 setNormal(u32 param_0, u16 param_1, const cXyz* i_pos, const dKy_tevstr_c* param_3, const csXyz* i_rotation, const cXyz* i_scale, u8 i_alpha, dPa_levelEcallBack* param_7, s8 param_8, const GXColor* param_9, const GXColor* param_10, const cXyz* param_11, f32 param_12) { return set(param_0, 0, param_1, i_pos, param_3, i_rotation, i_scale, i_alpha, param_7, param_8, param_9, param_10, param_11, param_12); }
+    JPABaseEmitter* setNormal(u16 param_1, const cXyz* i_pos, const dKy_tevstr_c* param_3, const csXyz* i_rotation, const cXyz* i_scale, u8 i_alpha, dPa_levelEcallBack* param_7, s8 param_8, const GXColor* param_9, const GXColor* param_10, const cXyz* param_11, f32 param_12) { return set(0, param_1, i_pos, param_3, i_rotation, i_scale, i_alpha, param_7, param_8, param_9, param_10, param_11, param_12); }
     void drawFogPri0_B(JPADrawInfo* i_drawInfo) { draw(i_drawInfo, 7); }
     void drawNormalPri0_B(JPADrawInfo* i_drawInfo) { draw(i_drawInfo, 5); }
     void drawFogPri0_A(JPADrawInfo* i_drawInfo) { draw(i_drawInfo, 6); }

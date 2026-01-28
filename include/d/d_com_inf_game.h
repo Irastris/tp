@@ -11,8 +11,8 @@
 #include "d/d_particle.h"
 // #include "d/d_resorce.h"
 #include "d/d_save.h"
-/* #include "d/d_vibration.h"
-#include "d/d_drawlist.h" */
+// #include "d/d_vibration.h"
+#include "d/d_drawlist.h"
 #include "d/d_stage.h"
 // #include "f_op/f_op_actor.h"
 #include "global.h"
@@ -474,8 +474,8 @@ public:
 
     void setCurrentGrafPort(J2DOrthoGraph* i_graf) { mCurrentGrafPort = i_graf; }
     /* void setCurrentWindow(dDlst_window_c* i_window) { mCurrentWindow = i_window; }
-    void setCurrentView(view_class* i_view) { mCurrentView = i_view; }
-    void setCurrentViewport(view_port_class* i_viewport) { mCurrentViewport = i_viewport; } */
+    void setCurrentView(view_class* i_view) { mCurrentView = i_view; } */
+    void setCurrentViewport(view_port_class* i_viewport) { mCurrentViewport = i_viewport; }
     void setBaseAnimeID(u8 id) { mItemInfo.mBaseAnimeID = id; }
     void setFaceAnimeID(u8 id) { mItemInfo.mFaceAnimeID = id; }
 
@@ -997,8 +997,8 @@ public:
     u8 field_0x4ff0[0x8];
     __d_timer_info_c mTimerInfo;
     /* dDlst_window_c* mCurrentWindow;
-    view_class* mCurrentView;
-    view_port_class* mCurrentViewport; */
+    view_class* mCurrentView; */
+    view_port_class* mCurrentViewport;
     J2DOrthoGraph* mCurrentGrafPort;
     void* mItemTable;
     u8 field_0x501d[4];
@@ -1014,8 +1014,8 @@ public:
 
     dSv_info_c info;
     dComIfG_play_c play;
-    /* dDlst_list_c drawlist;
-    dRes_control_c mResControl; */
+    dDlst_list_c drawlist;
+    // dRes_control_c mResControl;
     u8 mFadeBrightness;
     u8 mWorldDark;
     s8 field_0x1ddfa;
@@ -3701,13 +3701,13 @@ inline void dComIfGp_setCurrentGrafPort(J2DOrthoGraph* i_graf) {
 
 inline void dComIfGp_setCurrentView(view_class* i_view) {
     g_dComIfG_gameInfo.play.setCurrentView(i_view);
-}
+} */
 
 inline void dComIfGp_setCurrentViewport(view_port_class* i_viewport) {
     g_dComIfG_gameInfo.play.setCurrentViewport(i_viewport);
 }
 
-inline s16 dComIfGp_getItemMaxBombNumCount() {
+/* inline s16 dComIfGp_getItemMaxBombNumCount() {
     return g_dComIfG_gameInfo.play.getItemMaxBombNumCount(fpcNm_ITEM_NORMAL_BOMB);
 }
 
@@ -4126,47 +4126,33 @@ inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* i_pos, co
     return g_dComIfG_gameInfo.play.getParticle()->setNormal(param_0, param_1, i_pos, param_3, i_rotation, i_scale, i_alpha, param_7, param_8, param_9, param_10, param_11, 1.0f);
 }
 
-/* inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* i_pos,
-                                 const csXyz* i_rotation, const cXyz* i_scale, u8 param_5,
-                                 dPa_levelEcallBack* param_6, s8 param_7, const GXColor* param_8,
-                                 const GXColor* param_9, const cXyz* param_10) {
-    return g_dComIfG_gameInfo.play.getParticle()->setNormal(
-        param_0, param_1, i_pos, NULL, i_rotation, i_scale, param_5, param_6, param_7, param_8,
-        param_9, param_10, 1.0f);
+/* inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* i_pos, const csXyz* i_rotation, const cXyz* i_scale, u8 param_5, dPa_levelEcallBack* param_6, s8 param_7, const GXColor* param_8, const GXColor* param_9, const cXyz* param_10) {
+    return g_dComIfG_gameInfo.play.getParticle()->setNormal(param_0, param_1, i_pos, NULL, i_rotation, i_scale, param_5, param_6, param_7, param_8, param_9, param_10, 1.0f);
 } */
 
 inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* i_pos, const dKy_tevstr_c* param_3) {
-    return dComIfGp_particle_set(param_0, param_1, i_pos, param_3, NULL, NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
+    return dComIfGp_particle_set(param_0, param_1, i_pos, param_3, NULL, NULL, 0xFF, NULL, -1, NULL, NULL); // Three nulls at the end originally
 }
 
 inline JPABaseEmitter* dComIfGp_particle_set(u16 i_resID, const cXyz* i_pos, const dKy_tevstr_c* param_3, const csXyz* i_rotation, const cXyz* i_scale, u8 i_alpha, dPa_levelEcallBack* i_callback, s8 param_8, const GXColor* i_prmColor, const GXColor* i_envColor, const cXyz* i_particleScale) {
     return g_dComIfG_gameInfo.play.getParticle()->setNormal(i_resID, i_pos, param_3, i_rotation, i_scale, i_alpha, i_callback, param_8, i_prmColor, i_envColor, i_particleScale, 1.0f);
 }
 
-/* inline JPABaseEmitter* dComIfGp_particle_set(u16 i_resID, const cXyz* i_pos,
-                                             const csXyz* i_rotation, const cXyz* i_scale,
-                                             u8 i_alpha, dPa_levelEcallBack* i_callback, s8 param_7,
-                                             const GXColor* i_prmColor, const GXColor* i_envColor,
-                                             const cXyz* i_particleScale) {
-    return g_dComIfG_gameInfo.play.getParticle()->setNormal(
-        i_resID, i_pos, NULL, i_rotation, i_scale, i_alpha, i_callback, param_7, i_prmColor,
-        i_envColor, i_particleScale, 1.0f);
+inline JPABaseEmitter* dComIfGp_particle_set(u16 i_resID, const cXyz* i_pos, const csXyz* i_rotation, const cXyz* i_scale, u8 i_alpha, dPa_levelEcallBack* i_callback, s8 param_7, const GXColor* i_prmColor, const GXColor* i_envColor, const cXyz* i_particleScale) {
+    return g_dComIfG_gameInfo.play.getParticle()->setNormal(i_resID, i_pos, NULL, i_rotation, i_scale, i_alpha, i_callback, param_7, i_prmColor, i_envColor, i_particleScale, 1.0f);
 }
 
-inline JPABaseEmitter* dComIfGp_particle_set(u16 i_resID, const cXyz* i_pos,
-                                             const csXyz* i_rotation, const cXyz* i_scale) {
-    return dComIfGp_particle_set(i_resID, i_pos, NULL, i_rotation, i_scale, 255, NULL, -1, NULL,
-                                 NULL, NULL);
-} */
+inline JPABaseEmitter* dComIfGp_particle_set(u16 i_resID, const cXyz* i_pos, const csXyz* i_rotation, const cXyz* i_scale) {
+    return dComIfGp_particle_set(i_resID, i_pos, NULL, i_rotation, i_scale, 255, NULL, -1, NULL, NULL); // Three nulls at the end originally
+}
 
 inline JPABaseEmitter* dComIfGp_particle_set(u16 i_resID, const cXyz* i_pos, const dKy_tevstr_c* param_2, const csXyz* i_rotation, const cXyz* i_scale) {
-    return dComIfGp_particle_set(i_resID, i_pos, param_2, i_rotation, i_scale, 255, NULL, -1, NULL,
-                                 NULL, NULL);
+    return dComIfGp_particle_set(i_resID, i_pos, param_2, i_rotation, i_scale, 255, NULL, -1, NULL, NULL); // Three nulls at the end originally
 }
 
-/* inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* i_pos, const csXyz* param_3, const cXyz* param_4) {
-    return dComIfGp_particle_set(param_0, param_1, i_pos, param_3, param_4, 0xFF, NULL, -1, NULL, NULL, NULL);
-} */
+inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* i_pos, const csXyz* param_3, const cXyz* param_4) {
+    return dComIfGp_particle_set(param_0, param_1, i_pos, param_3, param_4, 0xFF, NULL, -1, NULL, NULL); // Three nulls at the end originally
+}
 
 inline u32 dComIfGp_particle_setColor(u32 param_0, u16 param_1, const cXyz* i_pos, const dKy_tevstr_c* param_3, const GXColor* param_4, const GXColor* param_5, f32 param_6, u8 param_7, const csXyz* param_8, const cXyz* param_9, dPa_levelEcallBack* param_10, s8 param_11, const cXyz* param_12) {
     return g_dComIfG_gameInfo.play.getParticle()->setNormal(
@@ -4188,13 +4174,13 @@ inline JPABaseEmitter* dComIfGp_particle_setColor(u16 param_0, const cXyz* i_pos
 
 inline void dComIfGp_particle_levelEmitterOnEventMove(u32 param_0) {
     g_dComIfG_gameInfo.play.getParticle()->forceOnEventMove(param_0);
-}
+} */
 
 inline JPABaseEmitter* dComIfGp_particle_getEmitter(u32 param_0) {
     return g_dComIfG_gameInfo.play.getParticle()->getEmitter(param_0);
 }
 
-inline void dComIfGp_particle_levelExecute(u32 param_0) {
+/* inline void dComIfGp_particle_levelExecute(u32 param_0) {
     g_dComIfG_gameInfo.play.getParticle()->levelExecute(param_0);
 } */
 
@@ -4226,7 +4212,7 @@ inline int dComIfGd_setSimpleShadow(cXyz* pos, f32 param_1, f32 param_2, cXyz* p
     return g_dComIfG_gameInfo.drawlist.setSimpleShadow(pos, param_1, param_2, param_3, angle, param_5, tex);
 }
 
-/* inline bool dComIfGd_addRealShadow(u32 key, J3DModel* model) {
+inline bool dComIfGd_addRealShadow(u32 key, J3DModel* model) {
     return g_dComIfG_gameInfo.drawlist.addRealShadow(key, model);
 }
 
@@ -4255,21 +4241,21 @@ inline void dComIfGd_setCopy2D(dDlst_base_c* dlst) {
     g_dComIfG_gameInfo.drawlist.setCopy2D(dlst);
 }
 
-/* inline view_class* dComIfGd_getView() {
+inline view_class* dComIfGd_getView() {
     return g_dComIfG_gameInfo.drawlist.getView();
 }
 
 inline Mtx44* dComIfGd_getProjViewMtx() {
     return &(g_dComIfG_gameInfo.drawlist.getView()->projViewMtx);
-} */
+}
 
 inline MtxP dComIfGd_getInvViewMtx() {
     return g_dComIfG_gameInfo.drawlist.getView()->invViewMtx;
 }
 
-/* inline view_port_class* dComIfGd_getViewport() {
+inline view_port_class* dComIfGd_getViewport() {
     return g_dComIfG_gameInfo.drawlist.getViewport();
-} */
+}
 
 inline MtxP dComIfGd_getViewRotMtx() {
     return g_dComIfG_gameInfo.drawlist.getView()->viewMtxNoTrans;
@@ -4278,7 +4264,7 @@ inline MtxP dComIfGd_getViewMtx() {
     return g_dComIfG_gameInfo.drawlist.getView()->viewMtx;
 }
 
-/* inline J3DDrawBuffer* dComIfGd_getListFilter() {
+inline J3DDrawBuffer* dComIfGd_getListFilter() {
     return g_dComIfG_gameInfo.drawlist.getOpaListFilter();
 }
 
@@ -4390,7 +4376,7 @@ inline void dComIfGd_peekZdata() {
     g_dComIfG_gameInfo.drawlist.peekZdata();
 }
 
-/* inline void dComIfGd_setView(view_class* view) {
+inline void dComIfGd_setView(view_class* view) {
     g_dComIfG_gameInfo.drawlist.setView(view);
 }
 
@@ -4520,6 +4506,6 @@ inline void dComIfGd_set3DlineMat(mDoExt_3DlineMat_c* param_0) {
 
 inline void dComIfGd_set3DlineMatDark(mDoExt_3DlineMat_c* param_0) {
     g_dComIfG_gameInfo.drawlist.set3DlineMatDark(param_0);
-} */
+}
 
 #endif

@@ -346,14 +346,14 @@ void J3DGDSetTexTlut(GXTexMapID id, u32 tmem_addr, GXTlutFmt format) {
     J3DGDWriteBPCmd(BP_TEX_TLUT((tmem_addr - 0x80000) >> 9, format, J3DGDTexTlutIds[id]));
 }
 
-void J3DGDLoadTlut(void* tlut_ptr, u32 tmem_addr, GXTlutSize size) {
+/* void J3DGDLoadTlut(void* tlut_ptr, u32 tmem_addr, GXTlutSize size) {
     J3DGDWriteBPCmd(0xFEFFFF00);
     J3DGDWriteBPCmd(0xF000000);
     J3DGDWriteBPCmd(BP_LOAD_TLUT0(OSCachedToPhysical(tlut_ptr) >> 5, 0x64));
     J3DGDWriteBPCmd(BP_LOAD_TLUT1((tmem_addr - 0x80000) >> 9, size, 0x65));
     J3DGDWriteBPCmd(0xFEFFFF00);
     J3DGDWriteBPCmd(0xF000000);
-}
+} */
 
 void J3DGDSetIndTexMtx(GXIndTexMtxID mtx_id, f32 offset[2][3], s8 scale_exp) {
     s32 offsetS32[6];
@@ -568,7 +568,7 @@ void J3DGDSetFog(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXCo
         (u32)(arg1) << 10 \
     )
 
-void J3DGDSetFogRangeAdj(GXBool enable, u16 center, GXFogAdjTable* table) {
+/* void J3DGDSetFogRangeAdj(GXBool enable, u16 center, GXFogAdjTable* table) {
     if (enable) {
         for (int i = 0; i < 10; i += 2) {
             u32 range_adj = BP_FOG_RANGE_ADJ_K0(table->r[i], table->r[i + 1], i / 2 + 0xE9);
@@ -578,7 +578,7 @@ void J3DGDSetFogRangeAdj(GXBool enable, u16 center, GXFogAdjTable* table) {
 
     u32 range_c = BP_FOG_RANGE_ADJ(center + 342, enable, GX_BP_REG_FOGRANGE);
     J3DGDWriteBPCmd(range_c);
-}
+} */
 
 void J3DFifoLoadPosMtxImm(MtxP mtx, u32 id) {
     std::cout << "J3DFifoLoadPosMtxImm() is stubbed" << std::endl;

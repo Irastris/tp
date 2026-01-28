@@ -239,8 +239,7 @@ void mDoExt_modelTexturePatch(J3DModelData* i_modelData) {
         J3DDisplayListObj* dlObj = mat->getSharedDisplayListObj();
 
         BOOL ret = OSDisableInterrupts();
-        GDInitGDLObj(&J3DDisplayListObj::sGDLObj, dlObj->getDisplayList(0),
-                     dlObj->getDisplayListSize());
+        GDInitGDLObj(&J3DDisplayListObj::sGDLObj, dlObj->getDisplayList(0), dlObj->getDisplayListSize());
         GDSetCurrent(&J3DDisplayListObj::sGDLObj);
         tev->patchTexNoAndTexCoordScale();
         OSRestoreInterrupts(ret);
@@ -445,8 +444,7 @@ void mDoExt_setupStageTexture(J3DModelData* i_modelData) {
                         if (dlObj_p != NULL) {
                             BOOL state = OSDisableInterrupts();
 
-                            GDInitGDLObj(&J3DDisplayListObj::sGDLObj, dlObj_p->getDisplayList(0),
-                                         dlObj_p->getDisplayListSize());
+                            GDInitGDLObj(&J3DDisplayListObj::sGDLObj, dlObj_p->getDisplayList(0), dlObj_p->getDisplayListSize());
                             GDSetCurrent(&J3DDisplayListObj::sGDLObj);
                             block_p->patchTexNoAndTexCoordScale();
 
@@ -1944,10 +1942,12 @@ void mDoExt_3DlineMat0_c::setMaterial() {
     GXCallDisplayList(l_matDL, 0x80);
     GXLoadPosMtxImm(j3dSys.getViewMtx(), GX_PNMTX0);
     GXLoadNrmMtxImm(cMtx_getIdentity(), GX_PNMTX0);
-}
+} */
 
 void mDoExt_3DlineMat0_c::draw() {
-    GXSetTevColor(GX_TEVREG2, field_0x8);
+    std::cout << "mDoExt_3DlineMat0_c::draw() is stubbed" << std::endl;
+
+    /* GXSetTevColor(GX_TEVREG2, field_0x8);
 
     if (field_0xc != NULL) {
         dKy_Global_amb_set(field_0xc);
@@ -1972,8 +1972,8 @@ void mDoExt_3DlineMat0_c::draw() {
         var_r28++;
     }
 
-    field_0x16 ^= (u8)1;
-} */
+    field_0x16 ^= (u8)1; */
+}
 
 void mDoExt_3DlineMat0_c::update(int param_0, f32 param_1, GXColor& param_2, u16 param_3, dKy_tevstr_c* param_4) {
     field_0x8 = param_2;
@@ -2257,12 +2257,16 @@ void mDoExt_3DlineMat1_c::setMaterial() {
 } */
 
 void mDoExt_3DlineMat1_c::draw() {
-    GXLoadTexObj(&mTextureObject, GX_TEXMAP0);
+    std::cout << "mDoExt_3DlineMat1_c::draw() is stubbed" << std::endl;
+
+    /* GXLoadTexObj(&mTextureObject, GX_TEXMAP0);
     GXSetTexCoordScaleManually(GX_TEXCOORD0, 1, GXGetTexObjWidth(&mTextureObject), GXGetTexObjHeight(&mTextureObject));
     GXSetTevColor(GX_TEVREG2, mColor);
+
     if (mpTevStr != NULL) {
         dKy_Global_amb_set(mpTevStr);
     }
+
     mDoExt_3Dline_c* lines = mpLines;
     u16 vert_num = field_0x34 << 1;
     for (s32 i = 0; i < mNumLines; i++) {
@@ -2284,8 +2288,9 @@ void mDoExt_3DlineMat1_c::draw() {
         GXEnd();
         lines++;
     }
+
     GXSetTexCoordScaleManually(GX_TEXCOORD0, 0, 0, 0);
-    mIsDrawn ^= (u8)1;
+    mIsDrawn ^= (u8)1; */
 }
 
 void mDoExt_3DlineMat1_c::update(int param_0, f32 param_1, GXColor& param_2, u16 param_3, dKy_tevstr_c* param_4) {
@@ -2439,7 +2444,7 @@ void mDoExt_3DlineMat1_c::update(int param_0, f32 param_1, GXColor& param_2, u16
     }
 }
 
-/* #include "assets/l_mat2DL__d_a_grass.h"
+// #include "assets/l_mat2DL__d_a_grass.h"
 
 void mDoExt_3DlineMat2_c::setMaterial() {
     j3dSys.reinitGX();
@@ -2455,7 +2460,7 @@ void mDoExt_3DlineMat2_c::setMaterial() {
     GXCallDisplayList(NULL, 0x80); // DEBUG NONMATCHING - this is supposed to reference l_mat2DL
     GXLoadPosMtxImm(j3dSys.getViewMtx(), 0);
     GXLoadNrmMtxImm(cMtx_getIdentity(), 0);
-} */
+}
 
 void mDoExt_3DlineMat1_c::update(int param_0, GXColor& param_2, dKy_tevstr_c* param_4) {
     mColor = param_2;
@@ -2570,7 +2575,7 @@ void mDoExt_3DlineMat1_c::update(int param_0, GXColor& param_2, dKy_tevstr_c* pa
     }
 }
 
-/* void mDoExt_3DlineMatSortPacket::setMat(mDoExt_3DlineMat_c* i_3DlineMat) {
+void mDoExt_3DlineMatSortPacket::setMat(mDoExt_3DlineMat_c* i_3DlineMat) {
     if (mp3DlineMat == NULL) {
         dComIfGd_getListPacket()->entryImm(this, 0);
     }
@@ -2588,9 +2593,7 @@ void mDoExt_3DlineMatSortPacket::draw() {
     J3DShape::resetVcdVatCache();
 }
 
-static void mDoExt_initFontCommon(JUTFont** mDoExt_font_p, ResFONT** mDoExt_resfont_p, JKRHeap* param_2,
-                                  char const* param_3, JKRArchive* param_4, u8 param_5,
-                                  u32 param_6, u32 param_7) {
+/* static void mDoExt_initFontCommon(JUTFont** mDoExt_font_p, ResFONT** mDoExt_resfont_p, JKRHeap* param_2, char const* param_3, JKRArchive* param_4, u8 param_5, u32 param_6, u32 param_7) {
     JUTFont** mDoExt_font = mDoExt_font_p;
     ResFONT** mDoExt_resfont = mDoExt_resfont_p;
     // these assertion messages are fakematches, not quite sure what's going on here -

@@ -279,7 +279,9 @@ u16 getTexNoReg(void* pDL) {
 }
 
 void loadTexNo(u32 param_0, const u16& texNo) {
-    ResTIMG* resTIMG = j3dSys.getTexture()->getResTIMG(texNo);
+    std::cout << "loadTexNo() is stubbed" << std::endl;
+
+    /* ResTIMG* resTIMG = j3dSys.getTexture()->getResTIMG(texNo);
 
     J3DSys::sTexCoordScaleTable[param_0].field_0x00 = (u16)resTIMG->width;
     J3DSys::sTexCoordScaleTable[param_0].field_0x02 = (u16)resTIMG->height;
@@ -294,7 +296,7 @@ void loadTexNo(u32 param_0, const u16& texNo) {
         GDOverflowCheck(0x14);
         J3DGDLoadTlut((u8*)resTIMG + resTIMG->paletteOffset, (param_0 << 13) + 0xf0000, tlutSize);
         J3DGDSetTexTlut(GXTexMapID(param_0), (param_0 << 13) + 0xf0000, GXTlutFmt(resTIMG->colorFormat));
-    }
+    } */
 }
 
 void patchTexNo_PtrToIdx(u32 texID, const u16& idx) {

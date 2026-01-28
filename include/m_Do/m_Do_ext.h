@@ -420,7 +420,7 @@ private:
     f32 mAnmRate;
     Z2Creature* mpSound;
     void* mpBas;
-};
+}; */
 
 struct mDoExt_3Dline_field_0x10_c {
     s8 x;
@@ -448,7 +448,7 @@ public:
     mDoExt_3Dline_field_0x18_c* field_0x1c;
 };
 
-class mDoExt_offCupOnAupPacket : public J3DPacket {
+/* class mDoExt_offCupOnAupPacket : public J3DPacket {
     virtual void draw();
     virtual ~mDoExt_offCupOnAupPacket();
 };
@@ -486,7 +486,7 @@ public:
 
     J3DModel* mModel;
     mDoExt_invJntPacket* mpPackets;
-};
+}; */
 
 class mDoExt_3DlineMat_c {
 public:
@@ -495,7 +495,7 @@ public:
     virtual void draw() = 0;
 
     mDoExt_3DlineMat_c* field_0x4;
-}; */
+};
 
 class mDoExt_3DlineMat0_c : public mDoExt_3DlineMat_c {
 public:
@@ -545,7 +545,7 @@ private:
     mDoExt_3Dline_c* mpLines;
 };
 
-/* class mDoExt_3DlineMat2_c : public mDoExt_3DlineMat1_c {
+class mDoExt_3DlineMat2_c : public mDoExt_3DlineMat1_c {
 public:
     int getMaterialID() { return 2; }
     void setMaterial();
@@ -566,7 +566,7 @@ private:
     mDoExt_3DlineMat_c* mp3DlineMat;
 };
 
-class mDoExt_cube8pPacket : public J3DPacket {
+/* class mDoExt_cube8pPacket : public J3DPacket {
 public:
     mDoExt_cube8pPacket(cXyz* i_points, const GXColor& i_color);
 

@@ -122,7 +122,7 @@ public:
     u8* getDisplayList(int idx) { return (u8*)mpDisplayList[idx]; }
     u32 getDisplayListSize() { return mSize; }
 
-    static GDLObj sGDLObj;
+    // static GDLObj sGDLObj;
     static s32 sInterruptFlag;
 
     void* mpDisplayList[2];

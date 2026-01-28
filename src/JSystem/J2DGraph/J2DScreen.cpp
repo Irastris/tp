@@ -10,6 +10,9 @@
 #include "JSystem/JSupport/JSUMemoryStream.h"
 #include <dolphin/types.h>
 
+// TODO: Deduplicate instances of this
+#define ALIGN_NEW(align) new ((void*)(align))
+
 J2DScreen::J2DScreen() : J2DPane(NULL, true, 'root', JGeometry::TBox2<f32>(JGeometry::TVec2<f32>(0, 0), JGeometry::TVec2<f32>(640, 480))), mColor() {
     field_0x4 = -1;
     mScissor = false;
@@ -315,7 +318,7 @@ J2DResReference* J2DScreen::getResReference(JSURandomInputStream* p_stream, u32 
     if (param_1 & 0x1F0000) {
         buffer = new char[size1];
     } else {
-        buffer = new (-4) char[size1];
+        buffer = ALIGN_NEW(-4) char[size1];
     }
 
     if (buffer != NULL) {
@@ -337,10 +340,10 @@ bool J2DScreen::createMaterial(JSURandomInputStream* p_stream, u32 param_1, JKRA
     if (param_1 & 0x1F0000) {
         mMaterials = new J2DMaterial[mMaterialNum];
     } else {
-        mMaterials = new (-4) J2DMaterial[mMaterialNum];
+        mMaterials = ALIGN_NEW(-4) J2DMaterial[mMaterialNum];
     }
 
-    u8* buffer = new (-4) u8[header.mSize];
+    u8* buffer = ALIGN_NEW(-4) u8[header.mSize];
     if (mMaterials != NULL && buffer != NULL) {
         J2DMaterialBlock* pBlock = (J2DMaterialBlock*)buffer;
         p_stream->seek(position, JSUStreamSeekFrom_SET);

@@ -202,7 +202,9 @@ s32 J3DModel::newDifferedDisplayList(u32 diffFlags) {
 }
 
 void J3DModel::ptrToIndex() {
-    j3dSys.setModel(this);
+    std::cout << "J3DModel::ptrToIndex() is stubbed" << std::endl;
+    
+    /* j3dSys.setModel(this);
     j3dSys.setTexture(mModelData->getTexture());
 
     u16 matNum = mModelData->getMaterialNum();
@@ -216,7 +218,7 @@ void J3DModel::ptrToIndex() {
         mModelData->getMaterialNodePointer(i)->getTevBlock()->ptrToIndex();
 
         GDSetCurrent(NULL);
-    }
+    } */
 }
 
 void J3DModel::lock() {

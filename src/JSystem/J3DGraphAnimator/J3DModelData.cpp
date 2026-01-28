@@ -36,7 +36,9 @@ s32 J3DModelData::newSharedDisplayList(u32 mdlFlags) {
 }
 
 void J3DModelData::indexToPtr() {
-    j3dSys.setTexture(getTexture());
+    std::cout << "J3DModelData::indexToPtr() is stubbed" << std::endl;
+
+    /* j3dSys.setTexture(getTexture());
 
     static BOOL sInterruptFlag = OSDisableInterrupts();
     OSDisableScheduler();
@@ -54,7 +56,7 @@ void J3DModelData::indexToPtr() {
 
     GDSetCurrent(NULL);
     OSEnableScheduler();
-    OSRestoreInterrupts(sInterruptFlag);
+    OSRestoreInterrupts(sInterruptFlag); */
 }
 
 void J3DModelData::makeSharedDL() {

@@ -5,6 +5,9 @@
 #include "JSystem/JUtility/JUTPalette.h"
 #include "JSystem/JUtility/JUTTexture.h"
 
+// TODO: Deduplicate instances of this
+#define ALIGN_NEW(align) new ((void*)(align))
+
 J2DMaterial::J2DMaterial() {
     field_0x4 = 0;
     mIndex = -1;
@@ -55,15 +58,15 @@ J2DTevBlock* J2DMaterial::createTevBlock(int block_type, bool noAlign) {
         }
     } else {
         if (block_type <= 1) {
-            block = new (-4) J2DTevBlock1();
+            block = ALIGN_NEW(-4) J2DTevBlock1();
         } else if (block_type == 2) {
-            block = new (-4) J2DTevBlock2();
+            block = ALIGN_NEW(-4) J2DTevBlock2();
         } else if (block_type <= 4) {
-            block = new (-4) J2DTevBlock4();
+            block = ALIGN_NEW(-4) J2DTevBlock4();
         } else if (block_type <= 8) {
-            block = new (-4) J2DTevBlock8();
+            block = ALIGN_NEW(-4) J2DTevBlock8();
         } else {
-            block = new (-4) J2DTevBlock16();
+            block = ALIGN_NEW(-4) J2DTevBlock16();
         }
     }
 
@@ -81,9 +84,9 @@ J2DIndBlock* J2DMaterial::createIndBlock(int block_type, bool noAlign) {
         }
     } else {
         if (block_type != 0) {
-            block = new (-4) J2DIndBlockFull();
+            block = ALIGN_NEW(-4) J2DIndBlockFull();
         } else {
-            block = new (-4) J2DIndBlockNull();
+            block = ALIGN_NEW(-4) J2DIndBlockNull();
         }
     }
 

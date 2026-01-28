@@ -911,7 +911,9 @@ void JPAResource::drawC(JPAEmitterWorkData* work) {
 }
 
 void JPAResource::setPTev() {
-    GXTexCoordID tex_coord = GX_TEXCOORD1;
+    std::cout << "JPAResource::setPTev() is stubbed" << std::endl;
+
+    /* GXTexCoordID tex_coord = GX_TEXCOORD1;
     u8 tev_stages = 1;
     u8 tex_gens = 1;
     u8 ind_stages = 0;
@@ -963,12 +965,13 @@ void JPAResource::setPTev() {
     } else {
         GXSetClipMode(GX_CLIP_DISABLE);
     }
-    GXSetNumTexGens(tex_gens);
+    GXSetNumTexGens(tex_gens); */
 }
 
 void JPAResource::setCTev(JPAEmitterWorkData* work) {
-    int base_plane_type = (mpChildShape->getType() == 3 || mpChildShape->getType() == 7) ?
-        mpChildShape->getBasePlaneType() : 0;
+    std::cout << "JPAResource::setCTev() is stubbed" << std::endl;
+
+    /* int base_plane_type = (mpChildShape->getType() == 3 || mpChildShape->getType() == 7) ? mpChildShape->getBasePlaneType() : 0;
     int pos_offset = 0x30 + base_plane_type * 0x6C;
     GXSetArray(GX_VA_POS, jpa_pos + pos_offset, 3);
     GXSetArray(GX_VA_TEX0, jpa_crd, 2);
@@ -984,7 +987,7 @@ void JPAResource::setCTev(JPAEmitterWorkData* work) {
         GXSetClipMode(GX_CLIP_DISABLE);
     }
     GXSetNumTexGens(1);
-    work->mpResMgr->load(work->mpRes->getTexIdx(mpChildShape->getTexIdx()), GX_TEXMAP1);
+    work->mpResMgr->load(work->mpRes->getTexIdx(mpChildShape->getTexIdx()), GX_TEXMAP1); */
 }
 
 void JPAResource::calc_p(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
