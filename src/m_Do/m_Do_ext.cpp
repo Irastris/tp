@@ -7,9 +7,9 @@
 #include "JSystem/J3DGraphLoader/J3DMaterialFactory.h" */
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
-/* #include "JSystem/JUtility/JUTCacheFont.h"
+#include "JSystem/JUtility/JUTCacheFont.h"
 #include "JSystem/JUtility/JUTResFont.h"
-#include "Z2AudioLib/Z2Creature.h" */
+// #include "Z2AudioLib/Z2Creature.h"
 #include "d/d_com_inf_game.h"
 #include "global.h"
 #include "m_Do/m_Do_ext.h"

@@ -3,11 +3,8 @@
 
 #include <iostream>
 
-// #include "JSystem/JUtility/JUTGamePad.h"
+#include "JSystem/JUtility/JUTGamePad.h"
 #include "SSystem/SComponent/c_API_controller_pad.h"
-
-// TODO: Not originally included directly
-#include <dolphin/pad.h>
 
 enum { PAD_1, PAD_2, PAD_3, PAD_4 };
 

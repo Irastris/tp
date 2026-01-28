@@ -1,11 +1,10 @@
-/* #include "d/dolzel.h"
-
-#include <string>
-#include "JSystem/J2DGraph/J2DOrthoGraph.h"
+// #include "d/dolzel.h"
+#include <cstring> // <string>
+/* #include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "JSystem/J2DGraph/J2DPicture.h"
-#include "JSystem/J2DGraph/J2DTextBox.h"
+#include "JSystem/J2DGraph/J2DTextBox.h" */
 #include "JSystem/JUtility/JUTResFont.h"
-#include "JSystem/JUtility/JUTTexture.h" */
+#include "JSystem/JUtility/JUTTexture.h"
 #include "d/d_error_msg.h"
 /* #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_graphic.h"

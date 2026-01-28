@@ -5,9 +5,9 @@
 
 #include "global.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
-/* #include "JSystem/JKernel/JKRAram.h"
-#include "jsystem/jutility/JUTVideo.h"
-#include "jsystem/jutility/JUTGamePad.h" */
+// #include "JSystem/JKernel/JKRAram.h"
+#include "JSystem/JUtility/JUTVideo.h"
+#include "JSystem/JUtility/JUTGamePad.h"
 
 struct JFWSystem {
     static void init();

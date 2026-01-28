@@ -1,9 +1,8 @@
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>
-#include <cstring>
+#include <cstring> // <string>
 #include <iostream>
-#include <string>
 #include <sys/mman.h>
 
 #include "JSystem/JKernel/JKRHeap.h"

@@ -1,6 +1,6 @@
 #include "JSystem/JSystem.h"
 #include "JSystem/JUtility/JUTResFont.h"
-#include <dolphin/dolphin.h>
+// #include <dolphin/dolphin.h>
 #include "global.h"
 
 u8 const JUTResFONT_Ascfont_fix12[] ATTRIBUTE_ALIGN(32) = {

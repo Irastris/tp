@@ -2,7 +2,7 @@
 #define JUTFONT_H
 
 #include "JSystem/JUtility/TColor.h"
-#include <string>
+#include <cstring> // <string>
 
 struct ResFONT {
     struct INF1 {

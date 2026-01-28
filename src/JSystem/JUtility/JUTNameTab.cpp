@@ -1,6 +1,6 @@
 #include "JSystem/JSystem.h"
 #include "JSystem/JUtility/JUTNameTab.h"
-#include <string>
+#include <cstring> // <string>
 
 JUTNameTab::JUTNameTab() {
     setResource(NULL);

@@ -2,7 +2,7 @@
 #define JUTGAMEPAD_H
 
 #include "JSystem/JKernel/JKRDisposer.h"
-#include <dolphin/dolphin.h>
+// #include <dolphin/dolphin.h>
 
 typedef void (*callbackFn)(int, void*);
 
