@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+#include <dolphin/types.h>
+
 struct dShutdownErrorMsg_c {
     static bool execute();
 };

@@ -1,5 +1,5 @@
 #include "SSystem/SComponent/c_lib.h"
-#include <string>
+#include <cstring> // <string>
 #include "SSystem/SComponent/c_math.h"
 
 void cLib_memCpy(void* dst, const void* src, u32 num) {
