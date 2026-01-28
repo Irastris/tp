@@ -125,6 +125,7 @@ set(JSYS_FILES
     src/JSystem/JParticle/JPAResourceLoader.cpp
     src/JSystem/JParticle/JPAResourceManager.cpp
     src/JSystem/JParticle/JPATexture.cpp
+    src/JSystem/JSupport/JSUInputStream.cpp
     src/JSystem/JSupport/JSUList.cpp
     src/JSystem/JUtility/JUTCacheFont.cpp
     src/JSystem/JUtility/JUTDirectFile.cpp
