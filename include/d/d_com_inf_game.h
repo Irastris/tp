@@ -3099,8 +3099,7 @@ inline void dComIfGp_offCameraAttentionStatus(int i, u32 flag) {
     g_dComIfG_gameInfo.play.offCameraAttentionStatus(i, flag);
 }
 
-inline void dComIfGp_setCameraInfo(int camIdx, camera_class* p_cam, int param_2, int param_3,
-                                   int param_4) {
+inline void dComIfGp_setCameraInfo(int camIdx, camera_class* p_cam, int param_2, int param_3, int param_4) {
     g_dComIfG_gameInfo.play.setCameraInfo(camIdx, p_cam, param_2, param_3, param_4);
 }
 
@@ -3950,7 +3949,7 @@ inline void dComIfGp_particle_cleanup() {
 
 inline void dComIfGp_particle_removeScene(bool param_0) {
     g_dComIfG_gameInfo.play.getParticle()->removeScene(param_0);
-}
+} */
 
 inline void dComIfGp_particle_drawFogPri0_B(JPADrawInfo* i_drawInfo) {
     if (g_dComIfG_gameInfo.play.getParticle() != NULL) {
@@ -3982,11 +3981,11 @@ inline void dComIfGp_particle_drawFogPri4(JPADrawInfo* i_drawInfo) {
     }
 }
 
-inline void dComIfGp_particle_drawProjection(JPADrawInfo* i_drawInfo) {
+/* inline void dComIfGp_particle_drawProjection(JPADrawInfo* i_drawInfo) {
     if (g_dComIfG_gameInfo.play.getParticle() != NULL) {
         g_dComIfG_gameInfo.play.getParticle()->drawProjection(i_drawInfo);
     }
-}
+} */
 
 inline void dComIfGp_particle_drawFogPri1(JPADrawInfo* i_drawInfo) {
     if (g_dComIfG_gameInfo.play.getParticle() != NULL) {
@@ -3994,11 +3993,11 @@ inline void dComIfGp_particle_drawFogPri1(JPADrawInfo* i_drawInfo) {
     }
 }
 
-inline void dComIfGp_particle_draw(JPADrawInfo* i_drawInfo) {
+/* inline void dComIfGp_particle_draw(JPADrawInfo* i_drawInfo) {
     if (g_dComIfG_gameInfo.play.getParticle() != NULL) {
         g_dComIfG_gameInfo.play.getParticle()->drawNormal(i_drawInfo);
     }
-}
+} */
 
 inline void dComIfGp_particle_drawFogPri2(JPADrawInfo* i_drawInfo) {
     if (g_dComIfG_gameInfo.play.getParticle() != NULL) {
@@ -4018,7 +4017,7 @@ inline void dComIfGp_particle_drawFogPri3(JPADrawInfo* i_drawInfo) {
     }
 }
 
-inline void dComIfGp_particle_drawP1(JPADrawInfo* i_drawInfo) {
+/* inline void dComIfGp_particle_drawP1(JPADrawInfo* i_drawInfo) {
     if (g_dComIfG_gameInfo.play.getParticle() != NULL) {
         g_dComIfG_gameInfo.play.getParticle()->drawNormalP1(i_drawInfo);
     }
@@ -4034,7 +4033,7 @@ inline void dComIfGp_particle_drawScreen(JPADrawInfo* i_drawInfo) {
     if (g_dComIfG_gameInfo.play.getParticle() != NULL) {
         g_dComIfG_gameInfo.play.getParticle()->drawFogScreen(i_drawInfo);
     }
-}
+} */
 
 inline void dComIfGp_particle_draw2Dgame(JPADrawInfo* i_drawInfo) {
     if (g_dComIfG_gameInfo.play.getParticle() != NULL) {
@@ -4064,7 +4063,7 @@ inline void dComIfGp_particle_draw2DmenuBack(JPADrawInfo* i_drawInfo) {
     if (g_dComIfG_gameInfo.play.getParticle() != NULL) {
         g_dComIfG_gameInfo.play.getParticle()->draw2DmenuBack(i_drawInfo);
     }
-} */
+}
 
 inline void dComIfGp_particle_setWaterRipple(u32* param_0, cBgS_PolyInfo& param_1, const cXyz* param_2, f32 param_3, const dKy_tevstr_c* param_4, const cXyz* param_5, s8 param_6) {
     g_dComIfG_gameInfo.play.getParticle()->setWaterRipple(param_0, param_1, param_2, param_3, param_4, param_5, param_6);

@@ -1,9 +1,24 @@
 #ifndef _DOLPHIN_OS_H_
 #define _DOLPHIN_OS_H_
 
+#include <cstdio>
+
+#include <dolphin/types.h>
+#include <dolphin/gx/GXStruct.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+typedef s64 OSTime;
+typedef u32 OSTick;
+
+#include "dolphin/os/OSTime.h"
+#include "dolphin/os/OSAlarm.h"
+#include "dolphin/os/OSTimer.h"
+
+#define OSRoundUp32B(x)   (((u32)(x) + 32 - 1) & ~(32 - 1))
+#define OSRoundDown32B(x) (((u32)(x)) & ~(32 - 1))
 
 inline s16 __OSf32tos16(f32 inF) {
     if (inF >= 32767.0f) {

@@ -182,7 +182,7 @@ void darwFilter(GXColor matColor) {
     GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_OR);
     GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
     GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
-    GXSetFogRangeAdj(GX_DISABLE, 0, NULL);
+    // GXSetFogRangeAdj(GX_DISABLE, 0, NULL);
     GXSetCullMode(GX_CULL_NONE);
     GXSetDither(GX_ENABLE);
     GXSetNumIndStages(0);
@@ -256,7 +256,7 @@ int mDoGph_AfterOfDraw() {
     GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
     GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_OR, GX_GREATER, 0);
     GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
-    GXSetFogRangeAdj(GX_DISABLE, 0, NULL);
+    // GXSetFogRangeAdj(GX_DISABLE, 0, NULL);
     GXSetCoPlanar(GX_DISABLE);
     GXSetZTexture(GX_ZT_DISABLE, GX_TF_Z8, 0);
     GXSetDither(GX_ENABLE);
@@ -326,9 +326,7 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
                     }
                     var_f28 = -180.0f - 75.0f * var_f31;
                 }
-            } else if (dComIfGp_event_runCheck() && var_f30 < 3.0f &&
-                    g_env_light.field_0x126c < 999999.0f)
-            {
+            } /* else if (dComIfGp_event_runCheck() && var_f30 < 3.0f && g_env_light.field_0x126c < 999999.0f) {
                 var_f29 = g_env_light.field_0x126c;
                 var_f31 = var_f29 / ((SREG_F(2) + 80.0f) * var_f30);
                 var_f31 -= 0.8f;
@@ -338,11 +336,11 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
                     var_f31 = 1.0f;
                 }
                 var_f28 = -180.0f - 75.0f * var_f31;
-            }
+            } */
         }
 
-        cLib_addCalc(&g_env_light.field_0x1264, var_f28, SREG_F(5) + 0.1f, SREG_F(4) + 100.0f, 0.0001f);
-        l_tevColor0.a = g_env_light.field_0x1264;
+        /* cLib_addCalc(&g_env_light.field_0x1264, var_f28, SREG_F(5) + 0.1f, SREG_F(4) + 100.0f, 0.0001f);
+        l_tevColor0.a = g_env_light.field_0x1264; */
         if (l_tevColor0.a <= -254) {
             l_tevColor0.a = -255;
         }
@@ -383,13 +381,13 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
         GXLoadTexObj(mDoGph_gInf_c::getFrameBufferTexObj(), GX_TEXMAP1);
         GXLoadTexObj(mDoGph_gInf_c::getZbufferTexObj(), GX_TEXMAP0);
 
-        if (0.0f != g_env_light.mDemoAttentionPoint) {
+        /* if (0.0f != g_env_light.mDemoAttentionPoint) {
             if (g_env_light.mDemoAttentionPoint >= 0.0f) {
                 l_tevColor0.a = -254.0f + 509.0f * g_env_light.mDemoAttentionPoint;
             } else {
                 l_tevColor0.a = -254.0f + 509.0f * (1.0f + g_env_light.mDemoAttentionPoint);
             }
-        }
+        } */
 
         GXSetTevColorS10(GX_TEVREG0, l_tevColor0);
         GXSetTevSwapModeTable(GX_TEV_SWAP3, GX_CH_ALPHA, GX_CH_GREEN, GX_CH_BLUE, GX_CH_RED);
@@ -421,13 +419,13 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
 
         GXSetZCompLoc(GX_TRUE);
         GXSetZMode(GX_FALSE, GX_ALWAYS, GX_FALSE);
-        if (g_env_light.mDemoAttentionPoint >= 0.0f) {
+        /* if (g_env_light.mDemoAttentionPoint >= 0.0f) {
             GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
             GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_OR, GX_GREATER, 0);
         } else {
             GXSetBlendMode(GX_BM_BLEND, GX_BL_INVSRCALPHA, GX_BL_SRCALPHA, GX_LO_CLEAR);
             GXSetAlphaCompare(GX_LESS, 0xff, GX_AOP_OR, GX_LESS, 0xff);
-        }
+        } */
 
         GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
         GXSetCullMode(GX_CULL_NONE);
@@ -575,7 +573,7 @@ void mDoGph_gInf_c::bloom_c::draw() {
         GXSetZMode(0, GX_ALWAYS, 0);
         GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
         GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
-        GXSetFogRangeAdj(0, 0, 0);
+        // GXSetFogRangeAdj(0, 0, 0);
         GXSetCullMode(GX_CULL_NONE);
         GXSetDither(1);
         Mtx44 ortho;
@@ -739,7 +737,9 @@ static void retry_captue_frame(view_class* param_0, view_port_class* param_1, in
 }
 
 static void motionBlure(view_class* param_0) {
-    if (g_env_light.is_blure) {
+    std::cout << "motionBlure() is stubbed" << std::endl;
+
+    /* if (g_env_light.is_blure) {
         GXLoadTexObj(mDoGph_gInf_c::getFrameBufferTexObj(), GX_TEXMAP0);
         GXColor local_60;
         local_60.a = mDoGph_gInf_c::getBlureRate();
@@ -779,7 +779,7 @@ static void motionBlure(view_class* param_0) {
         g_env_light.is_blure = 1;
     } else {
         g_env_light.is_blure = 0;
-    }
+    } */
 }
 
 static void setLight() {
@@ -862,7 +862,7 @@ int mDoGph_Painter() {
             dComIfGp_setCurrentViewport(view_port);
             GXSetProjection(camera_p->projMtx, GX_PERSPECTIVE);
 
-            PPCSync();
+            // PPCSync();
 
             j3dSys.setViewMtx(camera_p->viewMtx);
             dKy_setLight();
@@ -923,12 +923,12 @@ int mDoGph_Painter() {
 
                 // Depth of field end
 
-                if (!(false && g_kankyoHIO.navy.field_0x30d != 0 && dKy_darkworld_check() == TRUE)) {
+                /* if (!(g_kankyoHIO.navy.field_0x30d != 0 && dKy_darkworld_check() == TRUE)) {
                     if (g_env_light.is_blure == 0) {
                         dComIfGd_drawOpaListInvisible();
                         dComIfGd_drawXluListInvisible();
                     }
-                }
+                } */
 
                 // Projection translucent end
 
@@ -965,13 +965,12 @@ int mDoGph_Painter() {
 
                 GXSetClipMode(GX_CLIP_ENABLE);
 
-                if (!(false && g_kankyoHIO.navy.field_0x30d != 0 &&
-                      dKy_darkworld_check() == TRUE)) {
+                /* if (!(g_kankyoHIO.navy.field_0x30d != 0 && dKy_darkworld_check() == TRUE)) {
                     if (g_env_light.is_blure == 1) {
                         dComIfGd_drawOpaListInvisible();
                         dComIfGd_drawXluListInvisible();
                     }
-                }
+                } */
 
                 dComIfGp_particle_drawScreen(&draw_info);
 
@@ -1006,14 +1005,14 @@ int mDoGph_Painter() {
 
                 j3dSys.reinitGX();
 
-                if ((g_env_light.camera_water_in_status || !strcmp(dComIfGp_getStartStageName(), "D_MN08")))
+                /* if ((g_env_light.camera_water_in_status || !strcmp(dComIfGp_getStartStageName(), "D_MN08")))
                 {
                     u8 enable = mDoGph_gInf_c::getBloom()->getEnable();
                     GXColor color = *mDoGph_gInf_c::getBloom()->getMonoColor();
                     if (color.a != 0 || enable) {
                         retry_captue_frame(camera_p, view_port, dComIfGp_getCameraZoomForcus(camera_id));
                     }
-                }
+                } */
 
                 // Frame buffer capture #3 end
 

@@ -93,7 +93,7 @@ public:
     static void setBlureMtx(const Mtx m) { cMtx_copy(m, mBlureMtx); }
     static f32 getWidthF() { return FB_WIDTH; }
     static f32 getHeightF() { return FB_HEIGHT; }
-    static f32 getWidth() { return FB_WIDTH; 
+    static f32 getWidth() { return FB_WIDTH; }
     static f32 getHeight() { return FB_HEIGHT; }
     static f32 getMinYF() { return 0.0f; }
     static f32 getMinXF() { return 0.0f; }

@@ -3,50 +3,62 @@
 #include "JSystem/J3DGraphBase/J3DFifo.h"
 
 void J3DGDSetGenMode(u8 nTexGens, u8 nChans, u8 nTevs, u8 nInds, GXCullMode cm) {
-    static u8 cm2hw[4] = {0, 2, 1, 3};
+    std::cout << "J3DGDSetGenMode() is stubbed" << std::endl;
+
+    /* static u8 cm2hw[4] = {0, 2, 1, 3};
 
     GDOverflowCheck(10);
     J3DGDWriteBPCmd(0xFE07FC3F);
-    J3DGDWriteBPCmd(BP_GEN_MODE(nTexGens, nChans, nTevs - 1, cm2hw[cm], nInds));
+    J3DGDWriteBPCmd(BP_GEN_MODE(nTexGens, nChans, nTevs - 1, cm2hw[cm], nInds)); */
 }
 
 void J3DGDSetGenMode_3Param(u8 nTexGens, u8 nTevs, u8 nInds) {
-    GDOverflowCheck(10);
+    std::cout << "J3DGDSetGenMode_3Param() is stubbed" << std::endl;
+
+    /* GDOverflowCheck(10);
     J3DGDWriteBPCmd(0xFE073C0F);
-    J3DGDWriteBPCmd(BP_GEN_MODE(nTexGens, 0, nTevs - 1, 0, nInds));
+    J3DGDWriteBPCmd(BP_GEN_MODE(nTexGens, 0, nTevs - 1, 0, nInds)); */
 }
 
 void J3DGDSetLightAttn(GXLightID light, f32 a0, f32 a1, f32 a2, f32 k0, f32 k1, f32 k2) {
-    J3DGDWriteXFCmdHdr(XF_LIGHT_ATTN_ID + __GDLightID2Offset(light), 6);
+    std::cout << "J3DGDSetLightAttn() is stubbed" << std::endl;
+
+    /* J3DGDWriteXFCmdHdr(XF_LIGHT_ATTN_ID + __GDLightID2Offset(light), 6);
     J3DGDWrite_f32(a0);
     J3DGDWrite_f32(a1);
     J3DGDWrite_f32(a2);
     J3DGDWrite_f32(k0);
     J3DGDWrite_f32(k1);
-    J3DGDWrite_f32(k2);
+    J3DGDWrite_f32(k2); */
 }
 
 void J3DGDSetLightColor(GXLightID light, GXColor color) {
-    J3DGDWriteXFCmd(XF_LIGHT_COLOR_ID + __GDLightID2Offset(light),
-                    (color.r << 24) | (color.g << 16) | (color.b << 8) | (color.a << 0));
+    std::cout << "J3DGDSetLightColor() is stubbed" << std::endl;
+    /* J3DGDWriteXFCmd(XF_LIGHT_COLOR_ID + __GDLightID2Offset(light), (color.r << 24) | (color.g << 16) | (color.b << 8) | (color.a << 0)); */
 }
 
 void J3DGDSetLightPos(GXLightID light, f32 x, f32 y, f32 z) {
-    J3DGDWriteXFCmdHdr(XF_LIGHT_POS_ID + __GDLightID2Offset(light), 3);
+    std::cout << "J3DGDSetLightPos() is stubbed" << std::endl;
+
+    /* J3DGDWriteXFCmdHdr(XF_LIGHT_POS_ID + __GDLightID2Offset(light), 3);
     J3DGDWrite_f32(x);
     J3DGDWrite_f32(y);
-    J3DGDWrite_f32(z);
+    J3DGDWrite_f32(z); */
 }
 
 void J3DGDSetLightDir(GXLightID light, f32 nx, f32 ny, f32 nz) {
-    J3DGDWriteXFCmdHdr(XF_LIGHT_DIR_ID + __GDLightID2Offset(light), 3);
+    std::cout << "J3DGDSetLightDir() is stubbed" << std::endl;
+
+    /* J3DGDWriteXFCmdHdr(XF_LIGHT_DIR_ID + __GDLightID2Offset(light), 3);
     J3DGDWrite_f32(nx);
     J3DGDWrite_f32(ny);
-    J3DGDWrite_f32(nz);
+    J3DGDWrite_f32(nz); */
 }
 
-/* void J3DGDSetVtxAttrFmtv(GXVtxFmt vtxfmt, const GXVtxAttrFmtList* list, bool param_2) {
-    u32 posCnt = GX_POS_XYZ;
+void J3DGDSetVtxAttrFmtv(GXVtxFmt vtxfmt, const GXVtxAttrFmtList* list, bool param_2) {
+    std::cout << "J3DGDSetVtxAttrFmtv() is stubbed" << std::endl;
+
+    /* u32 posCnt = GX_POS_XYZ;
     u32 posType = GX_F32;
     u32 posFrac = 0;
 
@@ -167,8 +179,8 @@ void J3DGDSetLightDir(GXLightID light, f32 nx, f32 ny, f32 nz) {
     GDOverflowCheck(18);
     J3DGDWriteCPCmd(vtxfmt + CP_REG_VAT_GRP0_ID, CP_REG_VAT_GRP0(posCnt, posType, posFrac, nrmCnt, nrmType, c0Cnt, c0Type, c1Cnt, c1Type, tx0Cnt, tx0Type, tx0Frac, 1, nrmIdx3));
     J3DGDWriteCPCmd(vtxfmt + CP_REG_VAT_GRP1_ID, CP_REG_VAT_GRP1(tx1Cnt, tx1Type, tx1Frac, tx2Cnt, tx2Type, tx2Frac, tx3Cnt, tx3Type, tx3Frac, tx4Cnt, tx4Type, 1));
-    J3DGDWriteCPCmd(vtxfmt + CP_REG_VAT_GRP2_ID, CP_REG_VAT_GRP2(tx4Frac, tx5Cnt, tx5Type, tx5Frac, tx6Cnt, tx6Type, tx6Frac, tx7Cnt, tx7Type, tx7Frac));
-} */
+    J3DGDWriteCPCmd(vtxfmt + CP_REG_VAT_GRP2_ID, CP_REG_VAT_GRP2(tx4Frac, tx5Cnt, tx5Type, tx5Frac, tx6Cnt, tx6Type, tx6Frac, tx7Cnt, tx7Type, tx7Frac)); */
+}
 
 void J3DGDSetTexCoordGen(GXTexGenType func, GXTexGenSrc src_param) {
     u32 tgType;
@@ -290,7 +302,7 @@ void J3DGDSetTexCoordGen(GXTexGenType func, GXTexGenSrc src_param) {
 }
 
 void J3DGDSetTexCoordScale2(GXTexCoordID coord, u16 s_scale, u8 s_bias, u8 s_wrap, u16 t_scale, u8 t_bias, u8 t_wrap) {
-    GDOverflowCheck(15);
+    // GDOverflowCheck(15);
     J3DGDWriteBPCmd(0xFE03FFFF);
     J3DGDWriteBPCmd(BP_TEXCOORD_S_SCALE(s_scale - 1, s_bias, s_wrap, 0, 0, coord * 2 + 0x30));
     J3DGDWriteBPCmd(BP_TEXCOORD_T_SCALE(t_scale - 1, t_bias, t_wrap, coord * 2 + 0x31));
@@ -334,7 +346,7 @@ void J3DGDSetTexImgPtr(GXTexMapID id, void* image_ptr) {
 }
 
 void J3DGDSetTexImgPtrRaw(GXTexMapID id, u32 image_ptr_raw) {
-    GDOverflowCheck(5);
+    // GDOverflowCheck(5);
     J3DGDWriteBPCmd(BP_IMAGE_PTR(image_ptr_raw, J3DGDTexImage3Ids[id]));
 }
 
@@ -386,7 +398,7 @@ void J3DGDSetIndTexMtx(GXIndTexMtxID mtx_id, f32 offset[2][3], s8 scale_exp) {
     offsetS32[5] = (s32)(offset[1][2] * 0x400) & 0x7FF;
 
     scale_exp += (s8)17;
-    GDOverflowCheck(15);
+    // GDOverflowCheck(15);
 
     J3DGDWriteBPCmd(BP_IND_MTX(
         offsetS32[0],
@@ -411,7 +423,7 @@ void J3DGDSetIndTexMtx(GXIndTexMtxID mtx_id, f32 offset[2][3], s8 scale_exp) {
 }
 
 void J3DGDSetIndTexCoordScale(GXIndTexStageID indStageEven, GXIndTexScale scaleS0, GXIndTexScale scaleT0, GXIndTexScale scaleS1, GXIndTexScale scaleT1) {
-    GDOverflowCheck(5);
+    // GDOverflowCheck(5);
     J3DGDWriteBPCmd(BP_IND_TEXCOORD_SCALE(
         scaleS0,
         scaleT0,
@@ -422,7 +434,7 @@ void J3DGDSetIndTexCoordScale(GXIndTexStageID indStageEven, GXIndTexScale scaleS
 }
 
 void J3DGDSetIndTexOrder(u32 count, GXTexCoordID texCoord0, GXTexMapID texMap0, GXTexCoordID texCoord1, GXTexMapID texMap1, GXTexCoordID texCoord2, GXTexMapID texMap2, GXTexCoordID texCoord3, GXTexMapID texMap3) {
-    GDOverflowCheck(10);
+    // GDOverflowCheck(10);
     J3DGDWriteBPCmd(BP_IND_TEX_ORDER(
         texMap0 & 7,
         texCoord0 & 7,
@@ -463,7 +475,7 @@ void J3DGDSetTevOrder(GXTevStageID evenStage, GXTexCoordID coord0, GXTexMapID ma
 
     GXTexCoordID coord0_ = coord0 >= GX_MAX_TEXCOORD ? GX_TEXCOORD0 : coord0;
     GXTexCoordID coord1_ = coord1 >= GX_MAX_TEXCOORD ? GX_TEXCOORD0 : coord1;
-    GDOverflowCheck(5);
+    // GDOverflowCheck(5);
     J3DGDWriteBPCmd(BP_TEV_ORDER(
         map0 & 7,
         coord0_,
@@ -484,7 +496,7 @@ void J3DGDSetTevKColor(GXTevKColorID reg, GXColor color) {
     regRA = BP_TEV_COLOR_REG_RA(color.r, color.a, 1, 0xE0 + reg * 2);
     regBG = BP_TEV_COLOR_REG_BG(color.b, color.g, 1, 0xE1 + reg * 2);
 
-    GDOverflowCheck(0xa);
+    // GDOverflowCheck(0xa);
     J3DGDWriteBPCmd(regRA);
     J3DGDWriteBPCmd(regBG);
 }
@@ -496,7 +508,7 @@ void J3DGDSetTevColorS10(GXTevRegID reg, GXColorS10 color) {
     regRA = BP_TEV_COLOR_REG_RA(color.r & 0x7FF, color.a & 0x7FF, 0, 0xE0 + reg * 2);
     regBG = BP_TEV_COLOR_REG_BG(color.b & 0x7FF, color.g & 0x7FF, 0, 0xE1 + reg * 2);
 
-    GDOverflowCheck(0x14);
+    // GDOverflowCheck(0x14);
     J3DGDWriteBPCmd(regRA);
     J3DGDWriteBPCmd(regBG);
     J3DGDWriteBPCmd(regBG);
@@ -564,8 +576,10 @@ void J3DGDSetFog(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXCo
         (u32)(arg1) << 10 \
     )
 
-/* void J3DGDSetFogRangeAdj(GXBool enable, u16 center, GXFogAdjTable* table) {
-    if (enable) {
+void J3DGDSetFogRangeAdj(GXBool enable, u16 center, GXFogAdjTable* table) {
+    std::cout << "J3DGDSetFogRangeAdj() is stubbed" << std::endl;
+
+    /* if (enable) {
         for (int i = 0; i < 10; i += 2) {
             u32 range_adj = BP_FOG_RANGE_ADJ_K0(table->r[i], table->r[i + 1], i / 2 + 0xE9);
             J3DGDWriteBPCmd(range_adj);
@@ -573,11 +587,12 @@ void J3DGDSetFog(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXCo
     }
 
     u32 range_c = BP_FOG_RANGE_ADJ(center + 342, enable, GX_BP_REG_FOGRANGE);
-    J3DGDWriteBPCmd(range_c);
-} */
+    J3DGDWriteBPCmd(range_c); */
+}
 
 void J3DFifoLoadPosMtxImm(MtxPtr mtx, u32 id) {
     std::cout << "J3DFifoLoadPosMtxImm() is stubbed" << std::endl;
+    
     /* J3DFifoWriteXFCmdHdr(4 * id, 12);
     J3DGXCmd1f32ptr(&mtx[0][0]);
     J3DGXCmd1f32ptr(&mtx[0][1]);

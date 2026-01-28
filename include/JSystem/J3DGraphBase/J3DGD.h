@@ -80,7 +80,7 @@ void J3DGDSetLightAttn(GXLightID, f32, f32, f32, f32, f32, f32);
 void J3DGDSetLightColor(GXLightID, GXColor);
 void J3DGDSetLightPos(GXLightID, f32, f32, f32);
 void J3DGDSetLightDir(GXLightID, f32, f32, f32);
-// void J3DGDSetVtxAttrFmtv(GXVtxFmt, GXVtxAttrFmtList const*, bool);
+void J3DGDSetVtxAttrFmtv(GXVtxFmt, GXVtxAttrFmtList const*, bool);
 void J3DGDSetTexCoordGen(GXTexGenType, GXTexGenSrc);
 void J3DGDSetTexCoordScale2(GXTexCoordID, u16, u8, u8, u16, u8, u8);
 void J3DGDSetTexLookupMode(GXTexMapID, GXTexWrapMode, GXTexWrapMode, GXTexFilter, GXTexFilter, f32, f32, f32, u8, u8, GXAnisotropy);
@@ -96,7 +96,7 @@ void J3DGDSetTevOrder(GXTevStageID, GXTexCoordID, GXTexMapID, GXChannelID, GXTex
 void J3DGDSetTevKColor(GXTevKColorID, GXColor);
 void J3DGDSetTevColorS10(GXTevRegID, GXColorS10);
 void J3DGDSetFog(GXFogType, f32, f32, f32, f32, GXColor);
-// void J3DGDSetFogRangeAdj(u8, u16, GXFogAdjTable*);
+void J3DGDSetFogRangeAdj(u8, u16, GXFogAdjTable*);
 
 inline void J3DGDSetNumChans(u8 numChans) {
     J3DGDWriteXFCmd(0x1009, numChans);

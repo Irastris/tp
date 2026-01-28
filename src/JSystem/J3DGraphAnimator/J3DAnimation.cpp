@@ -130,7 +130,6 @@ int J3DFrameCtrl::checkPass(f32 passFrame) {
     }
 }
 
-
 void J3DFrameCtrl::update() {
     mState = 0;
     mFrame += mRate;

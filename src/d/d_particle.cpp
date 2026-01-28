@@ -16,8 +16,7 @@
 #include "d/actor/d_a_player.h" */
 #include "SSystem/SComponent/c_math.h"
 
-// TODO: Deduplicate instances of these
-#define M_PI 3.14159265358979323846f
+// TODO: Deduplicate instances of this
 #define DEG_TO_RAD(degrees) (degrees * (M_PI / 180.0f))
 
 extern dPa_particleTracePcallBack_c JPTracePCB4;

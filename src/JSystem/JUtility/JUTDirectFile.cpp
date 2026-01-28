@@ -12,7 +12,7 @@ int JUTDirectFile::fetch32byte() {
 	}
 	int interrupts = OSEnableInterrupts();
 	int readRes = DVDReadAsyncPrio(&mFileInfo, mSectorStart, ALIGN_NEXT(mToRead, DVD_MIN_TRANSFER_SIZE), ALIGN_PREV(mPos, DVD_MIN_TRANSFER_SIZE), NULL, 2);
-	OSRestoreInterrupts(interrupts);
+	// OSRestoreInterrupts(interrupts);
 	if (!readRes) {
 		return -1;
 	} else {
@@ -20,7 +20,7 @@ int JUTDirectFile::fetch32byte() {
 		while (DVDGetCommandBlockStatus(&mFileInfo.cb)) {
 			;
 		}
-		OSRestoreInterrupts(interrupts);
+		// OSRestoreInterrupts(interrupts);
 		return mToRead;
 	}
 }
@@ -44,7 +44,7 @@ bool JUTDirectFile::fopen(const char* filename) {
 
 	int interrupts = OSEnableInterrupts();
 	int dvdRes     = DVDOpen(const_cast<char*>(filename), &mFileInfo);
-	OSRestoreInterrupts(interrupts);
+	// OSRestoreInterrupts(interrupts);
 
 	if (!dvdRes) {
 		mIsOpen = false;
@@ -53,7 +53,7 @@ bool JUTDirectFile::fopen(const char* filename) {
 
 	interrupts = OSEnableInterrupts();
 	mLength         = mFileInfo.length;
-	OSRestoreInterrupts(interrupts);
+	// OSRestoreInterrupts(interrupts);
 
 	mPos    = 0;
 	mIsOpen = true;
@@ -67,7 +67,7 @@ void JUTDirectFile::fclose() {
 
 	int interrupts = OSEnableInterrupts();
 	DVDClose(&mFileInfo);
-	OSRestoreInterrupts(interrupts);
+	// OSRestoreInterrupts(interrupts);
 	mIsOpen = false;
 }
 

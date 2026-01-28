@@ -5,9 +5,6 @@
 #include "JSystem/JUtility/JUTNameTab.h"
 #include "global.h"
 
-// TODO: Not originally included directly
-#include "dolphin/os.h"
-
 struct JUTDataBlockHeader {
     u32 mType;
     u32 mSize;
@@ -728,7 +725,7 @@ public:
     J3DFrameCtrl() { this->init(0); }
     void init(s16);
     void init(int endFrame) { init((s16)endFrame); }
-    BOOL checkPass(f32);
+    int checkPass(f32);
     void update();
     virtual ~J3DFrameCtrl() {}
 

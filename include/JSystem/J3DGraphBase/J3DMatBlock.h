@@ -1196,9 +1196,8 @@ struct J3DFog : public J3DFogInfo {
     void setFogInfo(const J3DFogInfo* info) { *(J3DFogInfo*)this = *info; }
 
     void load() const {
-        std::cout << "J3DFog::load() is stubbed" << std::endl;
-        /* J3DGDSetFog(GXFogType(mType), mStartZ, mEndZ, mNearZ, mFarZ, mColor);
-        J3DGDSetFogRangeAdj(mAdjEnable, mCenter, (GXFogAdjTable*)&mFogAdjTable); */
+        J3DGDSetFog(GXFogType(mType), mStartZ, mEndZ, mNearZ, mFarZ, mColor);
+        J3DGDSetFogRangeAdj(mAdjEnable, mCenter, (GXFogAdjTable*)&mFogAdjTable);
     }
 };
 

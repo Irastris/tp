@@ -5,7 +5,7 @@
 #include "JSystem/J3DGraphBase/J3DFifo.h"
 // #include <dolphin/gd.h>
 
-// void J3DGDSetVtxAttrFmtv(GXVtxFmt, GXVtxAttrFmtList const*, bool);
+void J3DGDSetVtxAttrFmtv(GXVtxFmt, GXVtxAttrFmtList const*, bool);
 void J3DFifoLoadPosMtxImm(Mtx, u32);
 void J3DFifoLoadNrmMtxImm(Mtx, u32);
 
@@ -155,7 +155,9 @@ bool J3DShape::isSameVcdVatCmd(J3DShape* other) {
 }
 
 void J3DShape::makeVtxArrayCmd() {
-    GXVtxAttrFmtList* vtxAttr = mVertexData->getVtxAttrFmtList();
+    std::cout << "J3DShape::makeVtxArrayCmd() is stubbed" << std::endl;
+
+    /* GXVtxAttrFmtList* vtxAttr = mVertexData->getVtxAttrFmtList();
 
     u8 stride[12];
     void* array[12];
@@ -228,7 +230,7 @@ void J3DShape::makeVtxArrayCmd() {
             GDSetArray((GXAttr)(i + GX_VA_POS), array[i], stride[i]);
         else
             GDSetArrayRaw((GXAttr)(i + GX_VA_POS), NULL, stride[i]);
-    }
+    } */
 }
 
 void J3DShape::makeVcdVatCmd() {

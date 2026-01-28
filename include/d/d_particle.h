@@ -340,7 +340,7 @@ public:
     void draw(JPADrawInfo*, u8);
     void setHitMark(u16, fopAc_ac_c*, cXyz const*, csXyz const*, cXyz const*, u32);
     void setWaterRipple(u32*, cBgS_PolyInfo&, cXyz const*, f32, dKy_tevstr_c const*, cXyz const*, s8);
-    // JPABaseEmitter* set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*, u8, dPa_levelEcallBack*, s8, GXColor const*,  const*, cXyz const*, f32);
+    JPABaseEmitter* set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*, u8, dPa_levelEcallBack*, s8, GXColor const*, GXColor const*, cXyz const*, f32);
     JPABaseEmitter* set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*, u8, dPa_levelEcallBack*, s8, GXColor const*, cXyz const*, f32);
     u32 set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*, u8, dPa_levelEcallBack*, s8, GXColor const*, GXColor const*, cXyz const*, f32);
     static s32 getPolyColor(cBgS_PolyInfo&, int, GXColor*, GXColor*, u8*, f32*);

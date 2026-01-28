@@ -19,7 +19,7 @@ void J3DDrawBuffer::initialize() {
 }
 
 int J3DDrawBuffer::allocBuffer(u32 size) {
-    mpBuffer = new (0x20) J3DPacket*[size];
+    mpBuffer = new (JKRHeap::getCurrentHeap(), 0x20) J3DPacket*[size];
     if (mpBuffer == NULL)
         return kJ3DError_Alloc;
 
@@ -124,7 +124,7 @@ int J3DDrawBuffer::entryZSort(J3DMatPacket* pMatPacket) {
     tmp.y = mpZMtx[1][3];
     tmp.z = mpZMtx[2][3];
 
-    f32 value = -J3DCalcZValue(j3dSys.getViewMtx(), tmp);
+    f32 value = -J3DCalcZValue(j3dSys.getViewMtx(), &tmp);
 
     u32 index;
     if (mZNear + mZRatio < value) {

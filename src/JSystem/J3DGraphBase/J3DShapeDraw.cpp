@@ -27,7 +27,7 @@ void J3DShapeDraw::addTexMtxIndexInDL(u32 stride, u32 attrOffs, u32 valueBase) {
     u32 byteNum = countVertex(stride);
     u32 oldSize = mDisplayListSize;
     u32 newSize = ALIGN_NEXT(oldSize + byteNum, 0x20);
-    u8* newDLStart = new (0x20) u8[newSize];
+    u8* newDLStart = new (JKRHeap::getCurrentHeap(), 0x20) u8[newSize];
     u8* oldDLStart = (u8*)mDisplayList;
     u8* oldDL = oldDLStart;
     u8* newDL = newDLStart;
@@ -66,7 +66,7 @@ void J3DShapeDraw::addTexMtxIndexInDL(u32 stride, u32 attrOffs, u32 valueBase) {
 
     mDisplayListSize = realSize;
     mDisplayList = newDLStart;
-    DCStoreRange(newDLStart, mDisplayListSize);
+    // DC(newDLStart, mDisplayListSize);
 }
 
 J3DShapeDraw::J3DShapeDraw(const u8* displayList, u32 displayListSize) {

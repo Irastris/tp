@@ -81,7 +81,7 @@ struct J3DFogInfo {
     f32 mNearZ;
     f32 mFarZ;
     GXColor mColor;
-    // GXFogAdjTable mFogAdjTable;
+    GXFogAdjTable mFogAdjTable;
 };
 
 struct J3DNBTScaleInfo {

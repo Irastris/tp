@@ -4,7 +4,7 @@
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JUtility/JUTFader.h"
 #include "JSystem/JUtility/JUTXfb.h"
-#include <dolphin/os.h>
+#include "dolphin/os.h"
 
 class JKRHeap;
 
@@ -38,8 +38,7 @@ public:
 
     void ctor_subroutine(bool);
     JFWDisplay(JKRHeap*, JUTXfb::EXfbNumber, bool);
-    static JFWDisplay* createManager(GXRenderModeObj const*, JKRHeap*,
-                                                    JUTXfb::EXfbNumber, bool);
+    static JFWDisplay* createManager(GXRenderModeObj const*, JKRHeap*, JUTXfb::EXfbNumber, bool);
     void prepareCopyDisp();
     void drawendXfb_single();
     void exchangeXfb_double();

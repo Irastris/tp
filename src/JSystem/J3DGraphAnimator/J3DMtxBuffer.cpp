@@ -137,8 +137,8 @@ s32 J3DMtxBuffer::createDoubleDrawMtx(J3DModelData* pModelData, u32 mtxNum) {
     for (s32 i = 0; i < 2; i++) {
         for (u32 j = 0; j < mtxNum; j++) {
             if (pModelData->getDrawMtxNum() != 0) {
-                mpDrawMtxArr[i][j] = new (0x20) Mtx[pModelData->getDrawMtxNum()];
-                mpNrmMtxArr[i][j] = new (0x20) Mtx33[pModelData->getDrawMtxNum()];
+                mpDrawMtxArr[i][j] = new (JKRHeap::getCurrentHeap(), 0x20) Mtx[pModelData->getDrawMtxNum()];
+                mpNrmMtxArr[i][j] = new (JKRHeap::getCurrentHeap(), 0x20) Mtx33[pModelData->getDrawMtxNum()];
             }
         }
     }
@@ -202,7 +202,7 @@ s32 J3DMtxBuffer::createBumpMtxArray(J3DModelData* i_modelData, u32 mtxNum) {
                 J3DMaterial* material = i_modelData->getMaterialNodePointer((u16)j);
                 if (material->getNBTScale()->mbHasScale == true) {
                     for (int k = 0; k < mtxNum; k++) {
-                        mpBumpMtxArr[i][offset][k] = new (0x20) Mtx33[i_modelData->getDrawMtxNum()];
+                        mpBumpMtxArr[i][offset][k] = new (JKRHeap::getCurrentHeap(), 0x20) Mtx33[i_modelData->getDrawMtxNum()];
                         if (mpBumpMtxArr[i][offset][k] == NULL) {
                             return kJ3DError_Alloc;
                         }
@@ -299,8 +299,7 @@ void J3DMtxBuffer::calcDrawMtx(u32 mdlFlag, Vec const& param_1, Mtx const& param
             MTXConcat(viewMtx, getAnmMtx(mJointTree->getDrawMtxIndex(i)), *getDrawMtx(i));
         }
         if (mJointTree->getDrawMtxNum() > fullWgtNum) {
-            J3DPSMtxArrayConcat(viewMtx, *mpWeightEvlpMtx, *getDrawMtx(fullWgtNum),
-                                mJointTree->getWEvlpMtxNum());
+            J3DPSMtxArrayConcat(viewMtx, *mpWeightEvlpMtx, *getDrawMtx(fullWgtNum), mJointTree->getWEvlpMtxNum());
         }
         return;
     case 1:
@@ -320,9 +319,7 @@ void J3DMtxBuffer::calcDrawMtx(u32 mdlFlag, Vec const& param_1, Mtx const& param
             MTXConcat(viewBaseMtx, getAnmMtx(mJointTree->getDrawMtxIndex(i)), *getDrawMtx(i));
         }
         if (mJointTree->getDrawMtxNum() > mJointTree->getDrawFullWgtMtxNum()) {
-            J3DPSMtxArrayConcat(viewBaseMtx, *mpWeightEvlpMtx,
-                                *getDrawMtx(mJointTree->getDrawFullWgtMtxNum()),
-                                mJointTree->getWEvlpMtxNum());
+            J3DPSMtxArrayConcat(viewBaseMtx, *mpWeightEvlpMtx, *getDrawMtx(mJointTree->getDrawFullWgtMtxNum()), mJointTree->getWEvlpMtxNum());
         }
         return;
     default:

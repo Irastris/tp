@@ -157,8 +157,9 @@ void J3DSys::drawInit() {
     GXSetTevOrder(GX_TEVSTAGE14, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
     GXSetTevOrder(GX_TEVSTAGE15, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
 
-    for (u32 i = 0; i < 10; i++)
-        GXLoadTexMtxImm(j3dIdentityMtx, GX_TEXMTX0 + i * 3, GX_MTX3x4);
+    for (u32 i = 0; i < 10; i++) {
+        GXLoadTexMtxImm(j3dIdentityMtx, GX_TEXMTX0 + i * 3, GX_MTX3x4);   
+    }
 
     Mtx23 indTexMtx = {
         {0.5f, 0.0f, 0.0f},
@@ -166,8 +167,9 @@ void J3DSys::drawInit() {
     };
 
     u8 i;
-    for (i = 0; i < 3; i++)
+    for (i = 0; i < 3; i++) {
         GXSetIndTexMtx((GXIndTexMtxID)(GX_ITM_0 + i), indTexMtx, 1);
+    }
 
     GXSetChanMatColor(GX_COLOR0A0, j3dDefaultColInfo);
     GXSetChanMatColor(GX_COLOR1A1, j3dDefaultColInfo);
@@ -178,42 +180,43 @@ void J3DSys::drawInit() {
     GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_CLAMP, GX_AF_NONE);
     GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_CLAMP, GX_AF_NONE);
 
-    for (i = 0; i < GX_MAX_TEXMAP; i++)
-        GXSetTexCoordGen((GXTexCoordID)i, (GXTexGenType)j3dDefaultTexCoordInfo[i].mTexGenType,
-                          (GXTexGenSrc)j3dDefaultTexCoordInfo[i].mTexGenSrc,
-                          j3dDefaultTexCoordInfo[i].mTexGenMtx);
+    for (i = 0; i < GX_MAX_TEXMAP; i++) {
+        GXSetTexCoordGen((GXTexCoordID)i, (GXTexGenType)j3dDefaultTexCoordInfo[i].mTexGenType, (GXTexGenSrc)j3dDefaultTexCoordInfo[i].mTexGenSrc, j3dDefaultTexCoordInfo[i].mTexGenMtx);
+    }
 
-    for (i = 0; i < GX_MAX_INDTEXSTAGE; i++)
+    for (i = 0; i < GX_MAX_INDTEXSTAGE; i++) {
         GXSetIndTexCoordScale((GXIndTexStageID)i, GX_ITS_1, GX_ITS_1);
+    }
 
-    for (i = 0; i < GX_MAX_TEVREG; i++)
+    for (i = 0; i < GX_MAX_TEVREG; i++) {
         GXSetTevKColor((GXTevKColorID)i, j3dDefaultTevKColor);
+    }
 
-    for (i = 0; i < GX_MAX_TEVREG; i++)
+    for (i = 0; i < GX_MAX_TEVREG; i++) {
         GXSetTevColorS10((GXTevRegID)i, j3dDefaultTevColor);
+    }
 
     for (i = 0; i < GX_MAX_TEVSTAGE; i++) {
         GXSetTevColorIn((GXTevStageID)i, GX_CC_RASC, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO);
-        GXSetTevColorOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE,
-                        GX_TEVPREV);
+        GXSetTevColorOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
         GXSetTevAlphaIn((GXTevStageID)i, GX_CA_RASA, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO);
-        GXSetTevAlphaOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE,
-                        GX_TEVPREV);
+        GXSetTevAlphaOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
     }
 
-    for (i = 0; i < GX_MAX_TEVSTAGE; i++)
+    for (i = 0; i < GX_MAX_TEVSTAGE; i++) {
         GXSetTevSwapMode((GXTevStageID)i, GX_TEV_SWAP0, GX_TEV_SWAP0);
+    }
 
     GXSetTevSwapModeTable(GX_TEV_SWAP0, GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
     GXSetTevSwapModeTable(GX_TEV_SWAP1, GX_CH_RED, GX_CH_RED, GX_CH_RED, GX_CH_ALPHA);
     GXSetTevSwapModeTable(GX_TEV_SWAP2, GX_CH_GREEN, GX_CH_GREEN, GX_CH_GREEN, GX_CH_ALPHA);
     GXSetTevSwapModeTable(GX_TEV_SWAP3, GX_CH_BLUE, GX_CH_BLUE, GX_CH_BLUE, GX_CH_ALPHA);
 
-    for (i = 0; i < GX_MAX_TEVSTAGE; i++)
-        GXSetTevIndirect((GXTevStageID)i, GX_INDTEXSTAGE0, GX_ITF_8, GX_ITB_NONE, GX_ITM_OFF,
-                         GX_ITW_OFF, GX_ITW_OFF, GX_FALSE, GX_FALSE, GX_ITBA_OFF);
+    for (i = 0; i < GX_MAX_TEVSTAGE; i++) {
+        GXSetTevIndirect((GXTevStageID)i, GX_INDTEXSTAGE0, GX_ITF_8, GX_ITB_NONE, GX_ITM_OFF, GX_ITW_OFF, GX_ITW_OFF, GX_FALSE, GX_FALSE, GX_ITBA_OFF);
+    }
 
-    OSInitFastCast();
+    // OSInitFastCast();
     setTexCacheRegion(GX_TEXCACHE_32K);
 }
 
@@ -345,7 +348,7 @@ void J3DSys::reinitPixelProc() {
     GXSetAlphaUpdate(GX_FALSE);
     GXSetDither(GX_TRUE);
     GXSetFog(GX_FOG_NONE, 0.0f, 1.0f, 0.1f, 1.0f, ColorBlack);
-    GXSetFogRangeAdj(GX_FALSE, 0, NULL);
+    // GXSetFogRangeAdj(GX_FALSE, 0, NULL);
     GXSetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
     GXSetZCompLoc(GX_TRUE);
 }

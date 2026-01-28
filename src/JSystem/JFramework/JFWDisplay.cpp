@@ -324,7 +324,9 @@ static void JFWThreadAlarmHandler(OSAlarm* p_alarm, OSContext* p_ctx) {
 }
 
 void JFWDisplay::threadSleep(s64 time) {
-    JFWAlarm alarm;
+    std::cout << "JFWDisplay::endPatch() is stubbed" << std::endl;
+
+    /* JFWAlarm alarm;
     alarm.createAlarm();
     alarm.setThread(OSGetCurrentThread());
     s32 status = OSDisableInterrupts();
@@ -332,7 +334,7 @@ void JFWDisplay::threadSleep(s64 time) {
 
     OSSetAlarm(alarm.getAlarm(), time, JFWThreadAlarmHandler);
     OSSuspendThread(alarm.getThread());
-    OSRestoreInterrupts(status);
+    OSRestoreInterrupts(status); */
 }
 
 static void dummy() {
@@ -457,7 +459,9 @@ void JFWDisplay::calcCombinationRatio() {
 }
 
 static void JFWDrawDoneAlarm() {
-    JFWAlarm alarm;
+    std::cout << "JFWDrawDoneAlarm() is stubbed" << std::endl;
+
+    /* JFWAlarm alarm;
     s32 status = OSDisableInterrupts();
     alarm.createAlarm();
     alarm.appendLink();
@@ -465,7 +469,7 @@ static void JFWDrawDoneAlarm() {
     GXDrawDone();
     alarm.cancelAlarm();
     alarm.removeLink();
-    OSRestoreInterrupts(status);
+    OSRestoreInterrupts(status); */
 }
 
 static void JFWGXAbortAlarmHandler(OSAlarm* param_0, OSContext* param_1) {

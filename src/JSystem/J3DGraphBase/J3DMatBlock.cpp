@@ -297,7 +297,7 @@ static u32 SizeOfLoadColorChans = 21;
 static u32 SizeOfJ3DColorBlockLightOffLoad = SizeOfLoadMatColors + SizeOfLoadColorChans;
 
 void J3DColorBlockLightOff::load() {
-    GDOverflowCheck(SizeOfJ3DColorBlockLightOffLoad);
+    // GDOverflowCheck(SizeOfJ3DColorBlockLightOffLoad);
     mMatColorOffset = GDGetCurrOffset();
     loadMatColors(mMatColor);
     mColorChanOffset = GDGetCurrOffset();
@@ -312,7 +312,7 @@ void J3DColorBlockLightOff::load() {
 static u32 SizeOfJ3DColorBlockAmbientOnLoad = SizeOfLoadMatColors + SizeOfLoadAmbColors + SizeOfLoadColorChans;
 
 void J3DColorBlockAmbientOn::load() {
-    GDOverflowCheck(SizeOfJ3DColorBlockAmbientOnLoad);
+    // GDOverflowCheck(SizeOfJ3DColorBlockAmbientOnLoad);
     mMatColorOffset = GDGetCurrOffset();
     loadMatColors(mMatColor);
     loadAmbColors(mAmbColor);
@@ -326,7 +326,7 @@ void J3DColorBlockAmbientOn::load() {
 }
 
 void J3DColorBlockLightOn::load() {
-    GDOverflowCheck(SizeOfJ3DColorBlockAmbientOnLoad);
+    // GDOverflowCheck(SizeOfJ3DColorBlockAmbientOnLoad);
     mMatColorOffset = GDGetCurrOffset();
     loadMatColors(mMatColor);
     loadAmbColors(mAmbColor);
@@ -353,16 +353,16 @@ void J3DColorBlockLightOff::patch() {
 void J3DColorBlockLightOff::patchMatColor() {
     GDSetCurrOffset(mMatColorOffset);
     void* start = GDGetCurrPointer();
-    GDOverflowCheck(SizeOfLoadMatColors);
+    // GDOverflowCheck(SizeOfLoadMatColors);
     loadMatColors(mMatColor);
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DColorBlockLightOff::patchLight() {
     GDSetCurrOffset(mColorChanOffset);
     void* start = GDGetCurrPointer();
-    GDOverflowCheck(SizeOfLoadColorChans);
+    // GDOverflowCheck(SizeOfLoadColorChans);
     J3DGDWriteXFCmdHdr(XF_REG_COLOR0CNTRL_ID, 4);
 
     mColorChan[0].load();
@@ -371,7 +371,7 @@ void J3DColorBlockLightOff::patchLight() {
     mColorChan[3].load();
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DColorBlockLightOn::patch() {
@@ -382,16 +382,16 @@ void J3DColorBlockLightOn::patch() {
 void J3DColorBlockLightOn::patchMatColor() {
     GDSetCurrOffset(mMatColorOffset);
     void* start = GDGetCurrPointer();
-    GDOverflowCheck(SizeOfLoadMatColors);
+    // GDOverflowCheck(SizeOfLoadMatColors);
     loadMatColors(mMatColor);
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DColorBlockLightOn::patchLight() {
     GDSetCurrOffset(mColorChanOffset);
     void* start = GDGetCurrPointer();
-    GDOverflowCheck(SizeOfLoadColorChans);
+    // GDOverflowCheck(SizeOfLoadColorChans);
     J3DGDWriteXFCmdHdr(XF_REG_COLOR0CNTRL_ID, 4);
 
     mColorChan[0].load();
@@ -406,7 +406,7 @@ void J3DColorBlockLightOn::patchLight() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DColorBlockLightOff::diff(u32 diffFlags) {
@@ -418,12 +418,12 @@ void J3DColorBlockLightOff::diff(u32 diffFlags) {
 }
 
 void J3DColorBlockLightOff::diffMatColor() {
-    GDOverflowCheck(SizeOfLoadMatColors);
+    // GDOverflowCheck(SizeOfLoadMatColors);
     loadMatColors(mMatColor);
 }
 
 void J3DColorBlockLightOff::diffColorChan() {
-    GDOverflowCheck(SizeOfLoadColorChans);
+    // GDOverflowCheck(SizeOfLoadColorChans);
     J3DGDWriteXFCmdHdr(XF_REG_COLOR0CNTRL_ID, 4);
     mColorChan[0].load();
     mColorChan[2].load();
@@ -447,17 +447,17 @@ void J3DColorBlockLightOn::diff(u32 diffFlags) {
 }
 
 void J3DColorBlockLightOn::diffAmbColor() {
-    GDOverflowCheck(SizeOfLoadAmbColors);
+    // GDOverflowCheck(SizeOfLoadAmbColors);
     loadAmbColors(mAmbColor);
 }
 
 void J3DColorBlockLightOn::diffMatColor() {
-    GDOverflowCheck(SizeOfLoadMatColors);
+    // GDOverflowCheck(SizeOfLoadMatColors);
     loadMatColors(mMatColor);
 }
 
 void J3DColorBlockLightOn::diffColorChan() {
-    GDOverflowCheck(SizeOfLoadColorChans);
+    // GDOverflowCheck(SizeOfLoadColorChans);
     J3DGDWriteXFCmdHdr(XF_REG_COLOR0CNTRL_ID, 4);
     mColorChan[0].load();
     mColorChan[2].load();
@@ -510,7 +510,7 @@ void J3DTexGenBlockPatched::patch() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DTexGenBlock4::patch() {
@@ -524,7 +524,7 @@ void J3DTexGenBlock4::patch() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DTexGenBlockBasic::patch() {
@@ -538,7 +538,7 @@ void J3DTexGenBlockBasic::patch() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DTexGenBlockPatched::diff(u32 diffFlags) {
@@ -567,7 +567,7 @@ void J3DTexGenBlockPatched::diffTexGen() {
 
 void J3DTevBlock1::load() {
     mTexNoOffset = GDGetCurrOffset();
-    GDOverflowCheck(0x69);
+    // GDOverflowCheck(0x69);
 
     if (mTexNo[0] != 0xffff) {
         loadTexNo(0, mTexNo[0]);
@@ -806,7 +806,7 @@ void J3DTevBlockPatched::patchTexNo() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DTevBlockPatched::patchTevReg() {
@@ -821,7 +821,7 @@ void J3DTevBlockPatched::patchTevReg() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DTevBlockPatched::patchTexNoAndTexCoordScale() {
@@ -858,7 +858,7 @@ void J3DTevBlockPatched::patchTexNoAndTexCoordScale() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DTevBlockPatched::patch() {
@@ -875,7 +875,7 @@ void J3DTevBlock1::patchTexNo() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DTevBlock1::patchTevReg() {}
@@ -904,7 +904,7 @@ void J3DTevBlock1::patchTexNoAndTexCoordScale() {
     );
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DTevBlock1::patch() {
@@ -922,7 +922,7 @@ void J3DTevBlock2::patchTexNo() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DTevBlock2::patchTevReg() {
@@ -937,7 +937,7 @@ void J3DTevBlock2::patchTevReg() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DTevBlock2::patchTexNoAndTexCoordScale() {
@@ -971,7 +971,7 @@ void J3DTevBlock2::patchTexNoAndTexCoordScale() {
     );
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DTevBlock2::patch() {
@@ -990,7 +990,7 @@ void J3DTevBlock4::patchTexNo() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DTevBlock4::patchTevReg() {
@@ -1005,7 +1005,7 @@ void J3DTevBlock4::patchTevReg() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DTevBlock4::patchTexNoAndTexCoordScale() {
@@ -1042,7 +1042,7 @@ void J3DTevBlock4::patchTexNoAndTexCoordScale() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 void J3DTevBlock4::patch() {
     patchTexNo();
@@ -1060,7 +1060,7 @@ void J3DTevBlock16::patchTexNo() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DTevBlock16::patchTevReg() {
@@ -1075,7 +1075,7 @@ void J3DTevBlock16::patchTevReg() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DTevBlock16::patchTexNoAndTexCoordScale() {
@@ -1112,7 +1112,7 @@ void J3DTevBlock16::patchTexNoAndTexCoordScale() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DTevBlock16::patch() {
@@ -1361,7 +1361,7 @@ void J3DTevBlock16::ptrToIndex() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DTevBlockPatched::ptrToIndex() {
@@ -1384,7 +1384,7 @@ void J3DTevBlockPatched::ptrToIndex() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DTevBlock::indexToPtr_private(u32 offs) {
@@ -1402,7 +1402,7 @@ void J3DTevBlock::indexToPtr_private(u32 offs) {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DIndBlockFull::load() {
@@ -1469,7 +1469,7 @@ void J3DIndBlockFull::diff(u32 diffFlags) {
 }
 
 void J3DPEBlockOpa::load() {
-    GDOverflowCheck(0x1e);
+    // GDOverflowCheck(0x1e);
     J3DGDSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_AND, GX_ALWAYS, 0);
     J3DGDSetBlendMode(GX_BM_NONE, GX_BL_ONE, GX_BL_ZERO, GX_LO_COPY);
     J3DGDSetZMode(1, GX_LEQUAL, 1);
@@ -1477,7 +1477,7 @@ void J3DPEBlockOpa::load() {
 }
 
 void J3DPEBlockTexEdge::load() {
-    GDOverflowCheck(0x1e);
+    // GDOverflowCheck(0x1e);
     J3DGDSetAlphaCompare(GX_GEQUAL, 0x80, GX_AOP_AND, GX_LEQUAL, 0xff);
     J3DGDSetBlendMode(GX_BM_NONE, GX_BL_ONE, GX_BL_ZERO, GX_LO_COPY);
     J3DGDSetZMode(1, GX_LEQUAL, 1);
@@ -1485,7 +1485,7 @@ void J3DPEBlockTexEdge::load() {
 }
 
 void J3DPEBlockXlu::load() {
-    GDOverflowCheck(0x1e);
+    // GDOverflowCheck(0x1e);
     J3DGDSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_AND,GX_ALWAYS, 0);
     J3DGDSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_COPY);
     J3DGDSetZMode(1, GX_LEQUAL, 0);
@@ -1497,7 +1497,7 @@ inline void loadZCompLoc(u8 compLoc) {
 }
 
 void J3DPEBlockFogOff::load() {
-    GDOverflowCheck(0x1e);
+    // GDOverflowCheck(0x1e);
     mAlphaComp.load();
     mBlend.load(mDither);
     mZMode.load();
@@ -1505,14 +1505,14 @@ void J3DPEBlockFogOff::load() {
 }
 
 void J3DPEBlockFogOff::diffBlend() {
-    GDOverflowCheck(0xf);
+    // GDOverflowCheck(0xf);
     mBlend.load(mDither);
     mZMode.load();
 }
 
 void J3DPEBlockFull::load() {
     mFogOffset = GDGetCurrOffset();
-    GDOverflowCheck(0x55);
+    // GDOverflowCheck(0x55);
     mFog.load();
     mAlphaComp.load();
     mBlend.load(mDither);
@@ -1522,20 +1522,20 @@ void J3DPEBlockFull::load() {
 
 void J3DPEBlockFull::patch() {
     GDSetCurrOffset(mFogOffset);
-    GDOverflowCheck(0x37);
+    // GDOverflowCheck(0x37);
     void* start = GDGetCurrPointer();
     mFog.load();
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
+    // DC(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 void J3DPEBlockFull::diffFog() {
-    GDOverflowCheck(0x37);
+    // GDOverflowCheck(0x37);
     mFog.load();
 }
 
 void J3DPEBlockFull::diffBlend() {
-    GDOverflowCheck(0xf);
+    // GDOverflowCheck(0xf);
     mBlend.load(mDither);
     mZMode.load();
 }
@@ -1603,9 +1603,7 @@ void J3DTexGenBlockPatched::reset(J3DTexGenBlock* pBlock) {
         if (pBlock->getTexMtx(i) != NULL) {
             if (mTexMtx[i] != NULL) {
                 memcpy(mTexMtx[i], pBlock->getTexMtx(i), sizeof(*mTexMtx[i]));
-                DCStoreRange(mTexMtx[i], sizeof(*mTexMtx[i]));
-            } else {
-                OSReport("Error : TexMtx[%d] is Null.\n", i);
+                // DC(mTexMtx[i], sizeof(*mTexMtx[i]));
             }
         }
     }
@@ -1621,9 +1619,7 @@ void J3DTexGenBlock4::reset(J3DTexGenBlock* pBlock) {
         if (pBlock->getTexMtx(i) != NULL) {
             if (mTexMtx[i] != NULL) {
                 memcpy(mTexMtx[i], pBlock->getTexMtx(i), sizeof(*mTexMtx[i]));
-                DCStoreRange(mTexMtx[i], sizeof(*mTexMtx[i]));
-            } else {
-                OSReport("Error : TexMtx[%d] is Null.\n", i);
+                // DC(mTexMtx[i], sizeof(*mTexMtx[i]));
             }
         }
     }
@@ -1641,9 +1637,7 @@ void J3DTexGenBlockBasic::reset(J3DTexGenBlock* pBlock) {
         if (pBlock->getTexMtx(i) != NULL) {
             if (mTexMtx[i] != NULL) {
                 memcpy(mTexMtx[i], pBlock->getTexMtx(i), sizeof(*mTexMtx[i]));
-                DCStoreRange(mTexMtx[i], sizeof(*mTexMtx[i]));
-            } else {
-                OSReport("Error : TexMtx[%d] is Null.\n", i);
+                // DC(mTexMtx[i], sizeof(*mTexMtx[i]));
             }
         }
     }
@@ -1925,7 +1919,7 @@ void J3DTexGenBlockPatched::calcPostTexMtx(const Mtx modelMtx) {
                 break;
             case J3DTexMtxMode_ProjmapBasic:
             case J3DTexMtxMode_Projmap:
-                PSMTXInverse(j3dSys.getViewMtx(), mtx1);
+                MTXInverse(j3dSys.getViewMtx(), mtx1);
                 mTexCoord[i].setTexMtxReg(0);
                 mTexMtx[i]->calcPostTexMtx(mtx1);
                 break;
@@ -1937,7 +1931,7 @@ void J3DTexGenBlockPatched::calcPostTexMtx(const Mtx modelMtx) {
             case J3DTexMtxMode_Unknown5:
             case J3DTexMtxMode_EnvmapOldEffectMtx:
             case J3DTexMtxMode_EnvmapEffectMtx:
-                PSMTXInverse(j3dSys.getViewMtx(), mtx2);
+                MTXInverse(j3dSys.getViewMtx(), mtx2);
                 mtx2[0][3] = 0.0f;
                 mtx2[1][3] = 0.0f;
                 mtx2[2][3] = 0.0f;

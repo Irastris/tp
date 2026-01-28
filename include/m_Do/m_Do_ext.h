@@ -15,12 +15,12 @@
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 
-/* class JKRArchive;
+// class JKRArchive;
 class JKRExpHeap;
 class JKRHeap;
 class JKRSolidHeap;
-struct ResTIMG;
-class Z2Creature;
+/* struct ResTIMG;
+class Z2Creature; */
 
 class mDoExt_baseAnm {
 public:
@@ -58,7 +58,7 @@ private:
     void* mBas;
 };
 
-class mDoExt_btkAnm : public mDoExt_baseAnm {
+/* class mDoExt_btkAnm : public mDoExt_baseAnm {
 public:
     mDoExt_btkAnm() { mpAnm = 0; }
     int init(J3DMaterialTable* i_matTable, J3DAnmTextureSRTKey* i_btk, int i_anmPlay, int i_attribute, f32 i_rate, s16 i_start, s16 param_6);

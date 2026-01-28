@@ -1141,7 +1141,9 @@ static BOOL realPolygonCheck(cXyz* param_0, f32 param_1, f32 param_2, cXyz* para
 }
 
 static void setkankyoShadow(dKy_tevstr_c* param_0, f32* param_1) {
-    dScnKy_env_light_c* env_light = dKy_getEnvlight();
+    std::cout << "setkankyoShadow() is stubbed" << std::endl;
+
+    /* dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
     if (param_0 != NULL) {
         *param_1 *= param_0->field_0x344;
@@ -1168,7 +1170,7 @@ static void setkankyoShadow(dKy_tevstr_c* param_0, f32* param_1) {
 
     if (*param_1 > 1.0f) {
         *param_1 = 1.0f;
-    }
+    } */
 }
 
 u8 dDlst_shadowReal_c::setShadowRealMtx(cXyz* param_0, cXyz* param_1, f32 param_2, f32 param_3, f32 param_4, dKy_tevstr_c* param_5) {
@@ -1230,9 +1232,10 @@ u8 dDlst_shadowReal_c::setShadowRealMtx(cXyz* param_0, cXyz* param_1, f32 param_
 }
 
 
-u32 dDlst_shadowReal_c::set(u32 i_key, J3DModel* i_model, cXyz* param_2, f32 param_3, f32 param_4,
-                            dKy_tevstr_c* param_5, f32 i_cameraZ, f32 param_7) {
-    dScnKy_env_light_c* env_light = dKy_getEnvlight();
+u32 dDlst_shadowReal_c::set(u32 i_key, J3DModel* i_model, cXyz* param_2, f32 param_3, f32 param_4, dKy_tevstr_c* param_5, f32 i_cameraZ, f32 param_7) {
+    std::cout << "dDlst_shadowReal_c::set() is stubbed" << std::endl;
+
+    /* dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
     if (mModelNum == 0) {
         cXyz sp60;
@@ -1266,7 +1269,10 @@ u32 dDlst_shadowReal_c::set(u32 i_key, J3DModel* i_model, cXyz* param_2, f32 par
     u8 last_model_num = mModelNum;
     mModelNum++;
     mpModels[last_model_num] = i_model;
-    return mKey;
+
+    return mKey; */
+
+    return 1;
 }
 
 bool dDlst_shadowReal_c::add(J3DModel* i_model) {
@@ -1778,8 +1784,7 @@ void dDlst_list_c::reset() {
     }
 }
 
-void dDlst_list_c::entryZSortXluDrawList(J3DDrawBuffer* param_0, J3DPacket* param_1,
-                                         cXyz& param_2) {
+void dDlst_list_c::entryZSortXluDrawList(J3DDrawBuffer* param_0, J3DPacket* param_1, cXyz& param_2) {
     f32 z_value = -J3DCalcZValue(j3dSys.getViewMtx(), param_2);
     u32 size = param_0->getEntryTableSize();
     f32 fsize = size;

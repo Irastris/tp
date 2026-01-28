@@ -224,9 +224,9 @@ J2DPane* J2DScreen::createPane(J2DScrnBlockHeader const& header, JSURandomInputS
 void J2DScreen::draw(f32 x, f32 y, J2DGrafContext const* grafCtx) {
     u32 l_x, l_y, width, height;
 
-    if (mScissor) {
+    /* if (mScissor) {
         GXGetScissor(&l_x, &l_y, &width, &height);
-    }
+    } */
 
     if (grafCtx != NULL) {
         J2DPane::draw(x, y, grafCtx, mScissor, true);
@@ -236,9 +236,9 @@ void J2DScreen::draw(f32 x, f32 y, J2DGrafContext const* grafCtx) {
         J2DPane::draw(x, y, &ortho, mScissor, true);
     }
 
-    if (mScissor) {
+    /* if (mScissor) {
         GXSetScissor(l_x, l_y, width, height);
-    }
+    } */
 
     GXSetNumIndStages(0);
     for (int i = 0; i < 0x10; i++) {

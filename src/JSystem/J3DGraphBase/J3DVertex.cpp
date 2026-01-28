@@ -81,7 +81,7 @@ s32 J3DVertexBuffer::copyLocalVtxPosArray(u32 flag) {
             }
 
             memcpy(mVtxPosArray[i], mVtxData->getVtxPosArray(), mVtxData->getVtxNum() * 3 * 4);
-            DCStoreRange(mVtxPosArray[i], mVtxData->getVtxNum() * 3 * 4);
+            // DC(mVtxPosArray[i], mVtxData->getVtxNum() * 3 * 4);
         }
     } else {
         mVtxPosArray[0] = mVtxData->getVtxPosArray();
@@ -94,7 +94,7 @@ s32 J3DVertexBuffer::copyLocalVtxPosArray(u32 flag) {
         }
 
         memcpy(mVtxPosArray[1], mVtxData->getVtxPosArray(), mVtxData->getVtxNum() * 3 * 4);
-        DCStoreRange(mVtxPosArray[1], mVtxData->getVtxNum() * 3 * 4);
+        // DC(mVtxPosArray[1], mVtxData->getVtxNum() * 3 * 4);
     }
 
     return kJ3DError_Success;
@@ -109,7 +109,7 @@ s32 J3DVertexBuffer::copyLocalVtxNrmArray(u32 flag) {
             }
 
             memcpy(mVtxNrmArray[i], mVtxData->getVtxNrmArray(), mVtxData->getNrmNum() * 3 * 4);
-            DCStoreRange(mVtxNrmArray[i], mVtxData->getNrmNum() * 3 * 4);
+            // DC(mVtxNrmArray[i], mVtxData->getNrmNum() * 3 * 4);
         }
     } else {
         mVtxNrmArray[0] = mVtxData->getVtxNrmArray();
@@ -122,7 +122,7 @@ s32 J3DVertexBuffer::copyLocalVtxNrmArray(u32 flag) {
         }
 
         memcpy(mVtxNrmArray[1], mVtxData->getVtxNrmArray(), mVtxData->getNrmNum() * 3 * 4);
-        DCStoreRange(mVtxNrmArray[1], mVtxData->getNrmNum() * 3 * 4);
+        // DC(mVtxNrmArray[1], mVtxData->getNrmNum() * 3 * 4);
     }
 
     return kJ3DError_Success;

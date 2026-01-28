@@ -486,7 +486,7 @@ void J3DModel::viewCalc() {
     } else if (checkFlag(J3DMdlFlag_SkinNrmCpu)) {
         mMtxBuffer->calcDrawMtx(getMtxCalcMode(), mBaseScale, mBaseTransformMtx);
         calcBBoardMtx();
-        DCStoreRange(getDrawMtxPtr(), mModelData->getDrawMtxNum() * sizeof(Mtx));
+        // DCStoreRange(getDrawMtxPtr(), mModelData->getDrawMtxNum() * sizeof(Mtx));
     } else {
         mMtxBuffer->calcDrawMtx(getMtxCalcMode(), mBaseScale, mBaseTransformMtx);
         calcNrmMtx();
@@ -511,9 +511,8 @@ void J3DModel::calcBumpMtx() {
         for (u16 i = 0; i < materialNum; i++) {
             J3DMaterial* material = getModelData()->getMaterialNodePointer(i);
             if (material->getNBTScale()->mbHasScale == TRUE) {
-                material->getShape()->calcNBTScale(*material->getNBTScale()->getScale(),
-                                                   getNrmMtxPtr(), getBumpMtxPtr(bumpMtxIdx));
-                DCStoreRange(getBumpMtxPtr(bumpMtxIdx), mModelData->getDrawMtxNum() * sizeof(Mtx33));
+                material->getShape()->calcNBTScale(*material->getNBTScale()->getScale(), getNrmMtxPtr(), getBumpMtxPtr(bumpMtxIdx));
+                // DCStoreRange(getBumpMtxPtr(bumpMtxIdx), mModelData->getDrawMtxNum() * sizeof(Mtx33));
                 bumpMtxIdx++;
             }
         }

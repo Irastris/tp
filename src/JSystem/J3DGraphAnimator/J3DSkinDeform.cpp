@@ -5,6 +5,9 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include <string>
 
+// TODO: Not originally included directly
+#include "dolphin/os.h"
+
 J3DSkinNList::J3DSkinNList() {
     field_0x0 = NULL;
     field_0x4 = NULL;
@@ -219,7 +222,7 @@ int J3DSkinDeform::initMtxIndexArray(J3DModelData* pModelData) {
     }
 
     mPosMtx = new Mtx[pModelData->getJointNum()];
-    mNrmMtx = new (32) Mtx33[pModelData->getDrawMtxNum()];
+    mNrmMtx = new (JKRHeap::getCurrentHeap(), 32) Mtx33[pModelData->getDrawMtxNum()];
     if (mPosMtx == NULL) {
         return kJ3DError_Alloc;
     }
@@ -242,21 +245,18 @@ int J3DSkinDeform::initMtxIndexArray(J3DModelData* pModelData) {
             case GX_VA_POS:
                 vtx_num = r23;
                 if (vtxDesc->type != GX_INDEX16) {
-                    OSReport(" Invlid Data : CPU Pipeline process GX_INDEX16 Data Only\n");
                     return 6;
                 }
                 break;
             case GX_VA_NRM:
                 nrm_num = r23;
                 if (vtxDesc->type != GX_INDEX16) {
-                    OSReport(" Invlid Data : CPU Pipeline process GX_INDEX16 Data Only\n");
                     return 6;
                 }
                 break;
             case GX_VA_TEX0:
                 tex_num = r23;
                 if (vtxDesc->type != GX_INDEX16) {
-                    OSReport(" Invlid Data : CPU Pipeline process GX_INDEX16 Data Only\n");
                     return 6;
                 }
                 break;
@@ -332,8 +332,6 @@ int J3DSkinDeform::initMtxIndexArray(J3DModelData* pModelData) {
         if (mPosData[i] == 0xffff) {
             field_0x18 = 0x0;
             mPosData[i] = 0;
-            OS_REPORT("Error : Invalid Positon Data Exists!.");
-            OS_REPORT("Error : Invalid Positon Index = %d\n", i);
         }
     }
 
@@ -386,7 +384,7 @@ void J3DSkinDeform::changeFastSkinDL(J3DModelData* pModelData) {
                 }
 
                 pShapeNode->getShapeDraw(j)->setDisplayListSize(dlistSize);
-                DCStoreRange(displayListStart, pShapeNode->getShapeDraw(j)->getDisplayListSize());
+                // DCStoreRange(displayListStart, pShapeNode->getShapeDraw(j)->getDisplayListSize());
             }
         }
     }
@@ -495,7 +493,7 @@ void J3DSkinDeform::deformFastVtxPos_F32(J3DVertexBuffer* pVtxBuffer, J3DMtxBuff
         }
     }
 
-    DCStoreRange(pVtxBuffer->getTransformedVtxPos(0), pVtxBuffer->getVertexData()->getVtxNum() * sizeof(Vec));
+    // DCStoreRange(pVtxBuffer->getTransformedVtxPos(0), pVtxBuffer->getVertexData()->getVtxNum() * sizeof(Vec));
     pVtxBuffer->setCurrentVtxPos(transformedVtxPos);
 }
 
@@ -527,7 +525,7 @@ void J3DSkinDeform::deformFastVtxNrm_F32(J3DVertexBuffer* pVtxBuffer, J3DMtxBuff
         }
     }
 
-    DCStoreRange(pVtxBuffer->getTransformedVtxNrm(0), pVtxBuffer->getVertexData()->getNrmNum() * sizeof(Vec));
+    // DCStoreRange(pVtxBuffer->getTransformedVtxNrm(0), pVtxBuffer->getVertexData()->getNrmNum() * sizeof(Vec));
     pVtxBuffer->setCurrentVtxNrm(transformedVtxNrm);
 }
 
@@ -549,7 +547,7 @@ void J3DSkinDeform::deformVtxPos_F32(J3DVertexBuffer* pVtxBuffer, J3DMtxBuffer* 
         J3DPSMulMtxVec(anmMtx[jointTree->getDrawMtxIndex(mPosData[i])], (Vec*)(((f32*)currentVtxPos) + (i * 3)), (Vec*)(((f32*)transformedVtxPos) + (i * 3)));
     }
 
-    DCStoreRange(pVtxBuffer->getTransformedVtxPos(0), pVtxBuffer->getVertexData()->getVtxNum() * sizeof(Vec));
+    // DC(pVtxBuffer->getTransformedVtxPos(0), pVtxBuffer->getVertexData()->getVtxNum() * sizeof(Vec));
     pVtxBuffer->setCurrentVtxPos(transformedVtxPos);
 }
 
@@ -573,7 +571,7 @@ void J3DSkinDeform::deformVtxPos_S16(J3DVertexBuffer* pVtxBuffer, J3DMtxBuffer* 
         J3DPSMulMtxVec(anmMtx[jointTree->getDrawMtxIndex(mPosData[i])], (S16Vec*)(((s16*)currentVtxPos) + (i * 3)), (S16Vec*)(((s16*)transformedVtxPos) + (i * 3)));
     }
 
-    DCStoreRange(pVtxBuffer->getTransformedVtxPos(0), pVtxBuffer->getVertexData()->getVtxNum() * sizeof(S16Vec));
+    // DC(pVtxBuffer->getTransformedVtxPos(0), pVtxBuffer->getVertexData()->getVtxNum() * sizeof(S16Vec));
     pVtxBuffer->setCurrentVtxPos(transformedVtxPos);
 }
 
@@ -587,7 +585,7 @@ void J3DSkinDeform::deformVtxNrm_F32(J3DVertexBuffer* pVtxBuffer) const {
         J3DPSMulMtxVec(mNrmMtx[mNrmData[i]], (Vec*)((u8*)currentVtxNrm + i * 3 * 4), (Vec*)((u8*)transformedVtxNrm + i * 3 * 4));
     }
 
-    DCStoreRange(pVtxBuffer->getTransformedVtxNrm(0), pVtxBuffer->getVertexData()->getNrmNum() * sizeof(Vec));
+    // DC(pVtxBuffer->getTransformedVtxNrm(0), pVtxBuffer->getVertexData()->getNrmNum() * sizeof(Vec));
     pVtxBuffer->setCurrentVtxNrm(transformedVtxNrm);
 }
 
@@ -604,7 +602,7 @@ void J3DSkinDeform::deformVtxNrm_S16(J3DVertexBuffer* pVtxBuffer) const {
         J3DPSMulMtxVec(mNrmMtx[mNrmData[i]], (S16Vec*)(((s16*)currentVtxNrm) + (i * 3)), (S16Vec*)(((s16*)transformedVtxNrm) + (i * 3)));
     }
 
-    DCStoreRange(pVtxBuffer->getTransformedVtxNrm(0), pVtxBuffer->getVertexData()->getNrmNum() * sizeof(S16Vec));
+    // DC(pVtxBuffer->getTransformedVtxNrm(0), pVtxBuffer->getVertexData()->getNrmNum() * sizeof(S16Vec));
     pVtxBuffer->setCurrentVtxNrm(transformedVtxNrm);
 }
 
@@ -672,7 +670,7 @@ void J3DVtxColorCalc::calc(J3DVertexBuffer* buffer) {
                 colorArray[((u16*)r28->mpData)[j]] = color;
             }
         }
-        DCStoreRange(colorArray, buffer->getVertexData()->getColNum() * 4);
+        // DC(colorArray, buffer->getVertexData()->getColNum() * 4);
         buffer->setCurrentVtxCol(colorArray);
     }
 }

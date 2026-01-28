@@ -7,7 +7,6 @@
 #include "JSystem/JUtility/JUTResource.h"
 
 // TODO: Deduplicate instances of these
-#define M_PI 3.14159265358979323846f
 #define DEG_TO_RAD(degrees) (degrees * (M_PI / 180.0f))
 
 J2DPane::J2DPane() : mBounds(), mGlobalBounds(), mClipRect(), mPaneTree(this) {
