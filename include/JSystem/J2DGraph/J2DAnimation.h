@@ -408,48 +408,17 @@ inline f32 J2DHermiteInterpolation(f32 f1, const f32* f2, const f32* f3, const f
     return JMAHermiteInterpolation(f1, *f2, *f3, *f4, *f5, *f6, *f7);
 }
 
-inline f32 J2DHermiteInterpolation(__REGISTER f32 pp1, __REGISTER s16* pp2, __REGISTER s16* pp3, __REGISTER s16* pp4, __REGISTER s16* pp5, __REGISTER s16* pp6, __REGISTER s16* pp7) {
-#ifdef __MWERKS__
-    __REGISTER f32 p1 = pp1;
-    __REGISTER f32 ff8;
-    __REGISTER f32 ff7;
-    __REGISTER f32 ff6;
-    __REGISTER f32 ff5;
-    __REGISTER f32 ff4;
-    __REGISTER f32 ff3;
-    __REGISTER f32 ff2;
-    __REGISTER f32 ff0;
-    __REGISTER f32 fout;
-    __REGISTER s16* p2 = pp2;
-    __REGISTER s16* p3 = pp3;
-    __REGISTER s16* p4 = pp4;
-    __REGISTER s16* p5 = pp5;
-    __REGISTER s16* p6 = pp6;
-    __REGISTER s16* p7 = pp7;
-    asm {
-        psq_l ff2, 0(p2), 0x1, 5
-        psq_l ff0, 0(p5), 0x1, 5
-        psq_l ff7, 0(p3), 0x1, 5
-        fsubs ff5, ff0, ff2
-        psq_l ff6, 0(p6), 0x1, 5
-        fsubs ff3, p1, ff2
-        psq_l ff0, 0(p7), 0x1, 5
-        fsubs ff4, ff6, ff7
-        fdivs ff3, ff3, ff5
-        psq_l fout, 0(p4), 0x1, 5
-        fmadds ff0, ff0, ff5, ff7
-        fmuls ff2, ff3, ff3
-        fnmsubs ff4, ff5, fout, ff4
-        fsubs ff0, ff0, ff6
-        fsubs ff0, ff0, ff4
-        fmuls ff0, ff2, ff0
-        fmadds fout, ff5, fout, ff0
-        fmadds fout, fout, ff3, ff7
-        fmadds fout, ff4, ff2, fout
-        fsubs fout, fout, ff0
-    }
-    return fout;
-#endif
+inline f32 J2DHermiteInterpolation(f32 pp1, s16* pp2, s16* pp3, s16* pp4, s16* pp5, s16* pp6, s16* pp7) {
+    f32 duration = *pp5 - *pp2;
+    f32 t = (pp1 - *pp2) / duration;
+    f32 t2 = t * t;
+    f32 t3 = t2 * t;
+
+    f32 delta = *pp6 - *pp3;
+    f32 m0 = *pp4 * duration;
+    f32 m1 = *pp7 * duration;
+
+    return *pp3 + m0 * t + (3.0f * delta - 2.0f * m0 - m1) * t2 + (m0 + m1 - 2.0f * delta) * t3;
 }
 
 #endif
