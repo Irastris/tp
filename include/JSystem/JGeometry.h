@@ -37,26 +37,17 @@ struct TUtil<f32> {
     static inline f32 epsilon() { return 32.0f * FLT_EPSILON; }
     static inline f32 PI() { return 3.1415927f; }
     static inline f32 inv_sqrt(f32 x) {
-        #ifdef __MWERKS__
         if (x <= 0.0f) {
             return x;
         }
-        f32 root = __frsqrte(x);
-        root = 0.5f * root * (3.0f - x * (root * root));
-        return root;
-        #endif
+        return 1.0f / std::sqrt(x);
     }
 
     static inline f32 sqrt(f32 x) {
-        #ifdef __MWERKS__
         if (x <= 0.0f) {
             return x;
         }
-
-        f32 root = __frsqrte(x);
-        root = 0.5f * root * (3.0f - x * (root * root));
-        return x * root;
-        #endif
+        return std::sqrt(x);
     }
 };
 
@@ -128,18 +119,10 @@ struct TVec3<s16> {
     }
 };
 
-inline void setTVec3f(const __REGISTER f32* vec_a, __REGISTER f32* vec_b) {
-#ifdef __MWERKS__
-    __REGISTER f32 a_x;
-    __REGISTER f32 b_x;
-
-    asm {
-        psq_l a_x, 0(vec_a), 0, 0
-        lfs b_x, 8(vec_a)
-        psq_st a_x, 0(vec_b), 0, 0
-        stfs b_x, 8(vec_b)
-    };
-#endif
+inline void setTVec3f(const f32* vec_a, f32* vec_b) {
+    vec_b[0] = vec_a[0];
+    vec_b[1] = vec_a[1];
+    vec_b[2] = vec_a[2];
 }
 
 // Until we figure out TVec3 ctors
@@ -148,29 +131,13 @@ inline void setTVec3f(const Vec& vec_a, Vec& vec_b) {
 }
 
 inline float fsqrt_step(float mag) {
-    #ifdef __MWERKS__
-    f32 root = __frsqrte(mag);
-    return 0.5f * root * (3.0f - mag * (root * root));
-    #endif
+    return 1.0f / std::sqrt(mag);
 }
 
-inline void mulInternal(__REGISTER const f32* a, __REGISTER const f32* b, __REGISTER float* dst) {
-#ifdef __MWERKS__
-    __REGISTER f32 a_x_y;
-    __REGISTER f32 b_x_y;
-    __REGISTER f32 x_y;
-    __REGISTER f32 za;
-    __REGISTER f32 zb;
-    __REGISTER f32 z;
-
-    asm {
-        psq_l  a_x_y, 0(a), 0, 0
-        psq_l  b_x_y, 0(b), 0, 0
-        ps_mul x_y, a_x_y, b_x_y
-        psq_st x_y, 0(dst), 0, 0
-    };
+inline void mulInternal(const f32* a, const f32* b, float* dst) {
+    dst[0] = a[0] * b[0];
+    dst[1] = a[1] * b[1];
     dst[2] = a[2] * b[2];
-#endif
 }
 
 template <>
@@ -248,12 +215,6 @@ struct TVec3<f32> : public Vec {
         return a;
     }
 
-    // inline TVec3<f32> operator+(const TVec3<f32>& b) {
-    //     TVec3<f32> res(*(Vec*)this);
-    //     res += b;
-    //     return res;
-    // }
-
     f32 squared() const {
         return JMathInlineVEC::C_VECSquareMag((Vec*)&x);
     }
@@ -283,47 +244,16 @@ struct TVec3<f32> : public Vec {
         return VECMag((Vec*)this);
     }
 
-    void scale(__REGISTER f32 sc) {
-#if DEBUG
+    void scale(f32 sc) {
         x *= sc;
         y *= sc;
         z *= sc;
-#else
-#ifdef __MWERKS__
-        __REGISTER f32 z;
-        __REGISTER f32 x_y;
-        __REGISTER f32* dst = &x;
-        __REGISTER f32 zres;
-
-        asm {
-            psq_l    x_y, 0(dst),  0, 0
-            psq_l    z,   8(dst),  1, 0
-            ps_muls0 x_y,    x_y, sc
-            psq_st   x_y, 0(dst),  0, 0
-            ps_muls0 zres,       z, sc
-            psq_st   zres,  8(dst),  1, 0
-        };
-#endif
-#endif
     }
 
-    void scale(__REGISTER f32 sc, const TVec3<f32>& other) {
-#ifdef __MWERKS__
-        __REGISTER const f32* src = &other.x;
-        __REGISTER f32 z;
-        __REGISTER f32 x_y;
-        __REGISTER f32* dst = &x;
-        __REGISTER f32 zres;
-
-        asm {
-            psq_l    x_y, 0(src),  0, 0
-            psq_l    z,   8(src),  1, 0
-            ps_muls0 x_y,    x_y, sc
-            psq_st   x_y, 0(dst),  0, 0
-            ps_muls0 zres,       z, sc
-            psq_st   zres,  8(dst),  1, 0
-        };
-#endif
+    void scale(f32 sc, const TVec3<f32>& other) {
+        x = other.x * sc;
+        y = other.y * sc;
+        z = other.z * sc;
     }
 
     void scaleAdd(__REGISTER f32 sc, const TVec3<f32>& a, const TVec3<f32>& b) {
@@ -331,21 +261,9 @@ struct TVec3<f32> : public Vec {
     }
 
     void negateInternal(TVec3<f32>* dst) {
-#ifdef __MWERKS__
-        __REGISTER f32* rdst = &dst->x;
-        const __REGISTER f32* src = &x;
-        __REGISTER f32 x_y;
-        __REGISTER f32 z;
-
-        asm {
-            psq_l  x_y, 0(src), 0, 0
-            ps_neg x_y, x_y
-            psq_st x_y, 0(rdst), 0, 0
-            lfs    z,   8(src)
-            fneg   z,   z
-            stfs   z,   8(rdst)
-        };
-#endif
+        dst->x = -x;
+        dst->y = -y;
+        dst->z = -z;
     }
 
     void negate() {
@@ -393,8 +311,7 @@ struct TVec3<f32> : public Vec {
         return JMathInlineVEC::C_VECDotProduct(this, &other);
     }
 
-    void cubic(const TVec3<f32>& param_1, const TVec3<f32>& param_2, const TVec3<f32>& param_3,
-               const TVec3<f32>& param_4, f32 param_5) {
+    void cubic(const TVec3<f32>& param_1, const TVec3<f32>& param_2, const TVec3<f32>& param_3, const TVec3<f32>& param_4, f32 param_5) {
         f32 fVar5 = param_5 * param_5;
         f32 fVar6 = fVar5 * param_5;
         f32 fVar8 = 1.0f + (2.0f * fVar6 - 3.0f * fVar5);

@@ -66,6 +66,7 @@ set(JSYS_FILES
     src/JSystem/JKernel/JKRExpHeap.cpp
     src/JSystem/JKernel/JKRHeap.cpp
     src/JSystem/JKernel/JKRSolidHeap.cpp
+    src/JSystem/JMath/JMath.cpp
     src/JSystem/JMath/JMATrigonometric.cpp
     src/JSystem/JParticle/JPABaseShape.cpp
     src/JSystem/JParticle/JPAChildShape.cpp
