@@ -1970,10 +1970,9 @@ void mDoExt_3DlineMat0_c::draw() {
     }
 
     field_0x16 ^= (u8)1;
-}
+} */
 
-void mDoExt_3DlineMat0_c::update(int param_0, f32 param_1, GXColor& param_2, u16 param_3,
-                                     dKy_tevstr_c* param_4) {
+void mDoExt_3DlineMat0_c::update(int param_0, f32 param_1, GXColor& param_2, u16 param_3, dKy_tevstr_c* param_4) {
     field_0x8 = param_2;
     field_0xc = param_4;
 
@@ -2202,7 +2201,7 @@ void mDoExt_3DlineMat0_c::update(int param_0, GXColor& param_2, dKy_tevstr_c* pa
     }
 }
 
-int mDoExt_3DlineMat1_c::init(u16 param_0, u16 param_1, ResTIMG* param_2, int param_3) {
+/* int mDoExt_3DlineMat1_c::init(u16 param_0, u16 param_1, ResTIMG* param_2, int param_3) {
     mNumLines = param_0;
     field_0x32 = param_1;
     mpLines = new mDoExt_3Dline_c[param_0];
@@ -2289,7 +2288,7 @@ void mDoExt_3DlineMat1_c::draw() {
     }
     GXSetTexCoordScaleManually(GX_TEXCOORD0, 0, 0, 0);
     mIsDrawn ^= (u8)1;
-}
+} */
 
 void mDoExt_3DlineMat1_c::update(int param_0, f32 param_1, GXColor& param_2, u16 param_3, dKy_tevstr_c* param_4) {
     mColor = param_2;
@@ -2442,7 +2441,7 @@ void mDoExt_3DlineMat1_c::update(int param_0, f32 param_1, GXColor& param_2, u16
     }
 }
 
-#include "assets/l_mat2DL__d_a_grass.h"
+/* #include "assets/l_mat2DL__d_a_grass.h"
 
 void mDoExt_3DlineMat2_c::setMaterial() {
     j3dSys.reinitGX();
@@ -2458,7 +2457,7 @@ void mDoExt_3DlineMat2_c::setMaterial() {
     GXCallDisplayList(NULL, 0x80); // DEBUG NONMATCHING - this is supposed to reference l_mat2DL
     GXLoadPosMtxImm(j3dSys.getViewMtx(), 0);
     GXLoadNrmMtxImm(cMtx_getIdentity(), 0);
-}
+} */
 
 void mDoExt_3DlineMat1_c::update(int param_0, GXColor& param_2, dKy_tevstr_c* param_4) {
     mColor = param_2;
@@ -2573,7 +2572,7 @@ void mDoExt_3DlineMat1_c::update(int param_0, GXColor& param_2, dKy_tevstr_c* pa
     }
 }
 
-void mDoExt_3DlineMatSortPacket::setMat(mDoExt_3DlineMat_c* i_3DlineMat) {
+/* void mDoExt_3DlineMatSortPacket::setMat(mDoExt_3DlineMat_c* i_3DlineMat) {
     if (mp3DlineMat == NULL) {
         dComIfGd_getListPacket()->entryImm(this, 0);
     }

@@ -8,6 +8,9 @@
 /* #include "d/d_particle_name.h"
 #include "d/d_kankyo.h" */
 
+// TODO: Not originally included directly
+#include "d/d_kankyo_tev_str.h"
+
 void dPa_cleanupGX();
 
 class J3DAnmTexPattern;

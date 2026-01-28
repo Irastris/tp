@@ -6,9 +6,9 @@
 /* #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 #include "JSystem/J3DGraphAnimator/J3DJoint.h"
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
-#include "Z2AudioLib/Z2SoundObject.h"
+#include "Z2AudioLib/Z2SoundObject.h" */
 #include "d/d_kankyo_tev_str.h"
-#include "m_Do/m_Do_audio.h"
+/* #include "m_Do/m_Do_audio.h"
 #include "m_Do/m_Do_mtx.h" */
 
 // TODO: Not originally imported directly
@@ -495,7 +495,7 @@ public:
     virtual void draw() = 0;
 
     mDoExt_3DlineMat_c* field_0x4;
-};
+}; */
 
 class mDoExt_3DlineMat0_c : public mDoExt_3DlineMat_c {
 public:
@@ -545,7 +545,7 @@ private:
     mDoExt_3Dline_c* mpLines;
 };
 
-class mDoExt_3DlineMat2_c : public mDoExt_3DlineMat1_c {
+/* class mDoExt_3DlineMat2_c : public mDoExt_3DlineMat1_c {
 public:
     int getMaterialID() { return 2; }
     void setMaterial();

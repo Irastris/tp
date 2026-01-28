@@ -1853,15 +1853,13 @@ void dComIfGp_addSelectItemNum(int i_selItemIdx, s16 i_num) {
     } */
 }
 
-/* int dComIfGd_setShadow(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3, f32 param_4,
-                       f32 param_5, f32 param_6, f32 param_7, cBgS_PolyInfo& param_8,
-                       dKy_tevstr_c* param_9, s16 param_10, f32 param_11, _GXTexObj* param_12) {
+int dComIfGd_setShadow(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3, f32 param_4, f32 param_5, f32 param_6, f32 param_7, cBgS_PolyInfo& param_8, dKy_tevstr_c* param_9, s16 param_10, f32 param_11, _GXTexObj* param_12) {
     if (param_7 <= -G_CM3D_F_INF) {
         return 0;
     }
     
     return dComIfGd_setRealShadow(param_0, param_1, param_2, param_3, param_4, param_6 - param_7, param_9);
-} */
+}
 
 void dComIfGs_gameStart() {
     dComIfGp_offEnableNextStage();
@@ -1872,9 +1870,9 @@ void dComIfGs_gameStart() {
     dComIfGp_setNextStage(name, point, roomNo, -1, 0.0f, 0, 1, 0, 0, 0, 0);
 }
 
-/* u32 dComIfG_getTrigA(u32 i_padNo) {
+u32 dComIfG_getTrigA(u32 i_padNo) {
     return mDoCPd_c::getTrigA(i_padNo);
-} */
+}
 
 struct field_data_header {
     u32 field_0x0;

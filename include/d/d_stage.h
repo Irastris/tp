@@ -8,6 +8,7 @@
 #include <dolphin/gx.h>
 #include <dolphin/mtx.h> // Resolves Vec, might be overkill?
 #include <dolphin/types.h>
+#include "d/d_kankyo_tev_str.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 
 struct stage_vrboxcol_info_class {
@@ -745,7 +746,7 @@ public:
 class dStage_roomStatus_c {
 public:
     dStage_roomDt_c mRoomDt;
-    // dKy_tevstr_c mKyTevStr;
+    dKy_tevstr_c mKyTevStr;
     u8 mFlag;
     bool mDraw;
     s8 mZoneCount;
@@ -815,7 +816,7 @@ public:
     static int getStayNo() { return mStayNo; }
     static u8 getRegionNo(int i_roomNo) { return mStatus[i_roomNo].mRegionNo; }
     static s8 getMemoryBlockID(int i_roomNo) { return mStatus[i_roomNo].mMemBlockID; }
-    // dKy_tevstr_c* getTevStr(int i_roomNo) { return &mStatus[i_roomNo].mKyTevStr; }
+    dKy_tevstr_c* getTevStr(int i_roomNo) { return &mStatus[i_roomNo].mKyTevStr; }
     void setStatusFlag(int i_roomNo, u8 flag) { mStatus[i_roomNo].mFlag = flag; }
     static void onStatusDraw(int i_roomNo) { mStatus[i_roomNo].mDraw = true; }
     static dStage_FileList2_dt_c* getFileList2(int i_roomNo) { return mStatus[i_roomNo].mRoomDt.mFileList2Info; }
