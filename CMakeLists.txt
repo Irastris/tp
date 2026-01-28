@@ -83,6 +83,19 @@ set(JSYS_FILES
     src/JSystem/JParticle/JPAResourceManager.cpp
     src/JSystem/JParticle/JPATexture.cpp
     src/JSystem/JSupport/JSUList.cpp
+    src/JSystem/JUtility/JUTCacheFont.cpp
+    src/JSystem/JUtility/JUTDirectFile.cpp
+    src/JSystem/JUtility/JUTFader.cpp
+    src/JSystem/JUtility/JUTFont.cpp
+    src/JSystem/JUtility/JUTFontData_Ascfont_fix12.cpp
+    src/JSystem/JUtility/JUTGamePad.cpp
+    src/JSystem/JUtility/JUTNameTab.cpp
+    src/JSystem/JUtility/JUTPalette.cpp
+    src/JSystem/JUtility/JUTResFont.cpp
+    src/JSystem/JUtility/JUTResource.cpp
+    src/JSystem/JUtility/JUTTexture.cpp
+    src/JSystem/JUtility/JUTVideo.cpp
+    src/JSystem/JUtility/JUTXfb.cpp
 )
 
 set(SSYS_FILES
