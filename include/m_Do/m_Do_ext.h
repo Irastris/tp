@@ -13,6 +13,7 @@
 
 // TODO: Not originally imported directly
 #include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
 
 /* class JKRArchive;
 class JKRExpHeap;
@@ -711,14 +712,12 @@ inline void mDoExt_bckAnmRemove(J3DModelData* i_modelData) { i_modelData->getJoi
 
 JKRSolidHeap* mDoExt_createSolidHeap(u32 i_size, JKRHeap* i_parent, u32 i_alignment);
 JKRSolidHeap* mDoExt_createSolidHeapFromGame(u32 i_size, u32 i_alignment);
-/* void mDoExt_destroySolidHeap(JKRSolidHeap* i_heap);
+// void mDoExt_destroySolidHeap(JKRSolidHeap* i_heap);
 u32 mDoExt_adjustSolidHeap(JKRSolidHeap* i_heap);
-void mDoExt_restoreCurrentHeap(); */
+void mDoExt_restoreCurrentHeap();
 JKRExpHeap* mDoExt_getGameHeap();
-/* void mDoExt_setSafeGameHeapSize();
-size_t mDoExt_getSafeGameHeapSize();
-void mDoExt_destroySolidHeap(JKRSolidHeap* i_heap);
-JKRHeap* mDoExt_setCurrentHeap(JKRHeap* i_heap); */
+/* void mDoExt_destroySolidHeap(JKRSolidHeap* i_heap); */
+JKRHeap* mDoExt_setCurrentHeap(JKRHeap* i_heap);
 JKRExpHeap* mDoExt_getArchiveHeap();
 JKRExpHeap* mDoExt_getArchiveHeapPtr();
 void mDoExt_destroyExpHeap(JKRExpHeap* i_heap);
@@ -759,9 +758,6 @@ OSThread* mDoExt_GetCurrentRunningThread();
 void mDoExt_setupShareTexture(J3DModelData* i_modelData, J3DModelData* i_shareModelData);
 void mDoExt_btkAnmRemove(J3DModelData* i_modelData);
 void mDoExt_modelTexturePatch(J3DModelData* i_modelData);
-
-void mDoExt_addSafeZeldaHeapSize(intptr_t);
-intptr_t mDoExt_getSafeZeldaHeapSize();
 
 struct JUTFont;
 JUTFont* mDoExt_getMesgFont();

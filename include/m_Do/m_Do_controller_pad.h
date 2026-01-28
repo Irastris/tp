@@ -3,16 +3,24 @@
 
 #include <iostream>
 
+// #include "JSystem/JUtility/JUTGamePad.h"
+#include "SSystem/SComponent/c_API_controller_pad.h"
+
+// TODO: Not originally included directly
+#include <dolphin/pad.h>
+
+enum { PAD_1, PAD_2, PAD_3, PAD_4 };
+
 class mDoCPd_c {
 public:
     static void create();
-    /* static void read();
-    static void convert(interface_of_controller_pad*, JUTGamePad*);
+    static void read();
+    // static void convert(interface_of_controller_pad*, JUTGamePad*);
     static void LRlockCheck(interface_of_controller_pad*);
     static void recalibrate();
 
     static interface_of_controller_pad& getCpadInfo(u32 pad) { return m_cpadInfo[pad]; }
-    static JUTGamePad* getGamePad(u32 pad) { return m_gamePad[pad]; }
+    // static JUTGamePad* getGamePad(u32 pad) { return m_gamePad[pad]; }
     static u32 getTrig(u32 pad) { return getCpadInfo(pad).mPressedButtonFlags; }
     static u32 getTrigLockL(u32 pad) { return getCpadInfo(pad).mTrigLockL; }
     static u32 getTrigLockR(u32 pad) { return getCpadInfo(pad).mTrigLockR; }
@@ -55,15 +63,29 @@ public:
     static s16 getSubStickAngle(u32 pad) { return getCpadInfo(pad).mCStickAngle; }
     static f32 getAnalogR(u32 pad) { return getCpadInfo(pad).mTriggerRight; }
     static f32 getAnalogL(u32 pad) { return getCpadInfo(pad).mTriggerLeft; }
-    static BOOL isConnect(u32 pad) { return JUTGamePad::getPortStatus((JUTGamePad::EPadPort)pad) == 0; }
+    /* static BOOL isConnect(u32 pad) { return JUTGamePad::getPortStatus((JUTGamePad::EPadPort)pad) == 0; }
     static void startMotorWave(u32 pad, void* data, JUTGamePad::CRumble::ERumble rumble, u32 length) { m_gamePad[pad]->startMotorWave(data, rumble, length); }
     static void stopMotor(u32 pad) { m_gamePad[pad]->stopMotor(); }
     static void stopMotorWave(u32 pad) { m_gamePad[pad]->stopMotorWave(); }
     static void stopMotorHard(u32 pad) { return m_gamePad[pad]->stopMotorHard(); }
-    static void stopMotorWaveHard(u32 pad) { return m_gamePad[pad]->stopMotorWaveHard(); }
+    static void stopMotorWaveHard(u32 pad) { return m_gamePad[pad]->stopMotorWaveHard(); } */
 
-    static JUTGamePad* m_gamePad[4];
-    static interface_of_controller_pad m_cpadInfo[4]; */
+    // static JUTGamePad* m_gamePad[4];
+    static interface_of_controller_pad m_cpadInfo[4];
 };
+
+inline void mDoCPd_ANALOG_CONV(u8 analog, f32& param_1) {
+    param_1 = analog * (1.0f / 15.0f);
+    if (param_1 > 1.0f) {
+        param_1 = 1.0f;
+    }
+}
+
+inline void mDoCPd_TRIGGER_CONV(u8 analog, f32& param_1) {
+    param_1 = analog * (1.0f / 140.0f);
+    if (param_1 > 1.0f) {
+        param_1 = 1.0f;
+    }
+}
 
 #endif
