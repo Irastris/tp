@@ -5,6 +5,7 @@
 
 #include "dolphin/mtx.h"
 #include <cmath>
+#include <cstring>
 
 void JMAMTXApplyScale(const Mtx, Mtx, f32, f32, f32);
 void JMAEulerToQuat(s16 param_0, s16 param_1, s16 param_2, Quaternion* param_3);
@@ -100,89 +101,20 @@ inline void fastVECNormalize(const Vec* src, Vec* dst) {
     return JMAFastVECNormalize(src, dst);
 }
 
-inline void gekko_ps_copy3(__REGISTER void* dst, __REGISTER const void* src) {
-#ifdef __MWERKS__
-    __REGISTER f32 src0;
-    __REGISTER f32 src1;
-    asm {
-        psq_l src0, 0(src), 0, 0
-        lfs src1, 8(src)
-        psq_st src0, 0(dst), 0, 0
-        stfs src1, 8(dst)
-    };
-#endif
+inline void gekko_ps_copy3(void* dst, const void* src) {
+    memcpy(dst, src, sizeof(f32) * 3);
 }
 
-inline void gekko_ps_copy6(__REGISTER void* dst, __REGISTER const void* src) {
-#ifdef __MWERKS__
-    __REGISTER f32 src0;
-    __REGISTER f32 src1;
-    __REGISTER f32 src2;
-    asm {
-        psq_l src0, 0(src), 0, 0
-        psq_l src1, 8(src), 0, 0
-        psq_l src2, 16(src), 0, 0
-        psq_st src0, 0(dst), 0, 0
-        psq_st src1, 8(dst), 0, 0
-        psq_st src2, 16(dst), 0, 0
-    };
-#endif
+inline void gekko_ps_copy6(void* dst, const void* src) {
+    memcpy(dst, src, sizeof(f32) * 6);
 }
 
-inline void gekko_ps_copy12(__REGISTER void* dst, __REGISTER const void* src) {
-#ifdef __MWERKS__
-    __REGISTER f32 src0;
-    __REGISTER f32 src1;
-    __REGISTER f32 src2;
-    __REGISTER f32 src3;
-    __REGISTER f32 src4;
-    __REGISTER f32 src5;
-    asm {
-        psq_l src0, 0(src), 0, 0
-        psq_l src1, 8(src), 0, 0
-        psq_l src2, 16(src), 0, 0
-        psq_l src3, 24(src), 0, 0
-        psq_l src4, 32(src), 0, 0
-        psq_l src5, 40(src), 0, 0
-        psq_st src0, 0(dst), 0, 0
-        psq_st src1, 8(dst), 0, 0
-        psq_st src2, 16(dst), 0, 0
-        psq_st src3, 24(dst), 0, 0
-        psq_st src4, 32(dst), 0, 0
-        psq_st src5, 40(dst), 0, 0
-    };
-#endif
+inline void gekko_ps_copy12(void* dst, const void* src) {
+    memcpy(dst, src, sizeof(f32) * 12);
 }
 
-inline void gekko_ps_copy16(__REGISTER void* dst, __REGISTER const void* src) {
-#ifdef __MWERKS__
-    __REGISTER f32 src0;
-    __REGISTER f32 src1;
-    __REGISTER f32 src2;
-    __REGISTER f32 src3;
-    __REGISTER f32 src4;
-    __REGISTER f32 src5;
-    __REGISTER f32 src6;
-    __REGISTER f32 src7;
-    asm {
-        psq_l src0, 0(src), 0, 0
-        psq_l src1, 8(src), 0, 0
-        psq_l src2, 16(src), 0, 0
-        psq_l src3, 24(src), 0, 0
-        psq_l src4, 32(src), 0, 0
-        psq_l src5, 40(src), 0, 0
-        psq_l src6, 48(src), 0, 0
-        psq_l src7, 56(src), 0, 0
-        psq_st src0, 0(dst), 0, 0
-        psq_st src1, 8(dst), 0, 0
-        psq_st src2, 16(dst), 0, 0
-        psq_st src3, 24(dst), 0, 0
-        psq_st src4, 32(dst), 0, 0
-        psq_st src5, 40(dst), 0, 0
-        psq_st src6, 48(dst), 0, 0
-        psq_st src7, 56(dst), 0, 0
-    };
-#endif
+inline void gekko_ps_copy16(void* dst, const void* src) {
+    memcpy(dst, src, sizeof(f32) * 16);
 }
 
 };  // namespace JMath
