@@ -1,11 +1,11 @@
 #include "f_pc/f_pc_manager.h"
 #include "SSystem/SComponent/c_API_graphic.h"
 #include "SSystem/SComponent/c_lib.h"
-#include "Z2AudioLib/Z2SoundMgr.h"
+// #include "Z2AudioLib/Z2SoundMgr.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_error_msg.h"
-#include "d/d_lib.h"
-#include "d/d_particle.h"
+/* #include "d/d_lib.h"
+#include "d/d_particle.h" */
 #include "f_ap/f_ap_game.h"
 #include "f_pc/f_pc_creator.h"
 #include "f_pc/f_pc_deletor.h"
@@ -37,7 +37,9 @@ BOOL fpcM_IsCreating(fpc_ProcID i_id) {
 }
 
 void fpcM_Management(fpcM_ManagementFunc i_preExecuteFn, fpcM_ManagementFunc i_postExecuteFn) {
-    MtxInit();
+    std::cout << "fpcM_Management() is stubbed" << std::endl;
+    
+    /* MtxInit();
 
     dComIfGd_peekZdata();
 
@@ -45,10 +47,10 @@ void fpcM_Management(fpcM_ManagementFunc i_preExecuteFn, fpcM_ManagementFunc i_p
         static bool l_dvdError = false;
 
         if (!dDvdErrorMsg_c::execute()) {
-            if (l_dvdError) {
-                dLib_time_c::startTime();
-                Z2GetSoundMgr()->pauseAllGameSound(false);
-                l_dvdError = false;
+            if (l_dvdError) { */
+                /* dLib_time_c::startTime();
+                Z2GetSoundMgr()->pauseAllGameSound(false); */
+                /* l_dvdError = false;
             }
 
             cAPIGph_Painter();
@@ -57,14 +59,6 @@ void fpcM_Management(fpcM_ManagementFunc i_preExecuteFn, fpcM_ManagementFunc i_p
                 fpcDt_Handler();
             } else {
                 dPa_control_c::offStatus(1);
-            }
-
-            if (!fpcPi_Handler()) {
-                JUT_ASSERT(353, FALSE);
-            }
-
-            if (!fpcCt_Handler()) {
-                JUT_ASSERT(357, FALSE);
             }
 
             if (i_preExecuteFn != NULL) {
@@ -80,13 +74,13 @@ void fpcM_Management(fpcM_ManagementFunc i_preExecuteFn, fpcM_ManagementFunc i_p
             }
 
             dComIfGp_drawSimpleModel();
-        } else if (!l_dvdError) {
-            dLib_time_c::stopTime();
-            Z2GetSoundMgr()->pauseAllGameSound(true);
-            mDoCPd_c::stopMotorWaveHard(0);
+        } else if (!l_dvdError) { */
+            /* dLib_time_c::stopTime();
+            Z2GetSoundMgr()->pauseAllGameSound(true); */
+            /* mDoCPd_c::stopMotorWaveHard(0);
             l_dvdError = true;
         }
-    }
+    } */
 }
 
 void fpcM_Init() {

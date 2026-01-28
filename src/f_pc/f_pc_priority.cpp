@@ -139,7 +139,7 @@ int fpcPi_Init(process_priority_class* i_procPriority, void* i_data, fpc_ProcID 
     i_procPriority->current_info = i_procPriority->queue_info;
 
     cTg_Create(&i_procPriority->base, i_data);
-    fpcMtdTg_Init(&i_procPriority->method_tag, (process_method_tag_func)fpcPi_Delete, i_procPriority);.
+    fpcMtdTg_Init(&i_procPriority->method_tag, (process_method_tag_func)fpcPi_Delete, i_procPriority);
 
     return 1;
 }
