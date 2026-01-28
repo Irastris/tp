@@ -14,76 +14,45 @@ void JMAFastVECNormalize(__REGISTER const Vec* src, __REGISTER Vec* dst);
 void JMAVECScaleAdd(__REGISTER const Vec* vec1, __REGISTER const Vec* vec2, __REGISTER Vec* dst, __REGISTER f32 scale);
 
 inline int JMAAbs(int value) {
-#ifdef __MWERKS__
-    return __abs(value);
-#endif
+    return std::abs(value);
 }
 
 inline f32 JMAAbs(f32 x) {
-#ifdef __MWERKS__
-    return __fabsf(x);
-#endif
+    return std::abs(x);
 }
 
 inline f32 JMAFastReciprocal(f32 value) {
-#ifdef __MWERKS__
-    return __fres(value);
-#endif
+    return 1.0f / value;
 }
 
-inline float __frsqrtes(__REGISTER double f) {
-#ifdef __MWERKS__
-    __REGISTER float out;
-
-    asm {
-        frsqrte out, f
-    }
-
-    return out;
-#endif
+inline float __frsqrtes(double f) {
+    return 1.0f / std::sqrt(f);
 }
 
-inline f32 JMAFastSqrt(__REGISTER const f32 input) {
-#ifdef __MWERKS__
+inline f32 JMAFastSqrt(const f32 input) {
     if (input > 0.0f) {
-        __REGISTER f32 out;
-        asm {
-            frsqrte out, input
-        }
-        return out * input;
+        return std::sqrt(input);
     } else {
         return input;
     }
-#endif
 }
 
-inline f32 JMAHermiteInterpolation(__REGISTER f32 p1, __REGISTER f32 p2, __REGISTER f32 p3, __REGISTER f32 p4, __REGISTER f32 p5, __REGISTER f32 p6, __REGISTER f32 p7) {
-#ifdef __MWERKS__
-    __REGISTER f32 ff25;
-    __REGISTER f32 ff31;
-    __REGISTER f32 ff30;
-    __REGISTER f32 ff29;
-    __REGISTER f32 ff28;
-    __REGISTER f32 ff27;
-    __REGISTER f32 ff26;
-    asm {
-        fsubs   ff31, p1, p2
-        fsubs   ff30, p5, p2
-        fdivs   ff29, ff31, ff30
-        fmuls   ff28,ff29,ff29
-        fadds   ff25,ff29,ff29
-        fsubs   ff27,ff28,ff29
-        fsubs   ff30, p3, p6
-        fmsubs  ff26,ff25,ff27,ff28
-        fmadds  ff25,p4,ff27,p4
-        fmadds  ff26,ff26,ff30,p3
-        fmadds  ff25,p7,ff27,ff25
-        fmsubs  ff25,ff29,p4,ff25
-        fnmsubs ff25,ff31,ff25,ff26
+inline f32 JMAHermiteInterpolation(f32 p1, f32 p2, f32 p3, f32 p4, f32 p5, f32 p6, f32 p7) {
+    f32 ff31 = p1 - p2;
+    f32 ff30 = p5 - p2;
+    f32 ff29 = ff31 / ff30;
+    f32 ff28 = ff29 * ff29;
+    f32 ff25 = ff29 + ff29;
+    f32 ff27 = ff28 - ff29;
+    ff30 = p3 - p6;
+    f32 ff26 = ff25 * ff27 - ff28;
+    ff25 = p4 * ff27 + p4;
+    ff26 = ff26 * ff30 + p3;
+    ff25 = p7 * ff27 + ff25;
+    ff25 = ff29 * p4 - ff25;
+    ff25 = ff26 - ff31 * ff25;
 
-    }
     return ff25;
-#endif
 }
 
 namespace JMath {
@@ -121,19 +90,19 @@ inline void gekko_ps_copy16(void* dst, const void* src) {
 
 namespace JMathInlineVEC {
     inline void C_VECAdd(__REGISTER const Vec* a, __REGISTER const Vec* b, __REGISTER Vec* ab) {
-        std::cout << "JMathInlineVec::C_VECAdd() is stubbed and should be substituted by Aurora" << std::endl;
+        std::cout << "JMathInlineVec::C_VECAdd() is stubbed and should be substituted with Aurora" << std::endl;
     }
 
     inline void C_VECSubtract(__REGISTER const Vec* a, __REGISTER const Vec* b, __REGISTER Vec* ab) {
-        std::cout << "JMathInlineVec::C_VECSubtract() is stubbed and should be substituted by Aurora" << std::endl;
+        std::cout << "JMathInlineVec::C_VECSubtract() is stubbed and should be substituted with Aurora" << std::endl;
     }
 
     inline f32 C_VECSquareMag(__REGISTER const Vec* v) {
-        std::cout << "JMathInlineVec::C_VECSquareMag() is stubbed and should be substituted by Aurora" << std::endl;
+        std::cout << "JMathInlineVec::C_VECSquareMag() is stubbed and should be substituted with Aurora" << std::endl;
     }
 
     inline f32 C_VECDotProduct(__REGISTER const Vec *a, __REGISTER const Vec *b) {
-        std::cout << "JMathInlineVec::C_VECDotProduct() is stubbed and should be substituted by Aurora" << std::endl;
+        std::cout << "JMathInlineVec::C_VECDotProduct() is stubbed and should be substituted with Aurora" << std::endl;
     }
 };
 
