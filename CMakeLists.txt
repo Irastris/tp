@@ -79,6 +79,17 @@ set(JSYS_FILES
     src/JSystem/J2DGraph/J2DTextBoxEx.cpp
     src/JSystem/J2DGraph/J2DWindow.cpp
     src/JSystem/J2DGraph/J2DWindowEx.cpp
+    src/JSystem/J3DGraphAnimator/J3DAnimation.cpp
+    src/JSystem/J3DGraphAnimator/J3DCluster.cpp
+    src/JSystem/J3DGraphAnimator/J3DJoint.cpp
+    src/JSystem/J3DGraphAnimator/J3DJointTree.cpp
+    src/JSystem/J3DGraphAnimator/J3DMaterialAnm.cpp
+    src/JSystem/J3DGraphAnimator/J3DMaterialAttach.cpp
+    src/JSystem/J3DGraphAnimator/J3DModel.cpp
+    src/JSystem/J3DGraphAnimator/J3DModelData.cpp
+    src/JSystem/J3DGraphAnimator/J3DMtxBuffer.cpp
+    src/JSystem/J3DGraphAnimator/J3DShapeTable.cpp
+    src/JSystem/J3DGraphAnimator/J3DSkinDeform.cpp
     src/JSystem/JFramework/JFWSystem.cpp
     src/JSystem/JKernel/JKRDisposer.cpp
     src/JSystem/JKernel/JKRExpHeap.cpp

@@ -1,0 +1,37 @@
+#ifndef J3DSHAPETABLE_H
+#define J3DSHAPETABLE_H
+
+class J3DVertexData;
+struct J3DDrawMtxData;
+class J3DShape;
+class JUTNameTab;
+
+class J3DShapeTable {
+public:
+    J3DShapeTable() {
+        mShapeNum = 0;
+        mShapeNodePointer = NULL;
+        mShapeName = NULL;
+    }
+
+    void hide();
+    void show();
+    void initShapeNodes(J3DDrawMtxData*, J3DVertexData*);
+    void sortVcdVatCmd();
+
+    virtual ~J3DShapeTable() {}
+
+    u16 getShapeNum() const { return mShapeNum; }
+    J3DShape* getShapeNodePointer(u16 idx) const {
+        return mShapeNodePointer[idx];
+    }
+
+private:
+    friend class J3DModelLoader;
+
+    u16 mShapeNum;
+    J3DShape** mShapeNodePointer;
+    JUTNameTab* mShapeName;
+};
+
+#endif
