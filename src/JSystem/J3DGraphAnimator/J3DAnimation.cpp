@@ -499,48 +499,8 @@ inline f32 J3DHermiteInterpolation(f32 p1, f32 const* p2, f32 const* p3, f32 con
     return JMAHermiteInterpolation(p1, *p2, *p3, *p4, *p5, *p6, *p7);
 }
 
-inline f32 J3DHermiteInterpolation(__REGISTER f32 pp1, __REGISTER s16 const* pp2, __REGISTER s16 const* pp3, __REGISTER s16 const* pp4, __REGISTER s16 const* pp5, __REGISTER s16 const* pp6, __REGISTER s16 const* pp7) {
-#ifdef __MWERKS__
-    register f32 p1 = pp1;
-    register f32 ff8;
-    register f32 ff7;
-    register f32 ff6;
-    register f32 ff5;
-    register f32 ff4;
-    register f32 ff3;
-    register f32 ff2;
-    register f32 ff0;
-    register f32 fout;
-    register s16 const* p2 = pp2;
-    register s16 const* p3 = pp3;
-    register s16 const* p4 = pp4;
-    register s16 const* p5 = pp5;
-    register s16 const* p6 = pp6;
-    register s16 const* p7 = pp7;
-    asm {
-        psq_l ff2, 0(p2), 0x1, 5
-        psq_l ff0, 0(p5), 0x1, 5
-        psq_l ff7, 0(p3), 0x1, 5
-        fsubs ff5, ff0, ff2
-        psq_l ff6, 0(p6), 0x1, 5
-        fsubs ff3, p1, ff2
-        psq_l ff0, 0(p7), 0x1, 5
-        fsubs ff4, ff6, ff7
-        fdivs ff3, ff3, ff5
-        psq_l fout, 0(p4), 0x1, 5
-        fmadds ff0, ff0, ff5, ff7
-        fmuls ff2, ff3, ff3
-        fnmsubs ff4, ff5, fout, ff4
-        fsubs ff0, ff0, ff6
-        fsubs ff0, ff0, ff4
-        fmuls ff0, ff2, ff0
-        fmadds fout, ff5, fout, ff0
-        fmadds fout, fout, ff3, ff7
-        fmadds fout, ff4, ff2, fout
-        fsubs fout, fout, ff0
-    }
-    return fout;
-#endif
+inline f32 J3DHermiteInterpolation(f32 pp1, s16 const* pp2, s16 const* pp3, s16 const* pp4, s16 const* pp5, s16 const* pp6, s16 const* pp7) {
+    return JMAHermiteInterpolation(pp1, static_cast<f32>(*pp2), static_cast<f32>(*pp3), static_cast<f32>(*pp4), static_cast<f32>(*pp5), static_cast<f32>(*pp6), static_cast<f32>(*pp7));
 }
 
 template<typename T>

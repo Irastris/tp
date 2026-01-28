@@ -3,6 +3,7 @@
 
 #include "JSystem/J3DGraphAnimator/J3DCluster.h"
 #include "JSystem/J3DGraphAnimator/J3DMtxBuffer.h"
+#include <cstring>
 #include <dolphin/types.h>
 
 class J3DModel;
@@ -89,16 +90,11 @@ public:
 };
 
 inline void J3DFillZero32B(__REGISTER void* param_0, __REGISTER u32 param_1) {
-#ifdef __MWERKS__
-    asm {
-        srwi param_1, param_1, 5
-        mtctr param_1
-    lbl_8032D948:
-    	dcbz 0, param_0
-    	addi param_0, param_0, 0x20
-    	bdnz lbl_8032D948
+    u8* ptr = static_cast<u8*>(param_0);
+    for (u32 i = param_1 >> 5; i != 0; --i) {
+        std::memset(ptr, 0, 32);
+        ptr += 32;
     }
-#endif
 }
 
 #endif
