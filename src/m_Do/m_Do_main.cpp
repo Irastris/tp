@@ -1,9 +1,22 @@
 #include "m_Do/m_Do_main.h"
+#include "JSystem/JFramework/JFWSystem.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
+#include "c/c_dylink.h"
+#include "d/d_com_inf_game.h"
+#include "f_ap/f_ap_game.h"
+#include "m_Do/m_Do_controller_pad.h"
+#include "m_Do/m_Do_dvd_thread.h"
+#include "m_Do/m_Do_graphic.h"
+#include "m_Do/m_Do_machine.h"
+
+#include <aurora/aurora.h>
+#include <aurora/event.h>
+#include <aurora/main.h>
 
 static u32 frame;
 
 s32 LOAD_COPYDATE(void*) {
-    std::cout << "LOAD_COPYDATE is stubbed" << std::endl;
+    std::cout << "LOAD_COPYDATE() is stubbed" << std::endl;
 
     /* DVDFileInfo ATTRIBUTE_ALIGN(32) fileInfo;
     u8 buffer[32];
@@ -33,25 +46,6 @@ int main(int argc, char* argv[]) {
     const AuroraInfo auroraInfo = aurora_initialize(argc, argv, &auroraConfig);
 
     // TODO: Determine if reset data logic should remain
-    /* mDoRst::setResetData((mDoRstData*)OSAllocFromArenaLo(0x18, 4));
-
-    if (!mDoRst::getResetData()) {
-        do {
-        } while (true);
-    }
-
-    if (!((OSGetResetCode() & 0x80000000) ? 1 : 0)) {
-        mDoRst::offReset();
-        mDoRst::offResetPrepare();
-        mDoRst::off3ButtonReset();
-        mDoRst::set3ButtonResetPort(-1);
-        mDoRst::setLogoScnFlag(0);
-        mDoRst::setProgSeqFlag(0);
-        mDoRst::setProgChgFlag(0);
-        mDoRst::setWarningDispFlag(0);
-        mDoRst::offShutdown();
-        mDoRst::offReturnToMenu();
-    } */
     
     dComIfG_ct();
 
@@ -63,6 +57,8 @@ int main(int argc, char* argv[]) {
     mDoCPd_c::create();
 
     mDoDvdThd_callback_c::create((mDoDvdThd_callback_func)LOAD_COPYDATE, NULL);
+
+    fapGm_Create();
 
     // More stuff goes here
 

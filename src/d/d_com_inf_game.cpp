@@ -15,9 +15,9 @@
 #include "d/d_timer.h"
 #include "f_op/f_op_msg_mng.h"
 #include "f_op/f_op_scene_mng.h"
-#include "m_Do/m_Do_Reset.h"
+#include "m_Do/m_Do_Reset.h" */
 #include "m_Do/m_Do_controller_pad.h"
-#include "m_Do/m_Do_graphic.h" */
+#include "m_Do/m_Do_graphic.h"
 
 void dComIfG_play_c::ct() {
     std::cout << "Hello from dComIfG_play_c::ct() @ d_com_inf_game.cpp" << std::endl;
@@ -855,7 +855,7 @@ int dComIfG_play_c::getLayerNo(int) {
 }
 
 void dComIfG_play_c::createParticle() {
-    // mParticle = new dPa_control_c();
+    mParticle = new dPa_control_c();
 }
 
 /* dSmplMdl_draw_c* dComIfG_play_c::createSimpleModel() {

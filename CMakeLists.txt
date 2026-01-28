@@ -3,22 +3,55 @@ project(tp VERSION 0.1.0 LANGUAGES C CXX)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 20)
 
-add_subdirectory(extern/aurora EXCLUDE_FROM_ALL)
-
 # I don't care about fixing these issues for now, so I'm suppressing the warnings
 add_compile_options(
     -Wno-multichar
     -Wno-int-to-pointer-cast
     -Wno-conversion-null
-    -Wno-delete-incomplete # IMPORTANT TO RESOLVE
+    -Wno-delete-incomplete
     -Wno-return-type
 )
 
+add_subdirectory(extern/aurora EXCLUDE_FROM_ALL)
+
 set(GAME_FILES
+    src/c/c_dylink.cpp
     src/d/d_com_inf_game.cpp
+    src/d/d_error_msg.cpp
+    src/d/d_particle.cpp
     src/d/d_save.cpp
     src/d/d_stage.cpp
+    src/f_ap/f_ap_game.cpp
+    src/f_pc/f_pc_base.cpp
+    src/f_pc/f_pc_create_iter.cpp
+    src/f_pc/f_pc_create_req.cpp
+    src/f_pc/f_pc_creator.cpp
+    src/f_pc/f_pc_delete_tag.cpp
+    src/f_pc/f_pc_deletor.cpp
+    src/f_pc/f_pc_draw_priority.cpp
+    src/f_pc/f_pc_draw.cpp
+    src/f_pc/f_pc_executor.cpp
+    src/f_pc/f_pc_fstcreate_req.cpp
+    src/f_pc/f_pc_layer_iter.cpp
+    src/f_pc/f_pc_layer_tag.cpp
+    src/f_pc/f_pc_layer.cpp
+    src/f_pc/f_pc_leaf.cpp
+    src/f_pc/f_pc_line_iter.cpp
+    src/f_pc/f_pc_line_tag.cpp
+    src/f_pc/f_pc_line.cpp
+    src/f_pc/f_pc_load.cpp
+    src/f_pc/f_pc_manager.cpp
+    src/f_pc/f_pc_method_iter.cpp
+    src/f_pc/f_pc_method_tag.cpp
+    src/f_pc/f_pc_method.cpp
+    src/f_pc/f_pc_node_req.cpp
     src/f_pc/f_pc_node.cpp
+    src/f_pc/f_pc_pause.cpp
+    src/f_pc/f_pc_priority.cpp
+    src/f_pc/f_pc_profile_lst.cpp
+    src/f_pc/f_pc_profile.cpp
+    src/f_pc/f_pc_searcher.cpp
+    src/f_pc/f_pc_stdcreate_req.cpp
     src/m_Do/m_Do_controller_pad.cpp
     src/m_Do/m_Do_dvd_thread.cpp
     src/m_Do/m_Do_ext.cpp
@@ -32,13 +65,45 @@ set(JSYS_FILES
     src/JSystem/JKernel/JKRDisposer.cpp
     src/JSystem/JKernel/JKRExpHeap.cpp
     src/JSystem/JKernel/JKRHeap.cpp
+    src/JSystem/JKernel/JKRSolidHeap.cpp
+    src/JSystem/JMath/JMATrigonometric.cpp
+    src/JSystem/JParticle/JPABaseShape.cpp
+    src/JSystem/JParticle/JPAChildShape.cpp
+    src/JSystem/JParticle/JPADynamicsBlock.cpp
+    src/JSystem/JParticle/JPAEmitter.cpp
+    src/JSystem/JParticle/JPAEmitterManager.cpp
+    src/JSystem/JParticle/JPAExTexShape.cpp
+    src/JSystem/JParticle/JPAFieldBlock.cpp
+    src/JSystem/JParticle/JPAKeyBlock.cpp
+    src/JSystem/JParticle/JPAMath.cpp
+    src/JSystem/JParticle/JPAParticle.cpp
+    src/JSystem/JParticle/JPAResource.cpp
+    src/JSystem/JParticle/JPAResourceLoader.cpp
+    src/JSystem/JParticle/JPAResourceManager.cpp
+    src/JSystem/JParticle/JPATexture.cpp
     src/JSystem/JSupport/JSUList.cpp
 )
 
 set(SSYS_FILES
+    src/SSystem/SComponent/c_angle.cpp
+    src/SSystem/SComponent/c_API_controller_pad.cpp
+    src/SSystem/SComponent/c_API_graphic.cpp
+    src/SSystem/SComponent/c_API.cpp
+    src/SSystem/SComponent/c_bg_s_chk.cpp
+    src/SSystem/SComponent/c_bg_s_gnd_chk.cpp
+    src/SSystem/SComponent/c_bg_s_lin_chk.cpp
+    src/SSystem/SComponent/c_bg_s_poly_info.cpp
+    src/SSystem/SComponent/c_bg_s_shdw_draw.cpp
+    src/SSystem/SComponent/c_bg_w.cpp
+    src/SSystem/SComponent/c_cc_d.cpp
+    src/SSystem/SComponent/c_cc_s.cpp
+    src/SSystem/SComponent/c_counter.cpp
     src/SSystem/SComponent/c_lib.cpp
+    src/SSystem/SComponent/c_list_iter.cpp
     src/SSystem/SComponent/c_list.cpp
+    src/SSystem/SComponent/c_m2d.cpp
     src/SSystem/SComponent/c_m3d_g_aab.cpp
+    src/SSystem/SComponent/c_m3d_g_cir.cpp
     src/SSystem/SComponent/c_m3d_g_cps.cpp
     src/SSystem/SComponent/c_m3d_g_cyl.cpp
     src/SSystem/SComponent/c_m3d_g_lin.cpp
@@ -47,11 +112,18 @@ set(SSYS_FILES
     src/SSystem/SComponent/c_m3d_g_tri.cpp
     src/SSystem/SComponent/c_m3d_g_vtx.cpp
     src/SSystem/SComponent/c_m3d.cpp
+    src/SSystem/SComponent/c_malloc.cpp
     src/SSystem/SComponent/c_math.cpp
+    src/SSystem/SComponent/c_node_iter.cpp
     src/SSystem/SComponent/c_node.cpp
     src/SSystem/SComponent/c_phase.cpp
     src/SSystem/SComponent/c_sxyz.cpp
+    src/SSystem/SComponent/c_tag_iter.cpp
+    src/SSystem/SComponent/c_tag.cpp
+    src/SSystem/SComponent/c_tree_iter.cpp
+    src/SSystem/SComponent/c_tree.cpp
     src/SSystem/SComponent/c_xyz.cpp
+    src/SSystem/SStandard/s_basic.cpp
 )
 
 set(DOLPHIN_FILES
@@ -60,4 +132,4 @@ set(DOLPHIN_FILES
 
 add_executable(tp ${GAME_FILES} ${JSYS_FILES} ${SSYS_FILES} ${DOLPHIN_FILES})
 target_include_directories(tp PUBLIC include)
-target_link_libraries(tp PUBLIC aurora::core aurora::gx aurora::mtx aurora::main)
+target_link_libraries(tp PUBLIC aurora::core aurora::gx aurora::mtx aurora::pad aurora::main)

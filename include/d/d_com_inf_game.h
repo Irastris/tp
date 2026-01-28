@@ -1,5 +1,3 @@
-// TODO: To be progressively uncommented as necessary
-
 #ifndef _COM_INF_GAME_H
 #define _COM_INF_GAME_H
 
@@ -9,20 +7,19 @@
 /* #include "d/d_attention.h"
 #include "d/d_cc_s.h"
 #include "d/d_event.h"
-#include "d/d_event_manager.h"
+#include "d/d_event_manager.h" */
 #include "d/d_particle.h"
-#include "d/d_resorce.h" */
+// #include "d/d_resorce.h"
 #include "d/d_save.h"
 /* #include "d/d_vibration.h"
 #include "d/d_drawlist.h" */
 #include "d/d_stage.h"
 // #include "f_op/f_op_actor.h"
 #include "global.h"
-/* #include "m_Do/m_Do_controller_pad.h"
-#include "m_Do/m_Do_graphic.h" */
+#include "m_Do/m_Do_controller_pad.h"
+#include "m_Do/m_Do_graphic.h"
 
-// TODO: These are used by this header but not directly imported, I think that means they were pulled in by one of the other included headers?
-// I'm adding them directly for now until I work my way through the includes
+// TODO: Not originally included directly
 #include <dolphin/gx.h>
 #include <dolphin/pad.h>
 #include <dolphin/types.h>
@@ -265,7 +262,7 @@ private:
 enum PlayerPtr { LINK_PTR, HORSE_PTR };
 
 class daHorse_c;
-// class dPa_control_c;
+class dPa_control_c;
 class daAlink_c;
 class dMsgObject_c;
 class J2DOrthoGraph;
@@ -465,9 +462,9 @@ public:
     dVibration_c& getVibration() { return mVibration; } */
     camera_class* getCamera(int idx) { return mCameraInfo[idx].mCamera; }
     /* void* getPlayerPtr(int ptrIdx) { return mPlayerPtr[ptrIdx]; }
-    fopAc_ac_c* getPlayer(int idx) { return mPlayerInfo[idx].mpPlayer; }
+    fopAc_ac_c* getPlayer(int idx) { return mPlayerInfo[idx].mpPlayer; } */
     dPa_control_c* getParticle() { return mParticle; }
-    dEvent_manager_c& getEvtManager() { return mEvtManager; }
+    /* dEvent_manager_c& getEvtManager() { return mEvtManager; }
     dAttention_c* getAttention() { return &mAttention; } */
     dStage_startStage_c* getStartStage() { return &mStartStage; }
     dSmplMdl_draw_c* getSimpleModel() { return mSimpleModel; }
@@ -979,7 +976,7 @@ public:
     JKRArchive* mMsgDtArchive[15];
     JKRArchive* mMain2DArchive; */
     void* field_0x4dfc[2];
-    // dPa_control_c* mParticle;
+    dPa_control_c* mParticle;
     dSmplMdl_draw_c* mSimpleModel;
     u8 mWindowNum;
     s8 mLayerOld;
