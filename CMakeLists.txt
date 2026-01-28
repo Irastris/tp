@@ -90,6 +90,20 @@ set(JSYS_FILES
     src/JSystem/J3DGraphAnimator/J3DMtxBuffer.cpp
     src/JSystem/J3DGraphAnimator/J3DShapeTable.cpp
     src/JSystem/J3DGraphAnimator/J3DSkinDeform.cpp
+    src/JSystem/J3DGraphBase/J3DDrawBuffer.cpp
+    src/JSystem/J3DGraphBase/J3DGD.cpp
+    src/JSystem/J3DGraphBase/J3DMatBlock.cpp
+    src/JSystem/J3DGraphBase/J3DMaterial.cpp
+    src/JSystem/J3DGraphBase/J3DPacket.cpp
+    src/JSystem/J3DGraphBase/J3DShape.cpp
+    src/JSystem/J3DGraphBase/J3DShapeDraw.cpp
+    src/JSystem/J3DGraphBase/J3DShapeMtx.cpp
+    src/JSystem/J3DGraphBase/J3DStruct.cpp
+    src/JSystem/J3DGraphBase/J3DSys.cpp
+    src/JSystem/J3DGraphBase/J3DTevs.cpp
+    src/JSystem/J3DGraphBase/J3DTexture.cpp
+    src/JSystem/J3DGraphBase/J3DTransform.cpp
+    src/JSystem/J3DGraphBase/J3DVertex.cpp
     src/JSystem/JFramework/JFWSystem.cpp
     src/JSystem/JKernel/JKRDisposer.cpp
     src/JSystem/JKernel/JKRExpHeap.cpp
