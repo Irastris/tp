@@ -76,7 +76,7 @@ public:
     virtual void drawOut(f32, f32, f32, f32, f32, f32);
     virtual void drawOut(f32, f32, f32, f32, f32, f32, f32, f32);
     virtual void drawOut(JGeometry::TBox2<f32> const&, JGeometry::TBox2<f32> const&);
-    virtual void load(_GXTexMapID, u8);
+    virtual void load(GXTexMapID, u8);
     virtual void load(u8);
     virtual void setBlendColorRatio(f32, f32);
     virtual void setBlendAlphaRatio(f32, f32);

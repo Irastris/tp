@@ -89,7 +89,7 @@ public:
     u32 mFlags;
 };
 
-inline void J3DFillZero32B(__REGISTER void* param_0, __REGISTER u32 param_1) {
+inline void J3DFillZero32B(void* param_0, u32 param_1) {
     u8* ptr = static_cast<u8*>(param_0);
     for (u32 i = param_1 >> 5; i != 0; --i) {
         std::memset(ptr, 0, 32);

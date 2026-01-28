@@ -564,7 +564,7 @@ void J2DPictureEx::drawOut(JGeometry::TBox2<f32> const& param_0, JGeometry::TBox
     GXSetVtxDesc(GX_VA_TEX0, GX_NONE);
 }
 
-void J2DPictureEx::load(_GXTexMapID param_0, u8 param_1) {
+void J2DPictureEx::load(GXTexMapID param_0, u8 param_1) {
     if (mMaterial == NULL) {
         return;
     }
@@ -1114,14 +1114,9 @@ void J2DPictureEx::setAnimation(J2DAnmVtxColor* anm) {
         for (u8 i = 0; i < 4; i++) {
             if (field_0x158[i] != 0xFFFF) {
                 for (u16 j = 0; j < anm_table_num; j++) {
-                    #if DEBUG
-                    J3DAnmVtxColorIndexData* data = anm->getAnmVtxColorIndexData(0, j);
-                    u16* index2 = anm->getVtxColorIndexPointer(0) + (uintptr_t)data->mpData;
-                    #else
                     J3DAnmVtxColorIndexData* data = anm->getAnmVtxColorIndexData(0, j);
                     u16* index = anm->getVtxColorIndexPointer(0);
                     u16* index2 = index + (uintptr_t)data->mpData;
-                    #endif
                     for (u16 k = 0; k < data->mNum; k++) {
                         if (index2[k] == field_0x158[i]) {
                             field_0x198 = anm;

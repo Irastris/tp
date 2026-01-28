@@ -1023,7 +1023,6 @@ public:
     u8 field_0x1de08;
     u8 field_0x1de09;
     u8 field_0x1de0a;
-    u8 mIsDebugMode;
     u8 field_0x1de0c;
 
     static __d_timer_info_c dComIfG_mTimerInfo;
@@ -1098,7 +1097,7 @@ inline void dComIfG_setTimerLimitTimeMs(int i_time) {
 }
 
 inline BOOL dComIfG_isDebugMode() {
-    return g_dComIfG_gameInfo.mIsDebugMode;
+    return false;
 }
 
 /* inline int dComIfG_setObjectRes(const char* i_arcName, u8 i_mountDirection, JKRHeap* i_heap) {
