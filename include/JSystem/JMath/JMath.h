@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include "dolphin/mtx.h"
+#include <dolphin/mtx.h>
 #include <cmath>
 #include <cstring>
 

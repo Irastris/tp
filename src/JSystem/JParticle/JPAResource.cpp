@@ -10,7 +10,7 @@
 #include "JSystem/JParticle/JPAKeyBlock.h"
 #include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JParticle/JPAResourceManager.h"
-#include "dolphin/gx.h"
+#include <dolphin/gx.h>
 #include "global.h"
 
 JPAResource::JPAResource() {
