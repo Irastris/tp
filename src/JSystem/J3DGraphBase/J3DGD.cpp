@@ -49,7 +49,7 @@ void J3DGDSetLightDir(GXLightID light, f32 nx, f32 ny, f32 nz) {
     J3DGDWrite_f32(nz);
 }
 
-void J3DGDSetVtxAttrFmtv(GXVtxFmt vtxfmt, const GXVtxAttrFmtList* list, bool param_2) {
+/* void J3DGDSetVtxAttrFmtv(GXVtxFmt vtxfmt, const GXVtxAttrFmtList* list, bool param_2) {
     u32 posCnt = GX_POS_XYZ;
     u32 posType = GX_F32;
     u32 posFrac = 0;
@@ -172,7 +172,7 @@ void J3DGDSetVtxAttrFmtv(GXVtxFmt vtxfmt, const GXVtxAttrFmtList* list, bool par
     J3DGDWriteCPCmd(vtxfmt + CP_REG_VAT_GRP0_ID, CP_REG_VAT_GRP0(posCnt, posType, posFrac, nrmCnt, nrmType, c0Cnt, c0Type, c1Cnt, c1Type, tx0Cnt, tx0Type, tx0Frac, 1, nrmIdx3));
     J3DGDWriteCPCmd(vtxfmt + CP_REG_VAT_GRP1_ID, CP_REG_VAT_GRP1(tx1Cnt, tx1Type, tx1Frac, tx2Cnt, tx2Type, tx2Frac, tx3Cnt, tx3Type, tx3Frac, tx4Cnt, tx4Type, 1));
     J3DGDWriteCPCmd(vtxfmt + CP_REG_VAT_GRP2_ID, CP_REG_VAT_GRP2(tx4Frac, tx5Cnt, tx5Type, tx5Frac, tx6Cnt, tx6Type, tx6Frac, tx7Cnt, tx7Type, tx7Frac));
-}
+} */
 
 void J3DGDSetTexCoordGen(GXTexGenType func, GXTexGenSrc src_param) {
     u32 tgType;
@@ -581,7 +581,8 @@ void J3DGDSetFogRangeAdj(GXBool enable, u16 center, GXFogAdjTable* table) {
 }
 
 void J3DFifoLoadPosMtxImm(MtxP mtx, u32 id) {
-    J3DFifoWriteXFCmdHdr(4 * id, 12);
+    std::cout << "J3DFifoLoadPosMtxImm() is stubbed" << std::endl;
+    /* J3DFifoWriteXFCmdHdr(4 * id, 12);
     J3DGXCmd1f32ptr(&mtx[0][0]);
     J3DGXCmd1f32ptr(&mtx[0][1]);
     J3DGXCmd1f32ptr(&mtx[0][2]);
@@ -593,11 +594,13 @@ void J3DFifoLoadPosMtxImm(MtxP mtx, u32 id) {
     J3DGXCmd1f32ptr(&mtx[2][0]);
     J3DGXCmd1f32ptr(&mtx[2][1]);
     J3DGXCmd1f32ptr(&mtx[2][2]);
-    J3DGXCmd1f32ptr(&mtx[2][3]);
+    J3DGXCmd1f32ptr(&mtx[2][3]); */
 }
 
 void J3DFifoLoadNrmMtxImm(MtxP mtx, u32 id) {
-    J3DFifoWriteXFCmdHdr(id * 3 + 0x400, 9);
+    std::cout << "J3DFifoLoadNrmMtxImm() is stubbed" << std::endl;
+
+    /* J3DFifoWriteXFCmdHdr(id * 3 + 0x400, 9);
     J3DGXCmd1f32ptr(&mtx[0][0]);
     J3DGXCmd1f32ptr(&mtx[0][1]);
     J3DGXCmd1f32ptr(&mtx[0][2]);
@@ -606,11 +609,13 @@ void J3DFifoLoadNrmMtxImm(MtxP mtx, u32 id) {
     J3DGXCmd1f32ptr(&mtx[1][2]);
     J3DGXCmd1f32ptr(&mtx[2][0]);
     J3DGXCmd1f32ptr(&mtx[2][1]);
-    J3DGXCmd1f32ptr(&mtx[2][2]);
+    J3DGXCmd1f32ptr(&mtx[2][2]); */
 }
 
 void J3DFifoLoadNrmMtxImm3x3(Mtx3P mtx, u32 id) {
-    J3DFifoWriteXFCmdHdr(id * 3 + 0x400, 9);
+    std::cout << "J3DFifoLoadNrmMtxImm3x3() is stubbed" << std::endl;
+
+    /* J3DFifoWriteXFCmdHdr(id * 3 + 0x400, 9);
     J3DGXCmd1f32ptr(&mtx[0][0]);
     J3DGXCmd1f32ptr(&mtx[0][1]);
     J3DGXCmd1f32ptr(&mtx[0][2]);
@@ -619,11 +624,13 @@ void J3DFifoLoadNrmMtxImm3x3(Mtx3P mtx, u32 id) {
     J3DGXCmd1f32ptr(&mtx[1][2]);
     J3DGXCmd1f32ptr(&mtx[2][0]);
     J3DGXCmd1f32ptr(&mtx[2][1]);
-    J3DGXCmd1f32ptr(&mtx[2][2]);
+    J3DGXCmd1f32ptr(&mtx[2][2]); */
 }
 
 void J3DFifoLoadNrmMtxToTexMtx(MtxP mtx, u32 id) {
-    J3DFifoWriteXFCmdHdr(4 * id, 12);
+    std::cout << "J3DFifoLoadNrmMtxToTexMtx() is stubbed" << std::endl;
+
+    /* J3DFifoWriteXFCmdHdr(4 * id, 12);
     J3DGXCmd1f32ptr(&mtx[0][0]);
     J3DGXCmd1f32ptr(&mtx[0][1]);
     J3DGXCmd1f32ptr(&mtx[0][2]);
@@ -635,11 +642,13 @@ void J3DFifoLoadNrmMtxToTexMtx(MtxP mtx, u32 id) {
     J3DGXCmd1f32ptr(&mtx[2][0]);
     J3DGXCmd1f32ptr(&mtx[2][1]);
     J3DGXCmd1f32ptr(&mtx[2][2]);
-    J3DGXCmd1f32(0.0f);
+    J3DGXCmd1f32(0.0f); */
 }
 
 void J3DFifoLoadNrmMtxToTexMtx3x3(Mtx3P mtx, u32 id) {
-    J3DFifoWriteXFCmdHdr(4 * id, 0xc);
+    std::cout << "J3DFifoLoadNrmMtxToTexMtx3x3() is stubbed" << std::endl;
+
+    /* J3DFifoWriteXFCmdHdr(4 * id, 0xc);
     J3DGXCmd1f32ptr(&mtx[0][0]);
     J3DGXCmd1f32ptr(&mtx[0][1]);
     J3DGXCmd1f32ptr(&mtx[0][2]);
@@ -651,7 +660,7 @@ void J3DFifoLoadNrmMtxToTexMtx3x3(Mtx3P mtx, u32 id) {
     J3DGXCmd1f32ptr(&mtx[2][0]);
     J3DGXCmd1f32ptr(&mtx[2][1]);
     J3DGXCmd1f32ptr(&mtx[2][2]);
-    J3DGXCmd1f32(0.0f);
+    J3DGXCmd1f32(0.0f); */
 }
 
 static u8 J3DTexImage1Ids[8] = {

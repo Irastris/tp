@@ -6,6 +6,7 @@
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/JMath/JMath.h"
 #include "m_Do/m_Do_mtx.h"
+#include <cstring>
 
 // TODO: Deduplicate instances of this
 typedef f32 (*MtxP)[3];
@@ -150,7 +151,7 @@ J3DJoint::J3DJoint() {
     mKind = 1;
     mScaleCompensate = false;
     J3DTransformInfo* r30 = &mTransformInfo;
-    void* r29 = __memcpy(r30, &j3dDefaultTransformInfo, sizeof(J3DTransformInfo));
+    void* r29 = std::memcpy(r30, &j3dDefaultTransformInfo, sizeof(J3DTransformInfo));
     mBoundingSphereRadius = 0.0f;
     mMtxCalc = NULL;
     mMesh = NULL;

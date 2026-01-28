@@ -2204,7 +2204,7 @@ void mDoExt_3DlineMat0_c::update(int param_0, GXColor& param_2, dKy_tevstr_c* pa
     }
 }
 
-/* int mDoExt_3DlineMat1_c::init(u16 param_0, u16 param_1, ResTIMG* param_2, int param_3) {
+int mDoExt_3DlineMat1_c::init(u16 param_0, u16 param_1, ResTIMG* param_2, int param_3) {
     mNumLines = param_0;
     field_0x32 = param_1;
     mpLines = new mDoExt_3Dline_c[param_0];
@@ -2221,18 +2221,13 @@ void mDoExt_3DlineMat0_c::update(int param_0, GXColor& param_2, dKy_tevstr_c* pa
     field_0x4 = 0;
     mIsDrawn = 0;
 
-    GXInitTexObj(&mTextureObject, (void*)((intptr_t)param_2 + param_2->imageOffset), param_2->width,
-                 param_2->height, (GXTexFmt)param_2->format, (GXTexWrapMode)param_2->wrapS,
-                 (GXTexWrapMode)param_2->wrapT, param_2->mipmapCount > 1 ? GX_TRUE : GX_FALSE);
-    GXInitTexObjLOD(&mTextureObject, (GXTexFilter)param_2->minFilter,
-                    (GXTexFilter)param_2->magFilter, param_2->minLOD * 0.125f,
-                    param_2->maxLOD * 0.125f, param_2->LODBias * 0.01f, (u8)param_2->biasClamp,
-                    (u8)param_2->doEdgeLOD, (GXAnisotropy)param_2->maxAnisotropy);
+    GXInitTexObj(&mTextureObject, (void*)((intptr_t)param_2 + param_2->imageOffset), param_2->width, param_2->height, (GXTexFmt)param_2->format, (GXTexWrapMode)param_2->wrapS, (GXTexWrapMode)param_2->wrapT, param_2->mipmapCount > 1 ? GX_TRUE : GX_FALSE);
+    GXInitTexObjLOD(&mTextureObject, (GXTexFilter)param_2->minFilter, (GXTexFilter)param_2->magFilter, param_2->minLOD * 0.125f, param_2->maxLOD * 0.125f, param_2->LODBias * 0.01f, (u8)param_2->biasClamp, (u8)param_2->doEdgeLOD, (GXAnisotropy)param_2->maxAnisotropy);
 
     return 1;
 }
 
-static u8 l_mat1DL[141] ATTRIBUTE_ALIGN(32) = {
+/* static u8 l_mat1DL[141] ATTRIBUTE_ALIGN(32) = {
     0x10, 0x00, 0x00, 0x10, 0x40, 0xFF, 0xFF, 0x42, 0x80, 0x08, 0x30, 0x3C, 0xF3, 0xCF, 0x00, 0x10,
     0x00, 0x00, 0x10, 0x18, 0x3C, 0xF3, 0xCF, 0x00, 0x10, 0x00, 0x00, 0x10, 0x0E, 0x00, 0x00, 0x7F,
     0x32, 0x10, 0x00, 0x00, 0x10, 0x10, 0x00, 0x00, 0x05, 0x00, 0x10, 0x00, 0x00, 0x10, 0x0C, 0xFF,
@@ -2259,7 +2254,7 @@ void mDoExt_3DlineMat1_c::setMaterial() {
     GXCallDisplayList(l_mat1DL, 0x80);
     GXLoadPosMtxImm(j3dSys.getViewMtx(), GX_PNMTX0);
     GXLoadNrmMtxImm(cMtx_getIdentity(), GX_PNMTX0);
-}
+} */
 
 void mDoExt_3DlineMat1_c::draw() {
     GXLoadTexObj(&mTextureObject, GX_TEXMAP0);
@@ -2291,7 +2286,7 @@ void mDoExt_3DlineMat1_c::draw() {
     }
     GXSetTexCoordScaleManually(GX_TEXCOORD0, 0, 0, 0);
     mIsDrawn ^= (u8)1;
-} */
+}
 
 void mDoExt_3DlineMat1_c::update(int param_0, f32 param_1, GXColor& param_2, u16 param_3, dKy_tevstr_c* param_4) {
     mColor = param_2;

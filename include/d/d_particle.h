@@ -1,6 +1,8 @@
 #ifndef D_PARTICLE_D_PARTICLE_H
 #define D_PARTICLE_D_PARTICLE_H
 
+#include <iostream>
+
 #include "JSystem/JParticle/JPAEmitterManager.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
 #include "JSystem/JParticle/JPAEmitter.h"

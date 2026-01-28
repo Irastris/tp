@@ -636,7 +636,7 @@ dPa_modelEcallBack::model_c* dPa_modelEcallBack::getModel(JPABaseEmitter* i_emit
     return NULL;
 }
 
-u8 dPa_modelEcallBack::getRotAxis(JPABaseEmitter* i_emitter) {    
+u8 dPa_modelEcallBack::getRotAxis(JPABaseEmitter* i_emitter) {
     model_c* pModel = getModel(i_emitter);
     if (pModel) {
         return pModel->getRotAxis();
@@ -892,7 +892,7 @@ void dPa_control_c::level_c::execute(dPa_control_c::level_c::emitter_c* i_emitte
 
 void dPa_control_c::level_c::execute() {
     emitter_c* emitter = mEmitter;
-    
+
     for (int i = 0; i < EMITTER_MAX; i++) {
         u32 id = emitter->getId();
         if (id != 0) {
@@ -904,7 +904,7 @@ void dPa_control_c::level_c::execute() {
 
 void dPa_control_c::level_c::cleanup() {
     emitter_c* emitter = mEmitter;
-    
+
     for (int i = 0; i < EMITTER_MAX; i++) {
         if (emitter->getId() != 0) {
             emitter->clearStatus();
@@ -952,7 +952,7 @@ void dPa_control_c::level_c::allForceOnEventMove() {
 
 JPABaseEmitter* dPa_control_c::level_c::getEmitter(u32 id) {
     emitter_c* emitter = get(id);
-    
+
     if (emitter == NULL) {
         return NULL;
     }
@@ -1572,8 +1572,8 @@ u32 dPa_control_c::set(u32 param_0, u8 param_1, u16 param_2, cXyz const* pos, dK
     JPABaseEmitter* pJVar5 = set(param_1, param_2, pos, param_4, i_rotation, i_scale, alpha, param_8, param_9, param_10, param_11, param_12, param_13);
     if (pJVar5 == NULL) {
         return 0;
-    } 
-    
+    }
+
     return field_0x210.entry(param_2, pJVar5, param_8);
 }
 
@@ -1602,43 +1602,49 @@ u32 dPa_control_c::setStopContinue(u32 param_0) {
 }
 
 u32 dPa_control_c::setSimpleFoot(u32 param_0, u32* param_1, cBgS_PolyInfo& param_2, cXyz const* param_3, dKy_tevstr_c const* param_4, int param_5, csXyz const* param_6, cXyz const* param_7, dPa_levelEcallBack* param_8, s8 param_9, cXyz const* param_10) {
-    f32 local_44;
+    std::cout << "dPa_control_c::setSimpleFoot() is stubbed" << std::endl;
+    
+    /* f32 local_44;
     u8 local_50;
     GXColor a_Stack_48;
     GXColor a_Stack_4c;
+
     if (getPolyColor(param_2, 0, &a_Stack_48, &a_Stack_4c, &local_50, &local_44) == 0) {
         return 0;
     }
 
     u8 effType = dKy_pol_efftype_get(&param_2);
+
     if (effType >= 6) {
         return 0;
     }
+
     static u16 effectIDTable[6][2] = {
         {ID_ZI_J_DASHSMOKE_A, ID_ZI_J_DOWNSMOKE_A}, {ID_ZI_J_DASHKUSA_A, ID_ZI_J_DOWNKUSA_A}, {ID_ZI_J_DASHWTRA_A, ID_ZI_J_DOWNWTRA_A},
         {dPa_RM(ID_ZI_S_DASHSAND_A), dPa_RM(ID_ZI_S_DOWNSAND_A)}, {dPa_RM(ID_ZI_S_DASHSNOW_A), dPa_RM(ID_ZI_S_DOWNSNOW_A)}, {dPa_RM(ID_ZI_S_DASHSMOKE_INWTR_A), dPa_RM(ID_ZI_S_DOWNSMOKE_INWTR_A)},
     };
-    param_0 = setNormal(param_0, effectIDTable[effType][param_5],
-        param_3, param_4, param_6, param_7, local_50, param_8, param_9, &a_Stack_48,
-        &a_Stack_4c, param_10, local_44);
+
+    param_0 = setNormal(param_0, effectIDTable[effType][param_5], param_3, param_4, param_6, param_7, local_50, param_8, param_9, &a_Stack_48, &a_Stack_4c, param_10, local_44);
     u8 effType2 = dKy_pol_efftype2_get(&param_2);
     int polyAtt = dComIfG_Bgsp().GetPolyAtt0(param_2);
+
     if (effType2 < 6 && (polyAtt != 1 || polyAtt != 3)) {
-        getPolyColor(param_2, 1, &a_Stack_48, &a_Stack_4c,
-                        &local_50, &local_44);
-        *param_1 = setNormal(*param_1, effectIDTable[effType2][param_5],
-            param_3, param_4, param_6, param_7, local_50, param_8, param_9, &a_Stack_48,
-            &a_Stack_4c, param_10, local_44);
-    }
+        getPolyColor(param_2, 1, &a_Stack_48, &a_Stack_4c, &local_50, &local_44);
+        *param_1 = setNormal(*param_1, effectIDTable[effType2][param_5], param_3, param_4, param_6, param_7, local_50, param_8, param_9, &a_Stack_48, &a_Stack_4c, param_10, local_44);
+    } */
+
     return param_0;
 }
 
 u16 dPa_control_c::setCommonPoly(u32* param_0, cBgS_PolyInfo* param_1, cXyz const* param_2, cXyz const* param_3, dKy_tevstr_c const* param_4, u32 param_5, u32 param_6, csXyz const* param_7, cXyz const* param_8, s8 param_9) {
-    static u16 ringID[6][4] = {
+    std::cout << "dPa_control_c::setCommonPoly() is stubbed" << std::endl;
+
+    /* static u16 ringID[6][4] = {
         {ID_ZI_J_DOWNSMOKE_A, 0xFFFF, 0xFFFF, 0xFFFF}, {ID_ZI_J_DOWNKUSA_A, 0xFFFF, 0xFFFF, 0xFFFF},
         {ID_ZI_J_DASHWTRA_A, ID_ZI_J_DASHWTRA_B, ID_ZI_J_DASHWTRA_C, 0xFFFF}, {dPa_RM(ID_ZI_S_DOWNSAND_A), 0xFFFF, 0xFFFF, 0xFFFF},
         {dPa_RM(ID_ZI_S_DOWNSNOW_A), dPa_RM(ID_ZI_S_DOWNSNOW_B), 0xFFFF, 0xFFFF}, {dPa_RM(ID_ZI_S_DOWNSMOKE_INWTR_A), 0xFFFF, 0xFFFF, 0xFFFF},
     };
+
     static u16 normalID[6][4] = {
         {ID_ZI_J_DASHSMOKE_A, 0xFFFF, 0xFFFF, 0xFFFF}, {ID_ZI_J_DASHKUSA_A, 0xFFFF, 0xFFFF, 0xFFFF},
         {ID_ZI_J_DOWNWTRA_A, ID_ZI_J_DOWNWTRA_B, ID_ZI_J_DOWNWTRA_C, ID_ZI_J_DOWNWTRA_D}, {dPa_RM(ID_ZI_S_DASHSAND_A), 0xFFFF, 0xFFFF, 0xFFFF},
@@ -1653,9 +1659,10 @@ u16 dPa_control_c::setCommonPoly(u32* param_0, cBgS_PolyInfo* param_1, cXyz cons
     u8 bVar3;
     u16* puVar7;
     const cXyz* local_40;
-    u32* ptr;
+    u32* ptr; */
     u16 uVar5 = 0;
-    u8 local_4c;
+    /* u8 local_4c;
+
     if (dComIfG_Bgsp().ChkPolySafe(*param_1) == 0) {
         return uVar5;
     }
@@ -1681,9 +1688,7 @@ u16 dPa_control_c::setCommonPoly(u32* param_0, cBgS_PolyInfo* param_1, cXyz cons
             }
         }
 
-        if (bVar3 >= 6 || (param_6 & (1 << bVar3)) != 0 ||
-            (bVar3 == 2 && (param_6 & 0x10000) != 0 && i == 1))
-        {
+        if (bVar3 >= 6 || (param_6 & (1 << bVar3)) != 0 || (bVar3 == 2 && (param_6 & 0x10000) != 0 && i == 1)) {
             uVar5 |= (0xff << (i << 3));
         } else {
             uVar5 |= (bVar3 << (i << 3));
@@ -1709,7 +1714,7 @@ u16 dPa_control_c::setCommonPoly(u32* param_0, cBgS_PolyInfo* param_1, cXyz cons
                 dComIfGp_particle_levelEmitterOnEventMove(ptr[0]);
             }
         }
-    }
+    } */
 
     return uVar5;
 }

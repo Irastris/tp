@@ -5,6 +5,7 @@
 #include "JSystem/J3DGraphBase/J3DTevs.h"
 #include "JSystem/J3DGraphBase/J3DTexture.h"
 #include "global.h"
+#include <cstring>
 
 // TODO: Deduplicate instances of these
 typedef f32 (*Mtx3P)[3];
@@ -15,10 +16,10 @@ struct J3DGXColorS10 : public GXColorS10 {
     J3DGXColorS10(const J3DGXColorS10& other) {
         GXColorS10 sp08 = other;
         J3DGXColorS10* r31 = this;
-        __memcpy(r31, &sp08, sizeof(GXColorS10));
+        memcpy(r31, &sp08, sizeof(GXColorS10));
         J3DGXColorS10* r30 = r31;
     }
-    // J3DGXColorS10(const J3DGXColorS10& other) { __memcpy(this, &other, sizeof(J3DGXColorS10)); }
+    // J3DGXColorS10(const J3DGXColorS10& other) { std::memcpy(this, &other, sizeof(J3DGXColorS10)); }
 
     J3DGXColorS10(const GXColorS10& color) : GXColorS10(color) {}
 
@@ -34,7 +35,7 @@ struct J3DGXColorS10 : public GXColorS10 {
 struct J3DGXColor : public GXColor {
     J3DGXColor() {}
 
-    J3DGXColor(const J3DGXColor& other) { __memcpy(this, &other, sizeof(J3DGXColor)); }
+    J3DGXColor(const J3DGXColor& other) { std::memcpy(this, &other, sizeof(J3DGXColor)); }
     J3DGXColor(const GXColor color) : GXColor(color) {}
 
     J3DGXColor& operator=(const GXColor color) {
@@ -1274,7 +1275,7 @@ struct J3DIndTexMtx : public J3DIndTexMtxInfo {
     J3DIndTexMtx() { *(J3DIndTexMtxInfo*)this = j3dDefaultIndTexMtxInfo; }
     J3DIndTexMtx(const J3DIndTexMtxInfo& info) { *(J3DIndTexMtxInfo*)this = info; }
     J3DIndTexMtx(const J3DIndTexMtx& other) {
-        __memcpy(this, &other, sizeof(J3DIndTexMtx));
+        std::memcpy(this, &other, sizeof(J3DIndTexMtx));
     }
     ~J3DIndTexMtx() {}
     void load(u32 param_1) const {
@@ -1290,7 +1291,7 @@ struct J3DIndTexCoordScale : public J3DIndTexCoordScaleInfo {
         J3DIndTexCoordScaleInfo::operator=(info);
     }
     J3DIndTexCoordScale(const J3DIndTexCoordScale& other) {
-        __memcpy(this, &other, sizeof(J3DIndTexCoordScale));
+        std::memcpy(this, &other, sizeof(J3DIndTexCoordScale));
     }
     ~J3DIndTexCoordScale() {}
     u8 getScaleS() { return mScaleS; }

@@ -4210,25 +4210,23 @@ inline JPABaseEmitter* dComIfGp_particle_setPolyColor(u16 param_1, cBgS_PolyInfo
     return g_dComIfG_gameInfo.play.getParticle()->setPoly(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10);
 }
 
-// int dComIfGd_setSimpleShadow(cXyz* pos, f32 param_1, f32 param_2, cBgS_PolyInfo& param_3, s16 angle, f32 param_5, _GXTexObj* tex);
+int dComIfGd_setSimpleShadow(cXyz* pos, f32 param_1, f32 param_2, cBgS_PolyInfo& param_3, s16 angle, f32 param_5, GXTexObj* tex);
 
 stage_camera_class* dComIfGp_getRoomCamera(int i_roomNo);
 
 stage_arrow_class* dComIfGp_getRoomArrow(int i_roomNo);
 
-int dComIfGd_setShadow(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3, f32 param_4, f32 param_5, f32 param_6, f32 param_7, cBgS_PolyInfo& param_8, dKy_tevstr_c* param_9, s16 param_10, f32 param_11, _GXTexObj* param_12);
+int dComIfGd_setShadow(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3, f32 param_4, f32 param_5, f32 param_6, f32 param_7, cBgS_PolyInfo& param_8, dKy_tevstr_c* param_9, s16 param_10, f32 param_11, GXTexObj* param_12);
 
 inline int dComIfGd_setRealShadow(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3, f32 param_4, f32 param_5, dKy_tevstr_c* param_6) {
     return g_dComIfG_gameInfo.drawlist.setRealShadow(param_0, param_1, param_2, param_3, param_4, param_5, param_6);
 }
 
-/* inline int dComIfGd_setSimpleShadow(cXyz* pos, f32 param_1, f32 param_2, cXyz* param_3, s16 angle,
-                                    f32 param_5, _GXTexObj* tex) {
-    return g_dComIfG_gameInfo.drawlist.setSimpleShadow(pos, param_1, param_2, param_3, angle,
-                                                       param_5, tex);
+inline int dComIfGd_setSimpleShadow(cXyz* pos, f32 param_1, f32 param_2, cXyz* param_3, s16 angle, f32 param_5, GXTexObj* tex) {
+    return g_dComIfG_gameInfo.drawlist.setSimpleShadow(pos, param_1, param_2, param_3, angle, param_5, tex);
 }
 
-inline bool dComIfGd_addRealShadow(u32 key, J3DModel* model) {
+/* inline bool dComIfGd_addRealShadow(u32 key, J3DModel* model) {
     return g_dComIfG_gameInfo.drawlist.addRealShadow(key, model);
 }
 

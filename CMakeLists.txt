@@ -10,6 +10,7 @@ add_compile_options(
     -Wno-conversion-null
     -Wno-delete-incomplete
     -Wno-return-type
+    -Wno-pointer-arith
 )
 
 add_subdirectory(extern/aurora EXCLUDE_FROM_ALL)

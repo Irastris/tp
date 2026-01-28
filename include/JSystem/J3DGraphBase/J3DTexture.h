@@ -4,7 +4,8 @@
 #include "JSystem/J3DGraphBase/J3DStruct.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "global.h"
-#include <stdint.h>
+#include <cstdint>
+#include <cstring>
 
 class J3DTexture {
 private:
@@ -73,7 +74,7 @@ struct J3DTexCoord : public J3DTexCoordInfo {
         mTexMtxReg = mTexGenMtx;
     }
     void setTexCoordInfo(const J3DTexCoordInfo& info) {
-        __memcpy(this, &info, sizeof(J3DTexCoordInfo));
+        std::memcpy(this, &info, sizeof(J3DTexCoordInfo));
     }
 
     u8 getTexGenType() const { return mTexGenType; }

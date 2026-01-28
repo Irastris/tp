@@ -4,6 +4,7 @@
 #include <dolphin/gx.h>
 #include <dolphin/mtx.h>
 #include "global.h"
+#include <cstring>
 
 // TODO: Deduplicate instances of this
 typedef f32 Mtx23[2][3];
@@ -101,7 +102,7 @@ struct J3DIndTexOrderInfo {
     u8 field_0x3;
 
     void operator=(J3DIndTexOrderInfo const& other) {
-        __memcpy(this, &other, sizeof(J3DIndTexOrderInfo));
+        std::memcpy(this, &other, sizeof(J3DIndTexOrderInfo));
     }
 };
 
@@ -162,7 +163,7 @@ struct J3DTexCoordInfo {
     u8 pad;
 
     J3DTexCoordInfo& operator=(const J3DTexCoordInfo& other) {
-        __memcpy(this, &other, sizeof(J3DTexCoordInfo));
+        std::memcpy(this, &other, sizeof(J3DTexCoordInfo));
         return *this;
     }
 };
@@ -174,14 +175,14 @@ struct J3DIndTexCoordScaleInfo {
     u8 field_0x3;
 
     J3DIndTexCoordScaleInfo& operator=(const J3DIndTexCoordScaleInfo& other) {
-        __memcpy(this, &other, sizeof(J3DIndTexCoordScaleInfo));
+        std::memcpy(this, &other, sizeof(J3DIndTexCoordScaleInfo));
         return *this;
     }
 };
 
 struct J3DBlendInfo {
     void operator=(J3DBlendInfo const& other) {
-        __memcpy(this, &other, sizeof(J3DBlendInfo));
+        std::memcpy(this, &other, sizeof(J3DBlendInfo));
     }
     u8 mType;
     u8 mSrcFactor;

@@ -5,7 +5,7 @@
 #include "JSystem/J3DGraphBase/J3DFifo.h"
 // #include <dolphin/gd.h>
 
-void J3DGDSetVtxAttrFmtv(_GXVtxFmt, GXVtxAttrFmtList const*, bool);
+// void J3DGDSetVtxAttrFmtv(GXVtxFmt, GXVtxAttrFmtList const*, bool);
 void J3DFifoLoadPosMtxImm(Mtx, u32);
 void J3DFifoLoadNrmMtxImm(Mtx, u32);
 
@@ -122,9 +122,11 @@ u16 J3DShape::countBumpMtxNum() const {
 }
 
 void J3DLoadCPCmd(u8 addr, u32 val) {
-    GXCmd1u8(GX_LOAD_CP_REG);
+    std::cout << "J3DLoadCPCmd() is stubbed" << std::endl;
+
+    /* GXCmd1u8(GX_LOAD_CP_REG);
     GXCmd1u8(addr);
-    GXCmd1u32(val);
+    GXCmd1u32(val); */
 }
 
 static void J3DLoadArrayBasePtr(GXAttr attr, void* data) {
@@ -230,7 +232,9 @@ void J3DShape::makeVtxArrayCmd() {
 }
 
 void J3DShape::makeVcdVatCmd() {
-    static BOOL sInterruptFlag = OSDisableInterrupts();
+    std::cout << "J3DShape::makeVcdVatCmd() is stubbed" << std::endl;
+
+    /* static BOOL sInterruptFlag = OSDisableInterrupts();
     OSDisableScheduler();
 
     GDLObj gdl_obj;
@@ -243,7 +247,7 @@ void J3DShape::makeVcdVatCmd() {
     GDFlushCurrToMem();
     GDSetCurrent(NULL);
     OSEnableScheduler();
-    OSRestoreInterrupts(sInterruptFlag);
+    OSRestoreInterrupts(sInterruptFlag); */
 }
 
 void* J3DShape::sOldVcdVatCmd;

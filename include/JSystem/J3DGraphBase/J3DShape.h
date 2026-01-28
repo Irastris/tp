@@ -33,11 +33,13 @@ public:
     u32 getMtxIdxRegB() const { return mMtxIdxRegB; }
 
     void load() const {
-        J3DFifoLoadCPCmd(CP_REG_MTXIDXA_ID, mMtxIdxRegA);
+        std::cout << "J3DCurrentMtx::load() is stubbed" << std::endl;
+
+        /* J3DFifoLoadCPCmd(CP_REG_MTXIDXA_ID, mMtxIdxRegA);
         J3DFifoLoadCPCmd(CP_REG_MTXIDXB_ID, mMtxIdxRegB);
         J3DFifoLoadXFCmdHdr(GX_XF_REG_MATRIXINDEX0, 2);
         GXCmd1u32(mMtxIdxRegA);
-        GXCmd1u32(mMtxIdxRegB);
+        GXCmd1u32(mMtxIdxRegB); */
     }
 
     void setCurrentTexMtx(u8 param_1, u8 param_2, u8 param_3, u8 param_4,
@@ -109,8 +111,8 @@ public:
     static const int kVcdVatDLSize = 0xC0;
 
     void initialize();
-    void addTexMtxIndexInDL(_GXAttr, u32);
-    void addTexMtxIndexInVcd(_GXAttr);
+    void addTexMtxIndexInDL(GXAttr, u32);
+    void addTexMtxIndexInVcd(GXAttr);
     void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
     u16 countBumpMtxNum() const;
     void loadVtxArray() const;

@@ -32,7 +32,7 @@ public:
     u32 getNrmNum() const { return mNrmNum; }
     u32 getVtxNum() const { return mVtxNum; }
     u32 getColNum() const { return mColNum; }
-    GXVtxAttrFmtList* getVtxAttrFmtList() const { return mVtxAttrFmtList; }
+    // GXVtxAttrFmtList* getVtxAttrFmtList() const { return mVtxAttrFmtList; }
     u8 getVtxPosFrac() const { return mVtxPosFrac; }
     u8 getVtxNrmFrac() const { return mVtxNrmFrac; }
     int getVtxPosType() const { return mVtxPosType; }
@@ -51,7 +51,7 @@ private:
     u32 mColNum;
     u32 mTexCoordNum;
     u32 mPacketNum;
-    GXVtxAttrFmtList* mVtxAttrFmtList;
+    // GXVtxAttrFmtList* mVtxAttrFmtList;
     void* mVtxPosArray;
     void* mVtxNrmArray;
     void* mVtxNBTArray;

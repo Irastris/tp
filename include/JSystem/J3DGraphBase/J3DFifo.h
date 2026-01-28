@@ -5,14 +5,18 @@
 // #include <dolphin/gd.h>
 
 inline void J3DFifoLoadBPCmd(u32 regval) {
-    GXCmd1u8(GX_LOAD_BP_REG);
-    GXCmd1u32(regval);
+    std::cout << "J3DFifoLoadBPCmd() is stubbed" << std::endl;
+    
+    /* GXCmd1u8(GX_LOAD_BP_REG);
+    GXCmd1u32(regval); */
 }
 
 inline void J3DFifoWriteXFCmdHdr(u16 addr, u8 len) {
-    GXCmd1u8(GX_LOAD_XF_REG);
+    std::cout << "J3DFifoWriteXFCmdHdr() is stubbed" << std::endl;
+
+    /* GXCmd1u8(GX_LOAD_XF_REG);
     GXCmd1u16(len - 1);
-    GXCmd1u16(addr);
+    GXCmd1u16(addr); */
 }
 
 inline void J3DFifoLoadIndx(u8 cmd, u16 indx, u16 addr) {
@@ -28,9 +32,11 @@ inline void J3DFifoWriteCPCmd(u8 cmd, u32 param) {
 }
 
 inline void J3DFifoLoadCPCmd(u8 reg, u32 value) {
-    GXCmd1u8(GX_LOAD_CP_REG);
+    std::cout << "J3DFifoLoadCPCmd() is stubbed" << std::endl;
+
+    /* GXCmd1u8(GX_LOAD_CP_REG);
     GXCmd1u8(reg);
-    GXCmd1u32(value);
+    GXCmd1u32(value); */
 }
 
 inline void J3DFifoWriteXFCmd(u16 cmd, u16 len) {
@@ -40,21 +46,27 @@ inline void J3DFifoWriteXFCmd(u16 cmd, u16 len) {
 }
 
 inline void J3DFifoLoadXFCmdHdr(u16 addr, u8 len) {
-    GXCmd1u8(GX_LOAD_XF_REG);
+    std::cout << "J3DFifoLoadXFCmdHdr() is stubbed" << std::endl;
+
+    /* GXCmd1u8(GX_LOAD_XF_REG);
     GXCmd1u16(len - 1);
-    GXCmd1u16(addr);
+    GXCmd1u16(addr); */
 }
 
 inline void J3DFifoLoadPosMtxIndx(u16 index, u32 addr) {
-    GXCmd1u8(GX_LOAD_INDX_A);
+    std::cout << "J3DFifoLoadPosMtxIndx() is stubbed" << std::endl;
+
+    /* GXCmd1u8(GX_LOAD_INDX_A);
     GXCmd1u16(index);
-    GXCmd1u16(((sizeof(Vec) - 1) << 12) | (u16)(addr * 4));
+    GXCmd1u16(((sizeof(Vec) - 1) << 12) | (u16)(addr * 4)); */
 }
 
 inline void J3DFifoLoadNrmMtxIndx3x3(u16 index, u32 addr) {
-    GXCmd1u8(GX_LOAD_INDX_B);
+    std::cout << "J3DFifoLoadNrmMtxIndx3x3() is stubbed" << std::endl;
+
+    /* GXCmd1u8(GX_LOAD_INDX_B);
     GXCmd1u16(index);
-    GXCmd1u16(((9 - 1) << 12) | (u16)((addr * 3) + 0x400));
+    GXCmd1u16(((9 - 1) << 12) | (u16)((addr * 3) + 0x400)); */
 }
 
 void J3DFifoLoadPosMtxImm(f32 (*)[4], u32);
