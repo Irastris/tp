@@ -108,6 +108,7 @@ set(JSYS_FILES
     src/JSystem/J3DGraphBase/J3DTexture.cpp
     src/JSystem/J3DGraphBase/J3DTransform.cpp
     src/JSystem/J3DGraphBase/J3DVertex.cpp
+    src/JSystem/JFramework/JFWDisplay.cpp
     src/JSystem/JFramework/JFWSystem.cpp
     src/JSystem/JKernel/JKRDisposer.cpp
     src/JSystem/JKernel/JKRExpHeap.cpp
