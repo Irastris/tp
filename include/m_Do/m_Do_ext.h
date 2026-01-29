@@ -456,7 +456,7 @@ public:
 class mDoExt_onCupOffAupPacket : public J3DPacket {
     virtual void draw();
     virtual ~mDoExt_onCupOffAupPacket();
-};
+}; */
 
 class mDoExt_invJntPacket : public J3DPacket {
 public:
@@ -486,7 +486,7 @@ public:
 
     J3DModel* mModel;
     mDoExt_invJntPacket* mpPackets;
-}; */
+};
 
 class mDoExt_3DlineMat_c {
 public:

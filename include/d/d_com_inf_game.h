@@ -193,7 +193,7 @@ enum dComIfG_ButtonStatusFlag {
 
 // class JKRAramArchive;
 class dSmplMdl_draw_c;
-// class dTimer_c;
+class dTimer_c;
 class daPy_py_c;
 class scene_class;
 
@@ -205,7 +205,7 @@ public:
         mTimerNowTimeMs = 0;
         // mTimerPtr = NULL;
     }
-    // dTimer_c* mTimerPtr;
+    dTimer_c* mTimerPtr;
     s32 mTimerNowTimeMs;
     s32 mTimerLimitTimeMs;
     s32 mTimerMode;
@@ -448,8 +448,8 @@ public:
     int getTimerMode();
     void setTimerType(u8 type);
     u8 getTimerType();
-    /* void setTimerPtr(dTimer_c* ptr);
-    dTimer_c* getTimerPtr(); */
+    void setTimerPtr(dTimer_c* ptr);
+    dTimer_c* getTimerPtr();
     void setWarpItemData(const char* stage, cXyz pos, s16 angle, s8 roomNo, u8, u8);
     ~dComIfG_play_c() {}
 
@@ -799,7 +799,7 @@ public:
     void setCardIconResArchive(JKRArchive* arc) { mCardIconResArchive = arc; }
     void setMsgDtArchive(int i, JKRArchive* arc) { mMsgDtArchive[i] = arc; }
     void setMsgCommonArchive(JKRArchive* arc) { mMsgCommonArchive = arc; }
-    void setMsgArchive(int i, JKRArchive* arc) { mMsgArchive[i] = arc; } */
+    void setMsgArchive(int i, JKRArchive* arc) { mMsgArchive[i] = arc; }
     void setMsgObjectClass(dMsgObject_c* obj) { mItemInfo.mMsgObjectClass = obj; }
     void setMesgCamInfoBasicID(int id) { mMesgCamInfo.mBasicID = id; }
     /* void setMesgCamInfoActor(fopAc_ac_c* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3, fopAc_ac_c* param_4, fopAc_ac_c* param_5, fopAc_ac_c* param_6, fopAc_ac_c* param_7, fopAc_ac_c* param_8, fopAc_ac_c* param_9, fopAc_ac_c* param_10) {
@@ -936,8 +936,8 @@ public:
     u8 getDirection() { return mItemInfo.mDirection; }
 
 public:
-    /* dBgS mBgs;
-    dCcS mCcs; */
+    dBgS mBgs;
+    dCcS mCcs;
     dStage_startStage_c mStartStage;
     dStage_nextStage_c mNextStage;
     dStage_stageDt_c mStageData;
@@ -1026,10 +1026,10 @@ public:
 };
 
 extern dComIfG_inf_c g_dComIfG_gameInfo;
-/* extern GXColor g_blackColor;
+extern GXColor g_blackColor;
 extern GXColor g_clearColor;
 extern GXColor g_whiteColor;
-extern GXColor g_saftyWhiteColor; */
+extern GXColor g_saftyWhiteColor;
 
 inline void dComIfG_ct() {
     std::cout << "Hello from doComIfG_ct() @ d_com_inf_game.h" << std::endl;
@@ -1139,7 +1139,7 @@ inline void* dComIfG_getObjectRes(const char* i_arcName, int i_index) {
 
 inline void dComIfG_dumpResControl() {
     g_dComIfG_gameInfo.mResControl.dump();
-}
+} */
 
 inline dBgS& dComIfG_Bgsp() {
     return g_dComIfG_gameInfo.play.mBgs;
@@ -1153,7 +1153,7 @@ inline dCcS& dComIfG_Ccsp2() {
     return g_dComIfG_gameInfo.play.mCcs;
 }
 
-inline dRes_info_c* dComIfG_getObjectResInfo(const char* i_arcName) {
+/* inline dRes_info_c* dComIfG_getObjectResInfo(const char* i_arcName) {
     return g_dComIfG_gameInfo.mResControl.getObjectResInfo(i_arcName);
 }
 

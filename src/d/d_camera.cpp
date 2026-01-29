@@ -18,7 +18,7 @@
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_lib.h"
-// #include <cmath>
+#include <cmath>
 
 namespace {
 
@@ -660,15 +660,15 @@ void dCamera_c::initPad() {
 
     mCStickYState = mCStickYHoldCount = mCStickUpLatch = 0;
 
-    mTriggerLeftLast = mDoCPd_c::getAnalogL(mPadID);
-    mTriggerLeftDelta = 0.0f;
+    mTriggerLLast = mDoCPd_c::getAnalogL(mPadID);
+    mTriggerLDelta = 0.0f;
     mHoldLockL = 0;
     mTrigLockL = 0;
     mLockLActive = 0;
     mLockLJustActivated = 0;
 
-    mTriggerRightLast = mDoCPd_c::getAnalogR(mPadID);
-    mTriggerRightDelta = 0.0f;
+    mTriggerRLast = mDoCPd_c::getAnalogR(mPadID);
+    mTriggerRDelta = 0.0f;
     mHoldLockR = 0;
     mTrigLockR = 0;
     mLockRActive = 0;
@@ -738,12 +738,12 @@ void dCamera_c::updatePad() {
     mPadInfo.mCStick.mAngle.Val(mDoCPd_c::getSubStickAngle(mPadID));
 
     f32 analog_l = mDoCPd_c::getAnalogL(mPadID);
-    mTriggerLeftDelta = mTriggerLeftLast - analog_l;
-    mTriggerLeftLast = analog_l;
+    mTriggerLDelta = mTriggerLLast - analog_l;
+    mTriggerLLast = analog_l;
     mHoldLockL = mDoCPd_c::getHoldLockL(mPadID) ? true : false;
     mTrigLockL = mDoCPd_c::getTrigLockL(mPadID) ? true : false;
 
-    if (mTriggerLeftLast > mCamSetup.ManualEndVal()) {
+    if (mTriggerLLast > mCamSetup.ManualEndVal()) {
         if (mLockLActive == 0) {
             mLockLJustActivated = 1;
         } else {
@@ -757,12 +757,12 @@ void dCamera_c::updatePad() {
     }
 
     f32 analog_r = mDoCPd_c::getAnalogR(mPadID);
-    mTriggerRightDelta = mTriggerRightLast - analog_r;
-    mTriggerRightLast = analog_r;
+    mTriggerRDelta = mTriggerRLast - analog_r;
+    mTriggerRLast = analog_r;
     mHoldLockR = mDoCPd_c::getHoldLockR(mPadID) ? true : false;
     mTrigLockR = mDoCPd_c::getTrigLockR(mPadID) ? true : false;
 
-    if (mTriggerRightLast > mCamSetup.ManualEndVal()) {
+    if (mTriggerRLast > mCamSetup.ManualEndVal()) {
         if (mLockRActive == 0) {
             mLockRJustActivated = 1;
         } else {
@@ -2265,8 +2265,7 @@ u32 dCamera_c::lineCollisionCheckBush(cXyz* i_start, cXyz* i_end) {
     return ret;
 }
 
-static void sph_chk_callback(dBgS_SphChk* i_sphChk, cBgD_Vtx_t* i_vtxTbl, int i_vtxIdx0,
-                             int i_vtxIdx1, int i_vtxIdx2, cM3dGPla* i_plane, void* i_data) {
+static void sph_chk_callback(dBgS_SphChk* i_sphChk, cBgD_Vtx_t* i_vtxTbl, int i_vtxIdx0, int i_vtxIdx1, int i_vtxIdx2, cM3dGPla* i_plane, void* i_data) {
     camSphChkdata* sph_chk_data = (camSphChkdata*)i_data;
     if (!sph_chk_data->field_0x1c) {
         f32 len = cM3d_SignedLenPlaAndPos(i_plane, &sph_chk_data->field_0xc);
@@ -2826,8 +2825,7 @@ bool dCamera_c::bumpCheck(u32 i_flags) {
     return var_r28 != 0 ? true : false;
 }
 
-bool dCamera_c::lineBGCheckBoth(cXyz* i_start, cXyz* i_end, dBgS_LinChk* i_linchk,
-                                u32 i_flags) {
+bool dCamera_c::lineBGCheckBoth(cXyz* i_start, cXyz* i_end, dBgS_LinChk* i_linchk, u32 i_flags) {
     i_linchk->OnBackFlag();
     i_linchk->OnFrontFlag();
     return lineBGCheck(i_start, i_end, i_linchk, i_flags);

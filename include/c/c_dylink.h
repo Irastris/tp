@@ -1,6 +1,8 @@
 #ifndef C_C_DYLINK_H
 #define C_C_DYLINK_H
 
+#include <iostream>
+
 // #include "f_op/f_op_scene_mng.h"
 
 // TODO: Not originally included directly

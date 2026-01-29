@@ -1,5 +1,3 @@
-// TODO: To be progressively uncommented as necessary
-
 /* #include "d/dolzel.h"
 #include "JSystem/JKernel/JKRAramArchive.h" */
 #include "JSystem/JKernel/JKRExpHeap.h"
@@ -933,13 +931,13 @@ u8 dComIfG_play_c::getTimerType() {
     return mTimerInfo.mTimerType;
 }
 
-/* void dComIfG_play_c::setTimerPtr(dTimer_c* i_ptr) {
+void dComIfG_play_c::setTimerPtr(dTimer_c* i_ptr) {
     mTimerInfo.mTimerPtr = i_ptr;
 }
 
 dTimer_c* dComIfG_play_c::getTimerPtr() {
     return mTimerInfo.mTimerPtr;
-} */
+}
 
 void dComIfG_inf_c::ct() {
     std::cout << "Hello from dComIfG_inf_c::ct() @ d_com_inf_game.cpp" << std::endl;

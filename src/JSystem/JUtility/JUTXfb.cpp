@@ -24,8 +24,9 @@ JUTXfb::JUTXfb(GXRenderModeObj const* pObj, JKRHeap* pHeap, JUTXfb::EXfbNumber x
         u16 fbWidth = (u32)JUTVideo::getManager()->getRenderMode()->fbWidth;
         u16 xfbHeight = (u32)JUTVideo::getManager()->getRenderMode()->xfbHeight;
         u16 efbHeight = (u32)JUTVideo::getManager()->getRenderMode()->efbHeight;
-        f32 scale_factor = GXGetYScaleFactor(efbHeight, xfbHeight);
-        u16 xfb_lines = GXGetNumXfbLines(efbHeight, scale_factor);
+        // TODO: Total guesswork, check with an emulator
+        f32 scale_factor = 1.0f; // GXGetYScaleFactor(efbHeight, xfbHeight);
+        u16 xfb_lines = 480; // GXGetNumXfbLines(efbHeight, scale_factor);
 
         initiate(fbWidth, xfb_lines, pHeap, xfbNum);
     }

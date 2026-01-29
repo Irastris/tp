@@ -1229,14 +1229,14 @@ public:
     int mCStickYState;
     int mCStickYHoldCount;
     int mCStickUpLatch;
-    f32 mTriggerLeftLast;
-    f32 mTriggerLeftDelta;
+    f32 mTriggerLLast;
+    f32 mTriggerLDelta;
     bool mHoldLockL;
     bool mTrigLockL;
     bool mLockLActive;
     bool mLockLJustActivated;
-    f32 mTriggerRightLast;
-    f32 mTriggerRightDelta;
+    f32 mTriggerRLast;
+    f32 mTriggerRDelta;
     bool mHoldLockR;
     bool mTrigLockR;
     bool mLockRActive;

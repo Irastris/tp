@@ -17,7 +17,7 @@ void JFWDisplay::ctor_subroutine(bool enableAlpha) {
     mTickRate = 0;
     mCombinationRatio = 0.0f;
     field_0x30 = 0;
-    field_0x2c = OSGetTick();
+    field_0x2c = 0; // OSGetTick();
     field_0x34 = 0;
     field_0x48 = 0;
     field_0x4a = 0;
@@ -65,8 +65,9 @@ void JFWDisplay::prepareCopyDisp() {
     u16 width = JUTVideo::getManager()->getFbWidth();
     u16 height = JUTVideo::getManager()->getEfbHeight();
     u16 xfbHeight = JUTVideo::getManager()->getXfbHeight();
-    f32 y_scaleF = GXGetYScaleFactor(height, xfbHeight);
-    u16 line_num = GXGetNumXfbLines(height, y_scaleF);
+    // TODO: Total guesswork, check with an emulator
+    f32 y_scaleF = 1.0f; // GXGetYScaleFactor(height, xfbHeight);
+    u16 line_num = 480; // GXGetNumXfbLines(height, y_scaleF);
 
     GXSetCopyClear(mClearColor, mZClear);
     GXSetDispCopySrc(0, 0, width, height);
@@ -74,7 +75,7 @@ void JFWDisplay::prepareCopyDisp() {
     GXSetDispCopyYScale(y_scaleF);
     VIFlush();
     GXSetCopyFilter((GXBool)JUTVideo::getManager()->isAntiAliasing(), JUTVideo::getManager()->getSamplePattern(), GX_ENABLE, JUTVideo::getManager()->getVFilter());
-    GXSetCopyClamp((GXFBClamp)mClamp);
+    // GXSetCopyClamp((GXFBClamp)mClamp);
     GXSetDispCopyGamma((GXGamma)mGamma);
     GXSetZMode(GX_ENABLE, GX_LEQUAL, GX_ENABLE);
     if (mEnableAlpha) {
@@ -200,7 +201,7 @@ void JFWDisplay::beginRender() {
     waitForTick(mTickRate, mFrameRate);
     JUTVideo::getManager()->waitRetraceIfNeed();
 
-    OSTick tick = OSGetTick();
+    /* OSTick */ u32 tick = 0; // OSGetTick();
     field_0x30 = tick - field_0x2c;
     field_0x2c = tick;
     field_0x34 = field_0x2c - JUTVideo::getVideoLastTick();
@@ -278,12 +279,12 @@ void JFWDisplay::endFrame() {
         }
     }
 
-    if (field_0x40) {
+    /* if (field_0x40) {
         static u32 prevFrame = VIGetRetraceCount();;
         u32 retrace_cnt = VIGetRetraceCount();
         u32 r28 = retrace_cnt - prevFrame;
         prevFrame = retrace_cnt;
-    }
+    } */
 }
 
 void JFWDisplay::waitBlanking(int param_0) {
@@ -293,7 +294,9 @@ void JFWDisplay::waitBlanking(int param_0) {
 }
 
 static void waitForTick(u32 p1, u16 p2) {
-    if (p1 != 0) {
+    std::cout << "waitForTick() is stubbed" << std::endl;
+
+    /* if (p1 != 0) {
         static OSTime nextTick = OSGetTime();
         OSTime time = OSGetTime();
         while (time < nextTick) {
@@ -312,7 +315,7 @@ static void waitForTick(u32 p1, u16 p2) {
             }
         } while (((intptr_t)msg - (intptr_t)nextCount) < 0);
         nextCount = (intptr_t)msg + uVar1;
-    }
+    } */
 }
 
 // JSUList<JFWAlarm> JFWAlarm::sList(false);

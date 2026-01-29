@@ -257,7 +257,7 @@ void J3DModelLoader::readInformation(J3DModelInfoBlock const* i_block, u32 i_fla
     mpModelData->setHierarchy(JSUConvertOffsetToPtr<J3DModelHierarchy>(i_block, i_block->mpHierarchy));
 }
 
-static _GXCompType getFmtType(GXVtxAttrFmtList* i_fmtList, _GXAttr i_attr) {
+static GXCompType getFmtType(GXVtxAttrFmtList* i_fmtList, GXAttr i_attr) {
     for (; i_fmtList->attr != GX_VA_NULL; i_fmtList++) {
         if (i_fmtList->attr == i_attr) {
             return i_fmtList->type;
@@ -392,7 +392,7 @@ void J3DModelLoader_v26::readMaterial(J3DMaterialBlock const* i_block, u32 i_fla
     }
     mpMaterialTable->mMaterialNodePointer = new J3DMaterial*[mpMaterialTable->mMaterialNum];
     if (i_flags & 0x200000) {
-        mpMaterialTable->field_0x10 = new (0x20) J3DMaterial[mpMaterialTable->mUniqueMatNum];
+        mpMaterialTable->field_0x10 = new (JKRHeap::getCurrentHeap(), 0x20) J3DMaterial[mpMaterialTable->mUniqueMatNum];
     } else {
         mpMaterialTable->field_0x10 = NULL;
     }
@@ -434,7 +434,7 @@ void J3DModelLoader_v21::readMaterial_v21(J3DMaterialBlock_v21 const* i_block, u
     }
     mpMaterialTable->mMaterialNodePointer = new J3DMaterial*[mpMaterialTable->mMaterialNum];
     if (i_flags & 0x200000) {
-        mpMaterialTable->field_0x10 = new (0x20) J3DMaterial[mpMaterialTable->mUniqueMatNum];
+        mpMaterialTable->field_0x10 = new (JKRHeap::getCurrentHeap(), 0x20) J3DMaterial[mpMaterialTable->mUniqueMatNum];
     } else {
         mpMaterialTable->field_0x10 = NULL;
     }

@@ -24,7 +24,7 @@ void JUTPalette::storeTLUT(GXTlut param_0, GXTlutFmt param_1, JUTTransparency pa
 bool JUTPalette::load() {
     bool check = mNumColors != 0;
     if (check) {
-        GXLoadTlut(&mTlutObj, mTlutName);
+        GXLoadTlut(&mTlutObj, (GXTlut)mTlutName);
     }
 
     return check;

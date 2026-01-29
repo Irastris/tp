@@ -787,7 +787,9 @@ void JPAResource::draw(JPAEmitterWorkData* work, JPABaseEmitter* emtr) {
 }
 
 void JPAResource::drawP(JPAEmitterWorkData* work) {
-    work->mpEmtr->clearStatus(0x80);
+    std::cout << "JPAResource::drawP() is stubbed" << std::endl;
+
+    /* work->mpEmtr->clearStatus(0x80);
 
     work->mGlobalPtclScl.x = work->mpEmtr->mGlobalPScl.x * mpBaseShape->getBaseSizeX();
     work->mGlobalPtclScl.y = work->mpEmtr->mGlobalPScl.y * mpBaseShape->getBaseSizeY();
@@ -845,11 +847,13 @@ void JPAResource::drawP(JPAEmitterWorkData* work) {
 
     if (work->mpEmtr->mpEmtrCallBack != NULL) {
         work->mpEmtr->mpEmtrCallBack->drawAfter(work->mpEmtr);
-    }
+    } */
 }
 
 void JPAResource::drawC(JPAEmitterWorkData* work) {
-    work->mpEmtr->setStatus(0x80);
+    std::cout << "JPAResource::drawC() is stubbed" << std::endl;
+
+    /* work->mpEmtr->setStatus(0x80);
 
     if (mpChildShape->isScaleInherited()) {
         work->mGlobalPtclScl.x = work->mpEmtr->mGlobalPScl.x * mpBaseShape->getBaseSizeX();
@@ -907,7 +911,7 @@ void JPAResource::drawC(JPAEmitterWorkData* work) {
 
     if (work->mpEmtr->mpEmtrCallBack != NULL) {
         work->mpEmtr->mpEmtrCallBack->drawAfter(work->mpEmtr);
-    }
+    } */
 }
 
 void JPAResource::setPTev() {

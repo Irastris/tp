@@ -52,12 +52,11 @@ public:
     void clear();
     static u32 read();
     void assign();
-    // void checkResetCallback(OSTime holdTime);
+    void checkResetCallback(/* OSTime */ u16 holdTime);
     void update();
     void stopPatternedRumble() { mRumble.stopPatternedRumble(mPortNum); }
     void setButtonRepeat(u32, u32, u32);
 
-    static void checkResetSwitch();
     static void clearForReset();
     static JUTGamePad* getGamePad(int port);
     static bool recalibrate(u32 mask);
@@ -140,7 +139,7 @@ public:
         static u32 sResetMaskPattern;
         static callbackFn sCallback;
         static void* sCallbackArg;
-        // static OSTime sThreshold;
+        static /* OSTime */ u16 sThreshold;
         static s32 sResetOccurredPort;
         static bool sResetOccurred;
         static bool sResetSwitchPushing;

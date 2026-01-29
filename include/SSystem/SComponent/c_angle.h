@@ -3,6 +3,10 @@
 
 #include "SSystem/SComponent/c_xyz.h"
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 #define ADD_VAR(x, y)  ((x) += (y))
 #define SUB_VAR(x, y)  ((x) -= (y))
 #define MULT_VAR(x, y) ((x) *= (y))

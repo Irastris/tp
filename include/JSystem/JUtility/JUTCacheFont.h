@@ -1,6 +1,8 @@
 #ifndef JUTCACHEFONT_H
 #define JUTCACHEFONT_H
 
+#include <iostream>
+
 #include "JSystem/JUtility/JUTResFont.h"
 #include "global.h"
 

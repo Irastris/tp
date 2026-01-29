@@ -183,7 +183,9 @@ void J3DGDSetVtxAttrFmtv(GXVtxFmt vtxfmt, const GXVtxAttrFmtList* list, bool par
 }
 
 void J3DGDSetTexCoordGen(GXTexGenType func, GXTexGenSrc src_param) {
-    u32 tgType;
+    std::cout << "J3DGDSetVtxAttrFmtv() is stubbed" << std::endl;
+
+    /* u32 tgType;
     u32 form;
     u32 proj;
     u32 row;
@@ -298,14 +300,16 @@ void J3DGDSetTexCoordGen(GXTexGenType func, GXTexGenSrc src_param) {
             break;
     }
 
-    J3DGDWrite_u32(XF_REG_TEX(proj, form, tgType, row, embossRow, embossLit));
+    J3DGDWrite_u32(XF_REG_TEX(proj, form, tgType, row, embossRow, embossLit)); */
 }
 
 void J3DGDSetTexCoordScale2(GXTexCoordID coord, u16 s_scale, u8 s_bias, u8 s_wrap, u16 t_scale, u8 t_bias, u8 t_wrap) {
-    // GDOverflowCheck(15);
+    std::cout << "J3DGDSetTexCoordScale2() is stubbed" << std::endl;
+
+    /* GDOverflowCheck(15);
     J3DGDWriteBPCmd(0xFE03FFFF);
     J3DGDWriteBPCmd(BP_TEXCOORD_S_SCALE(s_scale - 1, s_bias, s_wrap, 0, 0, coord * 2 + 0x30));
-    J3DGDWriteBPCmd(BP_TEXCOORD_T_SCALE(t_scale - 1, t_bias, t_wrap, coord * 2 + 0x31));
+    J3DGDWriteBPCmd(BP_TEXCOORD_T_SCALE(t_scale - 1, t_bias, t_wrap, coord * 2 + 0x31)); */
 }
 
 static u8 J3DGDTexMode0Ids[8] = {
@@ -333,25 +337,31 @@ static u8 GX2HWFiltConv[6] = {
 };
 
 void J3DGDSetTexLookupMode(GXTexMapID id, GXTexWrapMode wrap_s, GXTexWrapMode wrap_t, GXTexFilter min_filt, GXTexFilter mag_filt, f32 min_lod, f32 max_lod, f32 lod_bias, u8 bias_clamp, u8 do_edge_lod, GXAnisotropy max_aniso) {
-    J3DGDWriteBPCmd(BP_TEX_MODE0(wrap_s, wrap_t, mag_filt == TRUE, GX2HWFiltConv[min_filt], !do_edge_lod, (u8)(32.0f * lod_bias), max_aniso, bias_clamp, J3DGDTexMode0Ids[id]));
-    J3DGDWriteBPCmd(BP_TEX_MODE1((u8)(16.0f * min_lod), (u8)(16.0f * max_lod), J3DGDTexMode1Ids[id]));
+    std::cout << "J3DGDSetTexLookupMode() is stubbed" << std::endl;
+
+    /* J3DGDWriteBPCmd(BP_TEX_MODE0(wrap_s, wrap_t, mag_filt == TRUE, GX2HWFiltConv[min_filt], !do_edge_lod, (u8)(32.0f * lod_bias), max_aniso, bias_clamp, J3DGDTexMode0Ids[id]));
+    J3DGDWriteBPCmd(BP_TEX_MODE1((u8)(16.0f * min_lod), (u8)(16.0f * max_lod), J3DGDTexMode1Ids[id])); */
 }
 
 void J3DGDSetTexImgAttr(GXTexMapID id, u16 width, u16 height, GXTexFmt format) {
-    J3DGDWriteBPCmd(BP_IMAGE_ATTR(width - 1, height - 1, format, J3DGDTexImage0Ids[id]));
+    std::cout << "J3DGDSetTexImgAttr() is stubbed" << std::endl;
+    // J3DGDWriteBPCmd(BP_IMAGE_ATTR(width - 1, height - 1, format, J3DGDTexImage0Ids[id]));
 }
 
 void J3DGDSetTexImgPtr(GXTexMapID id, void* image_ptr) {
-    J3DGDWriteBPCmd(BP_IMAGE_PTR(OSCachedToPhysical(image_ptr) >> 5, J3DGDTexImage3Ids[id]));
+    std::cout << "J3DGDSetTexImgPtr() is stubbed" << std::endl;
+    // J3DGDWriteBPCmd(BP_IMAGE_PTR(OSCachedToPhysical(image_ptr) >> 5, J3DGDTexImage3Ids[id]));
 }
 
 void J3DGDSetTexImgPtrRaw(GXTexMapID id, u32 image_ptr_raw) {
-    // GDOverflowCheck(5);
-    J3DGDWriteBPCmd(BP_IMAGE_PTR(image_ptr_raw, J3DGDTexImage3Ids[id]));
+    std::cout << "J3DGDSetTexImgPtrRaw() is stubbed" << std::endl;
+    /* GDOverflowCheck(5);
+    J3DGDWriteBPCmd(BP_IMAGE_PTR(image_ptr_raw, J3DGDTexImage3Ids[id])); */
 }
 
 void J3DGDSetTexTlut(GXTexMapID id, u32 tmem_addr, GXTlutFmt format) {
-    J3DGDWriteBPCmd(BP_TEX_TLUT((tmem_addr - 0x80000) >> 9, format, J3DGDTexTlutIds[id]));
+    std::cout << "J3DGDSetTexTlut() is stubbed" << std::endl;
+    // J3DGDWriteBPCmd(BP_TEX_TLUT((tmem_addr - 0x80000) >> 9, format, J3DGDTexTlutIds[id]));
 }
 
 /* void J3DGDLoadTlut(void* tlut_ptr, u32 tmem_addr, GXTlutSize size) {
@@ -364,28 +374,30 @@ void J3DGDSetTexTlut(GXTexMapID id, u32 tmem_addr, GXTlutFmt format) {
 } */
 
 void J3DGDSetIndTexMtx(GXIndTexMtxID mtx_id, f32 offset[2][3], s8 scale_exp) {
-    s32 offsetS32[6];
+    std::cout << "J3DGDSetIndTexMtx() is stubbed" << std::endl;
+
+    /* s32 offsetS32[6];
     u32 id_offset;
 
     switch (mtx_id) {
-    case GX_ITM_0:
-    case GX_ITM_1:
-    case GX_ITM_2:
-        id_offset = (u32)(mtx_id - GX_ITM_0);
-        break;
-    case GX_ITM_S0:
-    case GX_ITM_S1:
-    case GX_ITM_S2:
-        id_offset = (u32)(mtx_id - GX_ITM_S0);
-        break;
-    case GX_ITM_T0:
-    case GX_ITM_T1:
-    case GX_ITM_T2:
-        id_offset = (u32)(mtx_id - GX_ITM_T0);
-        break;
-    default:
-        id_offset = 0;
-        break;
+        case GX_ITM_0:
+        case GX_ITM_1:
+        case GX_ITM_2:
+            id_offset = (u32)(mtx_id - GX_ITM_0);
+            break;
+        case GX_ITM_S0:
+        case GX_ITM_S1:
+        case GX_ITM_S2:
+            id_offset = (u32)(mtx_id - GX_ITM_S0);
+            break;
+        case GX_ITM_T0:
+        case GX_ITM_T1:
+        case GX_ITM_T2:
+            id_offset = (u32)(mtx_id - GX_ITM_T0);
+            break;
+        default:
+            id_offset = 0;
+            break;
     }
 
     offsetS32[0] = (s32)(offset[0][0] * 0x400) & 0x7FF;
@@ -398,7 +410,7 @@ void J3DGDSetIndTexMtx(GXIndTexMtxID mtx_id, f32 offset[2][3], s8 scale_exp) {
     offsetS32[5] = (s32)(offset[1][2] * 0x400) & 0x7FF;
 
     scale_exp += (s8)17;
-    // GDOverflowCheck(15);
+    GDOverflowCheck(15);
 
     J3DGDWriteBPCmd(BP_IND_MTX(
         offsetS32[0],
@@ -419,22 +431,26 @@ void J3DGDSetIndTexMtx(GXIndTexMtxID mtx_id, f32 offset[2][3], s8 scale_exp) {
         offsetS32[5],
         (scale_exp >> 4) & 3,
         8 + id_offset * 3
-    ));
+    )); */
 }
 
 void J3DGDSetIndTexCoordScale(GXIndTexStageID indStageEven, GXIndTexScale scaleS0, GXIndTexScale scaleT0, GXIndTexScale scaleS1, GXIndTexScale scaleT1) {
-    // GDOverflowCheck(5);
+    std::cout << "J3DGDSetIndTexCoordScale() is stubbed" << std::endl;
+
+    /* GDOverflowCheck(5);
     J3DGDWriteBPCmd(BP_IND_TEXCOORD_SCALE(
         scaleS0,
         scaleT0,
         scaleS1,
         scaleT1,
         0x25 + (indStageEven >> 1)
-    ));
+    )); */
 }
 
 void J3DGDSetIndTexOrder(u32 count, GXTexCoordID texCoord0, GXTexMapID texMap0, GXTexCoordID texCoord1, GXTexMapID texMap1, GXTexCoordID texCoord2, GXTexMapID texMap2, GXTexCoordID texCoord3, GXTexMapID texMap3) {
-    // GDOverflowCheck(10);
+    std::cout << "J3DGDSetIndTexOrder() is stubbed" << std::endl;
+
+    /* GDOverflowCheck(10);
     J3DGDWriteBPCmd(BP_IND_TEX_ORDER(
         texMap0 & 7,
         texCoord0 & 7,
@@ -450,32 +466,32 @@ void J3DGDSetIndTexOrder(u32 count, GXTexCoordID texCoord0, GXTexMapID texMap0, 
     u32 mask = 0;
     for (u32 i = 0; i < count; i++) {
         switch (i) {
-        case 0:
-            mask |= 1 << (texMap0 & 7);
-            break;
-        case 1:
-            mask |= 1 << (texMap1 & 7);
-            break;
-        case 2:
-            mask |= 1 << (texMap2 & 7);
-            break;
-        case 3:
-            mask |= 1 << (texMap3 & 7);
-            break;
+            case 0:
+                mask |= 1 << (texMap0 & 7);
+                break;
+            case 1:
+                mask |= 1 << (texMap1 & 7);
+                break;
+            case 2:
+                mask |= 1 << (texMap2 & 7);
+                break;
+            case 3:
+                mask |= 1 << (texMap3 & 7);
+                break;
         }
     }
 
-    J3DGDWriteBPCmd(BP_IND_MASK(mask, 0xF));
+    J3DGDWriteBPCmd(BP_IND_MASK(mask, 0xF)); */
 }
 
-void J3DGDSetTevOrder(GXTevStageID evenStage, GXTexCoordID coord0, GXTexMapID map0,
-                      GXChannelID color0, GXTexCoordID coord1, GXTexMapID map1,
-                      GXChannelID color1) {
-    static u8 c2r[] = {0, 1, 0, 1, 0, 1, 7, 5, 6, 0, 0, 0, 0, 0, 0, 7};
+void J3DGDSetTevOrder(GXTevStageID evenStage, GXTexCoordID coord0, GXTexMapID map0, GXChannelID color0, GXTexCoordID coord1, GXTexMapID map1, GXChannelID color1) {
+    std::cout << "J3DGDSetTevOrder() is stubbed" << std::endl;
+
+    /* static u8 c2r[] = {0, 1, 0, 1, 0, 1, 7, 5, 6, 0, 0, 0, 0, 0, 0, 7};
 
     GXTexCoordID coord0_ = coord0 >= GX_MAX_TEXCOORD ? GX_TEXCOORD0 : coord0;
     GXTexCoordID coord1_ = coord1 >= GX_MAX_TEXCOORD ? GX_TEXCOORD0 : coord1;
-    // GDOverflowCheck(5);
+    GDOverflowCheck(5);
     J3DGDWriteBPCmd(BP_TEV_ORDER(
         map0 & 7,
         coord0_,
@@ -486,37 +502,43 @@ void J3DGDSetTevOrder(GXTevStageID evenStage, GXTexCoordID coord0, GXTexMapID ma
         map1 != GX_TEXMAP_NULL && !(map1 & GX_TEX_DISABLE),
         c2r[color1 & 0xF],
         evenStage / 2 + 0x28
-    ));
+    )); */
 }
 
 void J3DGDSetTevKColor(GXTevKColorID reg, GXColor color) {
-    u32 regRA;
+    std::cout << "J3DGDSetTevKColor() is stubbed" << std::endl;
+
+    /* u32 regRA;
     u32 regBG;
 
     regRA = BP_TEV_COLOR_REG_RA(color.r, color.a, 1, 0xE0 + reg * 2);
     regBG = BP_TEV_COLOR_REG_BG(color.b, color.g, 1, 0xE1 + reg * 2);
 
-    // GDOverflowCheck(0xa);
+    GDOverflowCheck(0xa);
     J3DGDWriteBPCmd(regRA);
-    J3DGDWriteBPCmd(regBG);
+    J3DGDWriteBPCmd(regBG); */
 }
 
 void J3DGDSetTevColorS10(GXTevRegID reg, GXColorS10 color) {
-    u32 regRA;
+    std::cout << "J3DGDSetTevColorS10() is stubbed" << std::endl;
+
+    /* u32 regRA;
     u32 regBG;
 
     regRA = BP_TEV_COLOR_REG_RA(color.r & 0x7FF, color.a & 0x7FF, 0, 0xE0 + reg * 2);
     regBG = BP_TEV_COLOR_REG_BG(color.b & 0x7FF, color.g & 0x7FF, 0, 0xE1 + reg * 2);
 
-    // GDOverflowCheck(0x14);
+    GDOverflowCheck(0x14);
     J3DGDWriteBPCmd(regRA);
     J3DGDWriteBPCmd(regBG);
     J3DGDWriteBPCmd(regBG);
-    J3DGDWriteBPCmd(regBG);
+    J3DGDWriteBPCmd(regBG); */
 }
 
 void J3DGDSetFog(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor color) {
-    f32 A;
+    std::cout << "J3DGDSetFog() is stubbed" << std::endl;
+
+    /* f32 A;
     f32 B;
     f32 B_mant;
     f32 C;
@@ -559,7 +581,7 @@ void J3DGDSetFog(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXCo
     J3DGDWriteBPCmd(BP_FOG_UNK1(b_m, 0xEF));
     J3DGDWriteBPCmd(BP_FOG_UNK2(b_expn, 0xF0));
     J3DGDWriteBPCmd(BP_FOG_UNK3(c_hex >> 12, 0, type, 0xF1));
-    J3DGDWriteBPCmd(BP_FOG_COLOR(color.r, color.g, color.b, 0xF2));
+    J3DGDWriteBPCmd(BP_FOG_COLOR(color.r, color.g, color.b, 0xF2)); */
 }
 
 #define BP_FOG_RANGE_ADJ_K0(arg0, arg1, arg2) \
@@ -683,9 +705,11 @@ static u8 J3DTexImage2Ids[8] = {
 };
 
 void J3DFifoLoadTexCached(GXTexMapID id, u32 tmem_even, GXTexCacheSize size_even, u32 tmem_odd, GXTexCacheSize size_odd) {
-    J3DFifoLoadBPCmd(BP_TEX_CACHE_EVEN(tmem_even >> 5, size_even + 3, size_even + 3, 0, J3DTexImage1Ids[id]));
+    std::cout << "J3DFifoLoadTexCached() is stubbed" << std::endl;
+
+    /* J3DFifoLoadBPCmd(BP_TEX_CACHE_EVEN(tmem_even >> 5, size_even + 3, size_even + 3, 0, J3DTexImage1Ids[id]));
 
     if (size_odd != 3 && tmem_odd < 0x100000) {
         J3DFifoLoadBPCmd(BP_TEX_CACHE_ODD(tmem_odd >> 5, size_odd + 3, size_odd + 3, J3DTexImage2Ids[id]));
-    }
+    } */
 }

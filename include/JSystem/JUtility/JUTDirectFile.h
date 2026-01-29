@@ -21,7 +21,7 @@ struct JUTDirectFile {
 	u32 mLength;
 	u32 mPos;
 	bool mIsOpen;
-	DVDFileInfo mFileInfo;
+	// DVDFileInfo mFileInfo;
 };
 
 #endif

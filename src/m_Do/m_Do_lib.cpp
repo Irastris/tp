@@ -5,6 +5,9 @@
 #include "d/d_com_inf_game.h"
 #include "dolphin/types.h"
 
+// TODO: Not originally included directly
+#include "SSystem/SComponent/c_angle.h" // Resolves DEG2S
+
 u32 mDoLib_setResTimgObj(ResTIMG const* i_img, GXTexObj* o_texObj, u32 tlut_name, GXTlutObj* o_tlutObj) {
     if (i_img->indexTexture) {
         GXInitTlutObj(o_tlutObj, (void*)((u8*)i_img + i_img->paletteOffset), (GXTlutFmt)i_img->colorFormat, (u16)i_img->numColors);

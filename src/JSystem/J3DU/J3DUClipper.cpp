@@ -1,6 +1,10 @@
 #include "JSystem/JSystem.h"
 #include "JSystem/J3DU/J3DUClipper.h"
-// #include <cmath>
+#include <cmath>
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 void J3DUClipper::init() {
     mNear = 1.0f;
@@ -47,7 +51,7 @@ int J3DUClipper::clip(f32 const (*param_0)[4], Vec param_1, f32 param_2) const {
     if (vec1.x * _1C.x + vec1.y * _1C.y + vec1.z * _1C.z > param_2) {
         return 1;
     }
-    
+
     if (vec1.x * _28.x + vec1.y * _28.y + vec1.z * _28.z > param_2) {
         return 1;
     }

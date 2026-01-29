@@ -54,7 +54,7 @@ u8 data_8074CFA4_debug;
 s32 JUTGamePad::sAnalogMode;
 
 BOOL JUTGamePad::init() {
-    PADSetSpec(PAD_SPEC_5);
+    PADSetSpec(5);
     setAnalogMode(3);
     return PADInit();
 }
@@ -148,7 +148,6 @@ u32 JUTGamePad::read() {
         PADReset(reset_mask);
     }
 
-    checkResetSwitch();
     return sRumbleSupported;
 }
 
@@ -172,7 +171,7 @@ callbackFn JUTGamePad::C3ButtonReset::sCallback;
 
 void* JUTGamePad::C3ButtonReset::sCallbackArg;
 
-// OSTime JUTGamePad::C3ButtonReset::sThreshold = (OSTime)(OS_TIMER_CLOCK / 60) * 30;
+/* OSTime */ u16 JUTGamePad::C3ButtonReset::sThreshold = 3; // (OSTime)(OS_TIMER_CLOCK / 60) * 30;
 
 bool JUTGamePad::C3ButtonReset::sResetSwitchPushing;
 
@@ -180,7 +179,7 @@ bool JUTGamePad::C3ButtonReset::sResetOccurred;
 
 s32 JUTGamePad::C3ButtonReset::sResetOccurredPort;
 
-/* void JUTGamePad::checkResetCallback(OSTime holdTime) {
+void JUTGamePad::checkResetCallback(/* OSTime */ u16 holdTime) {
     if (holdTime >= JUTGamePad::C3ButtonReset::sThreshold) {
         JUTGamePad::C3ButtonReset::sResetOccurred = true;
         JUTGamePad::C3ButtonReset::sResetOccurredPort = mPortNum;
@@ -189,7 +188,7 @@ s32 JUTGamePad::C3ButtonReset::sResetOccurredPort;
             JUTGamePad::C3ButtonReset::sCallback(mPortNum, JUTGamePad::C3ButtonReset::sCallbackArg);
         }
     }
-} */
+}
 
 f32 JUTGamePad::CStick::sPressPoint = 0.5f;
 
@@ -208,24 +207,14 @@ void JUTGamePad::update() {
             mErrorStatus = mPadStatus[mPortNum].err;
         }
 
-        if (field_0xa8 == 0 || C3ButtonReset::sResetPattern != (mButton.mButton & C3ButtonReset::sResetMaskPattern)) {
-            mButtonReset.mReset = false;
-        } else if (!JUTGamePad::C3ButtonReset::sResetOccurred) {
-            if (mButtonReset.mReset == true) {
-                // OSTime hold_time = OSGetTime() - mResetHoldStartTime;
-                checkResetCallback(hold_time);
-            } else {
-                mButtonReset.mReset = true;
-                mResetHoldStartTime = OSGetTime();
-            }
-        }
+        mButtonReset.mReset = false;
 
-        for (JSUListIterator<JUTGamePadLongPress> pad(JUTGamePadLongPress::sPatternList.getFirst()); pad != JUTGamePadLongPress::sPatternList.getEnd(); ++pad) {
+        /* for (JSUListIterator<JUTGamePadLongPress> pad(JUTGamePadLongPress::sPatternList.getFirst()); pad != JUTGamePadLongPress::sPatternList.getEnd(); ++pad) {
             if (pad->isValid()) {
                 if (mPortNum >= 0 && mPortNum < 4) {
                     if ((mButton.mButton & pad->getMaskPattern()) == pad->getPattern()) {
                         if (pad->mLongPressStatus[mPortNum] == true) {
-                            // OSTime hold_time = OSGetTime() - pad->mStartHoldTime[mPortNum];
+                            OSTime hold_time = OSGetTime() - pad->mStartHoldTime[mPortNum];
                             pad->checkCallback(mPortNum, hold_time);
                         } else {
                             pad->mLongPressStatus[mPortNum] = true;
@@ -236,7 +225,7 @@ void JUTGamePad::update() {
                     }
                 }
             }
-        }
+        } */
 
         if (mPortNum >= 0 && mPortNum < 4) {
             mRumble.update(mPortNum);
@@ -245,25 +234,6 @@ void JUTGamePad::update() {
 }
 
 JSUList<JUTGamePadLongPress> JUTGamePadLongPress::sPatternList(false);
-
-void JUTGamePad::checkResetSwitch() {
-    if (!JUTGamePad::C3ButtonReset::sResetOccurred) {
-        int unused;
-        if (OSGetResetSwitchState()) {
-            C3ButtonReset::sResetSwitchPushing = true;
-        } else {
-            if (C3ButtonReset::sResetSwitchPushing == true) {
-                C3ButtonReset::sResetOccurred = true;
-                C3ButtonReset::sResetOccurredPort = EPortInvalid;
-
-                if (C3ButtonReset::sCallback != NULL) {
-                    C3ButtonReset::sCallback(EPortInvalid, C3ButtonReset::sCallbackArg);
-                }
-            }
-            C3ButtonReset::sResetSwitchPushing = false;
-        }
-    }
-}
 
 void JUTGamePad::clearForReset() {
     CRumble::setEnabled(0);
@@ -320,8 +290,8 @@ void JUTGamePad::CButton::update(const PADStatus* padStatus, u32 stickStatus) {
     if (padStatus != NULL) {
         mAnalogA = padStatus->analogA;
         mAnalogB = padStatus->analogB;
-        mAnalogL = padStatus->triggerLeft;
-        mAnalogR = padStatus->triggerRight;
+        mAnalogL = padStatus->triggerL;
+        mAnalogR = padStatus->triggerR;
     } else {
         mAnalogA = 0;
         mAnalogB = 0;

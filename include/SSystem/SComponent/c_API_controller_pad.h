@@ -18,8 +18,8 @@ struct interface_of_controller_pad {
     u8 field_0x1f;
     f32 mAnalogA;
     f32 mAnalogB;
-    f32 mTriggerLeft;
-    f32 mTriggerRight;
+    f32 mTriggerL;
+    f32 mTriggerR;
     u32 mButtonFlags;
     u32 mPressedButtonFlags;
     s8 mGamepadErrorFlags;

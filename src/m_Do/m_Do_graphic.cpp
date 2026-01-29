@@ -19,8 +19,8 @@
 #include "m_Do/m_Do_machine.h"
 #include "m_Do/m_Do_main.h"
 /* #include "d/d_meter2_info.h"
-#include "d/d_s_play.h"
-#include "DynamicLink.h" */
+#include "d/d_s_play.h" */
+#include "DynamicLink.h"
 
 class mDoGph_HIO_c : public JORReflexible {
 public:

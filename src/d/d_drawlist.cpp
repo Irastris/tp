@@ -9,7 +9,7 @@
 #include "d/d_drawlist.h"
 // #include "d/d_s_play.h"
 #include "m_Do/m_Do_graphic.h"
-// #include "m_Do/m_Do_lib.h"
+#include "m_Do/m_Do_lib.h"
 #include "m_Do/m_Do_mtx.h"
 
 class dDlst_2Dm_c {
@@ -624,8 +624,7 @@ dDlst_2DT2_c::dDlst_2DT2_c() {
     field_0x40 = (GXColor){0, 0, 0, 0};
 }
 
-void dDlst_2DT2_c::init(ResTIMG* i_timg, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
-                        u8 param_5, u8 param_6, u8 param_7, f32 i_scaleX, f32 i_scaleY) {
+void dDlst_2DT2_c::init(ResTIMG* i_timg, f32 param_1, f32 param_2, f32 param_3, f32 param_4, u8 param_5, u8 param_6, u8 param_7, f32 i_scaleX, f32 i_scaleY) {
     mDoLib_setResTimgObj(i_timg, &mTexObj, 0, NULL);
     field_0x24 = param_1;
     field_0x28 = param_2;
@@ -710,9 +709,10 @@ void dDlst_2DM_c::draw() {
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
 
-
 void dDlst_2Dm_c::draw() {
-    s16 r31 = field_0x48;
+    std::cout << "dDlst_2Dm_c::draw() is stubbed" << std::endl;
+
+    /* s16 r31 = field_0x48;
     s16 r30 = field_0x4a;
     int r29 = field_0x48 + 256.0f;
     int r28 = field_0x4a + 256.0f;
@@ -731,13 +731,13 @@ void dDlst_2Dm_c::draw() {
     GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
     GXSetVtxDesc(GX_VA_TEX1, GX_DIRECT);
     GXLoadTexObj(&field_0x1c, GX_TEXMAP0);
-    /* if (field_0x4c) {
+    if (field_0x4c) {
         GXLoadTlut(&field_0x3c, GXGetTexObjTlut(&field_0x1c));
-    } */
+    }
     GXLoadTexObj(&field_0x50, GX_TEXMAP1);
-    /* if (field_0x80) {
+    if (field_0x80) {
         GXLoadTlut(&field_0x70, GXGetTexObjTlut(&field_0x50));
-    } */
+    }
     GXSetNumChans(0);
     GXSetTevColor(GX_TEVREG0, field_0x14);
     GXSetTevColor(GX_TEVREG1, field_0x18);
@@ -773,9 +773,8 @@ void dDlst_2Dm_c::draw() {
     GXTexCoord2s16(r31, r28);
     GXTexCoord2s16(r27, r24);
     GXEnd();
-    dComIfGp_getCurrentGrafPort()->setup2D();
+    dComIfGp_getCurrentGrafPort()->setup2D(); */
 }
-
 
 void dDlst_2DMt_c::draw() {
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
@@ -786,7 +785,7 @@ void dDlst_2DMt_c::draw() {
     for (int i = 0; i < field_0x4; i++) {
         if (r27->check()) {
             if (r27->getCI()) {
-                GXLoadTlut(r27->getTlutObj(), i);
+                GXLoadTlut(r27->getTlutObj(), (GXTlut)i);
             }
             GXLoadTexObj(r27->getTexObj(), GXTexMapID(r28));
             GXSetVtxAttrFmt(GX_VTXFMT0, GXAttr(GX_VA_TEX0 + r28), GX_CLR_RGBA, GX_RGBA6, 0);
@@ -991,9 +990,9 @@ int dDlst_shadowPoly_c::set(cBgD_Vtx_t* i_vtx, u16 param_1, u16 param_2, u16 par
     b.z *= temp_f3;
     b *= 2.0f;
 
-    PSVECAdd(&vtx[param_1], &b, &dst->mPos[0]);
-    PSVECAdd(&vtx[param_2], &b, &dst->mPos[1]);
-    PSVECAdd(&vtx[param_3], &b, &dst->mPos[2]);
+    VECAdd(&vtx[param_1], &b, &dst->mPos[0]);
+    VECAdd(&vtx[param_2], &b, &dst->mPos[1]);
+    VECAdd(&vtx[param_3], &b, &dst->mPos[2]);
     mCount++;
     return 1;
 }
@@ -1389,7 +1388,7 @@ void dDlst_shadowControl_c::init() {
         u16 size = l_realImageSize[i];
 
         u32 buffer_size = GXGetTexBufferSize(size, size, 5, GX_DISABLE, 0);
-        field_0x15ef0[i] = new (0x20) u8[buffer_size];
+        field_0x15ef0[i] = new (JKRHeap::getCurrentHeap(), 0x20) u8[buffer_size];
         GXInitTexObj(&field_0x15eb0[i], field_0x15ef0[i], size, size, GX_TF_RGB5A3, GX_CLAMP,
                      GX_CLAMP, GX_DISABLE);
         GXInitTexObjLOD(&field_0x15eb0[i], GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f, GX_FALSE,
@@ -1481,7 +1480,9 @@ void dDlst_shadowControl_c::imageDraw(Mtx param_0) {
 }
 
 void dDlst_shadowControl_c::draw(Mtx param_0) {
-    static GXTevColorChan l_tevColorChan[4] = {
+    std::cout << "dDlst_shadowControl_c::draw() is stubbed" << std::endl;
+
+    /* static GXTevColorChan l_tevColorChan[4] = {
         GX_CH_RED,
         GX_CH_GREEN,
         GX_CH_BLUE,
@@ -1537,7 +1538,7 @@ void dDlst_shadowControl_c::draw(Mtx param_0) {
     }
 
     GXSetColorUpdate(GX_ENABLE);
-    GXSetAlphaUpdate(GX_DISABLE);
+    GXSetAlphaUpdate(GX_DISABLE); */
 }
 
 int dDlst_shadowControl_c::setReal(u32 param_1, s8 param_2, J3DModel* param_3, cXyz* param_4,
@@ -1785,7 +1786,7 @@ void dDlst_list_c::reset() {
 }
 
 void dDlst_list_c::entryZSortXluDrawList(J3DDrawBuffer* param_0, J3DPacket* param_1, cXyz& param_2) {
-    f32 z_value = -J3DCalcZValue(j3dSys.getViewMtx(), param_2);
+    f32 z_value = -J3DCalcZValue(j3dSys.getViewMtx(), (Vec*)param_2);
     u32 size = param_0->getEntryTableSize();
     f32 fsize = size;
     fsize = 9999.0f / fsize;

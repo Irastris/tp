@@ -161,7 +161,9 @@ bool JUTCacheFont::internal_initiate(ResFONT const* p_fontRes, void* param_1, u3
 }
 
 bool JUTCacheFont::allocArea(void* cacheBuffer, u32 param_1, JKRHeap* heap) {
-    mInf1Ptr = (ResFONT::INF1*)new (heap, 0) ResFONT();
+    std::cout << "JUTCacheFont::allocArea() is stubbed" << std::endl;
+
+    /* mInf1Ptr = (ResFONT::INF1*)new (heap, 0) ResFONT();
     if (mInf1Ptr == NULL) {
         return false;
     }
@@ -179,7 +181,7 @@ bool JUTCacheFont::allocArea(void* cacheBuffer, u32 param_1, JKRHeap* heap) {
             return false;
         }
 
-        // field_0xac = JKRAllocFromAram(mTotalGlySize - (mGly1BlockNum * sizeof(ResFONT::GLY1)), JKRAramHeap::HEAD);
+        field_0xac = JKRAllocFromAram(mTotalGlySize - (mGly1BlockNum * sizeof(ResFONT::GLY1)), JKRAramHeap::HEAD);
         if (field_0xac == NULL) {
             return false;
         }
@@ -210,12 +212,14 @@ bool JUTCacheFont::allocArea(void* cacheBuffer, u32 param_1, JKRHeap* heap) {
         field_0xb0 = 1;
     }
 
-    invalidiateAllCache();
+    invalidiateAllCache(); */
     return true;
 }
 
 bool JUTCacheFont::allocArray(JKRHeap* param_0) {
-    mMemBlocks = (void**)new (param_0, 0) u32[mWid1BlockNum + mGly1BlockNum + mMap1BlockNum];
+    std::cout << "JUTCacheFont::allocArray() is stubbed" << std::endl;
+
+    /* mMemBlocks = (void**)new (param_0, 0) u32[mWid1BlockNum + mGly1BlockNum + mMap1BlockNum];
     if (mMemBlocks == NULL) {
         return false;
     }
@@ -234,12 +238,14 @@ bool JUTCacheFont::allocArray(JKRHeap* param_0) {
     }
     if (mMap1BlockNum) {
         mpMapBlocks = new (blocks) ResFONT::MAP1*[mMap1BlockNum];
-    }
+    } */
     return true;
 }
 
 void JUTCacheFont::setBlock() {
-    int widthNum = 0;
+    std::cout << "JUTCacheFont::setBlock() is stubbed" << std::endl;
+
+    /* int widthNum = 0;
     int gylphNum = 0;
     int mapNum = 0;
     u8* pWidth = (u8*)field_0x7c;
@@ -265,8 +271,8 @@ void JUTCacheFont::setBlock() {
             break;
         case 'GLY1':
             memcpy(piVar5, pData, 0x20);
-            /* JKRAramBlock* iVar1;
-            iVar1 = JKRMainRamToAram((u8*)pData + 0x20, aramAddress, pData[1] - 0x20, EXPAND_SWITCH_UNKNOWN0, 0, NULL, 0xffffffff, NULL); */
+            JKRAramBlock* iVar1;
+            iVar1 = JKRMainRamToAram((u8*)pData + 0x20, aramAddress, pData[1] - 0x20, EXPAND_SWITCH_UNKNOWN0, 0, NULL, 0xffffffff, NULL);
             piVar5->magic = aramAddress;
             if (piVar5->textureSize > mMaxSheetSize) {
                 mMaxSheetSize = piVar5->textureSize;
@@ -290,7 +296,7 @@ void JUTCacheFont::setBlock() {
         }
 
         pData = (int*)((u8*)pData + pData[1]);
-    }
+    } */
 }
 
 JUTCacheFont::TGlyphCacheInfo* JUTCacheFont::determineBlankPage() {

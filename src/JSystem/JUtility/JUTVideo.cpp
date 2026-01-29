@@ -6,8 +6,8 @@
 
 JUTVideo* JUTVideo::sManager;
 
-/* OSTick JUTVideo::sVideoLastTick;
-OSTick JUTVideo::sVideoInterval; */
+/* OSTick */ u32 JUTVideo::sVideoLastTick;
+/* OSTick */ u32 JUTVideo::sVideoInterval;
 
 static bool data_80451544;
 
@@ -34,22 +34,22 @@ JUTVideo::JUTVideo(GXRenderModeObj const* param_0) {
     VISetBlack(1);
     VIFlush();
     field_0x8 = 0;
-    mRetraceCount = VIGetRetraceCount();
+    mRetraceCount = 0; // VIGetRetraceCount();
     field_0x10 = 1;
     field_0x18 = 0;
-    sVideoLastTick = OSGetTick();
+    sVideoLastTick = 0; // OSGetTick();
     sVideoInterval = 670000;
-    mPreRetraceCallback = VISetPreRetraceCallback(preRetraceProc);
-    mPostRetraceCallback = VISetPostRetraceCallback(postRetraceProc);
+    mPreRetraceCallback = NULL; // VISetPreRetraceCallback(preRetraceProc);
+    mPostRetraceCallback = NULL; // VISetPostRetraceCallback(postRetraceProc);
     mPreCallback = NULL;
     mPostCallback = NULL;
-    OSInitMessageQueue(&mMessageQueue, &mMessage, 1);
+    // OSInitMessageQueue(&mMessageQueue, &mMessage, 1);
     GXSetDrawDoneCallback(drawDoneCallback);
 }
 
 JUTVideo::~JUTVideo() {
-    VISetPreRetraceCallback(mPreRetraceCallback);
-    VISetPostRetraceCallback(mPostRetraceCallback);
+    /* VISetPreRetraceCallback(mPreRetraceCallback);
+    VISetPostRetraceCallback(mPostRetraceCallback); */
 }
 
 void JUTVideo::preRetraceProc(u32 retrace_count) {
@@ -61,7 +61,7 @@ void JUTVideo::preRetraceProc(u32 retrace_count) {
         (*sManager->mPreCallback)(retrace_count);
     }
 
-    // OSTick tick = OSGetTick();
+    /* OSTick */ u32 tick = 0; // OSGetTick();
     sVideoInterval = tick - sVideoLastTick;
     sVideoLastTick = tick;
 
@@ -122,9 +122,9 @@ void JUTVideo::preRetraceProc(u32 retrace_count) {
                 GXFlush();
                 xfb->setSDrawingFlag(2);
                 frameBuffer = xfb->getDisplayingXfb();
-                if (VIGetNextFrameBuffer()) {
+                /* if (VIGetNextFrameBuffer()) {
                     VISetBlack(FALSE);
-                }
+                } */
             } else {
                 VISetBlack(TRUE);
             }

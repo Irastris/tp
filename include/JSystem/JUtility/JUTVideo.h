@@ -37,15 +37,15 @@ public:
     // OSMessageQueue* getMessageQueue() { return &mMessageQueue; }
 
     static JUTVideo* getManager() { return sManager; }
-    /* static OSTick getVideoInterval() { return sVideoInterval; }
-    static OSTick getVideoLastTick() { return sVideoLastTick; } */
+    static /* OSTick */ u32 getVideoInterval() { return sVideoInterval; }
+    static /* OSTick */ u32 getVideoLastTick() { return sVideoLastTick; }
 
     GXRenderModeObj* getRenderMode() const { return mRenderObj; }
 
 private:
     static JUTVideo* sManager;
-    /* static OSTick sVideoLastTick;
-    static OSTick sVideoInterval; */
+    static /* OSTick */ u32 sVideoLastTick;
+    static /* OSTick */ u32 sVideoInterval;
 
 private:
     GXRenderModeObj* mRenderObj;
@@ -54,8 +54,8 @@ private:
     u32 field_0x10;
     u32 field_0x14;
     u32 field_0x18;
-    /* VIRetraceCallback mPreRetraceCallback;
-    VIRetraceCallback mPostRetraceCallback; */
+    VIRetraceCallback mPreRetraceCallback;
+    VIRetraceCallback mPostRetraceCallback;
     Callback mPreCallback;
     Callback mPostCallback;
     bool mSetBlack;

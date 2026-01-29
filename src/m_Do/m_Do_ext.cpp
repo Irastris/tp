@@ -2444,7 +2444,9 @@ void mDoExt_3DlineMat1_c::update(int param_0, f32 param_1, GXColor& param_2, u16
 // #include "assets/l_mat2DL__d_a_grass.h"
 
 void mDoExt_3DlineMat2_c::setMaterial() {
-    j3dSys.reinitGX();
+    std::cout << "mDoExt_3DlineMat2_c::setMaterial() is stubbed" << std::endl;
+
+    /* j3dSys.reinitGX();
     GXSetNumIndStages(0);
     GXClearVtxDesc();
     GXSetVtxDesc(GX_VA_POS, GX_INDEX16);
@@ -2456,7 +2458,7 @@ void mDoExt_3DlineMat2_c::setMaterial() {
     dKy_GxFog_set();
     GXCallDisplayList(NULL, 0x80); // DEBUG NONMATCHING - this is supposed to reference l_mat2DL
     GXLoadPosMtxImm(j3dSys.getViewMtx(), 0);
-    GXLoadNrmMtxImm(cMtx_getIdentity(), 0);
+    GXLoadNrmMtxImm(cMtx_getIdentity(), 0); */
 }
 
 void mDoExt_3DlineMat1_c::update(int param_0, GXColor& param_2, dKy_tevstr_c* param_4) {
@@ -2573,21 +2575,25 @@ void mDoExt_3DlineMat1_c::update(int param_0, GXColor& param_2, dKy_tevstr_c* pa
 }
 
 void mDoExt_3DlineMatSortPacket::setMat(mDoExt_3DlineMat_c* i_3DlineMat) {
-    if (mp3DlineMat == NULL) {
+    std::cout << "mDoExt_3DlineMatSortPacket::setMat() is stubbed" << std::endl;
+
+    /* if (mp3DlineMat == NULL) {
         dComIfGd_getListPacket()->entryImm(this, 0);
     }
     i_3DlineMat->field_0x4 = mp3DlineMat;
-    mp3DlineMat = i_3DlineMat;
+    mp3DlineMat = i_3DlineMat; */
 }
 
 void mDoExt_3DlineMatSortPacket::draw() {
-    mp3DlineMat->setMaterial();
+    std::cout << "mDoExt_3DlineMatSortPacket::draw() is stubbed" << std::endl;
+
+    /* mp3DlineMat->setMaterial();
     mDoExt_3DlineMat_c* lineMat = mp3DlineMat;
     do {
         lineMat->draw();
         lineMat = lineMat->field_0x4;
     } while (lineMat != NULL);
-    J3DShape::resetVcdVatCache();
+    J3DShape::resetVcdVatCache(); */
 }
 
 /* static void mDoExt_initFontCommon(JUTFont** mDoExt_font_p, ResFONT** mDoExt_resfont_p, JKRHeap* param_2, char const* param_3, JKRArchive* param_4, u8 param_5, u32 param_6, u32 param_7) {

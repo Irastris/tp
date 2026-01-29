@@ -11,7 +11,7 @@ void J3DTexture::loadGX(u16 idx, GXTexMapID texMapID) const {
     } else {
         GXInitTexObjCI(&texObj, ((u8*)timg) + timg->imageOffset, timg->width, timg->height, (GXCITexFmt)timg->format, (GXTexWrapMode)timg->wrapS, (GXTexWrapMode)timg->wrapT, timg->mipmapEnabled, (u32)texMapID);
         GXInitTlutObj(&tlutObj, ((u8*)timg) + timg->paletteOffset, (GXTlutFmt)timg->colorFormat, timg->numColors);
-        GXLoadTlut(&tlutObj, texMapID);
+        GXLoadTlut(&tlutObj, (GXTlut)texMapID);
     }
 
     const f32 kLODClampScale = 1.0f / 8.0f;

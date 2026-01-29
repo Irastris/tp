@@ -9,6 +9,9 @@
 #include "SSystem/SComponent/c_m3d_g_vtx.h"
 #include "f_pc/f_pc_manager.h"
 
+// TODO: Not originally included directly
+#include <dolphin/gx.h>
+
 class fopAc_ac_c;
 
 enum CcG_Tg_HitMark {
