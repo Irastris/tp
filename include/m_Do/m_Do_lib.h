@@ -3,6 +3,11 @@
 
 #include "JSystem/J3DU/J3DUClipper.h"
 
+// TODO: Not originally included directly
+#include <dolphin/gx.h>
+
+// typedef struct _GXTexObj GXTexObj;
+// typedef struct _GXTlutObj GXTlutObj;
 struct ResTIMG;
 
 struct mDoLib_clipper {

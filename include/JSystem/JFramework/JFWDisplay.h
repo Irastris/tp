@@ -10,7 +10,7 @@ class JKRHeap;
 
 typedef void (*JFWDisplayUnkFunc)(void);
 
-class JFWAlarm : public OSAlarm {
+/* class JFWAlarm : public OSAlarm {
 public:
     JFWAlarm() : mLink(this) {}
     ~JFWAlarm() {}
@@ -27,7 +27,7 @@ public:
 public:
     OSThread* mThread;
     JSULink<JFWAlarm> mLink;
-};
+}; */
 
 class JFWDisplay {
 public:
@@ -124,8 +124,8 @@ private:
 };
 
 static void JFWDrawDoneAlarm();
-static void JFWThreadAlarmHandler(OSAlarm*, OSContext*);
-static void JFWGXAbortAlarmHandler(OSAlarm*, OSContext*);
+// static void JFWThreadAlarmHandler(OSAlarm*, OSContext*);
+// static void JFWGXAbortAlarmHandler(OSAlarm*, OSContext*);
 static void waitForTick(u32, u16);
 static void diagnoseGpHang();
 

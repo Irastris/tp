@@ -4,7 +4,10 @@
 #include "JSystem/J3DGraphBase/J3DTransform.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 
-class J3DAnmTransform;
+// TODO: Not originally included directly
+#include "JSystem/J3DGraphAnimator/J3DAnimation.h"
+
+// class J3DAnmTransform;
 class J3DJoint;
 class J3DMaterial;
 class J3DMtxBuffer;

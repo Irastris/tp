@@ -10,13 +10,6 @@
 extern "C" {
 #endif
 
-typedef s64 OSTime;
-typedef u32 OSTick;
-
-#include "dolphin/os/OSTime.h"
-#include "dolphin/os/OSAlarm.h"
-#include "dolphin/os/OSTimer.h"
-
 #define OSRoundUp32B(x)   (((u32)(x) + 32 - 1) & ~(32 - 1))
 #define OSRoundDown32B(x) (((u32)(x)) & ~(32 - 1))
 

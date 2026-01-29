@@ -315,13 +315,13 @@ static void waitForTick(u32 p1, u16 p2) {
     }
 }
 
-JSUList<JFWAlarm> JFWAlarm::sList(false);
+// JSUList<JFWAlarm> JFWAlarm::sList(false);
 
-static void JFWThreadAlarmHandler(OSAlarm* p_alarm, OSContext* p_ctx) {
+/* static void JFWThreadAlarmHandler(OSAlarm* p_alarm, OSContext* p_ctx) {
     JFWAlarm* alarm = static_cast<JFWAlarm*>(p_alarm);
     alarm->removeLink();
     OSResumeThread(alarm->getThread());
-}
+} */
 
 void JFWDisplay::threadSleep(s64 time) {
     std::cout << "JFWDisplay::endPatch() is stubbed" << std::endl;
@@ -472,7 +472,7 @@ static void JFWDrawDoneAlarm() {
     OSRestoreInterrupts(status); */
 }
 
-static void JFWGXAbortAlarmHandler(OSAlarm* param_0, OSContext* param_1) {
+/* static void JFWGXAbortAlarmHandler(OSAlarm* param_0, OSContext* param_1) {
     diagnoseGpHang();
     GXAbortFrame();
     GXWGFifo.u8 = 0x61;
@@ -485,7 +485,7 @@ static void JFWGXAbortAlarmHandler(OSAlarm* param_0, OSContext* param_1) {
         GXInit(base, size);
     }
     GXSetDrawDone();
-}
+} */
 
 static void diagnoseGpHang() {
     u32 sp28;

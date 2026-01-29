@@ -3,6 +3,9 @@
 #include "JSystem/J3DGraphBase/J3DStruct.h"
 #include "JSystem/JMath/JMath.h"
 
+// TODO: Not originally included directly
+#include "dolphin/os.h"
+
 void J3DFrameCtrl::init(s16 endFrame) {
     mAttribute = EMode_LOOP;
     mState = 0;
